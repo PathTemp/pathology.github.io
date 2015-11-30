@@ -39,27 +39,12 @@ width: 100%;
 background: #222222 url(../images/header_bg.png) repeat-x;
 }
 
-header#header h1.site_title {
+header#header h1.site_title, header#header h2.section_title  {
 float: left;
 margin: 0;
 font-size: 22px;
 display: block;
 width: 30%;
-height: 55px;
-font-weight: normal;
-text-align: center;
-text-indent: 1.8%;
-line-height: 55px;
-color: #fff;
-text-shadow: 0 -1px 0 #000;
-}
-
-header#header h2.section_title {
-float: left;
-margin: 0;
-font-size: 22px;
-display: block;
-width: 70%;
 height: 55px;
 font-weight: normal;
 text-align: center;
@@ -75,9 +60,8 @@ text-decoration: none;
 }
 
 header#header h2.section_title {
-text-align: center;
 text-indent: 4.5%;
-width: 70%;
+width: 61%;
 background: url(../images/header_shadow.png) no-repeat left top;
 }
 
