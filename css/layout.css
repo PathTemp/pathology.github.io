@@ -754,6 +754,7 @@ margin: 0 0.5%;
 display: block;
 float: right;
 width: 80%;
+max-width: 80%;
 margin: 0 10px;
 }
 
