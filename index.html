@@ -1,262 +1,352 @@
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>Page title - Sitename</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="Description" lang="en" content="ADD SITE DESCRIPTION">
-		<meta name="author" content="ADD AUTHOR INFORMATION">
-		<meta name="robots" content="index, follow">
 
-		<!-- icons -->
-		<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
-		<link rel="shortcut icon" href="favicon.ico">
+<head>
+	<meta charset="utf-8"/>
+	<title>Dashboard I Admin Panel</title>
+	
+	<link rel="stylesheet" href="css/layout.css" type="text/css" media="screen" />
+	<!--[if lt IE 9]>
+	<link rel="stylesheet" href="css/ie.css" type="text/css" media="screen" />
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<script src="js/jquery-1.5.2.min.js" type="text/javascript"></script>
+	<script src="js/hideshow.js" type="text/javascript"></script>
+	<script src="js/jquery.tablesorter.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/jquery.equalHeight.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() 
+    	{ 
+      	  $(".tablesorter").tablesorter(); 
+   	 } 
+	);
+	$(document).ready(function() {
 
-		<!-- Bootstrap Core CSS file -->
-		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	//When page loads...
+	$(".tab_content").hide(); //Hide all content
+	$("ul.tabs li:first").addClass("active").show(); //Activate first tab
+	$(".tab_content:first").show(); //Show first tab content
 
-		<!-- Override CSS file - add your own CSS rules -->
-		<link rel="stylesheet" href="assets/css/styles.css">
+	//On Click Event
+	$("ul.tabs li").click(function() {
 
-		<!-- Conditional comment containing JS files for IE6 - 8 -->
-		<!--[if lt IE 9]>
-			<script src="assets/js/html5.js"></script>
-			<script src="assets/js/respond.min.js"></script>
-		<![endif]-->
-	</head>
-	<body>
+		$("ul.tabs li").removeClass("active"); //Remove any "active" class
+		$(this).addClass("active"); //Add "active" class to selected tab
+		$(".tab_content").hide(); //Hide all tab content
 
-		<!-- Navigation -->
-	    <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-			<div class="container-fluid">
+		var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+		$(activeTab).fadeIn(); //Fade in the active ID content
+		return false;
+	});
 
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="#">Sitename</a>
-				</div>
-				<!-- /.navbar-header -->
+});
+    </script>
+    <script type="text/javascript">
+    $(function(){
+        $('.column').equalHeight();
+    });
+</script>
 
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<li><a href="#">Nav item 1</a></li>
-						<li><a href="#">Nav item 2</a></li>
-						<li><a href="#">Nav item 3</a></li>
-					</ul>
-				</div>
-				<!-- /.navbar-collapse -->
+</head>
+
+
+<body>
+
+	<header id="header">
+		<hgroup>
+			<h1 class="site_title"><a href="index.html">Website Admin</a></h1>
+			<h2 class="section_title">Dashboard</h2><div class="btn_view_site"><a href="http://www.medialoot.com">View Site</a></div>
+		</hgroup>
+	</header> <!-- end of header bar -->
+	
+	<section id="secondary_bar">
+		<div class="user">
+			<p>John Doe (<a href="#">3 Messages</a>)</p>
+			<!-- <a class="logout_user" href="#" title="Logout">Logout</a> -->
+		</div>
+		<div class="breadcrumbs_container">
+			<article class="breadcrumbs"><a href="index.html">Website Admin</a> <div class="breadcrumb_divider"></div> <a class="current">Dashboard</a></article>
+		</div>
+	</section><!-- end of secondary bar -->
+	
+	<aside id="sidebar" class="column">
+		<form class="quick_search">
+			<input type="text" value="Quick Search" onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;">
+		</form>
+		<hr/>
+		<h3>Content</h3>
+		<ul class="toggle">
+			<li class="icn_new_article"><a href="#">New Article</a></li>
+			<li class="icn_edit_article"><a href="#">Edit Articles</a></li>
+			<li class="icn_categories"><a href="#">Categories</a></li>
+			<li class="icn_tags"><a href="#">Tags</a></li>
+		</ul>
+		<h3>Users</h3>
+		<ul class="toggle">
+			<li class="icn_add_user"><a href="#">Add New User</a></li>
+			<li class="icn_view_users"><a href="#">View Users</a></li>
+			<li class="icn_profile"><a href="#">Your Profile</a></li>
+		</ul>
+		<h3>Media</h3>
+		<ul class="toggle">
+			<li class="icn_folder"><a href="#">File Manager</a></li>
+			<li class="icn_photo"><a href="#">Gallery</a></li>
+			<li class="icn_audio"><a href="#">Audio</a></li>
+			<li class="icn_video"><a href="#">Video</a></li>
+		</ul>
+		<h3>Admin</h3>
+		<ul class="toggle">
+			<li class="icn_settings"><a href="#">Options</a></li>
+			<li class="icn_security"><a href="#">Security</a></li>
+			<li class="icn_jump_back"><a href="#">Logout</a></li>
+		</ul>
+		
+		<footer>
+			<hr />
+			<p><strong>Copyright &copy; 2011 Website Admin</strong></p>
+			<p>Theme by <a href="http://www.medialoot.com">MediaLoot</a></p>
+		</footer>
+	</aside><!-- end of sidebar -->
+	
+	<section id="main" class="column">
+		
+		<h4 class="alert_info">Welcome to the free MediaLoot admin panel template, this could be an informative message.</h4>
+		
+		<article class="module width_full">
+			<header><h3>Stats</h3></header>
+			<div class="module_content">
+				<article class="stats_graph">
+					<img src="http://chart.apis.google.com/chart?chxr=0,0,3000&chxt=y&chs=520x140&cht=lc&chco=76A4FB,80C65A&chd=s:Tdjpsvyvttmiihgmnrst,OTbdcfhhggcTUTTUadfk&chls=2|2&chma=40,20,20,30" width="520" height="140" alt="" />
+				</article>
+				
+				<article class="stats_overview">
+					<div class="overview_today">
+						<p class="overview_day">Today</p>
+						<p class="overview_count">1,876</p>
+						<p class="overview_type">Hits</p>
+						<p class="overview_count">2,103</p>
+						<p class="overview_type">Views</p>
+					</div>
+					<div class="overview_previous">
+						<p class="overview_day">Yesterday</p>
+						<p class="overview_count">1,646</p>
+						<p class="overview_type">Hits</p>
+						<p class="overview_count">2,054</p>
+						<p class="overview_type">Views</p>
+					</div>
+				</article>
+				<div class="clear"></div>
 			</div>
-			<!-- /.container-fluid -->
-		</nav>
-		<!-- /.navbar -->
+		</article><!-- end of stats article -->
+		
+		<article class="module width_3_quarter">
+		<header><h3 class="tabs_involved">Content Manager</h3>
+		<ul class="tabs">
+   			<li><a href="#tab1">Posts</a></li>
+    		<li><a href="#tab2">Comments</a></li>
+		</ul>
+		</header>
 
-		<!-- Page Content -->
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-sm-8 col-sm-push-4">
-					<div class="page-header">
-						<h1>Blog post title</h1>
-						<p>Posted by <span class="glyphicon glyphicon-user"></span> <a href="#">Matthijs Jansen</a> on <span class="glyphicon glyphicon-time"></span> 12 January 2015 10:00 am</p>
-					</div>
+		<div class="tab_container">
+			<div id="tab1" class="tab_content">
+			<table class="tablesorter" cellspacing="0"> 
+			<thead> 
+				<tr> 
+   					<th></th> 
+    				<th>Entry Name</th> 
+    				<th>Category</th> 
+    				<th>Created On</th> 
+    				<th>Actions</th> 
+				</tr> 
+			</thead> 
+			<tbody> 
+				<tr> 
+   					<td><input type="checkbox"></td> 
+    				<td>Lorem Ipsum Dolor Sit Amet</td> 
+    				<td>Articles</td> 
+    				<td>5th April 2011</td> 
+    				<td><input type="image" src="images/icn_edit.png" title="Edit"><input type="image" src="images/icn_trash.png" title="Trash"></td> 
+				</tr> 
+				<tr> 
+   					<td><input type="checkbox"></td> 
+    				<td>Ipsum Lorem Dolor Sit Amet</td> 
+    				<td>Freebies</td> 
+    				<td>6th April 2011</td> 
+   				 	<td><input type="image" src="images/icn_edit.png" title="Edit"><input type="image" src="images/icn_trash.png" title="Trash"></td> 
+				</tr>
+				<tr> 
+   					<td><input type="checkbox"></td> 
+    				<td>Sit Amet Dolor Ipsum</td> 
+    				<td>Tutorials</td> 
+    				<td>10th April 2011</td> 
+    				<td><input type="image" src="images/icn_edit.png" title="Edit"><input type="image" src="images/icn_trash.png" title="Trash"></td> 
+				</tr> 
+				<tr> 
+   					<td><input type="checkbox"></td> 
+    				<td>Dolor Lorem Amet</td> 
+    				<td>Articles</td> 
+    				<td>16th April 2011</td> 
+   				 	<td><input type="image" src="images/icn_edit.png" title="Edit"><input type="image" src="images/icn_trash.png" title="Trash"></td> 
+				</tr>
+				<tr> 
+   					<td><input type="checkbox"></td> 
+    				<td>Dolor Lorem Amet</td> 
+    				<td>Articles</td> 
+    				<td>16th April 2011</td> 
+   				 	<td><input type="image" src="images/icn_edit.png" title="Edit"><input type="image" src="images/icn_trash.png" title="Trash"></td> 
+				</tr>  
+			</tbody> 
+			</table>
+			</div><!-- end of #tab1 -->
+			
+			<div id="tab2" class="tab_content">
+			<table class="tablesorter" cellspacing="0"> 
+			<thead> 
+				<tr> 
+   					<th></th> 
+    				<th>Comment</th> 
+    				<th>Posted by</th> 
+    				<th>Posted On</th> 
+    				<th>Actions</th> 
+				</tr> 
+			</thead> 
+			<tbody> 
+				<tr> 
+   					<td><input type="checkbox"></td> 
+    				<td>Lorem Ipsum Dolor Sit Amet</td> 
+    				<td>Mark Corrigan</td> 
+    				<td>5th April 2011</td> 
+    				<td><input type="image" src="images/icn_edit.png" title="Edit"><input type="image" src="images/icn_trash.png" title="Trash"></td> 
+				</tr> 
+				<tr> 
+   					<td><input type="checkbox"></td> 
+    				<td>Ipsum Lorem Dolor Sit Amet</td> 
+    				<td>Jeremy Usbourne</td> 
+    				<td>6th April 2011</td> 
+   				 	<td><input type="image" src="images/icn_edit.png" title="Edit"><input type="image" src="images/icn_trash.png" title="Trash"></td> 
+				</tr>
+				<tr> 
+   					<td><input type="checkbox"></td> 
+    				<td>Sit Amet Dolor Ipsum</td> 
+    				<td>Super Hans</td> 
+    				<td>10th April 2011</td> 
+    				<td><input type="image" src="images/icn_edit.png" title="Edit"><input type="image" src="images/icn_trash.png" title="Trash"></td> 
+				</tr> 
+				<tr> 
+   					<td><input type="checkbox"></td> 
+    				<td>Dolor Lorem Amet</td> 
+    				<td>Alan Johnson</td> 
+    				<td>16th April 2011</td> 
+   				 	<td><input type="image" src="images/icn_edit.png" title="Edit"><input type="image" src="images/icn_trash.png" title="Trash"></td> 
+				</tr> 
+				<tr> 
+   					<td><input type="checkbox"></td> 
+    				<td>Dolor Lorem Amet</td> 
+    				<td>Dobby</td> 
+    				<td>16th April 2011</td> 
+   				 	<td><input type="image" src="images/icn_edit.png" title="Edit"><input type="image" src="images/icn_trash.png" title="Trash"></td> 
+				</tr> 
+			</tbody> 
+			</table>
+
+			</div><!-- end of #tab2 -->
+			
+		</div><!-- end of .tab_container -->
+		
+		</article><!-- end of content manager article -->
+		
+		<article class="module width_quarter">
+			<header><h3>Messages</h3></header>
+			<div class="message_list">
+				<div class="module_content">
+					<div class="message"><p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor.</p>
+					<p><strong>John Doe</strong></p></div>
+					<div class="message"><p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor.</p>
+					<p><strong>John Doe</strong></p></div>
+					<div class="message"><p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor.</p>
+					<p><strong>John Doe</strong></p></div>
+					<div class="message"><p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor.</p>
+					<p><strong>John Doe</strong></p></div>
+					<div class="message"><p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor.</p>
+					<p><strong>John Doe</strong></p></div>
 				</div>
 			</div>
-			<!-- /.row -->
-
-			<div class="row">
-				<div class="col-sm-8 col-sm-push-4">
-
-					<!-- Image -->
-					<figure class="margin-b-2">
-						<img class="img-responsive" src="http://placehold.it/900x400" alt="">
-						<figcaption class="margin-t-h">Caption here</figcaption>
-					</figure>
-
-					<p class="lead">Lorem ipsum dolor sit amet consect etuer adipi scing elit sed diam nonummy nibh euismod tinunt ut laoreet dolore magna aliquam erat volut. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper.</p>
-					<p>Vivamus risus ex, varius et libero quis, placerat rhoncus mi. Aenean sit amet aliquam nibh. Aliquam tortor est, consequat vitae libero at, vehicula mattis tellus. In condimentum consequat tempor. Nullam at lorem semper, ultricies mi et, mollis turpis. Mauris ut leo ac magna dapibus luctus. Mauris mi nibh, ornare et ipsum vel, finibus molestie nulla. Nunc eleifend leo eget ipsum pellentesque, vel varius ipsum placerat. Mauris tincidunt sapien et efficitur commodo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec at pellentesque arcu. Pellentesque justo enim, porttitor a arcu non, mollis venenatis felis.</p>
-					<p>Praesent viverra pellentesque enim, vitae porta erat elementum quis. Maecenas posuere mattis velit rutrum iaculis. Duis non efficitur nibh. Aliquam laoreet risus a nulla auctor interdum. Ut cursus leo eu justo laoreet porttitor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse vitae nisi dictum, vulputate odio sed, blandit tortor. Fusce eu turpis ut mi porta bibendum nec eu libero.</p>
-					<p>Praesent libero sem, feugiat dapibus mattis et, vehicula eu turpis. In vitae consequat leo, quis venenatis justo. Fusce auctor bibendum aliquet. Nullam eu mi lectus. Maecenas risus mauris, feugiat nec ullamcorper non, efficitur et elit. Sed porta tellus ut aliquam auctor. Vivamus id lectus sed tellus cursus sodales sit amet a velit.</p>
-					<p>Quisque eu aliquam leo. Sed feugiat nulla massa, a faucibus nulla sagittis eget. Donec ullamcorper tincidunt risus et pharetra. Vivamus tristique dui metus, vitae gravida nisl volutpat eu. Vivamus dapibus leo sit amet metus luctus dapibus. Vivamus sodales tempor elit, at pellentesque elit eleifend sit amet. Aliquam erat volutpat.</p>
-					<hr>
-
-					<!-- Comments -->
-					<h3>Comments</h3>
-					<div class="well">
-						<div class="media">
-							<div class="media-left">
-								<img src="http://placehold.it/70x70" alt="">
-							</div>
-							<div class="media-body">
-								<h4 class="margin-t-0"><a href="#">Mayahuel Rodriguez</a></h4>
-								<p><a href="#">12 January 2015 11:13 pm</a></p>
-								<p>Lorem ipsum dolor sit amet consect etuer adipi scing elit sed diam nonummy nibh euismod tinunt ut laoreet dolore magna aliquam erat volut</p>
-								<p>
-									<button class="btn btn-sm btn-default">
-										<span class="glyphicon glyphicon-thumbs-up"></span> Upvote
-									</button>
-									<button class="btn btn-sm btn-default">
-										<span class="glyphicon glyphicon-thumbs-down"></span> Downvote
-									</button>
-									<button class="btn btn-sm btn-default">
-										<span class="glyphicon glyphicon-comment"></span> Reply
-									</button>
-								</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="well">
-						<div class="media">
-							<div class="media-left">
-								<img src="http://placehold.it/70x70" alt="">
-							</div>
-							<div class="media-body">
-								<h4 class="margin-t-0"><a href="#">Mayahuel Rodriguez</a></h4>
-								<p><a href="#">12 January 2015 11:13 pm</a></p>
-								<p>Lorem ipsum dolor sit amet consect etuer adipi scing elit sed diam nonummy nibh euismod tinunt ut laoreet dolore magna aliquam erat volut</p>
-								<p>
-									<button class="btn btn-sm btn-default">
-										<span class="glyphicon glyphicon-thumbs-up"></span> Upvote
-									</button>
-									<button class="btn btn-sm btn-default">
-										<span class="glyphicon glyphicon-thumbs-down"></span> Downvote
-									</button>
-									<button class="btn btn-sm btn-default">
-										<span class="glyphicon glyphicon-comment"></span> Reply
-									</button>
-								</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="well">
-						<div class="media">
-							<div class="media-left">
-								<img src="http://placehold.it/70x70" alt="">
-							</div>
-							<div class="media-body">
-								<h4 class="margin-t-0"><a href="#">Mayahuel Rodriguez</a></h4>
-								<p><a href="#">12 January 2015 11:13 pm</a></p>
-								<p>Lorem ipsum dolor sit amet consect etuer adipi scing elit sed diam nonummy nibh euismod tinunt ut laoreet dolore magna aliquam erat volut</p>
-								<p>
-									<button class="btn btn-sm btn-default">
-										<span class="glyphicon glyphicon-thumbs-up"></span> Upvote
-									</button>
-									<button class="btn btn-sm btn-default">
-										<span class="glyphicon glyphicon-thumbs-down"></span> Downvote
-									</button>
-									<button class="btn btn-sm btn-default">
-										<span class="glyphicon glyphicon-comment"></span> Reply
-									</button>
-								</p>
-							</div>
-						</div>
-					</div>
-					<hr>
-
-					<!-- Comment form -->
-					<h3>Leave a comment</h3>
-					<p>Please keep in mind that comments are moderated and rel="nofollow" is in use. So, please do not use a spammy keyword or a domain as your name, or else it will be deleted. Thank you!</p>
-
-					<div class="well">
-						<form>
-							<div class="form-group">
-								<label for="contactName">Name</label>
-								<input type="email" class="form-control" id="contactName" placeholder="Enter your name">
-							</div>
-							<div class="form-group">
-								<label for="contactEmail">Email</label>
-								<input type="email" class="form-control" id="contactEmail" placeholder="Enter email">
-								<p class="help-block">Make sure you use a valid email address</p>
-							</div>
-							<div class="form-group">
-								<label for="contactComment">Comment</label>
-								<textarea class="form-control" id="contactComment"></textarea>
-							</div>
-							<button type="submit" class="btn btn-default">Submit</button>
-						</form>
-					</div>
-					<hr>
-
-					<!-- Pager -->
-					<nav>
-						<ul class="pager">
-							<li class="previous"><a href="#"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> Older</a></li>
-							<li class="next"><a href="#">Newer <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></li>
-						</ul>
-					</nav>
-
+			<footer>
+				<form class="post_message">
+					<input type="text" value="Message" onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;">
+					<input type="submit" class="btn_post_message" value=""/>
+				</form>
+			</footer>
+		</article><!-- end of messages article -->
+		
+		<div class="clear"></div>
+		
+		<article class="module width_full">
+			<header><h3>Post New Article</h3></header>
+				<div class="module_content">
+						<fieldset>
+							<label>Post Title</label>
+							<input type="text">
+						</fieldset>
+						<fieldset>
+							<label>Content</label>
+							<textarea rows="12"></textarea>
+						</fieldset>
+						<fieldset style="width:48%; float:left; margin-right: 3%;"> <!-- to make two field float next to one another, adjust values accordingly -->
+							<label>Category</label>
+							<select style="width:92%;">
+								<option>Articles</option>
+								<option>Tutorials</option>
+								<option>Freebies</option>
+							</select>
+						</fieldset>
+						<fieldset style="width:48%; float:left;"> <!-- to make two field float next to one another, adjust values accordingly -->
+							<label>Tags</label>
+							<input type="text" style="width:92%;">
+						</fieldset><div class="clear"></div>
 				</div>
-				<div class="col-sm-4 col-sm-pull-8">
-					<!-- Search -->
-					<div class="well">
-						<h4 class="margin-t-0">Search</h4>
-						<form action="#">
-							<div class="input-group">
-								<label class="sr-only" for="search-form">Search the site</label>
-								<input type="text" class="form-control" id="search-form">
-								<span class="input-group-btn">
-									<button class="btn btn-default" type="button">
-										<span class="glyphicon glyphicon-search"></span>
-										<span class="sr-only">Search</span>
-									</button>
-								</span>
-							</div>
-						</form>
-					</div>
-
-					<!-- list group -->
-					<div class="list-group margin-b-3">
-					    <a href="#" class="active list-group-item">Category 1</a>
-					    <a href="#" class="list-group-item">Category 2</a>
-					    <a href="#" class="list-group-item">Category 3</a>
-					</div>
-
-					<!-- Panel -->
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4 class="panel-title">Sidebar panel widget</h4>
-						</div>
-						<div class="panel-body">
-							<p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
-						</div>
-					</div>
-
-					<!-- Panel -->
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4 class="panel-title">Sidebar panel widget</h4>
-						</div>
-						<div class="panel-body">
-							<p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
-						</div>
-					</div>
-
-				</div>
-			</div>
-			<!-- /.row -->
-
-			<hr>
-			<footer class="margin-tb-3">
-				<div class="row">
-					<div class="col-lg-12">
-						<p>Copyright &copy; Sitename 2015</p>
-					</div>
+			<footer>
+				<div class="submit_link">
+					<select>
+						<option>Draft</option>
+						<option>Published</option>
+					</select>
+					<input type="submit" value="Publish" class="alt_btn">
+					<input type="submit" value="Reset">
 				</div>
 			</footer>
-		</div>
-		<!-- /.container-fluid -->
+		</article><!-- end of post new article -->
+		
+		<h4 class="alert_warning">A Warning Alert</h4>
+		
+		<h4 class="alert_error">An Error Message</h4>
+		
+		<h4 class="alert_success">A Success Message</h4>
+		
+		<article class="module width_full">
+			<header><h3>Basic Styles</h3></header>
+				<div class="module_content">
+					<h1>Header 1</h1>
+					<h2>Header 2</h2>
+					<h3>Header 3</h3>
+					<h4>Header 4</h4>
+					<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras mattis consectetur purus sit amet fermentum. Maecenas faucibus mollis interdum. Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
 
-		<!-- JQuery scripts -->
-	    <script src="assets/js/jquery-1.11.2.min.js"></script>
+<p>Donec id elit non mi porta <a href="#">link text</a> gravida at eget metus. Donec ullamcorper nulla non metus auctor fringilla. Cras mattis consectetur purus sit amet fermentum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
 
-		<!-- Bootstrap Core scripts -->
-		<script src="assets/js/bootstrap.min.js"></script>
-  </body>
+					<ul>
+						<li>Donec ullamcorper nulla non metus auctor fringilla. </li>
+						<li>Cras mattis consectetur purus sit amet fermentum.</li>
+						<li>Donec ullamcorper nulla non metus auctor fringilla. </li>
+						<li>Cras mattis consectetur purus sit amet fermentum.</li>
+					</ul>
+				</div>
+		</article><!-- end of styles article -->
+		<div class="spacer"></div>
+	</section>
+
+
+</body>
+
 </html>
