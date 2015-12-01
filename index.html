@@ -77,21 +77,26 @@
 		<hr/>
 		<h3>Add New Disease</h3>
 		<ul class="toggle">
-            		<fieldset>
-                		Disease Name:<input type="text" tabindex="1"></input><p>
-            		</fieldset>
-            		<fieldset>
-			    	Subclass:<input type="text" tabindex="2"><p>
-        		</fieldset>
-            		<fieldset>
-			    	Organ:<input type="text" tabindex="3"><p>
-            		</fieldset>
-            		<fieldset>
-			    	Description:<textarea rows="3" tabindex="4"></textarea><p>
-        		</fieldset>  
-            		<fieldset>
-			    	Tags:<input type="text"><p>
-            		</fieldset>
+            <div class="table13">
+                <fieldset>
+                    Disease Name:<input type="text" tabindex="1" id = "DName"></input><p>
+                </fieldset>
+                <fieldset>
+			        Subclass:<input type="text" tabindex="2" id="DSubclass"><p>
+                </fieldset>
+                <fieldset>
+			        Organ:<input type="text" tabindex="3" id="DOrgan"><p>
+                </fieldset>
+                <fieldset>
+			        Description:<textarea rows="3" tabindex="4" id = "DDescription"></textarea><p>
+                </fieldset>  
+                <fieldset>
+			        Tags:<input type="text" tabindex="5" id="DTags"><p>
+                </fieldset>
+            </div>
+            <input type="submit" value="Publish" class="alt_btn" onclick="submitDisease">
+		    <input type="submit" value="Reset">
+            
 		</ul>
 		<h3>Add New Case</h3>
 		<ul class="toggle">
