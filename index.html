@@ -80,7 +80,7 @@
 		<ul class="toggle">
             <div class="table13">
                 <fieldset>
-                    Disease Name:<input type="text" tabindex="1" id = "DName"></input><p>
+                    Disease Name:<input id = "DName" type="text" tabindex="1"></input><p>
                 </fieldset>
                 <fieldset>
 			        Subclass:<input type="text" tabindex="2" id="DSubclass"><p>
@@ -95,8 +95,11 @@
 			        Tags:<input type="text" tabindex="5" id="DTags"><p>
                 </fieldset>
             </div>
-            <input type="submit" value="Publish" class="alt_btn" onclick="submitDisease">
-		    <input type="submit" value="Reset">
+            <input type="submit" value="Publish" class="alt_btn" onclick="submitDisease" id="Publish">
+		    <input type="submit"  value="Reset">
+            <div>
+            <p id='result'></p></div>
+            </div>
             
 		</ul>
 		<h3>Add New Case</h3>
