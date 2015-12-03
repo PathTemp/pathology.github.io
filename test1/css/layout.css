@@ -1,0 +1,73 @@
+#body {
+  width: 100%;
+  font-family: "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
+  height: 100%;
+}
+
+#header {
+  width: 100%;
+  background-color: #333333;
+  float: left;
+  text-align: center;
+  color: #4dd2ff;
+  font-size: 24px;
+}
+
+#header head1 {
+  width: 30%;
+  float: left;
+}
+
+#h1 {
+  text-align: center;
+}
+
+#nav {
+  line-height: 30px;
+  background-color: #eeeeee;
+  height: 80%;
+  width: 30%;
+  float: left;
+  padding: 2%
+}
+
+#section {
+  width: 62%;
+  height: 80%;
+  float: left;
+  padding: 2%;
+}
+
+#footer {
+  background-color: #333333;
+  color: white;
+  clear: both;
+  text-align: center;
+  width: 100%;
+  height: 40px;
+}
+
+#fleft {
+  display: inline-block;
+  width: 50%;
+}
+
+#fright {
+  display: inline-block;
+  width: 50%;
+}
+
+input {
+  float: right;
+  clear: both;
+  width: 60%;
+}
+
+textarea {
+  float: right;
+  clear: both;
+  width: 59.5%;
+  font-family: inherit;
+  font-size: inherit;
+  resize: vertical;
+}
