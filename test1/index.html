@@ -10,14 +10,14 @@
 <div id="body">
   <div id="header">
     <div id="head1">
-      Diffpath
+      DiffPath
     </div>
   </div>
 
   <div id="nav">
     <div class="form">
       <div>Disease Name:
-        <input id="DName" type="text" tabindex="1">
+        <input type="text" tabindex="1" id="DName">
       </div>
       <div>Subclass:
         <input type="text" tabindex="2" id="DSubclass" float="right">
@@ -33,13 +33,29 @@
       </div>
 
     </div>
+    <div>
+      <input type="button" id="submit1" value="Submit">
+    </div>
   </div>
 
   <div id="section">
-    <h2>London</h2>
-    <p>
-      London is the capital city of England. It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants.
-    </p>
+
+    <table id="example" class="display" cellspacing="0" width="100%">
+      <thead>
+        <tr>
+          <th>Disease</th>
+          <th>Organ</th>
+          <th>Date Submitted</th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <th>Disease</th>
+          <th>Organ</th>
+          <th>Date Submitted</th>
+        </tr>
+      </tfoot>
+    </table>
   </div>
 
   <div id="footer">
@@ -53,4 +69,4 @@
 
   </body>
 
-</html>
+  </html>
