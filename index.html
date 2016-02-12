@@ -14,172 +14,287 @@
   <div id="box" style="width:100%;height:600px;"></div>
   
   <script type="text/javascript" charset="utf-8">
-    		var tabbar1 = {
-      id: "tabs1",
-		  view: "tabbar",
-      type: "bottom",
-		  selected: 'listView',
-		  multiview: true,
-      tabMinWidth: 150,
-		  options: [{
-		    value: 'Diseases',
-		    id: 'listView'
-		  }, {
-		    value: 'Disease Info      ',
-		    id: 'formView',
-		    close: true
-		  }, {
-		    value: 'About',
-		    id: 'aboutView',
-		    close: true
-		  }]
-		};
-    
-    	var tabbar2 = {
-      id: "tabs2",
-		  view: "tabbar",
-      type: "bottom",
-		  selected: 'editView',
-		  multiview: true,
-      tabMinWidth: 150,
-		  options: [{
-		    value: 'Edit Data',
-		    id: 'editView'
-		  }, {
-		    value: 'DiffPath',
-		    id: 'diffView'
-		  }]
-		};
+    		var diseases = [
+  [1, "Glioblastoma Multiforme", "Brain", 0.001],
+  [2, "Astrocytoma", "Brain", 0.003]
+];
 
-		var data1 = {
-		  animate: true,
-      id: "views1",
-		  cells: [{
-		    id: "listView",
-		    view: "datatable",
-		    select: true,
-        navigation: true,
-		    editable: true,
-		    editaction: "custom",
-        on:{
-							onItemDblClick:open_new_tab
-				},
-		    columns: [{
-		      id: "rank",
-		      header: "",
-		      width: 50
-		    }, {
-		      id: "disease",
-		      header: "Disease",
-		      editor: "text",
-		      sort: "string",
-		      fillspace: true
-		    }, {
-		      id: "organ",
-		      header: "Organ",
-          sort:"string",
-		      fillspace: true
-		    }, {
-		      id: "prevalence",
-		      header: "Prevalence",
-		      fillspace: true
-		    }],
-		    data: [{
-		      id: 1,
-		      disease: "Glioblastoma Multiforme",
-		      organ: "Brain",
-          prevalence: "0.001",		      
-		      rank: 1
-		    }, {
-		      id: 2,
-		      disease: "Astrocytoma",
-		      organ: "Brain",
-		      prevalence: "0.003",
-		      rank: 2
-		    }]
-		  }, {
-		    id: "formView",
-		    view: "list",
-		    template: "#rank#. #title# <div style='padding-left:18px'> Year:#year#, votes:#votes# </div>",
-		    type: {
-		      height: 60
-		    },
-        data: big_film_set,
-		    select: true,             
-		  }, {
-		    id: "aboutView",
-		    template: "About the app"
-		  }]
-		};
-    
-    var data2 = {
-		  animate: true,
-      id: "views2",
-      maxWidth:400,
-      minWidth:200,
-      height:600,
-		  cells: [{
-				view:"form", id:"editView", scroll:false,
-				elements:[
-					{ view:"text", name:"disease", label:"Disease" },
-					{ view:"text", name:"organ", label:"Organ" },
-					{ view:"text", name:"prevalence", label:"Prevalence" },
-					{ view:"button", value:"Save", click:'$$("editView").save()' },
-          { view:"button", value:"Clear"},
-          { view:"button", value:"Add New"}
-				]
-			},{
-		    id: "diffView",
-				view:"form",
-        scroll:false,
-				elements:[{view:"search",
-        placeholder:"Search..."}]
-        }]
-		};
-   
-		dtable = webix.ui({
-		  container: "box",
-      type:"border",
+var rankcount = 3
+
+var tabbar1 = {
+  id: "tabs1",
+  view: "tabbar",
+  type: "bottom",
+  selected: 'listView',
+  multiview: true,
+  tabMinWidth: 150,
+  options: [{
+    value: 'Diseases',
+    id: 'listView'
+  }, {
+    value: 'Disease Info      ',
+    id: 'formView',
+    close: true
+  }, {
+    value: 'About',
+    id: 'aboutView',
+    close: true
+  }]
+};
+
+var tabbar2 = {
+  id: "tabs2",
+  view: "tabbar",
+  type: "bottom",
+  selected: 'editView',
+  multiview: true,
+  tabMinWidth: 150,
+  options: [{
+    value: 'Edit Data',
+    id: 'editView'
+  }, {
+    value: 'DiffPath',
+    id: 'diffView'
+  }]
+};
+
+var data1 = {
+  animate: true,
+  id: "views1",
+  cells: [{
+    id: "listView",
+    view: "datatable",
+    select: true,
+    navigation: true,
+    editable: true,
+    editaction: "context",
+    on: {
+      onItemDblClick: open_new_tab
+    },
+    columns: [{
+      id: "rank",
+      header: "",
+      width: 50
+    }, {
+      id: "disease",
+      header: "Disease",
+      editor: "text",
+      sort: "string",
+      fillspace: true
+    }, {
+      id: "organ",
+      header: "Organ",
+      sort: "string",
+      fillspace: true
+    }, {
+      id: "prevalence",
+      header: "Prevalence",
+      fillspace: true
+    }],
+    data: [{
+      id: 1,
+      disease: "Glioblastoma Multiforme",
+      organ: "Brain",
+      prevalence: "0.001",
+      rank: 1
+    }, {
+      id: 2,
+      disease: "Astrocytoma",
+      organ: "Brain",
+      prevalence: "0.003",
+      rank: 2
+    }]
+  }, {
+    id: "formView",
+    view: "list",
+    template: "#rank#. #title# <div style='padding-left:18px'> Year:#year#, votes:#votes# </div>",
+    type: {
+      height: 60
+    },
+    data: big_film_set,
+    select: true,
+  }, {
+    id: "aboutView",
+    template: "About the app"
+  }]
+};
+
+var data2 = {
+  animate: true,
+  id: "views2",
+  maxWidth: 400,
+  minWidth: 150,
+  height: 600,
+  cells: [{
+    view: "form",
+    id: "editView",
+    scroll: false,
+    elements: [{
+      view: "text",
+      name: "disease",
+      label: "Disease"
+    }, {
+      view: "text",
+      name: "organ",
+      label: "Organ"
+    }, {
+      view: "text",
+      name: "prevalence",
+      label: "Prevalence"
+    }, {
+      view: "button",
+      value: "Save",
+      click: saveToChart
+    }, {
+      view: "button",
+      value: "Clear",
+      click: '$$("editView").clear()'
+    }, {
+      view: "button",
+      value: "Add New",
+      click: addData
+    }, {
+      view: "button",
+      value: "Delete",
+      click: delete_row
+    }, {
+      view: "button",
+      value: "shiiiit",
+      click: test1
+    }]
+  }, {
+    id: "diffView",
+    view: "form",
+    scroll: false,
+    elements: [{
+      view: "search",
+      placeholder: "Search...",
+      on: {
+        onTimedKeyPress: function() {
+          var value = this.getValue().toLowerCase();
+          var table = $$("listView");
+          var res = table.filter(function(obj) {
+            return obj.disease.toLowerCase().indexOf(value) != -1;
+          });
+        }
+      }
+    }]
+  }]
+};
+
+dtable = webix.ui({
+  container: "box",
+  type: "border",
+  rows: [{
+    cols: [{
+      view: "template",
+      type: "header",
+      template: "DiffPath v. 0.1"
+    }]
+  }, {
+    cols: [{
+      type: "clean",
       rows: [
-      {view:"template",type:"header",template:"DiffPath v. 0.1"},   
-      {cols: [
-      {type: "clean",
-      rows: [
-      	tabbar2,
+        tabbar2,
         data2
-        ]},
-      {view:"resizer"},{
-		  type: "clean",
-		  rows: [
-		    tabbar1,
-		    data1
-		  ]}
-      ]}]      
-		});
-    
-    $$('editView').bind('listView')
+      ]
+    }, {
+      view: "resizer"
+    }, {
+      type: "clean",
+      rows: [
+        tabbar1,
+        data1
+      ]
+    }]
+  }]
+});
 
-		webix.event(window, "resize", function() {
-		  dtable.adjust();
-		});
-    
-    webix.UIManager.addHotKey("enter", function(view){
-				var pos = view.getSelectedId();
-				view.edit(pos);
-			}, dtable);
+$$('editView').bind('listView')
+
+webix.event(window, "resize", function() {
+  dtable.adjust();
+});
+
+webix.UIManager.addHotKey("enter", function(view) {
+  var pos = view.getSelectedId();
+  view.edit(pos);
+}, dtable);
 
 
-		function open_new_tab(id) {
-		  var item = $$('listView').getItem(id);
-		  //add tab
-		    $$("views1").addView({
-		      view: "template",
-		      id: item.id,
-          template: "Disease: " + item.disease + "<br>Organ: " + item.organ + "<br>Prevalence: " + item.prevalence
-		    });
-		    $$("tabs1").addOption({id:item.id, value:item.disease, close:true},true);
-		  //or show if already added
-		}
+function open_new_tab(id) {
+  var item = $$('listView').getItem(id);
+  //add tab
+  $$("views1").addView({
+    view: "template",
+    id: item.id,
+    template: "Disease: " + item.disease + "<br>Organ: " + item.organ + "<br>Prevalence: " + item.prevalence
+  });
+  $$("tabs1").addOption({
+    id: item.id,
+    value: item.disease,
+    close: true
+  }, true);
+  //or show if already added
+}
+
+function saveToChart() {
+  for (i = 0; i < diseases.length; i++) {
+    if (diseases[i][0] == $$('editView').getValues().rank) {
+      diseases[i][1] = $$('editView').getValues().disease
+      diseases[i][2] = $$('editView').getValues().organ
+      diseases[i][3] = $$('editView').getValues().prevalence
+    }
+  }
+  $$("editView").save()
+}
+
+function addData() {
+  var find = 0
+  for (i = 0; i < diseases.length; i++) {
+    if (diseases[i][1] == $$('editView').getValues().disease) {
+      find++
+    }
+  }
+  if (find != 1) {
+    $$("listView").add({
+      disease: $$('editView').getValues().disease,
+      organ: $$('editView').getValues().organ,
+      prevalence: $$('editView').getValues().prevalence,
+      rank: rankcount
+    }, 0);
+
+    diseases.push([rankcount, $$('editView').getValues().disease, $$('editView').getValues().organ, $$('editView').getValues().prevalence])
+
+    rankcount += 1
+  } else {
+    window.alert("You have already added this disease")
+  }
+}
+
+function delete_row() {
+  for (i = 0; i < diseases.length; i++) {
+    if (diseases[i][0] == $$('editView').getValues().rank) {
+      diseases.splice(i, 1)
+    }
+  }
+  var id = $$("listView").getSelectedId(); //returns the ID of selected item
+  $$("listView").remove(id);
+
+}
+
+function saveDatabase() {
+  var json = JSON.stringify(diseases);
+  var blob = new Blob([json], {
+    type: "application/json"
+  });
+  var url = URL.createObjectURL(blob);
+}
+
+
+function test1() {
+  window.alert(diseases + diseases.length)
+}
 
   </script>
 
