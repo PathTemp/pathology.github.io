@@ -174,6 +174,15 @@ var data2 = {
     elements: [{
       view: "search",
       placeholder: "Search..."
+      on: {
+        onTimedKeyPress: function() {
+          var value = this.getValue().toLowerCase();
+          var table = $$("listView");
+          var res = table.filter(function(obj) {
+            return obj.disease.toLowerCase().indexOf(value) != -1;
+          });
+        }
+      }
     }]
   }]
 };
