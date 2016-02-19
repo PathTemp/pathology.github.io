@@ -258,11 +258,7 @@ function saveDatabase() {
 
 
 function save_database() {
-	var obj = $$("listView").data.pull
-	var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(obj));
-
-var a = document.createElement('a');
-a.href = 'data:' + data;
-a.download = 'data.json';
-a.innerHTML = 'download JSON';
-}
+	var mydata = $$("listView").data.pull
+var data = JSON.stringify(mydata);    
+var blob = new Blob([data], {type: "application/json"});
+saveAs(blob, "diseasedata.json");}
