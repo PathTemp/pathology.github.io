@@ -1475,7 +1475,7 @@ label.webix_required:after{padding-left:4px;content:"*";color:red}
 .confirmButton{background:#22a1bc;color:#fff;font-weight:700}
 .webix_win_head{border:none;border-top:5px solid #3498db}
 .webix_win_head>.webix_view>.webix_template{padding:2px 17px;background:0 0;color:#545454;font-family:Roboto;font-size:18.06px;font-weight:400}
-.webix_template{word-break:break-all}
+.webix_template{word-break:keep-all}
 .webix_column>div,.webix_table_cell{border-bottom:1px solid #edf2f1}
 .webix_column>div.webix_cell_select,.webix_column>div.webix_column_select,.webix_column>div.webix_row_select{color:#545454;background:#f2f2f2}
 .webix_richfilter{margin:0}
