@@ -1,301 +1,223 @@
-<!doctype html>
+<!DOCTYPE html>
 <head>
-	
 	<title>DiffPath Alpha</title>
 	<link rel="stylesheet" href="http://cdn.webix.com/edge/webix.css" type="text/css" media="screen" />
 	<script src="js/webix.js" type="text/javascript"></script>
 	<script src="js/testdata.js" type="text/javascript"></script>
 	
-<style>
-body {
-  margin: 0;
-  width: 100%;
-}
-</style>
-	
 </head>
 
-
-
 <body>
-  
-  <div id="box" style="width:100%;height:600px;"></div>
-  
-  <script type="text/javascript" charset="utf-8">
-var rankcount = 3
+<div id="container">
+  <div id="mySidenav" class="sidenav">
+    <a href="HeartRejectionTemplate.html">Heart Transplant</a>
+    <a href="#">Lung Transplant</a>
+    <a href="#">Prostate</a>
+    <a href="#">Search &nbsp; &#x1F50D;</a>
+  </div>
+  <button class="tabmenu" id='Menu'>&#9776;</button>
+  <button class="tablink template" id='Template'>Template</button>
+  <button class="tablink about" id='About'>About</button>
+  <div class="header template">Template</div>
+  <div class="header about">About</div>
+  <div id="Template1" class="tabcontent template">
+    <div class='three'>
+      <table class='table1'>
+        <tr>
+          <th style="width:25%">Weeks</th>
+          <th style="width:25%">Days</th>
+          <th style="width:25%">Mass</th>
+          <th style="width:25%">Operation</th>
+        </tr>
+        <tr>
+          <td><input type="text" class="placentaHead" style="width:100%" id="weeks"></td>
+          <td><input type="text" class='placentaHead' style="width:100%" id="days"></td>
+          <td><input type="text" class='placentaHead' style="width:100%" id="mass"></td>
+          <td><input type="text" class='placentaHead' style="width:100%" name="operationType" list="operationType" id='operation'>
+            <datalist id="operationType">
+              <option value="NSVD"></option>
+              <option value="Vaginal Delivery"></option>
+              <option value="Cesarean Section"></option>
+              <option value="LTCS"></option>
+              <option value="PLTCS"></option>
+              <option value="RLTCS"></option>
+            </datalist>
+          </td>
+        </tr>
+      </table>
+    </div>
+      Placenta characteristics:
+    <div class="two">
+      <input type="checkbox" class="placenta villi avilli" name="villi" value="accelerated villous maturation">Accelerated villous maturation
+      <div><input type="checkbox" class="placenta villi dvilli" name="dvilliAdd" value="delayed villous maturation">Delayed villous maturation</div>
+      <div class='hidespan' id="dvilliAdd">
+        <input type="radio" class="placenta dvilliAdd" value="focal" name="dvilliAdd">Focal
+        <input type="radio" class="placenta dvilliAdd" value='diffuse' name="dvilliAdd">Diffuse
+      </div>
+      <div><input type="checkbox" class="placenta pchar vedema" name="placenta" value="focal villous edema">Focal villous edema</div>
+      <div><input type="checkbox" class="placenta pchar vedema" name="vedemaAdd" value="distal villous hypoplasia">Distal villous hypoplasia</div>
+      <div class='hidespan' id="vedemaAdd">
+        <input type="radio" class="placenta vedemaAdd" value="focal" name="vedemaAdd">Focal
+        <input type="radio" class="placenta vedemaAdd" value='diffuse' name="vedemaAdd">Diffuse
+      </div>
+      <div><input type="checkbox" class="placenta pchar choran" name="placenta" value="chorangiosis">Chorangiosis</div>
+      <div><input type="checkbox" class="placenta pchar infarct" name="placenta" value="focal infarct">Focal infarct</div>
+      <div><input type="checkbox" class="placenta pchar calcs" name="placenta" value="scattered calcifications">Scattered calcifications</div>
+      <div><input type="checkbox" class="placenta pchar perifib" name="placenta" value="intervillous fibrin deposition">Intervillous fibrin deposition</div>
+      <div><input type="checkbox" class="placenta pchar cvue" name="cvueAdd" value="chronic villitis of unknown etiology">Chronic villitis of unknown etiology</div>
+      <div class='hidespan' id="cvueAdd">
+        <input type="radio" class="placenta cvueAdd" value="focal low-grade" name="cvueAdd">Focal low-grade
+        <input type="radio" class="placenta cvueAdd" value="multifocal low-grade" name="cvueAdd">Multifocal low-grade
+        <input type="radio" class="placenta cvueAdd" value="patchy high-grade" name="cvueAdd">Patchy high-grade
+        <input type="radio" class="placenta cvueAdd" value="diffuse high-grade" name="cvueAdd">Diffuse high-grade
+      </div>
+      <div><input type="checkbox" class="placenta pchar cvillo" name="placenta" value="chronic intervillositis">Chronic intervillositis</div>
+    </div>
+    Fetal membrane characteristics:
+    <div class="two">
+      <div><input type="checkbox" class="placenta mchar chorio" name="chorioAdd" value="chorioamnionitis">Chorioamnionitis</div>
+      <div class='hidespan' id="chorioAdd">
+        <input type="radio" class="placenta chorioAdd" value="focal" name="chorioAdd">Focal
+        <input type="radio" class="placenta chorioAdd" value="diffuse" name="chorioAdd">Diffuse
+        <input type="radio" class="placenta chorioAdd" value="necrotizing" name="chorioAdd">Necrotizing
+      </div>
+      <div><input type="checkbox" class="placenta mchar decid" name="decidAdd" value="Deciduitis">Deciduitis</div>
+      <div class='hidespan' id="decidAdd">
+        <input type="radio" class="placenta decidAdd" value="focal" name="decidAdd">Focal
+        <input type="radio" class="placenta decidAdd" value="diffuse" name="decidAdd">Diffuse
+        <input type="radio" class="placenta decidAdd" value="necrotizing" name="decidAdd">Necrotizing
+      </div>
+      <div><input type="checkbox" class="placenta mchar mec" name="membrane" value="pigmented macrophages suggestive of meconium staining">Pigmented macrophages suggestive of meconium staining</div>
 
-var tabbar1 = {
-  id: "tabs1",
-  view: "tabbar",
-  type: "bottom",
-  selected: 'listView',
-  multiview: true,
-  tabMinWidth: 150,
-  options: [{
-    value: 'Diseases',
-    id: 'listView'
-  }, {
-    value: 'Disease Info      ',
-    id: 'formView',
-    close: true
-  }, {
-    value: 'About',
-    id: 'aboutView',
-    close: true
-  }]
-};
+    </div>
+    Umbilical cord characteristics:
+    <div class="two">
+      <div><input type="radio" class="placenta cord3" name="cord" id="cord1" checked>Three vessel umbilical cord</div>
+      <div><input type="radio" class="placenta cord2" name="cord" id="cord2">Two vessel umbilical cord</div>
+    </div>
+    <div class="two">
+      <input type="checkbox" class="placenta fun" name="cord" id="cord3" value="acute funisitis">Acute funisitis
+    </div>
+    <textarea id="placentaText" rows="8">
+</textarea>
+    <br>
+    <button id="copyPlacentaText" class='button'>Copy text</button>
+    <button id="clearPlacentaTemplate" class='button'>Clear template</button>
+  </div>
 
-var tabbar2 = {
-  id: "tabs2",
-  view: "tabbar",
-  type: "bottom",
-  selected: 'editView',
-  multiview: true,
-  tabMinWidth: 150,
-  options: [{
-    value: 'Edit Data',
-    id: 'editView'
-  }, {
-    value: 'DiffPath',
-    id: 'diffView'
-  }]
-};
+  <div id="About1" class="tabcontent about">
+    <h2>Definitions</h2>
+    <h3>
+      Accelerated Villous Maturation
+    </h3>
+    <p>
+      Accelerated villous
+      maturation is defined as the presence of small or short
+      hypermature villi for gestational period, usually accompanied by an increase in syncytial knots.
+      By virtue of the use of this phrase, accelerated villous
+      maturation may be difficult to recognize in a term placenta,
+      but it is a reproducible pattern to diagnose prior to term. It is
+      diagnosed by identifying a diffuse pattern of term-appearing
+      villi with increased syncytial knots and intervillous fibrin,
+      usually alternating with areas of villous paucity.
+      Syncytial knot prevalence has been studied at term and
+      knots on more than 33% of villi may be regarded as
+      increased.
+      Areas adjacent to infarcts should not be relied on for the
+      diagnosis of accelerated villous maturation.
+      Accelerated villous maturation is a common pattern that
+      may be found in mild, moderate, or severe forms of
+      placental insufficiency, which includes FGR, preeclampsia,
+      and preterm labor.
+    </p>
+    <h3>
+      Delayed villous maturation
+    </h3>
+    <p>
+      The lesion is defined by a monotonous villous population
+      (defined as at least 10 such villi) with centrally placed
+      capillaries and decreased vasculosyncytial membranes,
+      recapitulating the histology in early pregnancy.
+      The diagnosis should be made when it is present in at least
+      30% of 1 full-thickness parenchymal slide.</p>
 
-var data1 = {
-  animate: true,
-  id: "views1",
-  cells: [{
-    id: "listView",
-    view: "datatable",
-    select: true,
-    navigation: true,
-    editable: true,
-    editaction: "context",
-    save: "cache->server/datatable.php",
-    url: "cache->server/datatable.php",
-    on: {
-      onItemDblClick: open_new_tab
-    },
-    columns: [{
-      id: "rank",
-      header: "",
-      width: 50
-    }, {
-      id: "disease",
-      header: "Disease",
-      editor: "text",
-      sort: "string",
-      fillspace: true
-    }, {
-      id: "organ",
-      header: "Organ",
-      sort: "string",
-      fillspace: true
-    }, {
-      id: "prevalence",
-      header: "Prevalence",
-      fillspace: true
-    }],
-    data: [{
-      id: 1,
-      disease: "Glioblastoma Multiforme",
-      organ: "Brain",
-      prevalence: "0.001",
-      rank: 1
-    }, {
-      id: 2,
-      disease: "Astrocytoma",
-      organ: "Brain",
-      prevalence: "0.003",
-      rank: 2
-    }]
-  }, {
-    id: "formView",
-    view: "list",
-    template: "#rank#. #title# <div style='padding-left:18px'> Year:#year#, votes:#votes# </div>",
-    type: {
-      height: 60
-    },
-    data: big_film_set,
-    select: true,
-  }, {
-    id: "aboutView",
-    template: "About the app"
-  }]
-};
-
-var data2 = {
-  animate: true,
-  id: "views2",
-  maxWidth: 400,
-  minWidth: 150,
-  height: 600,
-  cells: [{
-    view: "form",
-    id: "editView",
-    scroll: false,
-    elements: [{
-      view: "text",
-      name: "disease",
-      label: "Disease"
-    }, {
-      view: "text",
-      name: "organ",
-      label: "Organ"
-    }, {
-      view: "text",
-      name: "prevalence",
-      label: "Prevalence"
-    }, {
-      view: "button",
-      value: "Save",
-      click: saveToChart
-    }, {
-      view: "button",
-      value: "Clear",
-      click: '$$("editView").clear()'
-    }, {
-      view: "button",
-      value: "Add New",
-      click: addData
-    }, {
-      view: "button",
-      value: "Delete",
-      click: delete_row
-    }, {
-      view: "button",
-      value: "Save Database",
-      click: save_database
-    }]
-  }, {
-    id: "diffView",
-    view: "form",
-    scroll: false,
-    elements: [{
-      view: "search",
-      placeholder: "Search...",
-      on: {
-        onTimedKeyPress: function() {
-          var value = this.getValue().toLowerCase();
-          var table = $$("listView");
-          var res = table.filter(function(obj) {
-            return obj.disease.toLowerCase().indexOf(value) != -1;
-          });
-        }
-      }
-    }]
-  }]
-};
-
-dtable = webix.ui({
-  container: "box",
-  type: "border",
-  rows: [{
-    cols: [{
-      view: "template",
-      type: "header",
-      template: "DiffPath v. 0.1"
-    }]
-  }, {
-    cols: [{
-      type: "clean",
-      rows: [
-        tabbar2,
-        data2
-      ]
-    }, {
-      view: "resizer"
-    }, {
-      type: "clean",
-      rows: [
-        tabbar1,
-        data1
-      ]
-    }]
-  }]
-});
-
-$$('editView').bind('listView')
-
-webix.event(window, "resize", function() {
-  dtable.adjust();
-});
-
-webix.UIManager.addHotKey("enter", function(view) {
-  var pos = view.getSelectedId();
-  view.edit(pos);
-}, dtable);
-
-
-function open_new_tab(id) {
-  var item = $$('listView').getItem(id);
-  //add tab
-  $$("views1").addView({
-    view: "template",
-    id: item.id,
-    template: "Disease: " + item.disease + "<br>Organ: " + item.organ + "<br>Prevalence: " + item.prevalence
-  });
-  $$("tabs1").addOption({
-    id: item.id,
-    value: item.disease,
-    close: true
-  }, true);
-  //or show if already added
-}
-
-function saveToChart() {
-	var find = 0
-  $$("listView").data.each(function(obj){if (obj.disease == $$('editView').getValues().disease){
-  find++
-  }})
-  if (find == 0 || $$("listView").getSelectedItem().disease == $$('editView').getValues().disease) 
-  {
-  $$("editView").save()
-  }
-else {
-    window.alert("You have already have information for this disease")
-  }
-}
-
-function addData() {
-  var find = 0
-  $$("listView").data.each(function(obj){if (obj.disease == $$('editView').getValues().disease){
-  find++
-  }})
-  if (find == 0) 
-  {
-    $$("listView").add({
-      disease: $$('editView').getValues().disease,
-      organ: $$('editView').getValues().organ,
-      prevalence: $$('editView').getValues().prevalence,
-      rank: rankcount
-    }, 0);
-    
-    rankcount += 1
-  } else {
-    window.alert("You have already added this disease")
-  }
-}
-
-function delete_row() {
-  var id = $$("listView").getSelectedId(); //returns the ID of selected item
-  $$("listView").remove(id);
-
-}
-
-function saveDatabase() {
-  var json = JSON.stringify(diseases);
-  var blob = new Blob([json], {type: "application/json"});
-  var url  = URL.createObjectURL(blob);
-}
-
-
-function save_database() {
-	var mydata = $$("listView").data.pull
-var data = JSON.stringify(mydata);    
-var blob = new Blob([data], {type: "application/json"});
-saveAs(blob, "diseasedata.json");}
-  </script>
-
+    <p>
+      <b>Proposed Grading Schema</b> — Grading of the lesion is
+      suggested at this juncture according to a proposed schema:
+      focal, which is a finding of the lesion in 1 full-thickness
+      parenchymal slide only, and diffuse, which is a presence in 2
+      or more full-thickness slides sampled.
+      The thresholds for significance of this lesion are unclear at
+      present, and grading the lesion may help determine the
+      appropriate levels.
+    </p>
+    <h3>
+      Distal Villous Hypoplasia
+    </h3>
+    <p>
+      Distal villous hypoplasia (DVH) is defined as the
+      paucity of villi in relation to the surrounding
+      stem villi. The villi are thin and relatively
+      elongated-appearing, and syncytial knots are increased.
+      Distal villous hypoplasia is more commonly seen with MVM
+      in early pregnancy (32 weeks of gestation).
+      This is best observed at low-power microscopy and by
+      comparing the lower two-thirds of the thickness of the
+      parenchyma to the subchorionic third. The
+      diagnosis should be made when the features are seen in the
+      lower two-thirds and involve at least 30% of 1 full-thickness
+      parenchymal slide. It may be further graded as focal—
+      finding of lesion in 1 full-thickness slide only—or diffuse—
+      present in 2 or more full-thickness slides sampled. Diffuse
+      distal villous hypoplasia is associated with early-onset
+      FGR.
+    </p>
+    <h3>
+      Chronic Villitis of unknown etiology
+    </h3>
+    <p>Villitis of unknown etiology (synonymous with villitis of
+      unknown aetiology) is a histologic diagnosis and, although
+      it may have a variable distribution, evidence indicates that 3
+      parenchymal blocks will identify 62% of villitis, reaching an
+      asymptote of 6 and 7 blocks identifying 85% of villitis.
+      Villitis of unknown etiology by definition excludes those
+      cases where an etiology is identified, such as viral or acute
+      infections, and thus is preferred to the term nonspecific
+      chronic villitis. It is usually lymphohistiocytic: although the
+      presence of rare plasma cells does not exclude the diagnosis,
+      thorough evaluation for an infectious etiology, such as
+      cytomegalovirus, is required in a predominantly plasma cell
+      villitis</p>
+    <p>
+      <b>Grading Schema</b> - Where villitis of unknown etiology is
+      diagnosed, it should be graded as low grade or high grade.
+      Low grade is defined as the presence of inflammation
+      affecting fewer than 10 contiguous villi in any one focus,
+      with more than one focus required for the diagnosis. High
+      grade is defined as the presence of multiple foci,
+      on more than one section, at least one of which shows
+      inflammation affecting more than 10 contiguous villi.
+      Distinguishing between low-grade and high-grade villitis
+      is important because there are significant associations
+      between the latter and FGR, neurodevelopmental impairment,
+      and likelihood of recurrence.
+      Low-grade lesions should be further classified as focal
+      when they are seen in one slide, all foci affecting fewer than
+      10 villi, with more than one focus required for diagnosis; or
+      as multifocal when they are present in more than one slide,
+      all foci affecting fewer than 10 contiguous villi. High-grade
+      lesions should be further classified as patchy when there are
+      multiple foci, with at least one focus with 10 or more
+      contiguous villi, and seen in one or more slides; or as diffuse
+      when more than 30% of all distal villi are involved.
+      Rarely, a single focus of affected villi is seen. In the
+      absence of any evidence at present, when the single focus is
+      small (10 affected villi) it should be reported as
+      ‘‘ungradable–possible low grade,’’ and when the single
+      focus contains 10 or more affected villi it should be reported
+      as ‘‘ungradable–possible high grade.’’
+    </p>
+  </div>
+</div>
 </body>
 </html>
