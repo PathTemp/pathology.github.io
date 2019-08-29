@@ -15,12 +15,12 @@ html {
   height: 100%;
   margin: 0;
   font-family: Arial;
-overflow-y: none
-
 }
 
 .table1 {
   padding: 20px 0px;
+  display: flex;
+  justify-content: center;
 }
 
 .tablink {
@@ -29,33 +29,41 @@ overflow-y: none
   position: fixed;
   float: left;
   display: none;
-  border: none;
   outline: none;
   cursor: pointer;
   padding: 10px 16px;
   font-size: 24px;
   width: 50%;
   font-weight: bold;
+  border: 3px solid #111;
 }
-
+.content {
+  
+  left: 50px;
+}
 .tabmenu {
   z-index: 1;
-  width: 42px;
-height: 48px;
+  width: 46px;
+  height: 54px;
   color: white;
   position: fixed;
   padding: 8px 8px;
   font-size: 24px;
   font-weight: bold;
   outline: none;
-  border: none;
   background-color: #008080;
   cursor: pointer;
+  border: 3px solid #111;
+  
 }
 
 .tablink.about {
   left: 50%;
 }
+
+.tablink.template {
+  border-right: none;
+  }
 
 .tablink:hover {
   background-color: #777;
@@ -70,7 +78,8 @@ height: 48px;
   left: 0;
   background-color: #008080;
   overflow-x: hidden;
-  padding-top: 50px;
+  margin-top: 51px;
+  border-top: 3px solid #111;
 }
 
 .sidenav a {
@@ -80,19 +89,11 @@ height: 48px;
   color: white;
   display: block;
   font-weight: bold;
-  border-Bottom: 2px solid #111;
+  border-bottom: 3px solid #111;
 }
 
 .sidenav a:hover {
   color: #f1f1f1;
-}
-
-.sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
 }
 
 .header {
@@ -100,13 +101,17 @@ height: 48px;
   color: white;
   position: fixed;
   float: left;
-  border: none;
   outline: none;
   padding: 10px 16px;
   font-size: 24px;
   width: 50%;
   text-align: center;
   font-weight: bold;
+  border: 3px solid #111;
+  
+}
+.header.template {
+  border-right: none;
 }
 
 .header.about {
@@ -117,10 +122,10 @@ height: 48px;
   color: black;
   width: 50%;
   overflow-y: scroll;
-    position: fixed;
-    top: 48px;
-    padding: 0px 20px;
-    height: calc(100% - 48px);
+  position: fixed;
+  top: 54px;
+  padding: 0px 20px;
+  height: calc(100% - 54px);
 }
 
 .tabcontent.template {
@@ -129,7 +134,7 @@ height: 48px;
 
 .tabcontent.about {
   float: right;
-  border-left: 6px solid #008080;
+  border-left: 3px solid #111;
   left: 50%;
   bottom: 0;
 }
