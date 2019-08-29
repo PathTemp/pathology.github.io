@@ -290,7 +290,7 @@ function clearPlacentaTemplate() {
 
 function openNav() {
   document.getElementById("mySidenav").style.width = "150px";
-  document.getElementById("mySidenav").style.borderRight = "3px solid #111";
+  document.getElementById("mySidenav").style.border = "3px solid #111";
 }
 
 function closeNav() {
