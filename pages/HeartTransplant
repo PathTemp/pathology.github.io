@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<html>
+<div id="container">
+  <div id="mySidenav" class="sidenav" >
+  <a href="#">Lung Transplant</a>
+  <a href="PlacentaTemplate.html">Placenta</a>
+  <a href="#">Prostate</a>
+  <a href="#">Search &nbsp; &#x1F50D;</a>
+</div>
+  <button class="tabmenu" id='Menu'>&#9776;</button>
+  <button class="tablink template" id='Template'>Template</button>
+  <button class="tablink about" id='About'>About</button>
+  <div class="header template">Template</div>
+  <div class="header about">About</div>
+  <div id="Template1" class="tabcontent template">
+    <div class='three'>
+      <table class='table1'>
+        <tr>
+          <th>Number of Fragments</th>
+        </tr>
+        <tr>
+          <td><input type="text" class="heart frags" name="frags" style="width:100%" id="frags"></td>
+        </tr>
+      </table>
+    </div>
+    Heart Rejection Grading
+    <div class="two">
+      <div><input type="radio" class="heart zero" name="score" value="grade 0">Grade 0/Grade 0R</div>
+      <div><input type="radio" class="heart oneA" name="score" value="grade 1a">Grade 1A/Grade 1R</div>
+      <div><input type="radio" class="heart oneB" name="score" value="grade 1b">Grade 1B/Grade 1R</div>
+      <div><input type="radio" class="heart two" name="score" value="grade 2">Grade 2/Grade 1R</div>
+      <div><input type="radio" class="heart threeA" name="score" value="grade 3a">Grade 3A/Grade 2R</div>
+      <div><input type="radio" class="heart threeB" name="score" value="grade 3b">Grade 3B/Grade 3R</div>
+      <div><input type="radio" class="heart four" name="score" value="grade 4">Grade 4/Grade 3R</div>
+    </div>
+    Other Findings
+    <div class="two">
+      <div><input type="checkbox" class="heart quiltyB" name="other" value="invasive quilty lesion">Invasive quilty lesion</div>
+
+      <div><input type="checkbox" class="heart quiltyA" name="other" value="non-invasive quilty lesion">Non-invasive quilty lesion</div>
+      <div><input type="checkbox" class="heart quiltyA" name="other" value="prior biopsy site changes">Prior biopsy site changes</div>
+    </div>
+    <textarea id="heartText" rows="8">
+</textarea>
+    <br>
+    <button id="copyHeartText" class='button'>Copy text</button>
+    <button id="clearHeartTemplate" class='button'>Clear template</button>
+  </div>
+
+  <div id="About1" class="tabcontent about">
+    <h2>Definitions</h2>
+    <h3>
+      Grading Criteria
+    </h3>
+    <p>
+      Grade 0R - No rejection
+    </p>
+    <p>
+      Grade 1R - Interstitial and/or perivascular infiltrate with up to 1 focus of myocyte damage
+    </p>
+    <p>
+      Grade 2R - Two or more foci of infiltrate with associated myocyte damage </p>
+    <p>
+      Grade 3R - Diffuse infiltrate with multifocal myocyte damage ± edema, ± hemorrhage ± vasculitis
+    </p>
+  </div>
+</div>
+</html>
