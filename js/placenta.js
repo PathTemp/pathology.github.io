@@ -27,6 +27,8 @@ var percentiles = [3, 5, 10, 25, 50, 75, 90, 95, 97]
 assignListeners()
 
 function assignListeners() {
+  document.getElementById('Template1').style.display = 'block'
+  document.getElementById('Template').style.backgroundColor = "#008080";
   var menuToggle = 0;
   var tabList = document.getElementsByClassName('tablink');
   for (let i = 0; i < tabList.length; i++) {
