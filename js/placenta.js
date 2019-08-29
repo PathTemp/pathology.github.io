@@ -28,8 +28,6 @@ assignListeners()
 
 function assignListeners() {
   var menuToggle = 0;
-  document.getElementById('Template1').style.display = 'block'
-  document.getElementById('Template').style.backgroundColor = "#008080";
   var tabList = document.getElementsByClassName('tablink');
   for (let i = 0; i < tabList.length; i++) {
     tabList[i].onclick = function() {
