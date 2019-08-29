@@ -1,0 +1,45 @@
+function openNav() {
+  document.getElementById("mySidenav").style.width = "150px";
+  document.getElementById("mySidenav").style.borderRight = "3px solid #111";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("mySidenav").style.borderRight = "none";
+}
+
+function copyText(textId) {
+  var copyText = document.getElementById(textId);
+  copyText.select();
+  document.execCommand("copy");
+}
+
+function openPage(pageName, elmnt) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.querySelectorAll(".tablink");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].style.backgroundColor = "";
+  }
+  document.getElementById(pageName).style.display = "block";
+  elmnt.style.backgroundColor = "#008080";
+}
+
+function resize() {
+ var tdisp = document.getElementById("Template1").style.display;
+    var adisp = document.getElementById("About1").style.display;
+    if (window.innerWidth > 940 && (tdisp == 'none' || adisp == 'none' || tdisp == '' || adisp == '')) {
+      document.getElementById("Template1").style.display = 'block'
+      document.getElementById("About1").style.display = 'block'
+    } else if (window.innerWidth <= 940 && ((tdisp == 'block' && adisp == 'block') || (tdisp == '' || adisp == ''))) {
+      if (document.getElementById('Template').style.backgroundColor == '') {
+        document.getElementById("Template1").style.display = 'none';
+        document.getElementById("About1").style.display = 'block';
+      } else {
+        document.getElementById("Template1").style.display = 'block';
+        document.getElementById("About1").style.display = 'none';
+      }
+    }
