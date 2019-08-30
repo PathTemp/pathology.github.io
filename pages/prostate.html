@@ -1,0 +1,410 @@
+<div id="container">
+  <div id="mySidenav" class="sidenav">
+    <a href="#">Home</a>
+    <a href="HeartRejectionTemplate.html">Heart Transplant</a>
+    <a href="#">Lung Transplant</a>
+    <a href="#">Prostate</a>
+    <a href="#">Search &nbsp; &#x1F50D;</a>
+  </div>
+  <div class="tab">
+    <button class="tabmenu" id='Menu'>&#9776;</button>
+    <button class="tablink template" id='Template'>Template</button>
+    <button class="tablink about" id='About'>About</button>
+  </div>
+
+  <div id="Template1" class="tabcontent template">
+    <div>
+      First Part:
+      <input type="radio" class="click prostate lApex" name="firstPart" id="temp1" checked>Left Apex
+      <input type="radio" class="click prostate lBase" name="firstPart" id="temp2">Left Base
+      <input type="radio" class="click prostate rApex" name="firstPart" id="temp3">Right Apex
+      <input type="radio" class="click prostate rBase" name="firstPart" id="temp4">Right Base
+    </div>
+    <table style="width:100%">
+      <tr>
+        <th></th>
+        <th></th>
+        <th style="width:20%">Location</th>
+        <th style="width:7%">Primary Score</th>
+        <th style="width:7%">Secondary Score</th>
+        <th style="width:7%">Largest Focus</th>
+        <th style="width:7%">2nd Largest Focus</th>
+        <th style="width:7%">3rd Largest Focus</th>
+        <th style="width:7%">Cores</th>
+        <th style="width:7%">Total Size</th>
+        <th style="width:7%">Percentage Involved</th>
+        <th style="width:7%">PNI</th>
+        <th>HGPIN</th>
+        <th>ASAP</th>
+      </tr>
+      <tr>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate partA' id="partA" checked="true"></td>
+        <td>A.</td>
+        <td><input id="locA" name="plocA" class='input prostate locA' type="text" style="width:100%" placeholder="Left Apex"></td>
+        <td>
+          <select name="primaryA" class='input prostate primA' style="width:100%" id="primA">
+            <option value=""></option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </td>
+        <td>
+          <select name="secondaryA" class='input prostate secA' style="width:100%" id="secA">
+            <option value=""></option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </td>
+        <td><input type="text" class='input prostate 1focA' style="width:100%" id="1focA"></td>
+        <td><input type="text" class='input prostate 2focA' style="width:100%" id="2focA"></td>
+        <td><input type="text" class='input prostate 3focA' style="width:100%" id="3focA"></td>
+        <td><input type="text" class='input prostate coresA' style="width:100%" id="coresA"></td>
+        <td><input type="text" class='input prostate totalA' style="width:100%" id="totalA"></td>
+        <td><input type="text" class='input prostate percentA' style="width:100%" id="percentA"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate pniA' id="pniA"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate hgpinA' id="hgpinA"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate asapA' id="asapA"></td>
+      </tr>
+      <tr>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate partB' id="partB" checked="true"></td>
+        <td>B.</td>
+        <td><input id="locB" name="location" type="text" style="width:100%" placeholder="Left Apex" oninput="prostateTemp()"></td>
+        <td>
+          <select name="primaryB" class='input prostate primB' style="width:100%" id="primB">
+            <option value=""></option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </td>
+        <td>
+          <select name="secondaryB" class='input prostate secB' style="width:100%" id="secB">
+            <option value=""></option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </td>
+        <td><input type="text" class='input prostate 1focB' style="width:100%" id="1focB"></td>
+        <td><input type="text" class='input prostate 2focB' style="width:100%" id="2focB"></td>
+        <td><input type="text" class='input prostate 3focB' style="width:100%" id="3focB"></td>
+        <td><input type="text" class='input prostate coresB' style="width:100%" id="coresB"></td>
+        <td><input type="text" class='input prostate totalB' style="width:100%" id="totalB"></td>
+        <td><input type="text" class='input prostate percentB' style="width:100%" id="percentB"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate pniB' id="pniB"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate hgpinB' id="hgpinB"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate asapB' id="asapB"></td>
+      </tr>
+      <tr>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate partC' id="partC" checked="true"></td>
+        <td>C.</td>
+        <td><input id="locC" name="location" type="text" style="width:100%" placeholder="Left Apex" oninput="prostateTemp()"></td>
+        <td>
+          <select name="primaryC" class='input prostate primC' style="width:100%" id="primC">
+            <option value=""></option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </td>
+        <td>
+          <select name="secondaryC" class='input prostate secC' style="width:100%" id="secC">
+            <option value=""></option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </td>
+        <td><input type="text" class='input prostate 1focC' style="width:100%" id="1focC"></td>
+        <td><input type="text" class='input prostate 2focC' style="width:100%" id="2focC"></td>
+        <td><input type="text" class='input prostate 3focC' style="width:100%" id="3focC"></td>
+        <td><input type="text" class='input prostate coresC' style="width:100%" id="coresC"></td>
+        <td><input type="text" class='input prostate totalC' style="width:100%" id="totalC"></td>
+        <td><input type="text" class='input prostate percentC' style="width:100%" id="percentC"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate pniC' id="pniC"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate hgpinC' id="hgpinC"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate asapC' id="asapC"></td>
+      </tr>
+      <tr>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate partD' id="partD" checked="true"></td>
+        <td>D.</td>
+        <td><input id="locD" name="location" type="text" style="width:100%" placeholder="Left Apex" oninput="prostateTemp()"></td>
+        <td>
+          <select name="primaryD" class='input prostate primD' style="width:100%" id="primD">
+            <option value=""></option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </td>
+        <td>
+          <select name="secondaryD" class='input prostate secD' style="width:100%" id="secD">
+            <option value=""></option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </td>
+        <td><input type="text" class='input prostate 1focD' style="width:100%" id="1focD"></td>
+        <td><input type="text" class='input prostate 2focD' style="width:100%" id="2focD"></td>
+        <td><input type="text" class='input prostate 3focD' style="width:100%" id="3focD"></td>
+        <td><input type="text" class='input prostate coresD' style="width:100%" id="coresD"></td>
+        <td><input type="text" class='input prostate totalD' style="width:100%" id="totalD"></td>
+        <td><input type="text" class='input prostate percentD' style="width:100%" id="percentD"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate pniD' id="pniD"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate hgpinD' id="hgpinD"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate asapD' id="asapD"></td>
+      </tr>
+      <tr>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate partE' id="partE" checked="true"></td>
+        <td>E.</td>
+        <td><input id="locE" name="location" type="text" style="width:100%" placeholder="Left Apex" oninput="prostateTemp()"></td>
+        <td>
+          <select name="primaryE" class='input prostate primE' style="width:100%" id="primE">
+            <option value=""></option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </td>
+        <td>
+          <select name="secondaryE" class='input prostate secE' style="width:100%" id="secE">
+            <option value=""></option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </td>
+        <td><input type="text" class='input prostate 1focE' style="width:100%" id="1focE"></td>
+        <td><input type="text" class='input prostate 2focE' style="width:100%" id="2focE"></td>
+        <td><input type="text" class='input prostate 3focE' style="width:100%" id="3focE"></td>
+        <td><input type="text" class='input prostate coresE' style="width:100%" id="coresE"></td>
+        <td><input type="text" class='input prostate totalE' style="width:100%" id="totalE"></td>
+        <td><input type="text" class='input prostate percentE' style="width:100%" id="percentE"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate pniE' id="pniE"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate hgpinE' id="hgpinE"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate asapE' id="asapE"></td>
+      </tr>
+      <tr>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate partF' id="partF" checked="true"></td>
+        <td>F.</td>
+        <td><input id="locF" name="location" type="text" style="width:100%" placeholder="Left Apex" oninput="prostateTemp()"></td>
+        <td>
+          <select name="primaryF" class='input prostate primF' style="width:100%" id="primF">
+            <option value=""></option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </td>
+        <td>
+          <select name="secondaryF" class='input prostate secF' style="width:100%" id="secF">
+            <option value=""></option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </td>
+        <td><input type="text" class='input prostate 1focF' style="width:100%" id="1focF"></td>
+        <td><input type="text" class='input prostate 2focF' style="width:100%" id="2focF"></td>
+        <td><input type="text" class='input prostate 3focF' style="width:100%" id="3focF"></td>
+        <td><input type="text" class='input prostate coresF' style="width:100%" id="coresF"></td>
+        <td><input type="text" class='input prostate totalF' style="width:100%" id="totalF"></td>
+        <td><input type="text" class='input prostate percentF' style="width:100%" id="percentF"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate pniF' id="pniF"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate hgpinF' id="hgpinF"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate asapF' id="asapF"></td>
+      </tr>
+      <tr>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate partG' id="partG"></td>
+        <td>G.</td>
+        <td><input id="locG" name="location" type="text" style="width:100%" placeholder="Left Apex" oninput="prostateTemp()"></td>
+        <td>
+          <select name="primaryG" class='input prostate primG' style="width:100%" id="primG">
+            <option value=""></option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </td>
+        <td>
+          <select name="secondaryG" class='input prostate secG' style="width:100%" id="secG">
+            <option value=""></option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </td>
+        <td><input type="text" class='input prostate 1focG' style="width:100%" id="1focG"></td>
+        <td><input type="text" class='input prostate 2focG' style="width:100%" id="2focG"></td>
+        <td><input type="text" class='input prostate 3focG' style="width:100%" id="3focG"></td>
+        <td><input type="text" class='input prostate coresG' style="width:100%" id="coresG"></td>
+        <td><input type="text" class='input prostate totalG' style="width:100%" id="totalG"></td>
+        <td><input type="text" class='input prostate percentG' style="width:100%" id="percentG"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate pniG' id="pniG"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate hgpinG' id="hgpinG"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate asapG' id="asapG"></td>
+      </tr>
+      <tr>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate partH' id="partH"></td>
+        <td>H.</td>
+        <td><input id="locH" name="location" type="text" style="width:100%" placeholder="Left Apex" oninput="prostateTemp()"></td>
+        <td>
+          <select name="primaryH" class='input prostate primH' style="width:100%" id="primH">
+            <option value=""></option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </td>
+        <td>
+          <select name="secondaryH" class='input prostate secH' style="width:100%" id="secH">
+            <option value=""></option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </td>
+        <td><input type="text" class='input prostate 1focH' style="width:100%" id="1focH"></td>
+        <td><input type="text" class='input prostate 2focH' style="width:100%" id="2focH"></td>
+        <td><input type="text" class='input prostate 3focH' style="width:100%" id="3focH"></td>
+        <td><input type="text" class='input prostate coresH' style="width:100%" id="coresH"></td>
+        <td><input type="text" class='input prostate totalH' style="width:100%" id="totalH"></td>
+        <td><input type="text" class='input prostate percentH' style="width:100%" id="percentH"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate pniH' id="pniH"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate hgpinH' id="hgpinH"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate asapH' id="asapH"></td>
+      </tr>
+      <tr>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate partI' id="partI"></td>
+        <td>I.</td>
+        <td><input id="locI" name="location" type="text" style="width:100%" placeholder="Left Apex" oninput="prostateTemp()"></td>
+        <td>
+          <select name="primaryI" class='input prostate primI' style="width:100%" id="primI">
+            <option value=""></option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </td>
+        <td>
+          <select name="secondaryI" class='input prostate secI' style="width:100%" id="secI">
+            <option value=""></option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </td>
+        <td><input type="text" class='input prostate 1focI' style="width:100%" id="1focI"></td>
+        <td><input type="text" class='input prostate 2focI' style="width:100%" id="2focI"></td>
+        <td><input type="text" class='input prostate 3focI' style="width:100%" id="3focI"></td>
+        <td><input type="text" class='input prostate coresI' style="width:100%" id="coresI"></td>
+        <td><input type="text" class='input prostate totalI' style="width:100%" id="totalI"></td>
+        <td><input type="text" class='input prostate percentI' style="width:100%" id="percentI"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate pniI' id="pniI"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate hgpinI' id="hgpinI"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate asapI' id="asapI"></td>
+      </tr>
+      <tr>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate partJ' id="partJ"></td>
+        <td>J.</td>
+        <td><input id="locJ" name="location" type="text" style="width:100%" placeholder="Left Apex" oninput="prostateTemp()"></td>
+        <td>
+          <select name="primaryJ" class='input prostate primJ' style="width:100%" id="primJ">
+            <option value=""></option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </td>
+        <td>
+          <select name="secondaryJ" class='input prostate secJ' style="width:100%" id="secJ">
+            <option value=""></option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </td>
+        <td><input type="text" class='input prostate 1focJ' style="width:100%" id="1focJ"></td>
+        <td><input type="text" class='input prostate 2focJ' style="width:100%" id="2focJ"></td>
+        <td><input type="text" class='input prostate 3focJ' style="width:100%" id="3focJ"></td>
+        <td><input type="text" class='input prostate coresJ' style="width:100%" id="coresJ"></td>
+        <td><input type="text" class='input prostate totalJ' style="width:100%" id="totalJ"></td>
+        <td><input type="text" class='input prostate percentJ' style="width:100%" id="percentJ"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate pniJ' id="pniJ"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate hgpinJ' id="hgpinJ"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate asapJ' id="asapJ"></td>
+      </tr>
+      <tr>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate partK' id="partK"></td>
+        <td>K.</td>
+        <td><input id="locK" name="location" type="text" style="width:100%" placeholder="Left Apex" oninput="prostateTemp()"></td>
+        <td>
+          <select name="primaryK" class='input prostate primK' style="width:100%" id="primK">
+            <option value=""></option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </td>
+        <td>
+          <select name="secondaryK" class='input prostate secK' style="width:100%" id="secK">
+            <option value=""></option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </td>
+        <td><input type="text" class='input prostate 1focK' style="width:100%" id="1focK"></td>
+        <td><input type="text" class='input prostate 2focK' style="width:100%" id="2focK"></td>
+        <td><input type="text" class='input prostate 3focK' style="width:100%" id="3focK"></td>
+        <td><input type="text" class='input prostate coresK' style="width:100%" id="coresK"></td>
+        <td><input type="text" class='input prostate totalK' style="width:100%" id="totalK"></td>
+        <td><input type="text" class='input prostate percentK' style="width:100%" id="percentK"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate pniK' id="pniK"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate hgpinK' id="hgpinK"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate asapK' id="asapK"></td>
+      </tr>
+      <tr>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate partL' id="partL"></td>
+        <td>L.</td>
+        <td><input id="locL" name="location" type="text" style="width:100%" placeholder="Left Apex" oninput="prostateTemp()"></td>
+        <td>
+          <select name="primaryL" class='input prostate primL' style="width:100%" id="primL">
+            <option value=""></option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </td>
+        <td>
+          <select name="secondaryL" class='input prostate secL' style="width:100%" id="secL">
+            <option value=""></option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </td>
+        <td><input type="text" class='input prostate 1focL' style="width:100%" id="1focL"></td>
+        <td><input type="text" class='input prostate 2focL' style="width:100%" id="2focL"></td>
+        <td><input type="text" class='input prostate 3focL' style="width:100%" id="3focL"></td>
+        <td><input type="text" class='input prostate coresL' style="width:100%" id="coresL"></td>
+        <td><input type="text" class='input prostate totalL' style="width:100%" id="totalL"></td>
+        <td><input type="text" class='input prostate percentL' style="width:100%" id="percentL"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate pniL' id="pniL"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate hgpinL' id="hgpinL"></td>
+        <td style="text-align:center;"><input type="checkbox" class='click prostate asapL' id="asapL"></td>
+      </tr>
+    </table>
+    <br>
+    <textarea id="finalText" name="message" rows="24">
+</textarea>
+    <button class='button copy' id='copy'>Copy text</button>
+    <button class='button clear' id='clear'>Clear template</button>
+  </div>
+
+  <div id="About1" class="tabcontent about">
+    Placeholder</div>
+</div>
