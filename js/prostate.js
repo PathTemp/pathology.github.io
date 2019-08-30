@@ -65,6 +65,14 @@ function assignListeners() {
       prostateTemp()
     }
   }
+
+  document.getElementById('copy').onclick = function() {
+    copyText()
+  }
+  document.getElementById('clear').onclick = function() {
+    clearText()
+  }
+
   prostateTemp()
 }
 
@@ -176,42 +184,40 @@ function prostateTemp() {
         } else {
           finalVar += headerVar + "-BENIGN PROSTATIC GLANDS AND STROMA"
         }
-        finalVar += "\n" + "\n"
+        if (i != allParts.length - 1) {
+          finalVar += "\n" + "\n"
+        }
       }
     }
 
-    document.getElementById("prostateText").value = finalVar
+    document.getElementById("finalText").value = finalVar
   } catch (error) {
     log("Error caught: checkCancer", error);
     throw error;
   }
 }
 
-function copyProstateText() {
-  var copyText = document.getElementById("prostateText");
+function copyText() {
+  var copyText = document.getElementById('finalText');
   copyText.select();
   document.execCommand("copy");
 }
 
-function clearProstateTemplate() {
+function clearText() {
   if (confirm("Are you sure you would like to clear the template?") == true) {
-    var i;
     var tempVar = checkTemp();
-    for (i = 0; i < allParts.length; i++) {
-      var partVar = allParts[i];
-      document.getElementById("loc" + partVar).value = "";
-      document.getElementById("prim" + partVar).value = "";
-      document.getElementById("sec" + partVar).value = "";
-      document.getElementById("1foc" + partVar).value = "";
-      document.getElementById("2foc" + partVar).value = "";
-      document.getElementById("3foc" + partVar).value = "";
-      document.getElementById("cores" + partVar).value = "";
-      document.getElementById("total" + partVar).value = "";
-      document.getElementById("percent" + partVar).value = "";
-      document.getElementById("pni" + partVar).checked = false;
-      document.getElementById("hgpin" + partVar).checked = false;
-      document.getElementById("asap" + partVar).checked = false;
+    var clearChecked = document.querySelectorAll('.click')
+    for (var i = 0; i < clearChecked.length; i++) {
+      clearChecked[i].checked = false;
+      }
+    var clearInput = document.querySelectorAll('.input')  
+    for (var i = 0; i < clearInput.length; i++) {
+    	clearInput[i].value = "";
     }
+    for (var i = 0; i < 6; i++) {
+    document.getElementById('part' + allParts[i]).checked = true;
+    }
+    document.getElementById('temp1').checked = true;
     prostateTemp();
   }
 }
