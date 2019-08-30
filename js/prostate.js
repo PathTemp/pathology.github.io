@@ -92,9 +92,7 @@ function checkTemp() {
   } else {
     templateVar = rightBase;
   }
-  console.log("1." + templateVar);
   for (var i=0; i<templateVar.length; i++){
-    console.log("templateVar[i]" + " " + templateVar);
   document.getElementById("loc" + allParts[i]).value = templateVar[i];
   }
   prostateTemp();
@@ -114,7 +112,6 @@ function isupGroup(prim, sec) {
       group = 5
     }
     return group
-  } 
 }
 
 
