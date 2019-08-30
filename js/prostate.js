@@ -9,7 +9,7 @@ var hgpin = "-HIGH GRADE PROSTATIC INTRAEPITHELIAL NEOPLASIA (HGPIN)"
 var allParts = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L']
 
 assignListeners()
-console.log('hello')
+
 function assignListeners() {
   document.getElementById('Template1').style.display = 'block'
   document.getElementById('Template').style.backgroundColor = "#008080";
@@ -49,7 +49,7 @@ function assignListeners() {
   
 inputList = document.querySelectorAll('.altclick')
   for (let i = 0; i < inputList.length; i++) {
-    inputList[i].oninput = function() {
+    inputList[i].onclick = function() {
       checkTemp()
     }
   }
@@ -101,7 +101,6 @@ function checkTemp() {
 }
 
 function isupGroup(prim, sec) {
-  try {
     var group = 0;
     if (prim + sec == 6) {
       var group = 1
@@ -115,15 +114,11 @@ function isupGroup(prim, sec) {
       group = 5
     }
     return group
-  } catch (error) {
-    log("Error caught: checkCancer", error);
-    throw error;
-  }
+  } 
 }
 
 
 function checkCancer(prim, sec) {
-  try {
     var cancer = "";
     if (prim > 2 && sec > 2) {
       cancer = "yes"
@@ -133,11 +128,8 @@ function checkCancer(prim, sec) {
       cancer = "no"
     }
     return cancer
-  } catch (error) {
-    log("Error caught: checkCancer", error);
-    throw error;
   }
-}
+
 
 function prostateTemp() {
     var finalVar = "";
