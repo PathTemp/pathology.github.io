@@ -37,10 +37,19 @@ html {
   font-weight: bold;
   border: 3px solid #111;
 }
-.content {
-  
-  left: 50px;
+
+.tablink.about {
+  left: 50%;
 }
+
+.tablink.template {
+  border-right: none;
+  }
+
+.tablink:hover {
+  background-color: #777;
+}
+
 .tabmenu {
   z-index: 1;
   width: 46px;
@@ -55,18 +64,6 @@ html {
   cursor: pointer;
   border: 3px solid #111;
   
-}
-
-.tablink.about {
-  left: 50%;
-}
-
-.tablink.template {
-  border-right: none;
-  }
-
-.tablink:hover {
-  background-color: #777;
 }
 
 .sidenav {
@@ -85,7 +82,7 @@ html {
 .sidenav a {
   padding: 8px 8px 8px 8px;
   text-decoration: none;
-  font-size: 24px;
+  font-size: 16px;
   color: white;
   display: block;
   font-weight: bold;
