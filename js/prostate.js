@@ -37,10 +37,16 @@ function assignListeners() {
       prostateTemp()
     }
   }
-  var inputList = document.querySelectorAll('.input')
+  inputList = document.querySelectorAll('.input')
   for (let i = 0; i < inputList.length; i++) {
     inputList[i].oninput = function() {
       prostateTemp()
+    }
+  }
+  inputList = document.querySelectorAll('header.click')
+  for (let i = 0; i < inputList.length; i++) {
+    inputList[i].oninput = function() {
+      checkTemp()
     }
   }
 
@@ -82,7 +88,9 @@ function checkTemp() {
   } else {
     templateVar = rightBase
   }
-  return templateVar
+  for (var i=0; i<templateVar.length; i++){
+  document.getElementById("loc" + allParts[i]).placeholder = templateVar[i]
+  }
 }
 
 function isupGroup(prim, sec) {
@@ -129,7 +137,7 @@ function prostateTemp() {
     var tempVar = checkTemp();
     for (var i = 0; i < allParts.length; i++) {
       var partVar = allParts[i];
-      document.getElementById("loc" + partVar).placeholder = tempVar[i]
+      
       if (document.getElementById('part' + partVar).checked == true) {
         var locVar = document.getElementById("loc" + partVar);
         if (locVar.value == "") {
