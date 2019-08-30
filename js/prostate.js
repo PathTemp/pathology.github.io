@@ -81,17 +81,18 @@ function openPage(pageName, elmnt) {
 function checkTemp() {
   var templateVar;
   if (document.getElementById("temp1").checked == true) {
-    templateVar = leftApex
+    templateVar = leftApex;
   } else if (document.getElementById("temp2").checked == true) {
-    templateVar = leftBase
+    templateVar = leftBase;
   } else if (document.getElementById("temp3").checked == true) {
-    templateVar = rightApex
+    templateVar = rightApex;
   } else {
-    templateVar = rightBase
+    templateVar = rightBase;
   }
   for (var i=0; i<templateVar.length; i++){
-  document.getElementById("loc" + allParts[i]).value = templateVar[i]
+  document.getElementById("loc" + allParts[i]).value = templateVar[i];
   }
+  prostateTemp();
 }
 
 function isupGroup(prim, sec) {
@@ -191,6 +192,7 @@ function clearText() {
     document.getElementById('part' + allParts[i]).checked = true;
     }
     document.getElementById('temp1').checked = true;
+    checkTemp();
     prostateTemp();
   }
 }
