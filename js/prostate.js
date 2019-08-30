@@ -9,7 +9,7 @@ var hgpin = "-HIGH GRADE PROSTATIC INTRAEPITHELIAL NEOPLASIA (HGPIN)"
 var allParts = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L']
 
 assignListeners()
-
+console.log('hello')
 function assignListeners() {
   document.getElementById('Template1').style.display = 'block'
   document.getElementById('Template').style.backgroundColor = "#008080";
