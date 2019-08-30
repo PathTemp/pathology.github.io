@@ -89,7 +89,7 @@ function checkTemp() {
     templateVar = rightBase
   }
   for (var i=0; i<templateVar.length; i++){
-  document.getElementById("loc" + allParts[i]).placeholder = templateVar[i]
+  document.getElementById("loc" + allParts[i]).value = templateVar[i]
   }
 }
 
@@ -140,11 +140,6 @@ function prostateTemp() {
       
       if (document.getElementById('part' + partVar).checked == true) {
         var locVar = document.getElementById("loc" + partVar);
-        if (locVar.value == "") {
-          var locVar = locVar.placeholder.toUpperCase();
-        } else {
-          var locVar = locVar.value.toUpperCase();
-        }
         var primVar = parseInt(document.getElementById("prim" + partVar).value);
         var secVar = parseInt(document.getElementById("sec" + partVar).value);
         var checkCancerVar = checkCancer(primVar, secVar)
