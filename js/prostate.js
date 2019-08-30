@@ -42,6 +42,9 @@ function assignListeners() {
     inputList[i].oninput = function() {
       prostateTemp()
     }
+    inputList[i].onclick = function() {
+      prostateTemp()
+    }
   }
   
 inputList = document.querySelectorAll('.altclick')
