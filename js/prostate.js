@@ -1,34 +1,12 @@
-var allParts = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L']
 var leftApex = ['Left Apex', 'Left Mid', 'Left Base', 'Right Apex', 'Right Mid', 'Right Base', "", "", "", "", "", ""]
 var leftBase = ['Left Base', 'Left Mid', 'Left Apex', 'Right Base', 'Right Mid', 'Right Apex', "", "", "", "", "", ""]
 var rightApex = ['Right Apex', 'Right Mid', 'Right Base', 'Left Apex', 'Left Mid', 'Left Base', "", "", "", "", "", ""]
 var rightBase = ['Right Base', 'Right Mid', 'Right Apex', 'Left Base', 'Left Mid', 'Left Apex', "", "", "", "", "", ""]
+
 var adenoText = "-PROSTATIC ADENOCARCINOMA, ACINAR TYPE, GLEASON SCORE "
 var hgpin = "-HIGH GRADE PROSTATIC INTRAEPITHELIAL NEOPLASIA (HGPIN)"
-var placentaWeights = [
-  [99, 107, 130, 166, 206, 285, 499],
-  [127, 168, 188, 208, 262],
-  [128, 157, 192, 222, 252],
-  [105, 128, 153, 184, 216, 299, 400],
-  [107, 138, 179, 200, 259, 281, 570],
-  [119, 130, 166, 242, 310, 332, 381],
-  [103, 128, 140, 173, 214, 261, 321, 361, 371],
-  [124, 135, 161, 214, 252, 309, 352, 496, 629],
-  [185, 190, 208, 269, 316, 374, 433, 502, 570],
-  [142, 152, 175, 246, 313, 360, 417, 479, 579],
-  [161, 214, 241, 275, 318, 377, 436, 461, 465],
-  [190, 224, 252, 286, 352, 413, 446, 475, 504],
-  [221, 260, 283, 322, 382, 430, 479, 527, 558],
-  [232, 250, 291, 344, 401, 471, 544, 600, 626],
-  [270, 291, 320, 369, 440, 508, 580, 628, 679],
-  [303, 324, 349, 390, 452, 531, 607, 660, 692],
-  [320, 335, 365, 420, 484, 560, 629, 675, 706],
-  [330, 350, 379, 426, 490, 564, 635, 683, 713],
-  [340, 360, 390, 440, 501, 572, 643, 685, 715],
-  [358, 379, 403, 452, 515, 583, 655, 705, 738],
-  [370, 388, 412, 460, 525, 592, 658, 700, 771]
-]
-var percentiles = [3, 5, 10, 25, 50, 75, 90, 95, 97]
+
+var allParts = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L']
 
 assignListeners()
 
@@ -146,13 +124,10 @@ function checkCancer(prim, sec) {
   }
 }
 
-
 function prostateTemp() {
-  try {
     var finalVar = "";
-    var i;
     var tempVar = checkTemp();
-    for (i = 0; i < allParts.length; i++) {
+    for (var i = 0; i < allParts.length; i++) {
       var partVar = allParts[i];
       document.getElementById("loc" + partVar).placeholder = tempVar[i]
       if (document.getElementById('part' + partVar).checked == true) {
@@ -189,13 +164,9 @@ function prostateTemp() {
         }
       }
     }
-
     document.getElementById("finalText").value = finalVar
-  } catch (error) {
-    log("Error caught: checkCancer", error);
-    throw error;
   }
-}
+
 
 function copyText() {
   var copyText = document.getElementById('finalText');
