@@ -43,7 +43,8 @@ function assignListeners() {
       prostateTemp()
     }
   }
-  inputList = document.querySelectorAll('header.click')
+  
+inputList = document.querySelectorAll('.altclick')
   for (let i = 0; i < inputList.length; i++) {
     inputList[i].oninput = function() {
       checkTemp()
@@ -56,7 +57,7 @@ function assignListeners() {
   document.getElementById('clear').onclick = function() {
     clearText()
   }
-
+  checkTemp()
   prostateTemp()
 }
 
@@ -134,12 +135,11 @@ function checkCancer(prim, sec) {
 
 function prostateTemp() {
     var finalVar = "";
-    var tempVar = checkTemp();
     for (var i = 0; i < allParts.length; i++) {
-      var partVar = allParts[i];
-      
-      if (document.getElementById('part' + partVar).checked == true) {
+      var partVar = allParts[i];   
+      if (document.getElementById('part' + partVar).checked == true) {  
         var locVar = document.getElementById("loc" + partVar);
+        locVar = locVar.value.toUpperCase();
         var primVar = parseInt(document.getElementById("prim" + partVar).value);
         var secVar = parseInt(document.getElementById("sec" + partVar).value);
         var checkCancerVar = checkCancer(primVar, secVar)
@@ -169,7 +169,6 @@ function prostateTemp() {
     }
     document.getElementById("finalText").value = finalVar
   }
-
 
 function copyText() {
   var copyText = document.getElementById('finalText');
