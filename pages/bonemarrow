@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <style>
+      panel-heading {
+        font-family: Arial;
+      }
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <meta charset="utf-8">
+    <title></title>
+
+  </head>
+  <body>
+    <div class="jumbotron" align="center">
+      <p>Bone Marrow Template</p>
+    </div>
+
+    <div class="container-fluid" id="bmTemp">
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="panel panel-primary">
+            <div class="panel-heading" id='panelHead1' onselectstart="return false" style="cursor: pointer" data-header='Patient/Specimen Characteristics'><span class="glyphicon glyphicon-triangle-bottom"></span> Patient/Specimen Characteristics</div>
+            <div class="panel-body" id="panel1">
+              <p><b>Laterality:</b></p>
+              <div class="radio" id="latAll">
+                <label><input type="radio" name="laterality" value="" id="latR">Right</label>
+                <label><input type="radio" name="laterality" value="" id="latL">Left</label>
+                <label><input type="radio" name="laterality" value="" id="latN">Not Specified</label>
+              </div>
+
+              <p><b>Specimens:</b></p>
+              <div class="radio">
+                <label><input type="radio" name="specNum" value="" id='specFive'>All Specimens</label>
+                <label><input type="radio" name="specNum" value="" id='specFour'>All Without Peripheral Smear</label>
+              </div>
+              <div class="checkbox" id='specTypes'>
+                <label><input type="checkbox" value="" id='specCore' name='CORE BIOPSY'>Core Biopsy </label>
+                <label><input type="checkbox" value="" id='specTouch' name='TOUCH IMPRINT'>Touch Imprint</label>
+                <label><input type="checkbox" value="" id='specClot' name='ASPIRATE CLOT'>Aspirate Clot </label>
+                <label><input type="checkbox" value="" id='specASmear' name='ASPIRATE SMEAR'>Aspirate Smear </label>
+                <label><input type="checkbox" value="" id='specPBSmear' name='PERIPHERAL BLOOD SMEAR'>Peripheral Blood Smear </label>
+              </div>
+              <div>
+                <b>Clnical History:</b><textarea rows="4" id="chText" style="width: 100%"></textarea>
+              </div>
+              <div>
+                <button type="button" class="btn btn-primary pull-right next" id="next1">Next</button>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-primary">
+            <div class="panel-heading" id='panelHead2' onselectstart="return false" style="cursor: pointer" data-header='Peripheral Blood'><span class="glyphicon glyphicon-triangle-right"></span> Peripheral Blood</div>
+            <div class="panel-body" id="panel2" style="display: none"><b>Paste CBC Here:</b><textarea rows="4" id="pbText" style="width: 100%">
+</textarea>
+              <div>
+                <button type="button" class="btn btn-primary pull-right next" id="next2">Next</button>
+                <button type="button" class="btn btn-primary pull-right prev" id="prev2">Previous</button>
+              </div>
+            </div>
+
+          </div>
+          <div class="panel panel-primary">
+            <div class="panel-heading" id='panelHead3' onselectstart="return false" style="cursor: pointer" data-header='Bone Marrow Core Biopsy'><span class="glyphicon glyphicon-triangle-right"></span> Core Biopsy</div>
+            <div class="panel-body" id="panel3" style="display: none">Text <div>
+
+                <button type="button" class="btn btn-primary pull-right next" id="next3">Next</button>
+                <button type="button" class="btn btn-primary pull-right prev" id="prev3">Previous</button>
+              </div>
+            </div>
+
+          </div>
+          <div class="panel panel-primary">
+            <div class="panel-heading" id='panelHead4' onselectstart="return false" style="cursor: pointer" data-header='Bone Marrow Aspirate'><span class="glyphicon glyphicon-triangle-right"></span> Aspirate</div>
+            <div class="panel-body" id="panel4" style="display: none">Text <div>
+                <button type="button" class="btn btn-primary pull-right next" id="next4">Next</button>
+                <button type="button" class="btn btn-primary pull-right prev" id="prev4">Previous</button>
+              </div>
+            </div>
+
+          </div>
+          <div class="panel panel-primary">
+            <div class="panel-heading" id='panelHead5' onselectstart="return false" style="cursor: pointer" data-header='Flow Cytometry'><span class="glyphicon glyphicon-triangle-right"></span> Flow Cytometry</div>
+            <div class="panel-body" id="panel5" style="display: none">Text <button type="button" class="btn btn-primary pull-right prev" id="prev5">Previous</button>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="final" id="final"></div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <script>
+      $(document).ready(function() {
+        $(".panel-heading").click(function() {
+          if ($(this).html().search('right') == -1) {
+            $(this).html($(this).html().replace('bottom', 'right'));
+            $("#" + 'panel' + $(this).attr('id').slice(9, 10)).toggle();
+          } else {
+            $(this).html($(this).html().replace('right', 'bottom'));
+            $("#" + 'panel' + $(this).attr('id').slice(9, 10)).toggle();
+          }
+        })
+
+        $('.next').click(function() {
+          var nextPanel = $(this).attr('id');
+          $('#' + 'panelHead' + nextPanel.slice(4, 5)).html($('#' + 'panelHead' + nextPanel.slice(4, 5)).html().replace('bottom', 'right'))
+          $('#' + 'panel' + nextPanel.slice(4, 5)).hide()
+          $('#' + 'panel' + (parseInt(nextPanel.slice(4, 5)) + 1)).show()
+          $('#' + 'panelHead' + (parseInt(nextPanel.slice(4, 5)) + 1)).html($('#' + 'panelHead' + (parseInt(nextPanel.slice(4, 5)) + 1)).html().replace('right', 'bottom'))
+        })
+
+        $('.prev').click(function() {
+          var prevPanel = $(this).attr('id');
+          $('#' + 'panelHead' + prevPanel.slice(4, 5)).html($('#' + 'panelHead' + prevPanel.slice(4, 5)).html().replace('bottom', 'right'))
+          $('#' + 'panel' + prevPanel.slice(4, 5)).hide()
+          $('#' + 'panel' + (parseInt(prevPanel.slice(4, 5)) - 1)).show()
+          $('#' + 'panelHead' + (parseInt(prevPanel.slice(4, 5)) - 1)).html($('#' + 'panelHead' + (parseInt(prevPanel.slice(4, 5)) - 1)).html().replace('right', 'bottom'))
+        })
+
+        var header = "";
+        var cbcText = "";
+        var specCheck, latCheck = false;
+
+        $('#latAll').change(function() {
+          latCheck = true;
+          if (specCheck == true) {
+            createHeader()
+          }
+        })
+
+        $('#specFive').change(function() {
+          if ($('#specFive').prop('checked')) {
+            $('#specCore').prop('checked', true);
+            $('#specTouch').prop('checked', true);
+            $('#specClot').prop('checked', true);
+            $('#specASmear').prop('checked', true);
+            $('#specPBSmear').prop('checked', true);
+          }
+          specCheck = true;
+          if (latCheck == true) {
+            createHeader()
+          }
+        })
+
+        $('#specFour').change(function() {
+          if ($('#specFour').prop('checked')) {
+            $('#specCore').prop('checked', true);
+            $('#specTouch').prop('checked', true);
+            $('#specClot').prop('checked', true);
+            $('#specASmear').prop('checked', true);
+            $('#specPBSmear').prop('checked', false);
+          }
+          specCheck = true;
+          if (latCheck == true) {
+            createHeader()
+          }
+        })
+
+        $('#specTypes').change(function() {
+          if ($('#specCore').prop('checked') && $('#specTouch').prop('checked') && $('#specClot').prop('checked') && $('#specASmear').prop('checked') && $('#specPBSmear').prop('checked')) {
+            $('#specFive').prop('checked', true)
+          } else if ($('#specCore').prop('checked') && $('#specTouch').prop('checked') && $('#specClot').prop('checked') && $('#specASmear').prop('checked')) {
+            $('#specFour').prop('checked', true)
+          } else {
+            $('#specFive').prop('checked', false);
+            $('#specFour').prop('checked', false);
+          }
+          specCheck = true;
+          if (latCheck == true) {
+            createHeader()
+          }
+        })
+
+        function createHeader() {
+          header = "BONE MARROW, "
+          if ($('#latR').prop('checked')) {
+            header += "RIGHT" + "\n";
+          } else if ($('#latL').prop('checked')) {
+            header += "LEFT" + "\n";
+          }
+          header += "POSTERIOR ILIAC CREST; "
+          var selected = [];
+          $('#specTypes input:checked').each(function() {
+            selected.push($(this).attr('name'));
+          });
+          for (var i = 0; i < selected.length; i++) {
+            header += selected[i] + ", ";
+          }
+          header = header.slice(0, -2) + ":";
+        }
+
+        $('#pbText').change(function() {
+          cbcText = "<b>CBC: </b>"
+          var cbc = ["WBC", "RBC", "HGB", "HCT"]
+          var noSpace = $('#pbText').val().split(/\s/).filter(Boolean);
+
+          for (var i = 0; i < cbc.length; i++) {
+            for (var j = 0; j < noSpace.length; j++) {
+              if (cbc[i] == noSpace[j]) {
+                cbcText += cbc[i] + ": " + noSpace[j + 1] + " " + noSpace[j + 5] + ", ";
+              }
+            }
+          }
+          cbcText = cbcText.slice(0, -2)
+          if (noSpace == "") {
+            cbcText = ""
+          }
+
+        })
+
+        $('#bmTemp').change(function() {
+          $("#final").html(header + "<p>" + cbcText);
+        })
+      });
+
+    </script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  </body>
+
+</html>
