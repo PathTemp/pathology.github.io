@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -276,10 +277,8 @@
             </div>
 
             <div id="clinicalHistory">
-
             </div>
             <div id="clinicalCBC" style="display: none">
-            <br>
             </div>
           </div>
           <div id="microscopic" style="display: none">
@@ -287,14 +286,14 @@
               Microscopic Description
             </div>
             <div id="diff" class='header' style="display: none">
-              Differential Count<br>
+              Differential Count<br><br>
             </div>
             <div id='pbTable' style="display: none">
               <table style="width:100%">
                 <tr>
-                  <td>Peripheral blood (200 cells)</td>
-                  <td>Result</td>
-                  <td>Reference Range</td>
+                  <th>Peripheral blood (200 cells)</th>
+                  <th>Result</th>
+                  <th>Reference Range</th>
                 </tr>
                 <tr>
                   <td>Neutrophils</td>
@@ -646,7 +645,7 @@
             }
           }
           headerText += ":";
-          $("#header").html(headerText.charAt(0).toUpperCase() + headerText.slice(1));
+          $("#header").html(headerText.charAt(0).toUpperCase() + headerText.slice(1) + "<br>" + "<br>");
         }
 
         $('#specTypes').change(function() {
@@ -676,22 +675,22 @@
           $('#pbTable').show();
           var totalCells = ($('#pbCount').val().match(/[7-9]|4|5/g) || []).length;
           if (totalCells != 0) {
-            var tempPercent = Math.round(($('#pbCount').val().match(/7/g) || []).length / totalCells * 1000) / 10
+            var tempPercent = (Math.round(($('#pbCount').val().match(/7/g) || []).length / totalCells * 1000) / 10).toFixed(1)
             $('#neutPB').val(tempPercent+"%");
             $('#neutTable').html(tempPercent+"%");
-            tempPercent = Math.round(($('#pbCount').val().match(/8/g) || []).length / totalCells * 1000) / 10;
+            tempPercent = (Math.round(($('#pbCount').val().match(/8/g) || []).length / totalCells * 1000) / 10).toFixed(1);
             $('#lymphPB').val(tempPercent+"%");
             $('#lymphTable').html(tempPercent+"%");
-            tempPercent = Math.round(($('#pbCount').val().match(/9/g) || []).length / totalCells * 1000) / 10
+            tempPercent = (Math.round(($('#pbCount').val().match(/9/g) || []).length / totalCells * 1000) / 10).toFixed(1)
             $('#monoPB').val(tempPercent+"%");
             $('#monoTable').html(tempPercent+"%");
-            tempPercent = Math.round(($('#pbCount').val().match(/4/g) || []).length / totalCells * 1000) / 10
+            tempPercent = (Math.round(($('#pbCount').val().match(/4/g) || []).length / totalCells * 1000) / 10).toFixed(1)
             $('#eoPB').val(tempPercent+"%");
             $('#eoTable').html(tempPercent+"%");
-            tempPercent = Math.round(($('#pbCount').val().match(/5/g) || []).length / totalCells * 1000) / 10
+            tempPercent = (Math.round(($('#pbCount').val().match(/5/g) || []).length / totalCells * 1000) / 10).toFixed(1)
             $('#basoPB').val(tempPercent+"%");
             $('#basoTable').html(tempPercent+"%");
-            tempPercent = Math.round(($('#pbCount').val().match(/6/g) || []).length / totalCells * 1000) / 10
+            tempPercent = (Math.round(($('#pbCount').val().match(/6/g) || []).length / totalCells * 1000) / 10).toFixed(1)
             $('#nrbcPB').val(tempPercent);
           }
           if ($('#pbCBC').val() != "") {
@@ -768,7 +767,8 @@
                   mcvHigh = parseInt(cbcFinal[i][j].split(" ")[2])
                 }
               }
-              if (cbcFinal[i][0].replace(/\s/g, '') == "Lymphocytes") {
+              console.log(cbcFinal[i][0] + "hi" + cbcFinal[i][0].replace(/\s/g, ''))
+              if (cbcFinal[i][0].indexOf("Absolute Lymphocytes") != -1) {
                 if (cbcFinal[i][j].indexOf("-") != -1) {
                   lymphLow = parseInt(cbcFinal[i][j].split(" ")[0])
                   lymphHigh = parseInt(cbcFinal[i][j].split(" ")[2])
