@@ -1,9 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/f6f9c2cc49.js" crossorigin="anonymous"></script>
     <style>
+      ::-webkit-input-placeholder {
+        color: black;
+        opacity: 1 !important;
+      }
+
       div {
         font-family: Arial;
         font-size: 11pt;
@@ -28,21 +33,42 @@
       table {
         border-collapse: collapse;
         font-family: Arial;
-        table-layout: fixed
+        table-layout: fixed;
+        font-size: 11pt;
       }
-
-      table,
-      td,
-      th {
+            
+      th, td {
         border: 1px solid black;
+        
       }
 
+      table.padleft td {
+       padding-left: 10px; 
+      }
+      
+      table.padleft th {
+       padding-left: 10px; 
+      }
+
+      .noborder {
+        border: none;
+      }
+
+      .center {
+        text-align: center;
+      }
 
       .banner {
         background-color: rgb(51, 122, 183);
         text-align: center;
         color: white;
-        font-size: 14pt;
+        font-size: 20pt;
+        font-weight: bold;
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        padding-left: 120px
       }
 
       .pad {
@@ -74,10 +100,26 @@
         font-weight: bold;
       }
 
+      .h2 {
+        font-size: 14pt;
+        font-family: Arial;
+        font-weight: bold;
+      }
+
       .header {
         font-size: 11pt;
         font-family: Arial;
         font-weight: bold;
+      }
+
+      .rightalign {
+        float: right;
+        padding: 8px;
+        margin: auto;
+      }
+
+      .icon:hover {
+        color: rgb(200, 200, 200);
       }
 
       }
@@ -91,8 +133,13 @@
 
   <body>
     <div class="container-fluid" id="bmTemp">
-      <div class="row banner">
-        Bone Marrow Template
+      <div class="row banner"><span>Bone Marrow Template</span>
+
+
+        <i class="icon fas fa-cog rightalign" id='settingsButton'></i>
+        <i class="icon far fa-question-circle rightalign" id="helpButton"></i>
+        <i class="icon fas fa-book rightalign" id='educationButton'></i>
+        <i class="icon fas fa-list rightalign" id="templateButton"></i>
       </div>
       <div class="row top">
         <div class="col-xs-6">
@@ -109,7 +156,6 @@
               <p><b>Specimens:</b></p>
               <div class="radio">
                 <label><input type="radio" name="specNum" value="" id='specFive'>All Specimens</label>
-                <label><input type="radio" name="specNum" value="" id='specFour'>All Without Peripheral Smear</label>
               </div>
               <div class="checkbox" id='specTypes'>
                 <div class="row left">
@@ -159,7 +205,6 @@
                   <b>Clnical History:</b>
                   <p></p>
                   Age: <input type="input" value="" id='clinAge' name='age' maxlength="3" size="3"><br><br> <textarea rows="4" id="chText" style="width: 100%"></textarea>
-
                 </div>
                 <div>
                   <button type="button" class="btn btn-primary pull-right next" id="next1">Next</button>
@@ -167,35 +212,60 @@
               </div>
             </div>
           </div>
-
           <div class="panel panel-primary">
             <div class="panel-heading" id='panelHead2' onselectstart="return false" style="cursor: pointer" data-header='Peripheral Blood'><span class="glyphicon glyphicon-triangle-right"></span> Peripheral Blood</div>
             <div class="panel-body" id="panel2" style="display: none"><b>Paste CBC Here:</b><textarea rows="1" id="pbCBC" style="width: 100%">
 </textarea>
-              <div class="row pad">
-                <div class="col-xs-4 stick">
-                  <label for="fname">Neutrophils</label><br>
-                  <input type="text" id="neutPB" maxlength="4" size="3"></div>
-                <div class="col-xs-4 stick">
-                  <label for="fname">Lymphocytes</label><br>
-                  <input type="text" id="lymphPB" maxlength="4" size="3"></div>
-                <div class="col-xs-4 stick">
-                  <label for="fname">Monocytes</label><br>
-                  <input type="text" id="monoPB" maxlength="4" size="3">
+              <div class="row">
+                <div class="col-xs-9">
+                  <table class="center" style="width:100%">
+                    <tr>
+                      <td><label for="fname"><b>7.</b> Neuts</label><br>
+                        <input type="text" id="pb7" maxlength="4" size="3"></td>
+                      <td><label for="fname"><b>8.</b> Lymphs</label><br>
+                        <input type="text" id="pb8" maxlength="4" size="3"></td>
+                      <td><label for="fname"><b>9.</b> Mono</label><br>
+                        <input type="text" id="pb9" maxlength="4" size="3"></td>
+                    </tr>
+                    <tr>
+                      <td><label for="fname"><b>4.</b> Eos</label><br>
+                        <input type="text" id="pb4" maxlength="4" size="3"></td>
+                      <td><label for="fname"><b>5.</b> Baso</label><br>
+                        <input type="text" id="pb5" maxlength="4" size="3"></td>
+                      <td><label for="fname"><b>6.</b> Plasma</label><br>
+                        <input type="text" id="pb6" maxlength="4" size="3"></td>
+                    </tr>
+                    <tr>
+                      <td><label for="fname"><b>1.</b> NRBCs</label><br>
+                        <input type="text" id="pb1" maxlength="4" size="3"></td>
+                      <td><label for="fname"><b>2.</b> Atypical</label><br>
+                        <input type="text" id="pb2" maxlength="4" size="3"></td>
+                      <td><label for="fname"><b>3.</b> Other</label><br>
+                        <input type="text" id="pb3" maxlength="4" size="3"></td>
+                    </tr>
+                    <tr>
+                      <td class='noborder'></td>
+                      <td><label for="fname"><b>0.</b> Blasts</label><br>
+                        <input type="text" id="pb0" maxlength="4" size="3"></td>
+                      <td class='noborder'></td>
+                    </tr>
+                  </table>
                 </div>
-              </div>
-              <div class="row pad">
-                <div class="col-xs-4">
-                  <label for="fname">Eosinophils</label><br>
-                  <input type="text" id="eoPB" maxlength="4" size="3">
-                </div>
-                <div class="col-xs-4">
-                  <label for="fname">Basophils</label><br>
-                  <input type="text" id="basoPB" maxlength="4" size="3">
-                </div>
-                <div class="col-xs-4">
-                  <label for="fname">NRBCs</label><br>
-                  <input type="text" id="nrbcPB" maxlength="4" size="3">
+                <div class="col-xs-3">
+                  <div>
+                    <label for="fname">Current Count:</label><br>
+                    <input type="text" id="pbCCount" maxlength="4" size="3">
+                  </div>
+                  <div>
+                    <label for="fname">Desired Count:</label><br>
+                    <input type="text" id="pbDCount" list="pbDList" maxlength="4" size="3" placeholder="200"><datalist id="pbDList">
+                      <option value="100"></option>
+                      <option value="200"></option>
+                      <option value="300"></option>
+                      <option value="400"></option>
+                      <option value="500"></option>
+                    </datalist>
+                  </div>
                 </div>
               </div>
               <b>Count Here:</b><textarea rows="4" id="pbCount" style="width: 100%">
@@ -216,34 +286,76 @@
           <div class="panel panel-primary">
             <div class="panel-heading" id='panelHead3' onselectstart="return false" style="cursor: pointer" data-header='Bone Marrow Aspirate'><span class="glyphicon glyphicon-triangle-right"></span> Aspirate Smear</div>
             <div class="panel-body" id="panel3" style="display: none">
-              <div class="row pad">
-                <div class="col-xs-4 stick">
-                  <label for="fname">Blasts</label><br>
-                  <input type="text" id="blast" maxlength="4" size="3"></div>
-                <div class="col-xs-4 stick">
-                  <label for="fname">Pros</label><br>
-                  <input type="text" id="promyel" maxlength="4" size="3"></div>
-                <div class="col-xs-4 stick">
-                  <label for="fname">Myelo</label><br>
-                  <input type="text" id="myel" maxlength="4" size="3">
+              <div class="row">
+                <div class="col-xs-9">
+                  <table class="center" style="width:100%">
+                    <tr>
+                      <td><label for="fname"><b>7.</b> Neuts</label><br>
+                        <input type="text" id="asp7" maxlength="4" size="3"></td>
+                      <td><label for="fname"><b>8.</b> Eos</label><br>
+                        <input type="text" id="asp8" maxlength="4" size="3"></td>
+                      <td><label for="fname"><b>9.</b> Mono</label><br>
+                        <input type="text" id="asp9" maxlength="4" size="3"></td>
+                    </tr>
+                    <tr>
+                      <td><label for="fname"><b>4.</b> NRBCs</label><br>
+                        <input type="text" id="asp4" maxlength="4" size="3"></td>
+                      <td><label for="fname"><b>5.</b> Lymphs</label><br>
+                        <input type="text" id="asp5" maxlength="4" size="3"></td>
+                      <td><label for="fname"><b>6.</b> Plasma</label><br>
+                        <input type="text" id="asp6" maxlength="4" size="3"></td>
+                    </tr>
+                    <tr>
+                      <td><label for="fname"><b>1.</b> Baso</label><br>
+                        <input type="text" id="asp1" maxlength="4" size="3"></td>
+                      <td><label for="fname"><b>2.</b> Atypical</label><br>
+                        <input type="text" id="asp2" maxlength="4" size="3"></td>
+                      <td><label for="fname"><b>3.</b> Other</label><br>
+                        <input type="text" id="asp3" maxlength="4" size="3"></td>
+                    </tr>
+                    <tr>
+                      <td class="noborder"></td>
+                      <td><label for="fname"><b>0.</b> Blasts</label><br>
+                        <input type="text" id="asp0" maxlength="4" size="3"></td>
+                      <td class="noborder"></td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="col-xs-3">
+                  <div>
+                    <label for="fname">Current Count:</label><br>
+                    <input type="text" id="aspCCount" maxlength="4" size="3">
+                  </div>
+                  <div>
+                    <label for="fname">Desired Count:</label><br>
+                    <input type="text" id="aspDCount" list="aspDList" maxlength="4" size="3" placeholder="500"><datalist id="aspDList">
+                      <option value="100"></option>
+                      <option value="200"></option>
+                      <option value="300"></option>
+                      <option value="400"></option>
+                      <option value="500"></option>
+                    </datalist>
+                  </div>
+                  <div>
+                    <label for="fname">M:E ratio:</label><br>
+                    <input type="text" id="meRatio" maxlength="4" size="3">
+                  </div>
                 </div>
               </div>
-              <div class="row pad">
-                <div class="col-xs-4">
-                  <label for="fname">Metas</label><br>
-                  <input type="text" id="meta" maxlength="4" size="3">
+
+
+
+                <b>Count Here:</b>
+                <textarea rows="4" id="aspCount" style="width: 100%">
+</textarea>              <div id="aspirateDiv">
+                <b>Adequacy:</b> <label><input type="radio" name="adequacy" value="" id='aspAdequate'> Adequate</label><label><input type="radio" value="" name="adequacy" id='aspSuboptimal'> Suboptimal</label><label><input type="radio" value="" name="adequacy" id='aspInadequate'> Inadequate</label>
+                <div>
+                  <b>Descriptors:</b> <label><input type="checkbox" value="" id='aspHemodilute'> Hemodilute</label><label><input type="checkbox" value="" id='aspAcellular'> Virtually acellular</label><br>
                 </div>
-                <div class="col-xs-4">
-                  <label for="fname">NRBCs</label><br>
-                  <input type="text" id="nrbc" maxlength="4" size="3">
-                </div>
-                <div class="col-xs-4"><label for="fname">M:E Ratio</label><br>
-                  <input type="text" id="meRatio" maxlength="4" size="3"></div>
-              </div>
-              <b>Count Here:</b>
-              <textarea rows="4" id="aspCount" style="width: 100%">
-</textarea><b>Aspirate Smear Text:</b><textarea rows="4" id="pbText" style="width: 100%">
+                <b>Aspirate Smear/Touch Preparation Text:</b><textarea rows="4" id="aspText" style="width: 100%">
 </textarea>
+              </div>
+
               <div>
                 <button type="button" class="btn btn-primary pull-right next" id="next3">Next</button>
                 <button type="button" class="btn btn-primary pull-right prev" id="prev3">Previous</button>
@@ -266,84 +378,166 @@
           </div>
         </div>
         <div class="col-xs-6">
-          <div class="final" id="final"></div>
-          <div class="final" id="final2"></div>
-          <div class="header" id="header">
-
+          <div id="helpScreen" style="display: none">
+            This is the help screen for people that need help.
           </div>
-          <div id="clinical" style="display: none">
-            <div class="h1">
-              Clinical Information
-            </div>
-
-            <div id="clinicalHistory">
-            </div>
-            <div id="clinicalCBC" style="display: none">
-            </div>
+          <div id="settingsScreen" style="display: none">
+            This is where you can choose your settings (e.g. mute, theme, etc.)
           </div>
-          <div id="microscopic" style="display: none">
-            <div class="h1">
-              Microscopic Description
-            </div>
-            <div id="diff" class='header' style="display: none">
-              Differential Count<br><br>
-            </div>
-            <div id='pbTable' style="display: none">
-              <table style="width:100%">
-                <tr>
-                  <th>Peripheral blood (200 cells)</th>
-                  <th>Result</th>
-                  <th>Reference Range</th>
-                </tr>
-                <tr>
-                  <td>Neutrophils</td>
-                  <td id="neutTable"></td>
-                  <td>34 - 73%</td>
-                </tr>
-                <tr>
-                  <td>Lymphocytes</td>
-                  <td id="lymphTable"></td>
-                  <td>15 - 50%</td>
-                </tr>
-                <tr>
-                  <td>Monocytes</td>
-                  <td id="monoTable"></td>
-                  <td>5 - 15%</td>
-                </tr>
-                <tr>
-                  <td>Eosinophils</td>
-                  <td id="eoTable"></td>
-                  <td>0 - 8%</td>
-                </tr>
-                <tr>
-                  <td>Basophils</td>
-                  <td id="basoTable"></td>
-                  <td>0 - 2%</td>
-                </tr>
-              </table>
-              <br>
-            </div>
-            <div id="peripheralBlood">
-              <div class="header">
-                Peripheral Blood
-              </div>
-              <div id="bloodText">
-
-              </div>
-
-            </div><br>
-            <div id="aspirateSmear">
-
-            </div>
+          <div id="educationScreen" style="display: none">
+            This will be where educational references will be.
           </div>
-          <div id="gross" style="display: none">
-            <div class="h1">
-              Specimen/Gross Description
-            </div>
+          <div id="templateScreen">
+            <div class="final" id="final2"></div>
             <div>
-              The specimen consists of the following:
+              <button type="button" class="btn btn-primary copy" id="everythingCopy">Copy All</button> <button type="button" class="btn btn-primary copy" id="finalCopy">Copy Final</button><button type="button" class="btn btn-primary copy" id="clinicalCopy">Copy Clinical</button><button type="button" class="btn btn-primary copy" id="microscopicCopy">Copy Microscopic</button><button type="button" class="btn btn-primary copy" id="grossCopy">Copy Gross</button>
             </div>
-            <div id="grossText">
+            <div id="everything" class='top'>
+              <div id="final" style="display: none">
+                <div class="header" id="header">&nbsp
+                </div>
+              </div>
+              <div id="clinical" style="display: none">
+                <div class="h1">
+                  Clinical Information
+                </div>
+                <div id="clinicalHistory">
+                </div>
+                <div id="clinicalCBC" style="display: none">
+                </div>
+              </div>
+              <div id="microscopic" style="display: none">
+                <div class="h1">
+                  Microscopic Description
+                </div>
+                <div id="diff" class='header' style="display: none">
+                  Differential Count<br><br>
+                </div>
+                <div id='pbTable' style="display: none" class='left'>
+                  <table class='padleft' style="width:425px">
+                    <tr>
+                      <th style="width:50%" id="pbTableCountHeader"></th>
+                      <th style="width:17%">Result</th>
+                      <th style="width:33%">Reference Range</th>
+                    </tr>
+                    <tr id="pbBlastRow" style="display: none">
+                      <td>Blasts</td>
+                      <td id="pbBlastTable"></td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>Neutrophils</td>
+                      <td id="pbNeutTable"></td>
+                      <td>34 - 73%</td>
+                    </tr>
+                    <tr>
+                      <td>Lymphocytes</td>
+                      <td id="pbLymphTable"></td>
+                      <td>15 - 50%</td>
+                    </tr>
+                    <tr>
+                      <td>Monocytes</td>
+                      <td id="pbMonoTable"></td>
+                      <td>5 - 15%</td>
+                    </tr>
+                    <tr>
+                      <td>Eosinophils</td>
+                      <td id="pbEoTable"></td>
+                      <td>0 - 8%</td>
+                    </tr>
+                    <tr>
+                      <td>Basophils</td>
+                      <td id="pbBasoTable"></td>
+                      <td>0 - 2%</td>
+                    </tr>
+                   <tr id="pbNRBCRow" style="display: none">
+                      <td>NRBC's/100 WBC</td>
+                      <td id="pbNRBCTable"></td>
+                      <td>0</td>
+                    </tr>
+                  </table>
+                  <br>
+                </div>
+                <div id='aspTable' style="display: none" class='left'>
+                  <table class='padleft' style="width:425px">
+                    <tr>
+                      <th style="width:50%" id="aspTableCountHeader"></th>
+                      <th style="width:17%">Result</th>
+                      <th style="width:33%">Reference Range</th>
+                    </tr>
+                    <tr>
+                      <td>Blasts</td>
+                      <td id="aspBlastTable"></td>
+                      <td>0 – 3%</td>
+                    </tr>
+                    <tr>
+                      <td>Neutrophils & Precursors</td>
+                      <td id="aspNeutTable"></td>
+                      <td>33 – 63%</td>
+                    </tr>
+                    <tr>
+                      <td>Eosinophils & Precursors</td>
+                      <td id="aspEoTable"></td>
+                      <td>1 – 5%</td>
+                    </tr>
+                    <tr>
+                      <td>Basophils & Precursors</td>
+                      <td id="aspBasoTable"></td>
+                      <td>0 – 1%</td>
+                    </tr>
+                    <tr>
+                      <td>Monocytes</td>
+                      <td id="aspMonoTable"></td>
+                      <td>0 – 2%</td>
+                    </tr>
+                    <tr>
+                      <td>Lymphocytes</td>
+                      <td id="aspLymphTable"></td>
+                      <td>10 – 15%</td>
+                    </tr>
+                    <tr>
+                      <td>Plasma Cells</td>
+                      <td id="aspPlasmaTable"></td>
+                      <td>0 – 1%</td>
+                    </tr>
+                    <tr>
+                      <td>Erythroid Precursors</td>
+                      <td id="aspNRBCTable"></td>
+                      <td>15 – 27%</td>
+                    </tr>
+                    <tr>
+                      <td>M:E Ratio</td>
+                      <td id="aspMETable"></td>
+                      <td>1.5 - 3.3</td>
+                    </tr>
+                  </table>
+                  <br>
+                </div>
+                <div id="peripheralBlood" style="display: none">
+                  <div class="h2">
+                    Peripheral Blood Smear
+                  </div>
+                  <div id="bloodText">
+                  </div>
+                </div>
+                <div id="aspirateSmear" style="display: none">
+                  <div class="h2">
+                    Bone Marrow Aspirate Smear/Touch Preparation
+                  </div>
+                  <div id="aspirateText">
+                  </div>
+                </div>
+              </div>
+              <div id="gross" style="display: none">
+                <div class="h1">
+                  Specimen/Gross Description
+                </div>
+                <div>
+                  The specimen consists of the following:
+                </div>
+                <div id="grossText">
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -352,9 +546,45 @@
 
 
 
-
     <script>
       $(document).ready(function() {
+        var countAudio = 'https://diffpath.github.io/media/Count-Click2.wav';
+        var hundredAudio = 'https://diffpath.github.io/media/100-Soothing.wav'
+        var finishedAudio = 'https://diffpath.github.io/media/Complete-Nice.mp3'
+        var header = '';
+        var subHeader = '';
+        var cbcReport = '';
+        var specCheck, latCheck = false;
+        var wbc, wbcHigh, wbcLow, hgb, hgbHigh, hgbLow, mcv, mcvHigh, mcvLow, plt, pltHigh, pltLow, neutLow, neutHigh, lymphLow, lymphHigh, monoLow, monoHigh
+        window.keypressed = {};
+
+        $('#helpButton').click(function() {
+          $('#templateScreen').hide();
+          $('#educationScreen').hide();
+          $('#settingsScreen').hide();
+          $('#helpScreen').show();
+        })
+
+        $('#settingsButton').click(function() {
+          $('#templateScreen').hide();
+          $('#educationScreen').hide();
+          $('#settingsScreen').show();
+          $('#helpScreen').hide();
+        })
+
+        $('#educationButton').click(function() {
+          $('#templateScreen').hide();
+          $('#educationScreen').show();
+          $('#settingsScreen').hide();
+          $('#helpScreen').hide();
+        })
+
+        $('#templateButton').click(function() {
+          $('#templateScreen').show();
+          $('#educationScreen').hide();
+          $('#settingsScreen').hide();
+          $('#helpScreen').hide();
+        })
         $(".panel-heading").click(function() {
           if ($(this).html().search('right') == -1) {
             $(this).html($(this).html().replace('bottom', 'right'));
@@ -380,12 +610,7 @@
           $('#' + 'panel' + (parseInt(prevPanel.slice(4, 5)) - 1)).show()
           $('#' + 'panelHead' + (parseInt(prevPanel.slice(4, 5)) - 1)).html($('#' + 'panelHead' + (parseInt(prevPanel.slice(4, 5)) - 1)).html().replace('right', 'bottom'))
         })
-        var audioUrl = 'https://diffpath.github.io/Diff%20Click.mp3';
-        var header = "";
-        var subHeader = "";
-        var cbcReport = "";
-        var specCheck, latCheck = false;
-        var wbc, wbcHigh, wbcLow, hgb, hgbHigh, hgbLow, mcv, mcvHigh, mcvLow, plt, pltHigh, pltLow, neutLow, neutHigh, lymphLow, lymphHigh, monoLow, monoHigh
+
 
         $('#latAll').change(function() {
           latCheck = true;
@@ -414,10 +639,21 @@
 
         })
 
-        $('#rbcDiv').change(function() {
-
+        $('.copy').click(function() {
+          copyText($(this).attr('id').replace(/Copy/g, ""))
         })
 
+        function copyText(element) {
+          var aux = document.createElement("div");
+          aux.setAttribute("contentEditable", true);
+          aux.innerHTML = document.getElementById(element).innerHTML;
+          aux.setAttribute("onfocus", "document.execCommand('selectAll',false,null)");
+
+          document.getElementById('final2').appendChild(aux);
+          aux.focus();
+          document.execCommand("copy");
+          document.getElementById('final2').removeChild(aux);
+        }
         $('#specFour').change(function() {
           if ($('#specFour').prop('checked')) {
             $('#specCore').prop('checked', true);
@@ -466,22 +702,26 @@
         })
 
         function fillPB() {
-
+        if ($('#specPBSmear').prop('checked')){
           var pbText = "The peripheral blood smear shows "
-
+          if (mcv < mcvLow) {
+            pbText += 'microcytic '
+          } else if (mcv > mcvHigh) {
+            pbText += 'macrocytic '
+          } else {
+            pbText += 'normocytic '
+          }
           if (hgb < hgbLow) {
-            if (mcv < mcvLow) {
-              pbText += 'microcytic anemia'
-            } else if (mcv > mcvHigh) {
-              pbText += 'macrocytic anemia'
-            } else {
-              pbText += 'normocytic anemia'
-            }
+            pbText += 'anemia'
+          } else {
+            pbText += 'red blood cells'
           }
 
           if ($('#rbcNL').prop('checked')) {
             pbText += ' with unremarkable red blood cell morphology'
           }
+          
+
 
           if ($('#rbcPC').prop('checked')) {
             pbText += ' with polychromasia';
@@ -495,14 +735,33 @@
           } else {
             pbText += '.'
           }
+          
+          if ($('#pb1').val() > 0){
+          pbText += ' Nucleated red blood cells are seen.'
+          
+          }
 
           if ($('#pbCount').val() != "") {
-            var lymphocytes = parseInt($('#lymphPB').val()) / 100 * wbc;
-            console.log(lymphLow + "  " + lymphocytes)
+            var lymphocytes = parseInt($('#pb5').val()) / 100 * wbc;
             if (lymphocytes < lymphLow) {
               pbText += ' There is absolute lymphopenia.'
+            } else if (lymphocytes > lymphHigh) {
+              pbText += ' There is absolute lymphocytosis.'
             }
           }
+
+          if ($('#pbCount').val() != "") {
+            var neutrophils = parseInt($('#pb7').val()) / 100 * wbc;
+            if (neutrophils < neutLow) {
+              pbText += ' There is absolute neutropenia'
+            } else if (neutrophils > neutHigh) {
+              pbText += ' There is absolute neutrophilia'
+            } else {
+              pbText += ' Neutrophils are adequate'
+
+            }
+          }
+
 
           if (plt < pltLow) {
             pbText += ' There is thrombocytopenia'
@@ -532,10 +791,31 @@
               pbText += '.'
             }
           }
-
+          } else {
+          pbText = "A peripheral blood smear is not provided for review."
+          }
           $('#pbText').val(pbText);
           $('#bloodText').html($('#pbText').val());
           $('#microscopic').show();
+        }
+
+        $('#aspirateDiv').change(function() {
+          fillAsp();
+        })
+
+        function fillAsp() {
+
+          var aspText = "The bone marrow aspirate smears are"
+
+          if ($('#aspAdequate').prop('checked')) {
+            aspText += " cellular and adequate for interpretation."
+          }
+
+          $('#aspText').val(aspText);
+          $('#aspirateText').html($('#aspText').val());
+          $('#aspirateSmear').show();
+          $('#microscopic').show();
+
         }
 
 
@@ -578,6 +858,22 @@
           if ($('#specPBSmear').prop('checked')) {
             grossText += "<br>" + "Peripheral blood smear"
             headerSpecs.push("peripheral blood smear")
+           
+            if ($('#pbCount').val() != "") {
+            pbCounter();
+          } else if ($('#pbCBC').val() != ""){
+          	fillPB();          
+          } else {
+            $('#pbText').val("");
+            $('#bloodText').html($('#pbText').val());           
+          }
+            
+          } else {
+          $('#pbText').val("A peripheral blood smear is not provided for review.");
+          $('#bloodText').html($('#pbText').val());
+          $('#bloodText').show();
+          $('#pbTable').hide();
+          $('#diff').hide();
           }
           if ($('#specASmear').prop('checked')) {
             grossText += "<br>" + "Bone marrow aspirate, " + laterality + " posterior iliac crest"
@@ -603,7 +899,6 @@
             }
 
           }
-          console.log(headerSpecs[0])
           if ($('#specTouch').prop('checked')) {
             grossText += "<br>" + "Touch preparation, " + laterality
           }
@@ -645,7 +940,9 @@
             }
           }
           headerText += ":";
+
           $("#header").html(headerText.charAt(0).toUpperCase() + headerText.slice(1) + "<br>" + "<br>");
+          $('#final').show();
         }
 
         $('#specTypes').change(function() {
@@ -659,76 +956,198 @@
           }
         })
 
-
         $('#chText').keyup(function() {
           $('#clinical').show();
-          $("#clinicalHistory").html($('#chText').val())
+          $("#clinicalHistory").html($('#chText').val() + "<br>")
         })
 
-        $('#pbCount').keydown(function() {
-          new Audio(audioUrl).play()
+        $('#pbDCount').change(function() {
+          if ($('#pbDCount').val() == "") {
+            var desiredCount = $('#pbDCount').attr('placeholder');
+          } else {
+            var desiredCount = $('#pbDCount').val()
+          }
+          $('#pbTableCountHeader').html('Peripheral blood (' + desiredCount + ' cells)');
+          pbCounter();
+        })
+                
+        $('#pbCount').keydown(function(e) {
+          if (window.keypressed[e.which]) {
+            e.preventDefault();
+          } else {
+            window.keypressed[e.which] = true;
+            new Audio(countAudio).play()
+          }
         })
 
-        $('#pbCount').keyup(function() {
-        	$('#microscopic').show();
+        $('#pbCount').keyup(function(e) {
+          window.keypressed[e.which] = false;
+          pbCounter();
+        })
+
+        function pbCounter() {
+        	if ($('#specPBSmear').prop('checked')){
+          if ($('#pbDCount').val() == "") {
+            var desiredCount = $('#pbDCount').attr('placeholder');
+          } else {
+            var desiredCount = $('#pbDCount').val()
+          }
+          var totalCells = ($('#pbCount').val().match(/[4-9]/g) || []).length;
+          if (totalCells != 0) {
+            var tempPercent = (Math.round(($('#pbCount').val().match(/7/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
+            $('#pb7').val(tempPercent + "%");
+            $('#pbNeutTable').html(tempPercent + "%");
+            tempPercent = (Math.round(($('#pbCount').val().match(/8/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1);
+            $('#pb8').val(tempPercent + "%");
+            $('#pbLymphTable').html(tempPercent + "%");
+            tempPercent = (Math.round(($('#pbCount').val().match(/9/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
+            $('#pb9').val(tempPercent + "%");
+            $('#pbMonoTable').html(tempPercent + "%");
+            tempPercent = (Math.round(($('#pbCount').val().match(/4/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
+            $('#pb4').val(tempPercent + "%");
+            $('#pbEoTable').html(tempPercent + "%");
+            tempPercent = (Math.round(($('#pbCount').val().match(/5/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
+            $('#pb5').val(tempPercent + "%");
+            $('#pbBasoTable').html(tempPercent + "%");
+            tempPercent = (Math.round(($('#pbCount').val().match(/6/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
+            $('#pb6').val(tempPercent + "%");
+            $('#pbPlasmaTable').html(tempPercent + "%");
+            tempPercent = (($('#pbCount').val().match(/1/g) || []).length / (totalCells / 100)).toFixed(0)
+            $('#pb1').val(tempPercent);
+            $('#pbNRBCTable').html($('#pb1').val());
+            tempPercent = (Math.round(($('#pbCount').val().match(/0/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
+            $('#pb0').val(tempPercent + "%");
+            $('#pbBlastTable').html(tempPercent + "%");
+          }
+          if (($('#pbCount').val().match(/0/g) || []).length != 0) {
+            $('#pbBlastRow').show();
+          }
+          
+          if (($('#pbCount').val().match(/1/g) || []).length != 0) {
+            $('#pbNRBCRow').show();
+          }
+          
+         	if (($('#pbCount').val().match(/2/g) || []).length != 0) {
+            $('#pbAtypicalRow').show();
+          }
+          
+          if (($('#pbCount').val().match(/6/g) || []).length != 0) {
+            $('#pbPlasmaRow').show();
+          }
+          
+          if (totalCells == desiredCount) {
+            new Audio(finishedAudio).play()
+
+          } else if (totalCells != 0 && totalCells % 100 == 0) {
+            new Audio(hundredAudio).play()
+          }
+          
+          $('#pbTableCountHeader').html('Peripheral blood (' + desiredCount + ' cells)');
+          $('#microscopic').show();
           $('#diff').show();
           $('#pbTable').show();
-          var totalCells = ($('#pbCount').val().match(/[7-9]|4|5/g) || []).length;
-          if (totalCells != 0) {
-            var tempPercent = (Math.round(($('#pbCount').val().match(/7/g) || []).length / totalCells * 1000) / 10).toFixed(1)
-            $('#neutPB').val(tempPercent+"%");
-            $('#neutTable').html(tempPercent+"%");
-            tempPercent = (Math.round(($('#pbCount').val().match(/8/g) || []).length / totalCells * 1000) / 10).toFixed(1);
-            $('#lymphPB').val(tempPercent+"%");
-            $('#lymphTable').html(tempPercent+"%");
-            tempPercent = (Math.round(($('#pbCount').val().match(/9/g) || []).length / totalCells * 1000) / 10).toFixed(1)
-            $('#monoPB').val(tempPercent+"%");
-            $('#monoTable').html(tempPercent+"%");
-            tempPercent = (Math.round(($('#pbCount').val().match(/4/g) || []).length / totalCells * 1000) / 10).toFixed(1)
-            $('#eoPB').val(tempPercent+"%");
-            $('#eoTable').html(tempPercent+"%");
-            tempPercent = (Math.round(($('#pbCount').val().match(/5/g) || []).length / totalCells * 1000) / 10).toFixed(1)
-            $('#basoPB').val(tempPercent+"%");
-            $('#basoTable').html(tempPercent+"%");
-            tempPercent = (Math.round(($('#pbCount').val().match(/6/g) || []).length / totalCells * 1000) / 10).toFixed(1)
-            $('#nrbcPB').val(tempPercent);
-          }
+          $('#pbCCount').val(totalCells);
           if ($('#pbCBC').val() != "") {
             fillPB();
+          }}
+          else {
+          $('#pbTable').hide();
+          }
+          
+        }
+
+        $('#aspCount').keydown(function(e) {
+          if (window.keypressed[e.which]) {
+            e.preventDefault();
+          } else {
+            window.keypressed[e.which] = true;
+            new Audio(countAudio).play()
           }
         })
 
-        $('#aspCount').keydown(function() {
-          var audioUrl = 'https://diffpath.github.io/Diff%20Click.mp3';
-          new Audio(audioUrl).play()
+        $('#aspCount').keyup(function(e) {
+          window.keypressed[e.which] = false;
+          aspCounter();
+        })
+        
+        $('#aspDCount').change(function() {
+          if ($('#aspDCount').val() == "") {
+            var desiredCount = $('#aspDCount').attr('placeholder');
+          } else {
+            var desiredCount = $('#aspDCount').val()
+          }
+          $('#aspTableCountHeader').html('Aspirate Smear (' + desiredCount + ' cells)');
+          aspCounter();
         })
 
-        $('#aspCount').keyup(function() {
+        function aspCounter() {
+          if ($('#aspDCount').val() == "") {
+            var desiredCount = $('#aspDCount').attr('placeholder');
+          } else {
+            var desiredCount = $('#aspDCount').val()
+          }
           var totalCells = ($('#aspCount').val().match(/[0-9]/g) || []).length;
+          $('#aspCCount').val(totalCells);
           if (totalCells != 0) {
-            $('#blast').val(Math.round(($('#aspCount').val().match(/0/g) || []).length / totalCells * 500) / 5)
-            $('#promyel').val(($('#aspCount').val().match(/1/g) || []).length)
-            $('#myel').val(($('#aspCount').val().match(/2/g) || []).length)
-            $('#meta').val(($('#aspCount').val().match(/3/g) || []).length)
-            $('#nrbc').val(($('#aspCount').val().match(/4/g) || []).length)
-            if (($('#aspCount').val().match(/4/g) || []).length != 0) {
-              $('#meRatio').val(Math.round((parseInt($('#promyel').val()) + parseInt($('#myel').val()) + parseInt($('#meta').val())) / parseInt($('#nrbc').val()) * 10) / 10 + ":1")
-            } else {
-              $('#meRatio').val('Infinite')
-            }
+            var tempPercent = (Math.round(($('#aspCount').val().match(/7/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
+            $('#asp7').val(tempPercent + "%");
+            $('#aspNeutTable').html(tempPercent + "%");
+            tempPercent = (Math.round(($('#aspCount').val().match(/8/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1);
+            $('#asp8').val(tempPercent + "%");
+            $('#aspEoTable').html(tempPercent + "%");
+            tempPercent = (Math.round(($('#aspCount').val().match(/9/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
+            $('#asp9').val(tempPercent + "%");
+            $('#aspMonoTable').html(tempPercent + "%");
+            tempPercent = (Math.round(($('#aspCount').val().match(/4/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
+            $('#asp4').val(tempPercent + "%");
+            $('#aspNRBCTable').html(tempPercent + "%");
+            tempPercent = (Math.round(($('#aspCount').val().match(/5/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
+            $('#asp5').val(tempPercent + "%");
+            $('#aspLymphTable').html(tempPercent + "%");
+            tempPercent = (Math.round(($('#aspCount').val().match(/6/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1);
+            $('#asp6').val(tempPercent + "%");
+            $('#aspPlasmaTable').html(tempPercent + "%");
+            tempPercent = (Math.round(($('#aspCount').val().match(/1/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
+            $('#asp1').val(tempPercent + "%");
+            $('#aspBasoTable').html(tempPercent + "%");
+            tempPercent = (Math.round(($('#aspCount').val().match(/2/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
+            $('#asp2').val(tempPercent + "%");
+            $('#aspAtypicalTable').html(tempPercent + "%");
+            tempPercent = (Math.round(($('#aspCount').val().match(/3/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
+            $('#asp3').val(tempPercent + "%");
+            $('#aspOtherTable').html(tempPercent + "%");
+            tempPercent = (Math.round(($('#aspCount').val().match(/0/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
+            $('#asp0').val(tempPercent + "%");
+            $('#aspBlastTable').html(tempPercent + "%");
           }
-        })
+          if (($('#aspCount').val().match(/4/g) || []).length != 0) {
+            $('#meRatio').val(((($('#aspCount').val().match(/[7-9]/g) || []).length / ($('#aspCount').val().match(/4/g) || []).length).toFixed(1) )+ ":1")
+          } else {
+            $('#meRatio').val('-')
+          }
+          if (totalCells == desiredCount) {
+            new Audio(finishedAudio).play()
 
+          } else if (totalCells != 0 && totalCells % 100 == 0) {
+            new Audio(hundredAudio).play()
+          }
+          
 
+          $('#aspTableCountHeader').html('Aspirate Smear (' + desiredCount + ' cells)')
+          $('#aspMETable').html($('#meRatio').val());
+          $('#microscopic').show();
+          $('#diff').show();
+          $('#aspTable').show();
+        }
 
-        $('#pbCBC').change(function() {
+        $('#pbCBC').on('keyup change', function() {
           var cbcFinal = [];
           var cbcToggle = 0;
           var cbcLines = "";
           var cbcUnit = "";
           var collectedDate = "";
           var cbcText = ""
-          var cbcHeader = "<br> The following CBC is from ______ and was performed at Northwestern Memorial Hospital: <br>" 
+          var cbcHeader = ""
           var cbc = ["WBC", "HGB", "HCT", "MCV", "RDW", "PLT"];
           var cbcLines = $('#pbCBC').val().split("\n")
           var pbText = ""
@@ -739,46 +1158,60 @@
             for (var j = 0; j < cbcFinal[i].length; j++) {
               if (cbcFinal[i][0].replace(/\s/g, '') == "WBC") {
                 if (cbcFinal[i][j].indexOf("-") == -1 && /\d/.test(cbcFinal[i][j])) {
-                  wbc = parseInt(cbcFinal[i][j].replace(/[^\d.-]/g, ''));
+                  wbc = parseFloat(cbcFinal[i][j].replace(/[^\d.-]/g, ''));
                 } else if (cbcFinal[i][j].indexOf("-") != -1) {
-                  wbcLow = parseInt(cbcFinal[i][j].split(" ")[0])
-                  wbcHigh = parseInt(cbcFinal[i][j].split(" ")[2])
+                  wbcLow = parseFloat(cbcFinal[i][j].split(" ")[0])
+                  wbcHigh = parseFloat(cbcFinal[i][j].split(" ")[2])
                 }
               }
               if (cbcFinal[i][0].replace(/\s/g, '') == "HGB") {
                 if (cbcFinal[i][j].indexOf("-") == -1 && /\d/.test(cbcFinal[i][j])) {
-                  hgb = parseInt(cbcFinal[i][j].replace(/[^\d.-]/g, ''));
+                  hgb = parseFloat(cbcFinal[i][j].replace(/[^\d.-]/g, ''));
                 } else if (cbcFinal[i][j].indexOf("-") != -1) {
-                  hgbLow = parseInt(cbcFinal[i][j].split(" ")[0])
-                  hgbHigh = parseInt(cbcFinal[i][j].split(" ")[2])
+                  hgbLow = parseFloat(cbcFinal[i][j].split(" ")[0])
+                  hgbHigh = parseFloat(cbcFinal[i][j].split(" ")[2])
                 }
               } else if (cbcFinal[i][0].replace(/\s/g, '') == "PLT") {
                 if (cbcFinal[i][j].indexOf("-") == -1 && /\d/.test(cbcFinal[i][j])) {
                   plt = parseInt(cbcFinal[i][j].replace(/[^\d.-]/g, ''));
                 } else if (cbcFinal[i][j].indexOf("-") != -1) {
-                  pltLow = parseInt(cbcFinal[i][j].split(" ")[0])
-                  pltHigh = parseInt(cbcFinal[i][j].split(" ")[2])
+                  pltLow = parseFloat(cbcFinal[i][j].split(" ")[0])
+                  pltHigh = parseFloat(cbcFinal[i][j].split(" ")[2])
                 }
               } else if (cbcFinal[i][0].replace(/\s/g, '') == "MCV") {
                 if (cbcFinal[i][j].indexOf("-") == -1 && /\d/.test(cbcFinal[i][j])) {
-                  mcv = parseInt(cbcFinal[i][j].replace(/[^\d.-]/g, ''));
+                  mcv = parseFloat(cbcFinal[i][j].replace(/[^\d.-]/g, ''));
                 } else if (cbcFinal[i][j].indexOf("-") != -1) {
-                  mcvLow = parseInt(cbcFinal[i][j].split(" ")[0])
-                  mcvHigh = parseInt(cbcFinal[i][j].split(" ")[2])
+                  mcvLow = parseFloat(cbcFinal[i][j].split(" ")[0])
+                  mcvHigh = parseFloat(cbcFinal[i][j].split(" ")[2])
                 }
               }
-              console.log(cbcFinal[i][0] + "hi" + cbcFinal[i][0].replace(/\s/g, ''))
               if (cbcFinal[i][0].indexOf("Absolute Lymphocytes") != -1) {
                 if (cbcFinal[i][j].indexOf("-") != -1) {
-                  lymphLow = parseInt(cbcFinal[i][j].split(" ")[0])
-                  lymphHigh = parseInt(cbcFinal[i][j].split(" ")[2])
+                  lymphLow = parseFloat(cbcFinal[i][j].split(" ")[0])
+                  lymphHigh = parseFloat(cbcFinal[i][j].split(" ")[2])
+                }
+              }
+
+              if (cbcFinal[i][0].indexOf("Absolute Neutrophils") != -1) {
+                if (cbcFinal[i][j].indexOf("-") != -1) {
+                  neutLow = parseFloat(cbcFinal[i][j].split(" ")[0])
+                  neutHigh = parseFloat(cbcFinal[i][j].split(" ")[2])
+                }
+              }
+
+              if (cbcFinal[i][j].indexOf('Performed by') != -1) {
+                if (cbcFinal[i][j].replace(/Performed by:|\s/g, '') == 'NMH') {
+                  var laboratory = "Northwestern Memorial Hospital"
+                } else {
+                  var laboratory = cbcFinal[i][j].replace(/Performed by:|\s/g, '');
                 }
               }
 
               if (cbcFinal[i][j].indexOf("Specimen Collected:") != -1) {
                 var cbcTemp = cbcFinal
                 collectedDate = cbcTemp[i][j].split(" ")[2]
-                cbcHeader = "The following CBC is from " + collectedDate + " and was performed at Northwestern Memorial Hospital:" + "<br>" + "<br>"
+                cbcHeader = "<br> The following CBC is from " + collectedDate + " and was performed at " + laboratory + ":" + "<br>" + "<br>"
               }
             }
             if (cbc.indexOf(cbcFinal[i][0].replace(/\s/g, '')) != -1) {
@@ -808,10 +1241,10 @@
           $("#clinicalCBC").html(cbcHeader + cbcText);
           $('#clinical').show();
           $('#clinicalCBC').show();
+          $('#peripheralBlood').show();
           fillPB();
         })
       });
-
     </script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   </body>
