@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/f6f9c2cc49.js" crossorigin="anonymous"></script>
@@ -273,7 +274,7 @@
               <div id="pbDescriptors">
 
                 <b>RBCs:</b> <label><input type="radio" name="rbc" value="" id='rbcNL'> Unremarkable</label><label><input type="checkbox" name="rbc" value="" id='rbcPC'> Polychromasia</label><label><input type="checkbox" name="rbc" value="" id='rbcAP'> Anisopoikilocytosis</label><br><b>Neutrophils: </b><label><input type="radio" name="neut" value="" id='neutNL'> Unremarkable </label>
-                <label><input type="checkbox" name="neut" value="" id='neutLP'> Toxic Change</label><br><b>Platelets: </b><label><input type="radio" name="plt" value="" id='pltNL'> Unremarkable</label>
+                <label><input type="checkbox" name="neut" value="" id='neutTC'> Toxic Change</label><br><b>Platelets: </b><label><input type="radio" name="plt" value="" id='pltNL'> Unremarkable</label>
                 <label><input type="radio" name="plt" value="" id='pltLP'> Occasional large platelets</label></div>
               <b>Peripheral Blood Text:</b><textarea rows="4" id="pbText" style="width: 100%">
 </textarea>
@@ -700,6 +701,14 @@
         $('#rbcAP').change(function() {
           $('#rbcNL').prop('checked', false);
         })
+        
+        $('#neutNL').change(function() {
+          $('#neutTC').prop('checked', false);
+        })
+        
+        $('#neutTC').change(function() {
+          $('#neutNL').prop('checked', false);
+        })
 
         function fillPB() {
         if ($('#specPBSmear').prop('checked')){
@@ -742,7 +751,7 @@
           }
 
           if ($('#pbCount').val() != "") {
-            var lymphocytes = parseInt($('#pb5').val()) / 100 * wbc;
+            var lymphocytes = parseInt($('#pb8').val()) / 100 * wbc;
             if (lymphocytes < lymphLow) {
               pbText += ' There is absolute lymphopenia.'
             } else if (lymphocytes > lymphHigh) {
@@ -753,29 +762,35 @@
           if ($('#pbCount').val() != "") {
             var neutrophils = parseInt($('#pb7').val()) / 100 * wbc;
             if (neutrophils < neutLow) {
-              pbText += ' There is absolute neutropenia'
+              pbText += ' Neutrophils are decreased'
             } else if (neutrophils > neutHigh) {
-              pbText += ' There is absolute neutrophilia'
+              pbText += ' Neutrophils are increased'
             } else {
               pbText += ' Neutrophils are adequate'
-
             }
+            
+            if ($('#neutNL').prop('checked')){
+            pbText += ' with unremarkable morphology'
+            } else if ($('#neutTC').prop('checked')){
+            pbText += ' and show toxic changes'
+            }
+            pbText += '.'
           }
 
 
           if (plt < pltLow) {
-            pbText += ' There is thrombocytopenia'
+            pbText += ' Platelets are decreased'
             if ($('#pltNL').prop('checked')) {
-              pbText += ' with unremarkable platelet morphology.'
+              pbText += ' with unremarkable morphology.'
             } else if ($('#pltLP').prop('checked')) {
               pbText += ' with occasional large platelets.'
             } else {
               pbText += '.'
             }
           } else if (plt > pltHigh) {
-            pbText += ' There is thrombocytosis'
+            pbText += ' Platelets are increased'
             if ($('#pltNL').prop('checked')) {
-              pbText += ' with unremarkable platelet morphology.'
+              pbText += ' with unremarkable morphology.'
             } else if ($('#pltLP').prop('checked')) {
               pbText += ' with occasional large platelets.'
             } else {
@@ -897,7 +912,6 @@
             } else {
               grossText += "(B5 fixed)"
             }
-
           }
           if ($('#specTouch').prop('checked')) {
             grossText += "<br>" + "Touch preparation, " + laterality
@@ -925,9 +939,7 @@
               grossText += " for " + $('#molecList').val()
             }
           }
-
           $("#grossText").html(grossText);
-
           for (var i = 0; i < headerSpecs.length; i++) {
             if (i == 0) {
               headerText += headerSpecs[0];
@@ -992,7 +1004,7 @@
           } else {
             var desiredCount = $('#pbDCount').val()
           }
-          var totalCells = ($('#pbCount').val().match(/[4-9]/g) || []).length;
+          var totalCells = ($('#pbCount').val().match(/[4-9]|0/g) || []).length;
           if (totalCells != 0) {
             var tempPercent = (Math.round(($('#pbCount').val().match(/7/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
             $('#pb7').val(tempPercent + "%");
@@ -1021,27 +1033,22 @@
           }
           if (($('#pbCount').val().match(/0/g) || []).length != 0) {
             $('#pbBlastRow').show();
-          }
-          
+          }          
           if (($('#pbCount').val().match(/1/g) || []).length != 0) {
             $('#pbNRBCRow').show();
-          }
-          
-         	if (($('#pbCount').val().match(/2/g) || []).length != 0) {
+          }          
+        	if (($('#pbCount').val().match(/2/g) || []).length != 0) {
             $('#pbAtypicalRow').show();
           }
-          
           if (($('#pbCount').val().match(/6/g) || []).length != 0) {
             $('#pbPlasmaRow').show();
-          }
-          
+          }        
           if (totalCells == desiredCount) {
             new Audio(finishedAudio).play()
 
           } else if (totalCells != 0 && totalCells % 100 == 0) {
             new Audio(hundredAudio).play()
-          }
-          
+          }          
           $('#pbTableCountHeader').html('Peripheral blood (' + desiredCount + ' cells)');
           $('#microscopic').show();
           $('#diff').show();
@@ -1052,8 +1059,7 @@
           }}
           else {
           $('#pbTable').hide();
-          }
-          
+          }         
         }
 
         $('#aspCount').keydown(function(e) {
@@ -1079,7 +1085,7 @@
           $('#aspTableCountHeader').html('Aspirate Smear (' + desiredCount + ' cells)');
           aspCounter();
         })
-
+        
         function aspCounter() {
           if ($('#aspDCount').val() == "") {
             var desiredCount = $('#aspDCount').attr('placeholder');
@@ -1127,12 +1133,9 @@
           }
           if (totalCells == desiredCount) {
             new Audio(finishedAudio).play()
-
           } else if (totalCells != 0 && totalCells % 100 == 0) {
             new Audio(hundredAudio).play()
           }
-          
-
           $('#aspTableCountHeader').html('Aspirate Smear (' + desiredCount + ' cells)')
           $('#aspMETable').html($('#meRatio').val());
           $('#microscopic').show();
