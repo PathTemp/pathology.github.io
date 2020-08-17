@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -218,7 +219,7 @@
             <div class="panel-body" id="panel2" style="display: none"><b>Paste CBC Here:</b><textarea rows="1" id="pbCBC" style="width: 100%">
 </textarea>
               <div class="row">
-                <div class="col-xs-9">
+                <div class="col-xs-9" id="pbCountTable">
                   <table class="center" style="width:100%">
                     <tr>
                       <td><label for="fname"><b>7.</b> Neuts</label><br>
@@ -266,6 +267,10 @@
                       <option value="400"></option>
                       <option value="500"></option>
                     </datalist>
+                  </div>
+                   <div>
+                    <label for="fname">Total %</label><br>
+                    <input type="text" id="pbTotalPercent" maxlength="4" size="3">
                   </div>
                 </div>
               </div>
@@ -341,6 +346,10 @@
                     <label for="fname">M:E ratio:</label><br>
                     <input type="text" id="meRatio" maxlength="4" size="3">
                   </div>
+                   <div>
+                    <label for="fname">Total %</label><br>
+                    <input type="text" id="asptotalPercent" maxlength="4" size="3">
+                  </div>
                 </div>
               </div>
 
@@ -353,8 +362,21 @@
                 <div>
                   <b>Descriptors:</b> <label><input type="checkbox" value="" id='aspHemodilute'> Hemodilute</label><label><input type="checkbox" value="" id='aspAcellular'> Virtually acellular</label><br>
                 </div>
+                <div>
+                  <b>Megakaryocytes:</b> <label><input type="radio" value="" id='aspMegAdeq' name='megs'> Adequate</label><label><input type="radio" value="" id='aspMegDec' name='megs'> Decreased</label><label><input type="radio" value="" id='aspMegInc' name='megs'> Increased</label><div><label><input type="checkbox" value="" id='aspMegNL'> Unremarkable</label><label><input type="checkbox" value="" id='aspMegNL'> Hyplobated forms</label><label><input type="checkbox" value="" id='aspMegDec'> Separation of Nuclei</label></div>
+                </div>
                 <b>Aspirate Smear/Touch Preparation Text:</b><textarea rows="4" id="aspText" style="width: 100%">
 </textarea>
+<div id='ironStain'>
+<label><input type="checkbox" checked='true' id='aspMegNL'> Iron Stain</label><br>
+<b>Storage Iron: </b>
+<label><input type="checkbox" id='aspMegNL'> Increased</label>
+<label><input type="checkbox" id='aspMegNL'> Adequate</label>
+<label><input type="checkbox" id='aspMegNL'> Decreased</label><br>
+<b>Ring Sideroblasts: </b>
+<label><input type="checkbox" id='aspMegNL'> Absent</label>
+<label><input type="checkbox" id='aspMegNL'> Present</label>
+</div>
               </div>
 
               <div>
@@ -739,6 +761,7 @@
             } else {
               pbText += '.'
             }
+            
           } else if ($('#rbcAP').prop('checked')) {
             pbText += ' with anisopoikilocytosis.'
           } else {
@@ -820,18 +843,43 @@
 
         function fillAsp() {
 
-          var aspText = "The bone marrow aspirate smears are"
-
+        var aspText = "";
           if ($('#aspAdequate').prop('checked')) {
-            aspText += " cellular and adequate for interpretation."
+            aspText += "The bone marrow aspirate smears are cellular and adequate for interpretation."
           }
-
+          
+           if ($('#aspMegAdeq').prop('checked')) {
+            aspText += "Megakaryocytes are adequate"
+            aspText = fillMegs(aspText);
+          } else if ($('#aspMegDec').prop('checked')) {
+          aspText += "Megakaryocytes are decreased"
+           aspText = fillMegs(aspText);
+          } else if ($('#aspMegInc').prop('checked')) {
+            aspText += "Megakaryocytes are increased"
+             aspText = fillMegs(aspText);
+            
+          }
+          
           $('#aspText').val(aspText);
           $('#aspirateText').html($('#aspText').val());
           $('#aspirateSmear').show();
           $('#microscopic').show();
 
         }
+        
+                function fillMegs(aspText) {
+         
+          if ($('#aspMegNL').prop('checked')) {
+          aspText += " and show unremarkable morphology"
+          } else if ($('#aspMegHL').prop('checked')) {
+          aspText += "with hypolobated forms"
+          } else if ($('#aspMegSN').prop('checked')) {
+          aspText += "with separation of nuclei"
+          }
+          aspText += "."
+          return aspText
+        }
+
 
 
         function showDivs() {
@@ -982,6 +1030,27 @@
           $('#pbTableCountHeader').html('Peripheral blood (' + desiredCount + ' cells)');
           pbCounter();
         })
+        
+        $('#pbCountTable').change(function() {
+        	$('#pb0').val(parseFloat($('#pb0').val().replace(/%/g,'')).toFixed(1)+"%");
+          $('#pb1').val(parseFloat($('#pb1').val().replace(/%/g,'')).toFixed(1)+"%");
+          $('#pb4').val(parseFloat($('#pb4').val().replace(/%/g,'')).toFixed(1)+"%");
+          $('#pb5').val(parseFloat($('#pb5').val().replace(/%/g,'')).toFixed(1)+"%");
+          $('#pb6').val(parseFloat($('#pb6').val().replace(/%/g,'')).toFixed(1)+"%");
+          $('#pb7').val(parseFloat($('#pb7').val().replace(/%/g,'')).toFixed(1)+"%");
+          $('#pb8').val(parseFloat($('#pb8').val().replace(/%/g,'')).toFixed(1)+"%");
+          $('#pb9').val(parseFloat($('#pb9').val().replace(/%/g,'')).toFixed(1)+"%");
+                    var totalVar = parseFloat($('#pb0').val().replace(/%/g,'')) + parseFloat($('#pb1').val().replace(/%/g,'')) + parseFloat($('#pb4').val().replace(/%/g,'')) + parseFloat($('#pb5').val().replace(/%/g,'')) + parseFloat($('#pb6').val().replace(/%/g,'')) + parseFloat($('#pb7').val().replace(/%/g,'')) + parseFloat($('#pb8').val().replace(/%/g,'')) + parseFloat($('#pb9').val().replace(/%/g,''));
+          $('#pbTotalPercent').val(totalVar);          
+          $('#pbNeutTable').html($('#pb7').val());
+          $('#pbLymphTable').html($('#pb8').val());
+          $('#pbMonoTable').html($('#pb9').val());
+          $('#pbEoTable').html($('#pb4').val());
+          $('#pbBasoTable').html($('#pb5').val());
+          $('#pbPlasmaTable').html($('#pb6').val());
+          $('#pbNRBCTable').html($('#pb1').val());
+          $('#pbBlastTable').html($('#pb0').val());
+        })
                 
         $('#pbCount').keydown(function(e) {
           if (window.keypressed[e.which]) {
@@ -1048,7 +1117,9 @@
 
           } else if (totalCells != 0 && totalCells % 100 == 0) {
             new Audio(hundredAudio).play()
-          }          
+          }             
+          var totalVar = parseFloat($('#pb0').val().replace(/%/g,'')) + parseFloat($('#pb4').val().replace(/%/g,'')) + parseFloat($('#pb5').val().replace(/%/g,'')) + parseFloat($('#pb6').val().replace(/%/g,'')) + parseFloat($('#pb7').val().replace(/%/g,'')) + parseFloat($('#pb8').val().replace(/%/g,'')) + parseFloat($('#pb9').val().replace(/%/g,''));
+          $('#pbTotalPercent').val(totalVar);         
           $('#pbTableCountHeader').html('Peripheral blood (' + desiredCount + ' cells)');
           $('#microscopic').show();
           $('#diff').show();
@@ -1084,6 +1155,29 @@
           }
           $('#aspTableCountHeader').html('Aspirate Smear (' + desiredCount + ' cells)');
           aspCounter();
+        })
+        
+         $('#aspCountTable').change(function() {
+        	$('#asp0').val(parseFloat($('#asp0').val().replace(/%/g,'')).toFixed(1)+"%");
+          $('#asp1').val(parseFloat($('#asp1').val().replace(/%/g,'')).toFixed(1)+"%");
+          $('#asp2').val(parseFloat($('#asp2').val().replace(/%/g,'')).toFixed(1)+"%");
+          $('#asp3').val(parseFloat($('#asp3').val().replace(/%/g,'')).toFixed(1)+"%");
+          $('#asp4').val(parseFloat($('#asp4').val().replace(/%/g,'')).toFixed(1)+"%");
+          $('#asp5').val(parseFloat($('#asp5').val().replace(/%/g,'')).toFixed(1)+"%");
+          $('#asp6').val(parseFloat($('#asp6').val().replace(/%/g,'')).toFixed(1)+"%");
+          $('#asp7').val(parseFloat($('#asp7').val().replace(/%/g,'')).toFixed(1)+"%");
+          $('#asp8').val(parseFloat($('#asp8').val().replace(/%/g,'')).toFixed(1)+"%");
+          $('#asp9').val(parseFloat($('#asp9').val().replace(/%/g,'')).toFixed(1)+"%");
+           var totalVar = parseFloat($('#asp0').val().replace(/%/g,'')) + parseFloat($('#asp1').val().replace(/%/g,'')) + parseFloat($('#asp2').val().replace(/%/g,'')) + parseFloat($('#asp3').val().replace(/%/g,'')) + parseFloat($('#asp4').val().replace(/%/g,'')) + parseFloat($('#asp5').val().replace(/%/g,'')) + parseFloat($('#asp6').val().replace(/%/g,'')) + parseFloat($('#asp7').val().replace(/%/g,'')) + parseFloat($('#asp8').val().replace(/%/g,'')) + parseFloat($('#asp9').val().replace(/%/g,''));
+          $('#aspTotalPercent').val(totalVar);          
+          $('#aspNeutTable').html($('#asp7').val());
+          $('#aspLymphTable').html($('#asp8').val());
+          $('#aspMonoTable').html($('#asp9').val());
+          $('#aspEoTable').html($('#asp4').val());
+          $('#aspBasoTable').html($('#asp5').val());
+          $('#aspPlasmaTable').html($('#asp6').val());
+          $('#aspNRBCTable').html($('#asp1').val());
+          $('#aspBlastTable').html($('#asp0').val());
         })
         
         function aspCounter() {
@@ -1131,6 +1225,7 @@
           } else {
             $('#meRatio').val('-')
           }
+          var totalVar = parseFloat($('#asp0').val().replace(/%/g,'')) + parseFloat($('#asp1').val().replace(/%/g,'')) + parseFloat($('#asp2').val().replace(/%/g,'')) + parseFloat($('#asp3').val().replace(/%/g,'')) + parseFloat($('#asp4').val().replace(/%/g,'')) + parseFloat($('#asp5').val().replace(/%/g,'')) + parseFloat($('#asp6').val().replace(/%/g,'')) + parseFloat($('#asp7').val().replace(/%/g,'')) + parseFloat($('#asp8').val().replace(/%/g,'')) + parseFloat($('#asp9').val().replace(/%/g,''));
           if (totalCells == desiredCount) {
             new Audio(finishedAudio).play()
           } else if (totalCells != 0 && totalCells % 100 == 0) {
