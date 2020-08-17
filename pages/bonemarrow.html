@@ -107,6 +107,11 @@
         font-family: Arial;
         font-weight: bold;
       }
+      
+      .smallText {
+        font-size: 8pt;
+        font-family: Arial;
+      }
 
       .header {
         font-size: 11pt;
@@ -367,15 +372,15 @@
                 </div>
                 <b>Aspirate Smear/Touch Preparation Text:</b><textarea rows="4" id="aspText" style="width: 100%">
 </textarea>
-<div id='ironStain'>
-<label><input type="checkbox" checked='true' id='aspMegNL'> Iron Stain</label><br>
+<div id='ironStainDiv'>
+<label><input type="checkbox" checked='true' id='ironStain'> Iron Stain</label><br>
 <b>Storage Iron: </b>
-<label><input type="checkbox" id='aspMegNL'> Increased</label>
-<label><input type="checkbox" id='aspMegNL'> Adequate</label>
-<label><input type="checkbox" id='aspMegNL'> Decreased</label><br>
+<label><input type="checkbox" id='ironStainInc'> Increased</label>
+<label><input type="checkbox" id='ironStainAdeq'> Adequate</label>
+<label><input type="checkbox" id='ironStainDec'> Decreased</label><br>
 <b>Ring Sideroblasts: </b>
-<label><input type="checkbox" id='aspMegNL'> Absent</label>
-<label><input type="checkbox" id='aspMegNL'> Present</label>
+<label><input type="checkbox" id='ringAbsent'> Absent</label>
+<label><input type="checkbox" id='ringPresent'> Present</label>
 </div>
               </div>
 
@@ -547,9 +552,26 @@
                   <div class="h2">
                     Bone Marrow Aspirate Smear/Touch Preparation
                   </div>
-                  <div id="aspirateText">
-                  </div>
+                  <div id="aspirateText" style="display: none">
+                  </div>                
                 </div>
+                <div id="specialStains" style="display: none">
+                  <div class="h2">
+                    Special Stains
+                  </div>
+                  <div id="specialStainsTable">
+                  <table class='padleft' style="width:425px">
+                  <tr>
+                      <td style="width:40%">Prussian blue</td>
+                      <td id="ssIronTable" style="width:60%"></td>
+                   </tr>
+                  </table>
+                  </div>      
+                  <br>
+                  <div id="controlText" class="smallText">
+                  The positive control(s) showed appropriate staining. 
+                  </div>
+                  </div>
               </div>
               <div id="gross" style="display: none">
                 <div class="h1">
@@ -1237,6 +1259,29 @@
           $('#diff').show();
           $('#aspTable').show();
         }
+        
+        $('#ironStainDiv').change(function() {
+        var ironText = "";
+          if ($('#ironStain').prop('checked')){
+          if ($('#ironStainInc').prop('checked')){
+          ironText += "There is increased storage iron.";
+          } else  if ($('#ironStainAdeq').prop('checked')){
+          ironText += "There is adequate storage iron.";
+          } else if ($('#ironStainAdeq').prop('checked')){
+          ironText += "There is decreased storage iron.";
+          }
+          if ($('#ringPresent').prop('checked')){
+          ironText += " Ring sideroblasts are identified.";
+          } else  if ($('#ringAbsent').prop('checked')){
+          ironText += " No ring sideroblasts are identified.";
+          }
+          $('#ssIronTable').html(ironText);
+          $('#microscopic').show();
+          $('#specialStains').show();
+          }
+
+          
+        })
 
         $('#pbCBC').on('keyup change', function() {
           var cbcFinal = [];
