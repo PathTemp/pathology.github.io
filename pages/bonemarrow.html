@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/f6f9c2cc49.js" crossorigin="anonymous"></script>
@@ -867,6 +868,15 @@
           $('#microscopic').show();
 
         })
+        
+        
+                  $('#aspText').change(function(){
+                  $('#aspirateText').html($('#aspText').val());
+          $('#aspirateSmear').show();
+          $('#aspirateText').show();
+          $('#microscopic').show();
+                  });
+          $('#aspirateText').html($('#aspText').val());
 
         function fillAsp() {
 
@@ -899,10 +909,10 @@
          
           if ($('#aspMegNL').prop('checked')) {
           aspText += " and show unremarkable morphology"
-          } else if ($('#aspMegHL').prop('checked')) {
-          aspText += "with hypolobated forms"
+          } else if ($('#aspMegHF').prop('checked')) {
+          aspText += " with hypolobated forms"
           } else if ($('#aspMegSN').prop('checked')) {
-          aspText += "with separation of nuclei"
+          aspText += " with separation of nuclei"
           }
           aspText += "."
           return aspText
@@ -1069,7 +1079,7 @@
           $('#pb8').val(parseFloat($('#pb8').val().replace(/%/g,'')).toFixed(1)+"%");
           $('#pb9').val(parseFloat($('#pb9').val().replace(/%/g,'')).toFixed(1)+"%");
                     var totalVar = parseFloat($('#pb0').val().replace(/%/g,'')) + parseFloat($('#pb1').val().replace(/%/g,'')) + parseFloat($('#pb4').val().replace(/%/g,'')) + parseFloat($('#pb5').val().replace(/%/g,'')) + parseFloat($('#pb6').val().replace(/%/g,'')) + parseFloat($('#pb7').val().replace(/%/g,'')) + parseFloat($('#pb8').val().replace(/%/g,'')) + parseFloat($('#pb9').val().replace(/%/g,''));
-          $('#pbTotalPercent').val(totalVar);          
+          $('#pbTotalPercent').val(totalVar.tofixed(1) + "%");          
           $('#pbNeutTable').html($('#pb7').val());
           $('#pbLymphTable').html($('#pb8').val());
           $('#pbMonoTable').html($('#pb9').val());
@@ -1186,7 +1196,6 @@
         })
         
          $('#aspCountTable').change(function() {
-         console.log('hi')
         	$('#asp0').val(parseFloat($('#asp0').val().replace(/%/g,'')).toFixed(1)+"%");
           $('#asp1').val(parseFloat($('#asp1').val().replace(/%/g,'')).toFixed(1)+"%");
           $('#asp2').val(parseFloat($('#asp2').val().replace(/%/g,'')).toFixed(1)+"%");
@@ -1203,7 +1212,7 @@
           } else {
             $('#meRatio').val('-')
           }
-          $('#aspTotalPercent').val(totalVar);          
+          $('#aspTotalPercent').val(totalVar.toFixed(1) + "%");          
           $('#aspNeutTable').html($('#asp7').val());
           $('#aspEoTable').html($('#asp8').val());
           $('#aspMonoTable').html($('#asp9').val());
