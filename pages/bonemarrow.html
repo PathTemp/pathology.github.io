@@ -1,7 +1,5 @@
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/f6f9c2cc49.js" crossorigin="anonymous"></script>
@@ -41,6 +39,7 @@
             
       th, td {
         border: 1px solid black;
+        vertical-align: text-top;
         
       }
 
@@ -357,9 +356,6 @@
                   </div>
                 </div>
               </div>
-
-
-
                 <b>Count Here:</b>
                 <textarea rows="4" id="aspCount" style="width: 100%">
 </textarea>              <div id="aspirateDiv">
@@ -368,21 +364,22 @@
                   <b>Descriptors:</b> <label><input type="checkbox" value="" id='aspHemodilute'> Hemodilute</label><label><input type="checkbox" value="" id='aspAcellular'> Virtually acellular</label><br>
                 </div>
                 <div>
-                  <b>Megakaryocytes:</b> <label><input type="radio" value="" id='aspMegAdeq' name='megs'> Adequate</label><label><input type="radio" value="" id='aspMegDec' name='megs'> Decreased</label><label><input type="radio" value="" id='aspMegInc' name='megs'> Increased</label><div><label><input type="checkbox" value="" id='aspMegNL'> Unremarkable</label><label><input type="checkbox" value="" id='aspMegNL'> Hyplobated forms</label><label><input type="checkbox" value="" id='aspMegDec'> Separation of Nuclei</label></div>
+                  <b>Megakaryocytes:</b> <label><input type="radio" value="" id='aspMegAdeq' name='megs'> Adequate</label><label><input type="radio" value="" id='aspMegDec' name='megs'> Decreased</label><label><input type="radio" value="" id='aspMegInc' name='megs'> Increased</label><div><label><input type="checkbox" value="" id='aspMegNL'> Unremarkable</label><label><input type="checkbox" value="" id='aspMegHF'> Hyplobated forms</label><label><input type="checkbox" value="" id='aspMegSN'> Separation of Nuclei</label></div>
                 </div>
+                              </div>
                 <b>Aspirate Smear/Touch Preparation Text:</b><textarea rows="4" id="aspText" style="width: 100%">
 </textarea>
 <div id='ironStainDiv'>
 <label><input type="checkbox" checked='true' id='ironStain'> Iron Stain</label><br>
 <b>Storage Iron: </b>
-<label><input type="checkbox" id='ironStainInc'> Increased</label>
-<label><input type="checkbox" id='ironStainAdeq'> Adequate</label>
-<label><input type="checkbox" id='ironStainDec'> Decreased</label><br>
+<label><input type="radio" id='ironStainInc'> Increased</label>
+<label><input type="radio" id='ironStainAdeq'> Adequate</label>
+<label><input type="radio" id='ironStainDec'> Decreased</label><br>
 <b>Ring Sideroblasts: </b>
-<label><input type="checkbox" id='ringAbsent'> Absent</label>
-<label><input type="checkbox" id='ringPresent'> Present</label>
+<label><input type="radio" id='ringAbsent'> Absent</label>
+<label><input type="radio" id='ringPresent'> Present</label>
 </div>
-              </div>
+
 
               <div>
                 <button type="button" class="btn btn-primary pull-right next" id="next3">Next</button>
@@ -862,6 +859,14 @@
         $('#aspirateDiv').change(function() {
           fillAsp();
         })
+        
+        $('#aspText').change(function() {
+        	$('#aspirateText').html($('#aspText').val());
+          $('#aspirateSmear').show();
+          $('#aspirateText').show();
+          $('#microscopic').show();
+
+        })
 
         function fillAsp() {
 
@@ -871,13 +876,13 @@
           }
           
            if ($('#aspMegAdeq').prop('checked')) {
-            aspText += "Megakaryocytes are adequate"
+            aspText += " Megakaryocytes are adequate"
             aspText = fillMegs(aspText);
           } else if ($('#aspMegDec').prop('checked')) {
-          aspText += "Megakaryocytes are decreased"
+          aspText += " Megakaryocytes are decreased"
            aspText = fillMegs(aspText);
           } else if ($('#aspMegInc').prop('checked')) {
-            aspText += "Megakaryocytes are increased"
+            aspText += " Megakaryocytes are increased"
              aspText = fillMegs(aspText);
             
           }
@@ -885,6 +890,7 @@
           $('#aspText').val(aspText);
           $('#aspirateText').html($('#aspText').val());
           $('#aspirateSmear').show();
+          $('#aspirateText').show();
           $('#microscopic').show();
 
         }
@@ -1275,7 +1281,7 @@
           ironText += "There is increased storage iron.";
           } else  if ($('#ironStainAdeq').prop('checked')){
           ironText += "There is adequate storage iron.";
-          } else if ($('#ironStainAdeq').prop('checked')){
+          } else if ($('#ironStainDec').prop('checked')){
           ironText += "There is decreased storage iron.";
           }
           if ($('#ringPresent').prop('checked')){
@@ -1286,9 +1292,7 @@
           $('#ssIronTable').html(ironText);
           $('#microscopic').show();
           $('#specialStains').show();
-          }
-
-          
+          }     
         })
 
         $('#pbCBC').on('keyup change', function() {
