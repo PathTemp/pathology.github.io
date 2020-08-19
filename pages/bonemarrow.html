@@ -1207,7 +1207,7 @@
           $('#asp9').val(parseFloat($('#asp9').val().replace(/%/g,'')).toFixed(1)+"%");
            var totalVar = parseFloat($('#asp0').val().replace(/%/g,'')) + parseFloat($('#asp1').val().replace(/%/g,'')) + parseFloat($('#asp2').val().replace(/%/g,'')) + parseFloat($('#asp3').val().replace(/%/g,'')) + parseFloat($('#asp4').val().replace(/%/g,'')) + parseFloat($('#asp5').val().replace(/%/g,'')) + parseFloat($('#asp6').val().replace(/%/g,'')) + parseFloat($('#asp7').val().replace(/%/g,'')) + parseFloat($('#asp8').val().replace(/%/g,'')) + parseFloat($('#asp9').val().replace(/%/g,''));
            if ($('#asp4').val() != "0.0%") {
-            $('#meRatio').val(((parseFloat($('#asp5').val().replace(/%/g,''))+parseFloat($('#asp7').val().replace(/%/g,''))+parseFloat($('#asp8').val().replace(/%/g,''))+parseFloat($('#asp9').val().replace(/%/g,''))) / parseFloat($('#asp4').val().replace(/%/g,''))).toFixed(1)+ ":1")
+            $('#meRatio').val(((parseFloat($('#asp1').val().replace(/%/g,''))+parseFloat($('#asp7').val().replace(/%/g,''))+parseFloat($('#asp8').val().replace(/%/g,''))+parseFloat($('#asp9').val().replace(/%/g,''))) / parseFloat($('#asp4').val().replace(/%/g,''))).toFixed(1)+ ":1")
           } else {
             $('#meRatio').val('-')
           }
@@ -1264,7 +1264,7 @@
             $('#aspBlastTable').html(tempPercent + "%");
           }
           if (($('#aspCount').val().match(/4/g) || []).length != 0) {
-            $('#meRatio').val(((($('#aspCount').val().match(/[7-9]|5/g) || []).length / ($('#aspCount').val().match(/4/g) || []).length).toFixed(1) )+ ":1")
+            $('#meRatio').val(((($('#aspCount').val().match(/[7-9]|1/g) || []).length / ($('#aspCount').val().match(/4/g) || []).length).toFixed(1) )+ ":1")
           } else {
             $('#meRatio').val('-')
           }
