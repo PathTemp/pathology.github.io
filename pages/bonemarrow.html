@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/f6f9c2cc49.js" crossorigin="anonymous"></script>
@@ -387,7 +388,7 @@
                 </div>
                 <div>
                   <b>Megakaryocytes:</b> <label><input type="radio" value="" id='aspMegAdeq' name='megs'> Adequate</label><label><input type="radio" value="" id='aspMegDec' name='megs'> Decreased</label><label><input type="radio" value="" id='aspMegInc' name='megs'> Increased</label>
-                  <div><label><input type="checkbox" value="" id='aspMegNL'> Unremarkable</label><label><input type="checkbox" value="" id='aspMegHF'> Hyplobated forms</label><label><input type="checkbox" value="" id='aspMegSN'> Separation of Nuclei</label></div>
+                  <div><label><input type="radio" value="" id='aspMegNL'> Unremarkable</label><label><input type="checkbox" value="" id='aspMegHF'> Hyplobated forms</label><label><input type="checkbox" value="" id='aspMegSN'> Separation of Nuclei</label></div>
                 </div>
               </div>
               <b>Aspirate Smear/Touch Preparation Text:</b><textarea rows="4" id="aspText" style="width: 100%">
@@ -395,12 +396,12 @@
               <div id='ironStainDiv'>
                 <label><input type="checkbox" checked='true' id='ironStain'> Iron Stain</label><br>
                 <b>Storage Iron: </b>
-                <label><input type="radio" id='ironStainInc'> Increased</label>
-                <label><input type="radio" id='ironStainAdeq'> Adequate</label>
-                <label><input type="radio" id='ironStainDec'> Decreased</label><br>
+                <label><input type="radio" name='ironQuant' id='ironStainInc'> Increased</label>
+                <label><input type="radio" name='ironQuant' id='ironStainAdeq'> Adequate</label>
+                <label><input type="radio" name='ironQuant' id='ironStainDec'> Decreased</label><br>
                 <b>Ring Sideroblasts: </b>
-                <label><input type="radio" id='ringAbsent'> Absent</label>
-                <label><input type="radio" id='ringPresent'> Present</label>
+                <label><input type="radio" name='ring' id='ringAbsent'> Absent</label>
+                <label><input type="radio" name='ring' id='ringPresent'> Present</label>
               </div>
 
 
@@ -430,9 +431,14 @@
             This is the help screen for people that need help.
           </div>
           <div id="settingsScreen" style="display: none">
-            Performed By: <input type="input" value="" id='savePerformed'><br>
+          <div>
+          Performed By: <input type="input" value="" id='savePerformed'>
+          </div>
+                      <div>
+          Theme Color: <input type="color" id="themeColor" name="favcolor" value=#3379b7>
+          </div><br>
 
-            <button type="button" class="btn btn-primary copy" id="saveAll">Save Settings</button>
+            <button type="button" class="btn btn-primary" id="saveAll">Save Settings</button>
           </div>
           <div id="educationScreen" style="display: none">
             This will be where educational references will be.
@@ -607,7 +613,6 @@
                       The positive control(s) showed appropriate staining.
                     </div><br>
                   </div>
-
                 </div>
               </div>
               <div id="gross" style="display: none">
@@ -631,11 +636,17 @@
     <script>
       $(document).ready(function() {
         var performedName = localStorage.getItem("performedName");
+        var themeColor = localStorage.getItem("themeColor");
+        console.log(themeColor)
         if (performedName != null && performedName != "null") {
           $('#pbPerformed').val(performedName);
           $('#savePerformed').val(performedName);
         }
-
+        if (themeColor != null && themeColor != "null") {
+        changeTheme(themeColor);
+        $('#themeColor').val(themeColor)
+        }
+        
         var countAudio = 'https://diffpath.github.io/media/Count-Click2.wav';
         var hundredAudio = 'https://diffpath.github.io/media/100-Soothing.wav'
         var finishedAudio = 'https://diffpath.github.io/media/Complete-Nice.mp3'
@@ -795,6 +806,19 @@
 
         $('#neutTC').change(function() {
           $('#neutNL').prop('checked', false);
+        })
+        
+        $('#aspMegNL').change(function() {
+          $('#aspMegHF').prop('checked', false);
+          $('#aspMegSN').prop('checked', false);
+        })
+
+        $('#aspMegHF').change(function() {
+          $('#aspMegNL').prop('checked', false);
+        })
+
+        $('#aspMegSN').change(function() {
+          $('#aspMegNL').prop('checked', false);
         })
 
         function fillPB() {
@@ -1545,6 +1569,22 @@
             localStorage.setItem("performedName", $('#savePerformed').val());
             $('#pbPerformed').val($('#savePerformed').val());
           }
+          if ($('#themeColor').val() != "") {
+            localStorage.setItem("themeColor", $('#themeColor').val());
+          }
+        })
+        
+        function changeTheme(newThemeColor){
+        $(".banner").css("background-color", newThemeColor);
+        $(".btn").css("background-color", newThemeColor);
+        $(".btn").css("border-color", newThemeColor);
+        $(".panel-heading").css("background-color", newThemeColor);
+        $(".panel").css("border-color", newThemeColor);
+        $(".panel-heading").css("border-color", newThemeColor);
+}
+        
+        $('#themeColor').change(function() { 
+        changeTheme($('#themeColor').val());
         })
       });
 
