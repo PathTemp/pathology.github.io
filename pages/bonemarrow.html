@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/f6f9c2cc49.js" crossorigin="anonymous"></script>
@@ -299,7 +298,7 @@
                 </div>
                 <div>
                   <b>Neutrophils: </b><label><input type="radio" name="neut" value="" id='neutNL'> Unremarkable </label>
-                  <label><input type="checkbox" name="neut" value="" id='neutTC'> Toxic Change</label>
+                  <label><input type="checkbox" class="pbNeut" name="neut" value="" id='neutTC'> Toxic change</label><label><input type="checkbox" class="pbNeut" name="neut" value="" id='neutLS'> Left shift</label>
                 </div>
                 <div>
                   <b>Platelets: </b><label><input type="radio" name="plt" value="" id='pltNL'> Unremarkable</label>
@@ -456,7 +455,6 @@
                 <div id="finalCopyText">
                   <div class="header" id="header">
                   </div>
-
                 </div>
               </div>
               <div id="clinical" style="display: none">
@@ -802,9 +800,14 @@
 
         $('#neutNL').change(function() {
           $('#neutTC').prop('checked', false);
+          $('#neutLS').prop('checked', false);
         })
 
         $('#neutTC').change(function() {
+          $('#neutNL').prop('checked', false);
+        })
+        
+                $('#neutLS').change(function() {
           $('#neutNL').prop('checked', false);
         })
         
@@ -889,6 +892,11 @@
                 pbText += ' with unremarkable morphology'
               } else if ($('#neutTC').prop('checked')) {
                 pbText += ' and show toxic changes'
+                if ($('#neutLS').prop('checked')){ 
+                pbText += ' with a left shift to immaturity'
+                }
+              } else if ($('#neutLS').prop('checked')) {
+                pbText += ' and show a left shift to immaturity'
               }
               pbText += '.'
             }
@@ -1186,8 +1194,7 @@
 
         $('#rbcAP').change(function() {
           if ($('#rbcAP').prop('checked')) {
-            anisoVar = '<div><select id="aniso0" class="aniso"><option value=""></option><option value="acanthocytes">Acanthocytes</option><option value="target cells">Target cells</option><option value="ovalocytes">Ovalocytes</option><option value="schistocytes">Schistocytes</option></select></div>';
-            $('#anisoDiv').html(anisoVar)
+            createAniso();
             $('#anisoDiv').show()
           } else {
             $('#anisoDiv').hide()
@@ -1200,7 +1207,7 @@
         })
 
         function createAniso() {
-          var anisoList = ['', 'acanthocytes', 'ovalocytes', 'schistocytes', 'target cells']
+          var anisoList = ['', 'acanthocytes', 'basophilic stippling', 'burr cells', 'Howell-Jolly bodies', 'macrocytes', 'macroovalocytes', 'microcytes', 'ovalocytes', 'schistocytes', 'spherocytes', 'target cells','teardrop forms']
           anisoOptionList = [];
           finalAnisoList = [];
           var count = 0;
@@ -1219,6 +1226,7 @@
                 }
                 testVar += '>' + anisoList[i].charAt(0).toUpperCase() + anisoList[i].slice(1) + '</option>';
               }
+              anisoList.splice($.inArray($('#' + this.id).val(), anisoList), 1);
               testVar += '</select>&nbsp<label><input type="radio" name="anisoQuant' + count + '" id="anisoFreq' + count + '"'
               if ($('#anisoFreq' + count).prop('checked')) {
                 testVar += ' checked'
