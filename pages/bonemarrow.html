@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/f6f9c2cc49.js" crossorigin="anonymous"></script>
@@ -55,6 +56,7 @@
       table.padleft th {
         padding-left: 10px;
       }
+      
 
       .noborder {
         border: none;
@@ -75,6 +77,10 @@
         top: 0;
         z-index: 1;
         padding-left: 120px
+      }
+      
+      .labelnopad {
+        padding-right: 0px;
       }
 
       .pad {
@@ -148,12 +154,10 @@
   <body>
     <div class="container-fluid" id="bmTemp">
       <div class="row banner"><span>Bone Marrow Template</span>
-
-
-        <i class="icon fas fa-cog rightalign" id='settingsButton'></i>
-        <i class="icon far fa-question-circle rightalign" id="helpButton"></i>
-        <i class="icon fas fa-book rightalign" id='educationButton'></i>
-        <i class="icon fas fa-list rightalign" id="templateButton"></i>
+        <i class="icon fas fa-cog rightalign rightpanelbutton" id='settingsButton'></i>
+        <i class="icon far fa-question-circle rightalign rightpanelbutton" id="helpButton"></i>
+        <i class="icon fas fa-book rightalign rightpanelbutton" id='educationButton'></i>
+        <i class="icon fas fa-list rightalign rightpanelbutton" id="templateButton"></i>
       </div>
       <div class="row top">
         <div class="col-xs-6">
@@ -164,6 +168,7 @@
               <div class="radio" id="latAll">
                 <label><input type="radio" name="laterality" value="" id="latR">Right</label>
                 <label><input type="radio" name="laterality" value="" id="latL">Left</label>
+                <label><input type="radio" name="laterality" value="" id="latB">Bilateral</label>
                 <label><input type="radio" name="laterality" value="" id="latN">Not Specified</label>
               </div>
 
@@ -216,7 +221,7 @@
                   </datalist>
                 </div>
                 <div>
-                  <b>Clnical History:</b>
+                  <b>Clinical History:</b>
                   <p></p>
                   Age: <input type="input" value="" id='clinAge' name='age' maxlength="3" size="3"><br><br> <textarea rows="4" id="chText" style="width: 100%"></textarea>
                 </div>
@@ -234,32 +239,32 @@
                 <div class="col-xs-9" id="pbCountTable">
                   <table class="center" style="width:100%">
                     <tr>
-                      <td><label for="fname"><b>7.</b> Neuts</label><br>
+                      <td><label id="pbLabel7" class="pbCellType labelnopad"><b>7.</b> Neuts</label><br>
                         <input type="text" id="pb7" maxlength="5" size="3"></td>
-                      <td><label for="fname"><b>8.</b> Lymphs</label><br>
+                      <td><label id="pbLabel8" class="pbCellType labelnopad"><b>8.</b> Lymphs</label><br>
                         <input type="text" id="pb8" maxlength="5" size="3"></td>
-                      <td><label for="fname"><b>9.</b> Mono</label><br>
+                      <td><label id="pbLabel9" class="pbCellType labelnopad"><b>9.</b> Mono</label><br>
                         <input type="text" id="pb9" maxlength="5" size="3"></td>
                     </tr>
                     <tr>
-                      <td><label for="fname"><b>4.</b> Eos</label><br>
+                      <td><label id="pbLabel4" class="pbCellType labelnopad"><b>4.</b> Eos</label><br>
                         <input type="text" id="pb4" maxlength="5" size="3"></td>
-                      <td><label for="fname"><b>5.</b> Baso</label><br>
+                      <td><label id="pbLabel5" class="pbCellType labelnopad"><b>5.</b> Baso</label><br>
                         <input type="text" id="pb5" maxlength="5" size="3"></td>
-                      <td><label for="fname"><b>6.</b> Plasma</label><br>
+                      <td><label id="pbLabel6" class="pbCellType labelnopad"><b>6.</b> Plasma</label><br>
                         <input type="text" id="pb6" maxlength="5" size="3"></td>
                     </tr>
                     <tr>
-                      <td><label for="fname"><b>1.</b> NRBCs</label><br>
+                      <td><label id="pbLabel1" class="pbCellType labelnopad"><b>1.</b> NRBCs</label><br>
                         <input type="text" id="pb1" maxlength="5" size="3"></td>
-                      <td><label for="fname"><b>2.</b> Atypical</label><br>
+                      <td><label id="pbLabel2" class="pbCellType labelnopad"><b>2.</b> Atypical</label><br>
                         <input type="text" id="pb2" maxlength="5" size="3"></td>
-                      <td><label for="fname"><b>3. </b><input type="input" value="" id='clinAge' name='age' placeholder="Other" size="3"></label><br>
+                      <td><label id="pbLabel3" class="pbCellType labelnopad"><b>3. </b><input type="input" value="" placeholder="Other" size="3"></label><br>
                         <input type="text" id="pb3" maxlength="5" size="3"></td>
                     </tr>
                     <tr>
                       <td class='noborder'></td>
-                      <td><label for="fname"><b>0.</b> Blasts</label><br>
+                      <td><label id="pbLabel0" class="pbCellType labelnopad"><b>0.</b> Blasts</label><br>
                         <input type="text" id="pb0" maxlength="5" size="3"></td>
                       <td class='noborder'></td>
                     </tr>
@@ -321,32 +326,32 @@
                 <div class="col-xs-9" id="aspCountTable">
                   <table class="center" style="width:100%">
                     <tr>
-                      <td><label for="fname"><b>7.</b> Neuts</label><br>
+                      <td><label id="aspLabel7" class="aspCellType"><b>7.</b> Neuts</label><br>
                         <input type="text" id="asp7" maxlength="5" size="3"></td>
-                      <td><label for="fname"><b>8.</b> Eos</label><br>
+                      <td><label id="aspLabel8" class="aspCellType"><b>8.</b> Eos</label><br>
                         <input type="text" id="asp8" maxlength="5" size="3"></td>
-                      <td><label for="fname"><b>9.</b> Mono</label><br>
+                      <td><label id="aspLabel9" class="aspCellType"><b>9.</b> Mono</label><br>
                         <input type="text" id="asp9" maxlength="5" size="3"></td>
                     </tr>
                     <tr>
-                      <td><label for="fname"><b>4.</b> NRBCs</label><br>
+                      <td><label id="aspLabel4" class="aspCellType"><b>4.</b> NRBCs</label><br>
                         <input type="text" id="asp4" maxlength="5" size="3"></td>
-                      <td><label for="fname"><b>5.</b> Lymphs</label><br>
+                      <td><label id="aspLabel5" class="aspCellType"><b>5.</b> Lymphs</label><br>
                         <input type="text" id="asp5" maxlength="5" size="3"></td>
-                      <td><label for="fname"><b>6.</b> Plasma</label><br>
+                      <td><label id="aspLabel6" class="aspCellType"><b>6.</b> Plasma</label><br>
                         <input type="text" id="asp6" maxlength="5" size="3"></td>
                     </tr>
                     <tr>
-                      <td><label for="fname"><b>1.</b> Baso</label><br>
+                      <td><label id="aspLabel1" class="aspCellType"><b>1.</b> Baso</label><br>
                         <input type="text" id="asp1" maxlength="5" size="3"></td>
-                      <td><label for="fname"><b>2.</b> Atypical</label><br>
+                      <td><label id="aspLabel2" class="aspCellType"><b>2.</b> Atypical</label><br>
                         <input type="text" id="asp2" maxlength="5" size="3"></td>
-                      <td><label for="fname"><b>3.</b> Other</label><br>
+                      <td><label id="aspLabel3" class="aspCellType"><b>3.</b> Other</label><br>
                         <input type="text" id="asp3" maxlength="5" size="3"></td>
                     </tr>
                     <tr>
                       <td class="noborder"></td>
-                      <td><label for="fname"><b>0.</b> Blasts</label><br>
+                      <td><label id="aspLabel0" class="aspCellType"><b>0.</b> Blasts</label><br>
                         <input type="text" id="asp0" maxlength="5" size="3"></td>
                       <td class="noborder"></td>
                     </tr>
@@ -386,8 +391,17 @@
                   <b>Descriptors:</b> <label><input type="checkbox" value="" id='aspHemodilute'> Hemodilute</label><label><input type="checkbox" value="" id='aspAcellular'> Virtually acellular</label><br>
                 </div>
                 <div>
+                  <b>Erythroid Precursors: </b><label><input type="checkbox" value="" id='aspBlastNI' name='blasts'> Not increased</label><label><input type="checkbox" value="" id='aspBlastInc' name='blasts'> Increased</label>
+                </div>
+                <div>
+                  <b>Myeloid Precursors: </b><label><input type="checkbox" value="" id='aspMyeloid' name='blasts'> Not increased</label><label><input type="checkbox" value="" id='aspBlastInc' name='blasts'> Increased</label>
+                </div>
+                <div>
                   <b>Megakaryocytes:</b> <label><input type="radio" value="" id='aspMegAdeq' name='megs'> Adequate</label><label><input type="radio" value="" id='aspMegDec' name='megs'> Decreased</label><label><input type="radio" value="" id='aspMegInc' name='megs'> Increased</label>
-                  <div><label><input type="radio" value="" id='aspMegNL'> Unremarkable</label><label><input type="checkbox" value="" id='aspMegHF'> Hyplobated forms</label><label><input type="checkbox" value="" id='aspMegSN'> Separation of Nuclei</label></div>
+                  <div><label><input type="radio" value="" id='aspMegNL'> Unremarkable</label><label><input type="checkbox" value="" id='aspMegHF'> Hyplobated forms</label><label><input type="checkbox" value="" id='aspMegSN'> Separation of nuclei</label></div>
+                </div>
+                <div>
+                  <b>Blasts: </b><label><input type="checkbox" value="" id='aspBlastNI' name='blasts'> Not increased</label><label><input type="checkbox" value="" id='aspBlastInc' name='blasts'> Increased</label>
                 </div>
               </div>
               <b>Aspirate Smear/Touch Preparation Text:</b><textarea rows="4" id="aspText" style="width: 100%">
@@ -420,29 +434,108 @@
           </div>
           <div class="panel panel-primary">
             <div class="panel-heading" id='panelHead5' onselectstart="return false" style="cursor: pointer" data-header='Flow Cytometry'><span class="glyphicon glyphicon-triangle-right"></span> Flow Cytometry</div>
-            <div class="panel-body" id="panel5" style="display: none">Text <button type="button" class="btn btn-primary pull-right prev" id="prev5">Previous</button>
+            <div class="panel-body" id="panel5" style="display: none"><i class="icon far fa-question-circle rightalign" id="flowHelp"></i><textarea rows="4" id="fcText" style="width: 100%"></textarea><button type="button" class="btn btn-primary pull-right prev" id="prev5">Previous</button>
             </div>
 
           </div>
         </div>
         <div class="col-xs-6">
-          <div id="helpScreen" style="display: none">
+          <div id="helpScreen" class="rightpanel" style="display: none">
             This is the help screen for people that need help.
           </div>
-          <div id="settingsScreen" style="display: none">
-          <div>
-          Performed By: <input type="input" value="" id='savePerformed'>
+          <div id="flowHelpScreen" class="rightpanel" style="display: none">
+            <div class="header">
+              Flow Templates
+            </div>
+            Chronic:
           </div>
-                      <div>
-          Theme Color: <input type="color" id="themeColor" name="favcolor" value=#3379b7>
-          </div><br>
+          <div id="settingsScreen" class="rightpanel" style="display: none">
+            <div>
+              Performed By: <input type="input" value="" id='savePerformed'>
+            </div>
+            <div>
+              Theme Color: <input type="color" id="themeColor" name="favcolor" value=#3379b7>
+            </div>            <div>
+              Peripheral Blood Count Orientation: (Under Construction Do Not Use)
+              <table class="center" style="width:100%">
+                    <tr>
+                      <td><b>7. </b><input type="text" id = "pbSave7" class = "pbCellTypeSave" list="cellTypeList" size="6"></td>
+                      <td><b>8. </b><input type="text" id = "pbSave8" class = "pbCellTypeSave" list="cellTypeList" size="6"></td>
+                      <td><b>9. </b><input type="text" id = "pbSave9" class = "pbCellTypeSave" list="cellTypeList" size="6"></td>
+                    </tr>
+                    <tr>
+                    <td><b>4. </b><input type="text" id = "pbSave4" class = "pbCellTypeSave" list="cellTypeList" size="6"></td>
+                    <td><b>5. </b><input type="text" id = "pbSave5" class = "pbCellTypeSave" list="cellTypeList" size="6"></td>
+                    <td><b>6. </b><input type="text" id = "pbSave6" class = "pbCellTypeSave" list="cellTypeList" size="6"></td>
+                    </tr>
+                    <tr>
+                      <td><b>1. </b><input type="text" id = "pbSave1" class = "pbCellTypeSave" list="cellTypeList" size="6"></td>
+                      <td><b>2. </b><input type="text" id = "pbSave2" class = "pbCellTypeSave" list="cellTypeList" size="6"></td>
+                      <td><b>3. </b><input type="text" id = "pbSave3" class = "pbCellTypeSave" list="cellTypeList" size="6"></td>
+                    </tr>
+                    <tr>
+                      <td class='noborder'></td>
+                      <td><b>0.</b><input type="text" id = "pbSave0" class = "pbCellTypeSave" list="cellTypeList" size="6"></td>
+                      <td class='noborder'></td>
+                    </tr>
+                  </table>
+                  <datalist id="cellTypeList">
+                      <option value="Atypical"></option>
+                      <option value="Baso"></option>
+                      <option value="Blasts"></option>
+                      <option value="Eos"></option>
+                      <option value="Lymphs"></option>
+                      <option value="Mono"></option>
+                      <option value="Neuts"></option>
+                      <option value="NRBCs"></option>
+                      <option value="Other"></option>
+                      <option value="Plasma"></option>
+                 </datalist>
+            </div>
+            <div>
+              Aspirate Smear Count Orientation: (Under Construction Do Not Use)
+              <table class="center" style="width:100%">
+                    <tr>
+                      <td><b>7. </b><input type="text" id = "aspSave7" class = "pbCellTypeSave" list="cellTypeList" size="6"></td>
+                      <td><b>8. </b><input type="text" id = "aspSave8" class = "pbCellTypeSave" list="cellTypeList" size="6"></td>
+                      <td><b>9. </b><input type="text" id = "aspSave9" class = "pbCellTypeSave" list="cellTypeList" size="6"></td>
+                    </tr>
+                    <tr>
+                    <td><b>4. </b><input type="text" id = "aspSave4" class = "pbCellTypeSave" list="cellTypeList" size="6"></td>
+                    <td><b>5. </b><input type="text" id = "aspSave5" class = "pbCellTypeSave" list="cellTypeList" size="6"></td>
+                    <td><b>6. </b><input type="text" id = "aspSave6" class = "pbCellTypeSave" list="cellTypeList" size="6"></td>
+                    </tr>
+                    <tr>
+                      <td><b>1. </b><input type="text" id = "aspSave1" class = "pbCellTypeSave" list="cellTypeList" size="6"></td>
+                      <td><b>2. </b><input type="text" id = "aspSave2" class = "pbCellTypeSave" list="cellTypeList" size="6"></td>
+                      <td><b>3. </b><input type="text" id = "aspSave3" class = "pbCellTypeSave" list="cellTypeList" size="6"></td>
+                    </tr>
+                    <tr>
+                      <td class='noborder'></td>
+                      <td><b>0.</b><input type="text" id = "aspSave0" class = "pbCellTypeSave" list="cellTypeList" size="6"></td>
+                      <td class='noborder'></td>
+                    </tr>
+                  </table>
+                  <datalist id="cellTypeList">
+                      <option value="Atypical"></option>
+                      <option value="Baso"></option>
+                      <option value="Blasts"></option>
+                      <option value="Eos"></option>
+                      <option value="Lymphs"></option>
+                      <option value="Mono"></option>
+                      <option value="Neuts"></option>
+                      <option value="NRBCs"></option>
+                      <option value="Other"></option>
+                      <option value="Plasma"></option>
+                 </datalist>
+            </div><br>
 
             <button type="button" class="btn btn-primary" id="saveAll">Save Settings</button>
           </div>
-          <div id="educationScreen" style="display: none">
+          <div id="educationScreen" class="rightpanel" style="display: none">
             This will be where educational references will be.
           </div>
-          <div id="templateScreen">
+          <div id="templateScreen" class="rightpanel" style="">
             <div class="final" id="final2"></div>
             <div>
               <button type="button" class="btn btn-primary copy" id="everythingCopy">Copy All</button> <button type="button" class="btn btn-primary copy" id="finalCopy">Copy Final</button><button type="button" class="btn btn-primary copy" id="clinicalCopy">Copy Clinical</button><button type="button" class="btn btn-primary copy" id="microscopicCopy">Copy Microscopic</button><button type="button" class="btn btn-primary copy" id="grossCopy">Copy Gross</button>
@@ -487,17 +580,17 @@
                       </tr>
                       <tr id="pbBlastRow" style="display: none">
                         <td>Blasts</td>
-                        <td id="pbBlastTable"></td>
+                        <td id="pbBlastsTable"></td>
                         <td>0</td>
                       </tr>
                       <tr>
                         <td>Neutrophils</td>
-                        <td id="pbNeutTable"></td>
+                        <td id="pbNeutsTable"></td>
                         <td>34 - 73%</td>
                       </tr>
                       <tr>
                         <td>Lymphocytes</td>
-                        <td id="pbLymphTable"></td>
+                        <td id="pbLymphsTable"></td>
                         <td>15 - 50%</td>
                       </tr>
                       <tr>
@@ -507,7 +600,7 @@
                       </tr>
                       <tr>
                         <td>Eosinophils</td>
-                        <td id="pbEoTable"></td>
+                        <td id="pbEosTable"></td>
                         <td>0 - 8%</td>
                       </tr>
                       <tr>
@@ -515,9 +608,14 @@
                         <td id="pbBasoTable"></td>
                         <td>0 - 2%</td>
                       </tr>
+                      <tr id="pbPlasmaRow" style="display: none">
+                        <td>Plasma Cells</td>
+                        <td id="pbPlasmaTable"></td>
+                        <td>0</td>
+                      </tr>
                       <tr id="pbNRBCRow" style="display: none">
                         <td>NRBC's/100 WBC</td>
-                        <td id="pbNRBCTable"></td>
+                        <td id="pbNRBCsTable"></td>
                         <td>0</td>
                       </tr>
                     </table>
@@ -532,17 +630,17 @@
                       </tr>
                       <tr>
                         <td>Blasts</td>
-                        <td id="aspBlastTable"></td>
+                        <td id="aspBlastsTable"></td>
                         <td>0 – 3%</td>
                       </tr>
                       <tr>
                         <td>Neutrophils & Precursors</td>
-                        <td id="aspNeutTable"></td>
+                        <td id="aspNeutsTable"></td>
                         <td>33 – 63%</td>
                       </tr>
                       <tr>
                         <td>Eosinophils & Precursors</td>
-                        <td id="aspEoTable"></td>
+                        <td id="aspEosTable"></td>
                         <td>1 – 5%</td>
                       </tr>
                       <tr>
@@ -557,7 +655,7 @@
                       </tr>
                       <tr>
                         <td>Lymphocytes</td>
-                        <td id="aspLymphTable"></td>
+                        <td id="aspLymphsTable"></td>
                         <td>10 – 15%</td>
                       </tr>
                       <tr>
@@ -567,7 +665,7 @@
                       </tr>
                       <tr>
                         <td>Erythroid Precursors</td>
-                        <td id="aspNRBCTable"></td>
+                        <td id="aspNRBCsTable"></td>
                         <td>15 – 27%</td>
                       </tr>
                       <tr>
@@ -635,19 +733,27 @@
       $(document).ready(function() {
         var performedName = localStorage.getItem("performedName");
         var themeColor = localStorage.getItem("themeColor");
-        console.log(themeColor)
         if (performedName != null && performedName != "null") {
           $('#pbPerformed').val(performedName);
           $('#savePerformed').val(performedName);
         }
         if (themeColor != null && themeColor != "null") {
-        changeTheme(themeColor);
-        $('#themeColor').val(themeColor)
+          changeTheme(themeColor);
+          $('#themeColor').val(themeColor)
         }
         
+        var pbTypeList = JSON.parse(localStorage.getItem("pbTypeList"));
+        if (pbTypeList != null && pbTypeList != "null") {
+          pbTypeListChange(pbTypeList);
+        } else {
+        pbTypeList = ['Blasts', 'NRBCs', 'Atypical', 'Other', 'Eos', 'Baso', 'Plasma', 'Neuts', 'Lymphs', 'Mono'];
+         pbTypeListChange(pbTypeList);
+        }
+
         var countAudio = 'https://diffpath.github.io/media/Count-Click2.wav';
-        var hundredAudio = 'https://diffpath.github.io/media/100-Soothing.wav'
-        var finishedAudio = 'https://diffpath.github.io/media/Complete-Nice.mp3'
+        var hundredAudio = 'https://diffpath.github.io/media/100-Soothing.wav';
+        var finishedAudio = 'https://diffpath.github.io/media/Complete-Nice.mp3';
+        var aspTypeList = ['Blasts', 'Baso', 'Atypical', 'Other', 'NRBCs', 'Lymphs', 'Plasma', 'Neuts', 'Eos', 'Mono'];
         var header = '';
         var subHeader = '';
         var cbcReport = '';
@@ -657,35 +763,51 @@
         var anisoIDList = [];
         var anisoOptionList = [];
         var finalAnisoList = [];
+        var lastPanel = ''
         window.keypressed = {};
 
-        $('#helpButton').click(function() {
-          $('#templateScreen').hide();
-          $('#educationScreen').hide();
-          $('#settingsScreen').hide();
-          $('#helpScreen').show();
+        $('.rightpanelbutton').click(function() {
+          showPanel(this.id.replace('Button', 'Screen'))
         })
+        
+        function pbTypeListChange(pbTypeList){
+        $('.pbCellTypeSave').each(function(){
+        $(this).attr('placeholder',pbTypeList[this.id.replace('pbSave','')])
+        })
+        
+        $('.pbCellType').each(function(){
+        $(this).html('<b>' + this.id.replace('pbLabel','') + ". </b>" + pbTypeList[this.id.replace('pbLabel','')])
+        })       
+        }
 
-        $('#settingsButton').click(function() {
-          $('#templateScreen').hide();
-          $('#educationScreen').hide();
-          $('#settingsScreen').show();
-          $('#helpScreen').hide();
-        })
+        function showPanel(panelId) {
+          $(".rightpanel").each(function() {
+            if (this.id == panelId) {
+              $("#" + this.id).show();
+            } else {
+              $("#" + this.id).hide()
+            }
+          })
+        }
+        
+         function togglePanel(panelId) {
+         if ($('#' + panelId).attr('style').indexOf('none') != -1) {
+            $(".rightpanel").each(function() {
+            if ($('#' + this.id).attr('style').indexOf('none') == -1) {
+            	lastPanel = this.id
+              $("#" + this.id).hide();
+              $('#' + panelId).show();
+            } 
+              
+            }
+          )
+         } else {
+         $('#' + panelId).hide();
+         $('#' + lastPanel).show();
+         }
 
-        $('#educationButton').click(function() {
-          $('#templateScreen').hide();
-          $('#educationScreen').show();
-          $('#settingsScreen').hide();
-          $('#helpScreen').hide();
-        })
+        }
 
-        $('#templateButton').click(function() {
-          $('#templateScreen').show();
-          $('#educationScreen').hide();
-          $('#settingsScreen').hide();
-          $('#helpScreen').hide();
-        })
         $(".panel-heading").click(function() {
           if ($(this).html().search('right') == -1) {
             $(this).html($(this).html().replace('bottom', 'right'));
@@ -806,11 +928,11 @@
         $('#neutTC').change(function() {
           $('#neutNL').prop('checked', false);
         })
-        
-                $('#neutLS').change(function() {
+
+        $('#neutLS').change(function() {
           $('#neutNL').prop('checked', false);
         })
-        
+
         $('#aspMegNL').change(function() {
           $('#aspMegHF').prop('checked', false);
           $('#aspMegSN').prop('checked', false);
@@ -827,7 +949,7 @@
         function fillPB() {
           var count = 0;
           if ($('#specPBSmear').prop('checked')) {
-            var pbText = "The peripheral blood smear shows "
+            var pbText = "The peripheral blood smears show "
             if (mcv < mcvLow) {
               pbText += 'microcytic '
             } else if (mcv > mcvHigh) {
@@ -892,8 +1014,8 @@
                 pbText += ' with unremarkable morphology'
               } else if ($('#neutTC').prop('checked')) {
                 pbText += ' and show toxic changes'
-                if ($('#neutLS').prop('checked')){ 
-                pbText += ' with a left shift to immaturity'
+                if ($('#neutLS').prop('checked')) {
+                  pbText += ' and a left shift to immaturity'
                 }
               } else if ($('#neutLS').prop('checked')) {
                 pbText += ' and show a left shift to immaturity'
@@ -1042,6 +1164,8 @@
             laterality = "right";
           } else if ($('#latL').prop('checked')) {
             laterality = "left";
+          } else if ($('#latB').prop('checked')) {
+            laterality = "bilateral";
           }
 
           if ($('#specPBSmear').prop('checked')) {
@@ -1158,16 +1282,17 @@
         })
 
         $('#pbCountTable').change(function() {
-          $('#pb0').val(parseFloat($('#pb0').val().replace(/%/g, '')).toFixed(1) + "%");
-          $('#pb1').val(parseFloat($('#pb1').val().replace(/%/g, '')).toFixed(1) + "%");
-          $('#pb4').val(parseFloat($('#pb4').val().replace(/%/g, '')).toFixed(1) + "%");
-          $('#pb5').val(parseFloat($('#pb5').val().replace(/%/g, '')).toFixed(1) + "%");
-          $('#pb6').val(parseFloat($('#pb6').val().replace(/%/g, '')).toFixed(1) + "%");
-          $('#pb7').val(parseFloat($('#pb7').val().replace(/%/g, '')).toFixed(1) + "%");
-          $('#pb8').val(parseFloat($('#pb8').val().replace(/%/g, '')).toFixed(1) + "%");
-          $('#pb9').val(parseFloat($('#pb9').val().replace(/%/g, '')).toFixed(1) + "%");
-          var totalVar = parseFloat($('#pb0').val().replace(/%/g, '')) + parseFloat($('#pb1').val().replace(/%/g, '')) + parseFloat($('#pb4').val().replace(/%/g, '')) + parseFloat($('#pb5').val().replace(/%/g, '')) + parseFloat($('#pb6').val().replace(/%/g, '')) + parseFloat($('#pb7').val().replace(/%/g, '')) + parseFloat($('#pb8').val().replace(/%/g, '')) + parseFloat($('#pb9').val().replace(/%/g, ''));
-          $('#pbTotalPercent').val(totalVar.tofixed(1) + "%");
+          var totalVar = 0;
+          $('.pbCellType').each(function() {
+            if ($('#' + this.id).html().indexOf('NRBC') != -1) {
+              $('#' + this.id.replace('Label', '')).val(parseFloat($('#' + this.id.replace('Label', '')).val().replace(/%/g, '')))
+            } else {
+              $('#' + this.id.replace('Label', '')).val(parseFloat($('#' + this.id.replace('Label', '')).val().replace(/%/g, '')).toFixed(1) + "%")
+              totalVar += parseFloat($('#' + this.id.replace('Label', '')).val().replace(/%/g, ''))
+            }
+          })
+
+          $('#pbTotalPercent').val(totalVar + "%");
           $('#pbNeutTable').html($('#pb7').val());
           $('#pbLymphTable').html($('#pb8').val());
           $('#pbMonoTable').html($('#pb9').val());
@@ -1199,7 +1324,6 @@
           } else {
             $('#anisoDiv').hide()
           }
-
         })
 
         $('#anisoDiv').change(function() {
@@ -1207,26 +1331,27 @@
         })
 
         function createAniso() {
-          var anisoList = ['', 'acanthocytes', 'basophilic stippling', 'burr cells', 'Howell-Jolly bodies', 'macrocytes', 'macroovalocytes', 'microcytes', 'ovalocytes', 'schistocytes', 'spherocytes', 'target cells','teardrop forms']
+          var anisoList = ['', 'acanthocytes', 'basophilic stippling', 'burr cells', 'Howell-Jolly bodies', 'macrocytes', 'macroovalocytes', 'microcytes', 'ovalocytes', 'schistocytes', 'spherocytes', 'target cells', 'teardrop forms']
           anisoOptionList = [];
           finalAnisoList = [];
           var count = 0;
           var testVar = ""
-          for (var i = 0; i < anisoList.length; i++) {}
           $('.aniso').each(function() {
-            if ($('#' + this.id).val() != '') {
-              var idVar = '#' + this.id;
-              anisoIDList.push(this.id);
-              anisoOptionList.push($('#' + this.id).val());
+            if (anisoOptionList.indexOf($('#' + this.id).val()) == -1) {
+              anisoOptionList.push($('#' + this.id).val())
+            }
+          })
+          for (var i = 0; i < anisoOptionList.length; i++) {
+            if (anisoOptionList[i] != '') {
               testVar += '<div><select id="aniso' + count + '" class="aniso">'
-              for (var i = 0; i < anisoList.length; i++) {
-                testVar += '<option value="' + anisoList[i] + '"'
-                if (anisoList[i] == $('#' + this.id).val()) {
+              for (var j = 0; j < anisoList.length; j++) {
+                testVar += '<option value="' + anisoList[j] + '"'
+                if (anisoList[j] == anisoOptionList[i]) {
                   testVar += ' selected'
                 }
-                testVar += '>' + anisoList[i].charAt(0).toUpperCase() + anisoList[i].slice(1) + '</option>';
+                testVar += '>' + anisoList[j].charAt(0).toUpperCase() + anisoList[j].slice(1) + '</option>';
               }
-              anisoList.splice($.inArray($('#' + this.id).val(), anisoList), 1);
+              anisoList.splice($.inArray(anisoOptionList[i], anisoList), 1);
               testVar += '</select>&nbsp<label><input type="radio" name="anisoQuant' + count + '" id="anisoFreq' + count + '"'
               if ($('#anisoFreq' + count).prop('checked')) {
                 testVar += ' checked'
@@ -1244,23 +1369,21 @@
               testVar += '> Rare</label></div>';
 
               if ($('#anisoFreq' + count).prop('checked')) {
-                finalAnisoList.push('frequent ' + $('#' + this.id).val());
+                finalAnisoList.push('frequent ' + anisoOptionList[i]);
               } else if ($('#anisoOccas' + count).prop('checked')) {
-                finalAnisoList.push('occasional ' + $('#' + this.id).val());
+                finalAnisoList.push('occasional ' + anisoOptionList[i]);
               } else if ($('#anisoRare' + count).prop('checked')) {
-                finalAnisoList.push('rare ' + $('#' + this.id).val());
+                finalAnisoList.push('rare ' + anisoOptionList[i]);
               } else {
-                finalAnisoList.push($('#' + this.id).val());
+                finalAnisoList.push(anisoOptionList[i]);
               }
-
             }
             count++;
-          })
+          }
           testVar += '<div><select id="aniso' + count + '" class="aniso">'
           for (var i = 0; i < anisoList.length; i++) {
             testVar += '<option value="' + anisoList[i] + '"'
             testVar += '>' + anisoList[i].charAt(0).toUpperCase() + anisoList[i].slice(1) + '</option>';
-
           }
           testVar += '</select></div>';
           count++;
@@ -1268,57 +1391,65 @@
         }
 
         function pbCounter() {
+        $('#specPBSmear').prop('checked', true);
           if ($('#pbDCount').val() == "") {
             var desiredCount = $('#pbDCount').attr('placeholder');
           } else {
             var desiredCount = $('#pbDCount').val()
           }
-          var totalCells = ($('#pbCount').val().match(/[4-9]|0/g) || []).length;
+          var totalVar = 0
+          var re = new RegExp("(?!"+ + pbTypeList.indexOf('NRBCs') + ")\\d","g")
+          var totalCells = ($('#pbCount').val().match(re) || []).length;
+          
           if (totalCells != 0) {
-            var tempPercent = (Math.round(($('#pbCount').val().match(/7/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
-            $('#pb7').val(tempPercent + "%");
-            $('#pbNeutTable').html(tempPercent + "%");
-            tempPercent = (Math.round(($('#pbCount').val().match(/8/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1);
-            $('#pb8').val(tempPercent + "%");
-            $('#pbLymphTable').html(tempPercent + "%");
-            tempPercent = (Math.round(($('#pbCount').val().match(/9/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
-            $('#pb9').val(tempPercent + "%");
-            $('#pbMonoTable').html(tempPercent + "%");
-            tempPercent = (Math.round(($('#pbCount').val().match(/4/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
-            $('#pb4').val(tempPercent + "%");
-            $('#pbEoTable').html(tempPercent + "%");
-            tempPercent = (Math.round(($('#pbCount').val().match(/5/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
-            $('#pb5').val(tempPercent + "%");
-            $('#pbBasoTable').html(tempPercent + "%");
-            tempPercent = (Math.round(($('#pbCount').val().match(/6/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
-            $('#pb6').val(tempPercent + "%");
-            $('#pbPlasmaTable').html(tempPercent + "%");
-            tempPercent = (($('#pbCount').val().match(/1/g) || []).length / (totalCells / 100)).toFixed(0)
-            $('#pb1').val(tempPercent);
-            $('#pbNRBCTable').html($('#pb1').val());
-            tempPercent = (Math.round(($('#pbCount').val().match(/0/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
-            $('#pb0').val(tempPercent + "%");
-            $('#pbBlastTable').html(tempPercent + "%");
+            $('.pbCellType').each(function() {
+         
+              var tempID = this.id.replace('Label', '')
+              var tempNumber = tempID.replace('pb', '')
+              var re = new RegExp(tempNumber, 'g');
+                 console.log('#pb' + pbTypeList[tempNumber] + 'Table')
+              if ($(this).html().indexOf('NRBC') != -1) {
+                $('#' + tempID).val((($('#pbCount').val().match(re) || []).length / (totalCells / 100)).toFixed(0));
+                $('#pb' + pbTypeList[tempNumber] + 'Table').html($('#' + tempID).val());
+              } else {
+                var tempPercent = (Math.round(($('#pbCount').val().match(re) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
+                $('#' + tempID).val(tempPercent + "%");
+                $('#pb' + pbTypeList[tempNumber] + 'Table').html(tempPercent + "%");
+               totalVar += parseFloat($('#'+tempID).val().replace(/%/g, ''))
+              }              
+            })
           }
-          if (($('#pbCount').val().match(/0/g) || []).length != 0) {
+          if ($('#pbCount').val().indexOf(pbTypeList.indexOf('Blasts')) != -1) {
             $('#pbBlastRow').show();
+          } else {
+          $('#pbBlastRow').hide();
           }
-          if (($('#pbCount').val().match(/1/g) || []).length != 0) {
+          
+          if ($('#pbCount').val().indexOf(pbTypeList.indexOf('NRBCs')) != -1) {
             $('#pbNRBCRow').show();
+          } else {
+          $('#pbNRBCRow').hide();
           }
-          if (($('#pbCount').val().match(/2/g) || []).length != 0) {
+          
+          if ($('#pbCount').val().indexOf(pbTypeList.indexOf('Atypical')) != -1) {
             $('#pbAtypicalRow').show();
+          } else {
+          $('#pbAtypicalRow').hide();
           }
-          if (($('#pbCount').val().match(/6/g) || []).length != 0) {
+          
+          if ($('#pbCount').val().indexOf(pbTypeList.indexOf('Plasma')) != -1) {
             $('#pbPlasmaRow').show();
+          } else {
+          $('#pbPlasmaRow').hide();
           }
+          
           if (totalCells == desiredCount) {
             new Audio(finishedAudio).play()
 
           } else if (totalCells != 0 && totalCells % 100 == 0) {
             new Audio(hundredAudio).play()
           }
-          var totalVar = parseFloat($('#pb0').val().replace(/%/g, '')) + parseFloat($('#pb4').val().replace(/%/g, '')) + parseFloat($('#pb5').val().replace(/%/g, '')) + parseFloat($('#pb6').val().replace(/%/g, '')) + parseFloat($('#pb7').val().replace(/%/g, '')) + parseFloat($('#pb8').val().replace(/%/g, '')) + parseFloat($('#pb9').val().replace(/%/g, ''));
+         
           $('#pbTotalPercent').val(totalVar.toFixed(1) + "%");
           $('#pbTableCountHeader').html('Peripheral blood (' + desiredCount + ' cells)');
           $('#microscopic').show();
@@ -1357,17 +1488,15 @@
           aspCounter();
         })
         $('#aspCountTable').change(function() {
-          $('#asp0').val(parseFloat($('#asp0').val().replace(/%/g, '')).toFixed(1) + "%");
-          $('#asp1').val(parseFloat($('#asp1').val().replace(/%/g, '')).toFixed(1) + "%");
-          $('#asp2').val(parseFloat($('#asp2').val().replace(/%/g, '')).toFixed(1) + "%");
-          $('#asp3').val(parseFloat($('#asp3').val().replace(/%/g, '')).toFixed(1) + "%");
-          $('#asp4').val(parseFloat($('#asp4').val().replace(/%/g, '')).toFixed(1) + "%");
-          $('#asp5').val(parseFloat($('#asp5').val().replace(/%/g, '')).toFixed(1) + "%");
-          $('#asp6').val(parseFloat($('#asp6').val().replace(/%/g, '')).toFixed(1) + "%");
-          $('#asp7').val(parseFloat($('#asp7').val().replace(/%/g, '')).toFixed(1) + "%");
-          $('#asp8').val(parseFloat($('#asp8').val().replace(/%/g, '')).toFixed(1) + "%");
-          $('#asp9').val(parseFloat($('#asp9').val().replace(/%/g, '')).toFixed(1) + "%");
-          var totalVar = parseFloat($('#asp0').val().replace(/%/g, '')) + parseFloat($('#asp1').val().replace(/%/g, '')) + parseFloat($('#asp2').val().replace(/%/g, '')) + parseFloat($('#asp3').val().replace(/%/g, '')) + parseFloat($('#asp4').val().replace(/%/g, '')) + parseFloat($('#asp5').val().replace(/%/g, '')) + parseFloat($('#asp6').val().replace(/%/g, '')) + parseFloat($('#asp7').val().replace(/%/g, '')) + parseFloat($('#asp8').val().replace(/%/g, '')) + parseFloat($('#asp9').val().replace(/%/g, ''));
+          var totalVar = 0;
+          $('.aspCellType').each(function() {
+            if ($(this).html().indexOf('NRBC') != -1) {
+              $('#' + this.id.replace('Label', '')).val(parseFloat($('#' + this.id.replace('Label', '')).val().replace(/%/g, '')))
+            } else {
+              $('#' + this.id.replace('Label', '')).val(parseFloat($('#' + this.id.replace('Label', '')).val().replace(/%/g, '')).toFixed(1) + "%")
+              totalVar += parseFloat($('#' + this.id.replace('Label', '')).val().replace(/%/g, ''))
+            }
+          })
           if ($('#asp4').val() != "0.0%") {
             $('#meRatio').val(((parseFloat($('#asp1').val().replace(/%/g, '')) + parseFloat($('#asp7').val().replace(/%/g, '')) + parseFloat($('#asp8').val().replace(/%/g, '')) + parseFloat($('#asp9').val().replace(/%/g, ''))) / parseFloat($('#asp4').val().replace(/%/g, ''))).toFixed(1) + ":1")
           } else {
@@ -1394,36 +1523,16 @@
           var totalCells = ($('#aspCount').val().match(/[0-9]/g) || []).length;
           $('#aspCCount').val(totalCells);
           if (totalCells != 0) {
-            var tempPercent = (Math.round(($('#aspCount').val().match(/7/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
-            $('#asp7').val(tempPercent + "%");
-            $('#aspNeutTable').html(tempPercent + "%");
-            tempPercent = (Math.round(($('#aspCount').val().match(/8/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1);
-            $('#asp8').val(tempPercent + "%");
-            $('#aspEoTable').html(tempPercent + "%");
-            tempPercent = (Math.round(($('#aspCount').val().match(/9/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
-            $('#asp9').val(tempPercent + "%");
-            $('#aspMonoTable').html(tempPercent + "%");
-            tempPercent = (Math.round(($('#aspCount').val().match(/4/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
-            $('#asp4').val(tempPercent + "%");
-            $('#aspNRBCTable').html(tempPercent + "%");
-            tempPercent = (Math.round(($('#aspCount').val().match(/5/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
-            $('#asp5').val(tempPercent + "%");
-            $('#aspLymphTable').html(tempPercent + "%");
-            tempPercent = (Math.round(($('#aspCount').val().match(/6/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1);
-            $('#asp6').val(tempPercent + "%");
-            $('#aspPlasmaTable').html(tempPercent + "%");
-            tempPercent = (Math.round(($('#aspCount').val().match(/1/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
-            $('#asp1').val(tempPercent + "%");
-            $('#aspBasoTable').html(tempPercent + "%");
-            tempPercent = (Math.round(($('#aspCount').val().match(/2/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
-            $('#asp2').val(tempPercent + "%");
-            $('#aspAtypicalTable').html(tempPercent + "%");
-            tempPercent = (Math.round(($('#aspCount').val().match(/3/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
-            $('#asp3').val(tempPercent + "%");
-            $('#aspOtherTable').html(tempPercent + "%");
-            tempPercent = (Math.round(($('#aspCount').val().match(/0/g) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
-            $('#asp0').val(tempPercent + "%");
-            $('#aspBlastTable').html(tempPercent + "%");
+            $('.aspCellType').each(function() {
+              var tempID = this.id.replace('Label', '')
+              var tempNumber = tempID.replace('asp', '')
+              var re = new RegExp(tempNumber, 'g');
+                var tempPercent = (Math.round(($('#aspCount').val().match(re) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
+                $('#' + tempID).val(tempPercent + "%");
+                $('#asp' + aspTypeList[tempNumber] + 'Table').html(tempPercent + "%");
+               totalVar += parseFloat($('#'+tempID).val().replace(/%/g, ''))
+                            
+            })
           }
           if (($('#aspCount').val().match(/4/g) || []).length != 0) {
             $('#meRatio').val(((($('#aspCount').val().match(/[7-9]|1/g) || []).length / ($('#aspCount').val().match(/4/g) || []).length).toFixed(1)) + ":1")
@@ -1476,7 +1585,14 @@
           var collectedDate = "";
           var cbcText = ""
           var cbcHeader = ""
-          var cbc = ["WBC", "HGB", "HCT", "MCV", "RDW", "PLT"];
+          var cbc = [
+            [" K/uL", "WBC", "WHITE BLOOD CELLS"],
+            [" g/dL", "HGB", "HEMOGLOBIN", "HEMOGLOBIN, BLOOD"],
+            ["%", "HCT", "HEMATOCRIT, BLOOD"],
+            [" fL", "MCV"],
+            ["%", "RDW", "RBC DIST WIDTH"],
+            [" K/uL", "PLT", "PLT CNT", "PLATELETS, BLOOD"]
+          ];
           var cbcLines = $('#pbCBC').val().split("\n")
           var pbText = ""
           for (var i = 0; i < cbcLines.length; i++) {
@@ -1484,7 +1600,8 @@
           }
           for (var i = 0; i < cbcFinal.length; i++) {
             for (var j = 0; j < cbcFinal[i].length; j++) {
-              if (cbcFinal[i][0].replace(/\s/g, '') == "WBC") {
+              cbcFinal[i][j] = cbcFinal[i][j].trim();
+              if (cbcFinal[i][0].replace(/\s/g, '') == "WBC" || cbcFinal[i][0].replace(/\s/g, '').indexOf('WHITE BLOOD CELLS') != -1) {
                 if (cbcFinal[i][j].indexOf("-") == -1 && /\d/.test(cbcFinal[i][j])) {
                   wbc = parseFloat(cbcFinal[i][j].replace(/[^\d.-]/g, ''));
                 } else if (cbcFinal[i][j].indexOf("-") != -1) {
@@ -1492,6 +1609,7 @@
                   wbcHigh = parseFloat(cbcFinal[i][j].split(" ")[2])
                 }
               }
+
               if (cbcFinal[i][0].replace(/\s/g, '') == "HGB") {
                 if (cbcFinal[i][j].indexOf("-") == -1 && /\d/.test(cbcFinal[i][j])) {
                   hgb = parseFloat(cbcFinal[i][j].replace(/[^\d.-]/g, ''));
@@ -1521,48 +1639,51 @@
                 }
               }
 
-              if (cbcFinal[i][0].indexOf("Absolute Neutrophils") != -1) {
+              if (cbcFinal[i][0].indexOf("Absolute Neutrophils") != -1 || cbcFinal[i][0].indexOf("GRAN #") != -1) {
                 if (cbcFinal[i][j].indexOf("-") != -1) {
                   neutLow = parseFloat(cbcFinal[i][j].split(" ")[0])
                   neutHigh = parseFloat(cbcFinal[i][j].split(" ")[2])
                 }
               }
 
-              if (cbcFinal[i][j].indexOf('Performed by') != -1) {
-                if (cbcFinal[i][j].replace(/Performed by:|\s/g, '') == 'NMH') {
+              if (cbcFinal[i].indexOf('Resulting Agency') != -1) {
+                if (cbcFinal[i].indexOf('NMH') != -1) {
                   var laboratory = "Northwestern Memorial Hospital"
+                } else if (cbcFinal[i].indexOf('MISYS') != -1) {
+                  var laboratory = "Lurie Children's Hospital of Chicago";
                 } else {
-                  var laboratory = cbcFinal[i][j].replace(/Performed by:|\s/g, '');
+                  var laboratory = cbcFinal[i][j];
                 }
               }
 
               if (cbcFinal[i][j].indexOf("Specimen Collected:") != -1) {
                 var cbcTemp = cbcFinal
                 collectedDate = cbcTemp[i][j].split(" ")[2]
-                cbcHeader = "<br> The following CBC is from " + collectedDate + " and was performed at " + laboratory + ":" + "<br>" + "<br>"
+                cbcHeader = "The following CBC is from " + collectedDate + " and was performed at " + laboratory + ":" + "<br>" + "<br>"
               }
             }
-            if (cbc.indexOf(cbcFinal[i][0].replace(/\s/g, '')) != -1) {
+            for (var y = 0; y < cbc.length; y++) {
+              if (cbc[y].indexOf(cbcFinal[i][0]) != -1) {
+                for (var j = 0; j < cbcFinal[i].length; j++) {
+                  if (cbcFinal[i][j].indexOf("-") != -1) {
+                    cbcUnit = " " + cbcFinal[i][j].replace(/[\d\.\s-]/g, '');
+                    if (cbcUnit.indexOf("%") != -1) {
+                      cbcUnit = cbcUnit.replace(/\s/g, '');
+                    }
+                  }
+                  if (cbcFinal[i][j].indexOf("-") == -1 && cbcToggle == 0 && /\d/.test(cbcFinal[i][j])) {
+                    if (cbc[cbc.length - 1].indexOf(cbcFinal[i][0]) != -1) {
+                      cbcText += cbc[y][1] + " " + cbcFinal[i][j].replace(/[^\d.-]/g, '') + cbc[y][0] + ".";
+                      cbcToggle = 1;
+                    } else {
 
-              for (var j = 0; j < cbcFinal[i].length; j++) {
-                if (cbcFinal[i][j].indexOf("-") != -1) {
-                  cbcUnit = " " + cbcFinal[i][j].replace(/[\d\.\s-]/g, '');
-                  if (cbcUnit.indexOf("%") != -1) {
-                    cbcUnit = cbcUnit.replace(/\s/g, '');
+                      cbcText += cbc[y][1] + " " + cbcFinal[i][j].replace(/[^\d.-]/g, '') + cbc[y][0] + "; ";
+                      cbcToggle = 1;
+                    }
                   }
                 }
-                if (cbcFinal[i][j].indexOf("-") == -1 && cbcToggle == 0 && /\d/.test(cbcFinal[i][j])) {
-                  if (cbcFinal[i][0].replace(/\s/g, '') == cbc[cbc.length - 1]) {
-                    cbcText += cbcFinal[i][0].replace(/\s/g, '') + " " + cbcFinal[i][j].replace(/[^\d.-]/g, '') + cbcUnit + ".";
-                    cbcToggle = 1;
-                  } else {
-
-                    cbcText += cbcFinal[i][0].replace(/\s/g, '') + " " + cbcFinal[i][j].replace(/[^\d.-]/g, '') + cbcUnit + "; ";
-                    cbcToggle = 1;
-                  }
-                }
+                cbcToggle = 0;
               }
-              cbcToggle = 0;
             }
           }
           $("#clinicalCBC").html(cbcHeader + cbcText);
@@ -1580,19 +1701,46 @@
           if ($('#themeColor').val() != "") {
             localStorage.setItem("themeColor", $('#themeColor').val());
           }
+          $('.pbCellTypeSave').each(function(){
+          if ($(this).val() == ""){
+          pbTypeList[this.id.replace('pbSave',"")] = $(this).attr('placeholder')
+          } else {
+          pbTypeList[this.id.replace('pbSave',"")] = $(this).val() 
+          }
+          })
+          localStorage.setItem("pbTypeList", JSON.stringify(pbTypeList));
+          pbTypeListChange(pbTypeList)
         })
+
+        function changeTheme(newThemeColor) {
+          $(".banner").css("background-color", newThemeColor);
+          $(".btn").css("background-color", newThemeColor);
+          $(".btn").css("border-color", newThemeColor);
+          $(".panel-heading").css("background-color", newThemeColor);
+          $(".panel").css("border-color", newThemeColor);
+          $(".panel-heading").css("border-color", newThemeColor);
+        }
+
+        $('#themeColor').change(function() {
+          changeTheme($('#themeColor').val());
+        })
+
+        $('#fcText').keyup(function() {
+          var dotFlow = [
+            ["chronicneg", "Flow cytometric immunophenotyping performed on the bone marrow aspirate reveals a polytypic B-cell population and a T-cell population without evidence of immunophenotypic abnormality based on the markers assayed."],
+            ["ballneg", "Flow cytometric immunophenotyping performed on the bone marrow aspirate reveals no immunophenotypic evidence of an abnormal B lymphoblast population"]
+          ]
+          for (var i = 0; i < dotFlow.length; i++) {
+            if ($('#fcText').val().indexOf("." + dotFlow[i][0] + " ") != -1) {
+              $('#fcText').val($('#fcText').val().replace("." + dotFlow[i][0] + " ", dotFlow[i][1]))
+            }
+          }
+        })
+
+        $('#flowHelp').click(function() {
         
-        function changeTheme(newThemeColor){
-        $(".banner").css("background-color", newThemeColor);
-        $(".btn").css("background-color", newThemeColor);
-        $(".btn").css("border-color", newThemeColor);
-        $(".panel-heading").css("background-color", newThemeColor);
-        $(".panel").css("border-color", newThemeColor);
-        $(".panel-heading").css("border-color", newThemeColor);
-}
+        togglePanel('flowHelpScreen')
         
-        $('#themeColor').change(function() { 
-        changeTheme($('#themeColor').val());
         })
       });
 
