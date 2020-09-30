@@ -696,6 +696,9 @@
                     <div class="h2">
                       Special Stains
                     </div>
+                    <div>
+                      Bone marrow aspirate
+                    </div>
                     <div id="specialStainsTable">
                       <table class='padleft' style="width:425px">
                         <tr>
@@ -898,7 +901,7 @@
         })
 
         $('#pbText').change(function() {
-          $('#bloodText').html($('#pbText').val());
+          $('#bloodText').html($('#pbText').val() + '<br><br>');
           $('#microscopic').show();
         })
 
@@ -1407,6 +1410,7 @@
               var tempID = this.id.replace('Label', '')
               var tempNumber = tempID.replace('pb', '')
               var re = new RegExp(tempNumber, 'g');
+                 console.log('#pb' + pbTypeList[tempNumber] + 'Table')
               if ($(this).html().indexOf('NRBC') != -1) {
                 $('#' + tempID).val((($('#pbCount').val().match(re) || []).length / (totalCells / 100)).toFixed(0));
                 $('#pb' + pbTypeList[tempNumber] + 'Table').html($('#' + tempID).val());
@@ -1489,9 +1493,12 @@
         $('#aspCountTable').change(function() {
           var totalVar = 0;
           $('.aspCellType').each(function() {
+            if ($(this).html().indexOf('NRBC') != -1) {
+              $('#' + this.id.replace('Label', '')).val(parseFloat($('#' + this.id.replace('Label', '')).val().replace(/%/g, '')))
+            } else {
               $('#' + this.id.replace('Label', '')).val(parseFloat($('#' + this.id.replace('Label', '')).val().replace(/%/g, '')).toFixed(1) + "%")
               totalVar += parseFloat($('#' + this.id.replace('Label', '')).val().replace(/%/g, ''))
-            
+            }
           })
           if ($('#asp4').val() != "0.0%") {
             $('#meRatio').val(((parseFloat($('#asp1').val().replace(/%/g, '')) + parseFloat($('#asp7').val().replace(/%/g, '')) + parseFloat($('#asp8').val().replace(/%/g, '')) + parseFloat($('#asp9').val().replace(/%/g, ''))) / parseFloat($('#asp4').val().replace(/%/g, ''))).toFixed(1) + ":1")
@@ -1499,14 +1506,14 @@
             $('#meRatio').val('-')
           }
           $('#aspTotalPercent').val(totalVar.toFixed(1) + "%");
-          $('#aspNeutsTable').html($('#asp7').val());
-          $('#aspEosTable').html($('#asp8').val());
+          $('#aspNeutTable').html($('#asp7').val());
+          $('#aspEoTable').html($('#asp8').val());
           $('#aspMonoTable').html($('#asp9').val());
-          $('#aspNRBCsTable').html($('#asp4').val());
-          $('#aspLymphsTable').html($('#asp5').val());
+          $('#aspNRBCTable').html($('#asp4').val());
+          $('#aspLymphTable').html($('#asp5').val());
           $('#aspPlasmaTable').html($('#asp6').val());
           $('#aspBasoTable').html($('#asp1').val());
-          $('#aspBlastsTable').html($('#asp0').val());
+          $('#aspBlastTable').html($('#asp0').val());
           $('#aspMETable').html($('#meRatio').val())
         })
 
