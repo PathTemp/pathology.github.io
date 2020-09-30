@@ -1662,7 +1662,7 @@
               if (cbcFinal[i][j].indexOf("Specimen Collected:") != -1) {
                 var cbcTemp = cbcFinal
                 collectedDate = cbcTemp[i][j].split(" ")[2]
-                cbcHeader = "The following CBC is from " + collectedDate + " and was performed at " + laboratory + ":" + "<br>" + "<br>"
+                cbcHeader = "The following CBC is from " + collectedDate + " and was performed at " + laboratory + ":"
               }
             }
             for (var y = 0; y < cbc.length; y++) {
@@ -1689,7 +1689,7 @@
               }
             }
           }
-          $("#clinicalCBC").html(cbcHeader + cbcText);
+          $("#clinicalCBC").html(cbcHeader + "<br><br>" + cbcText + "<br><br>");
           $('#clinical').show();
           $('#clinicalCBC').show();
           $('#peripheralBlood').show();
