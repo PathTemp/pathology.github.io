@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
 
   <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
     <script src="https://kit.fontawesome.com/f6f9c2cc49.js" crossorigin="anonymous"></script>
     <style>
       ::-webkit-input-placeholder {
@@ -36,7 +36,8 @@
 
       label {
         font-weight: Normal;
-        padding-right: 15px
+        padding-right: 15px;
+        padding-left: 0px;
       }
 
       table {
@@ -61,6 +62,13 @@
         padding-left: 10px;
       }
 
+      a:link {
+        text-decoration: none;
+      }
+
+      a:visited {
+        text-decoration: none;
+      }
 
       .noborder {
         border: none;
@@ -77,14 +85,96 @@
         z-index: 10;
       }
 
-      .banner2 {
-        background-color: rgb(43, 60, 90);
+      .bannertop {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        align-items: stretch;
+        border: solid black;
+      }
+
+      .bannertopitem {
         color: white;
         font-size: 20pt;
         font-weight: bold;
-        height: 48px;
-        border-top: solid black;
-        border-bottom: solid black;
+        padding: 0;
+        margin: 0;
+        flex-basis: 33.33%;
+        background-color: rgb(43, 60, 90);
+      }
+
+      .bannerbottom {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        align-items: stretch;
+        border-top: none;
+      }
+
+      .bannerbottomitem {
+        color: white;
+        font-size: 20pt;
+        font-weight: bold;
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        flex-basis: 50%;
+        background-color: rgb(43, 60, 90);
+      }
+
+      .flex-div {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+      }
+
+      .flex-table-div {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        width: 100%;
+        align-content: stretch;
+        justify-content: space-between;
+      }
+
+      .panelleft {
+        box-sizing: border-box;
+        flex-basis: 50%;
+        border-right: solid black;
+        min-height: 100vh;
+      }
+
+      .panelright {
+        flex-basis: 50%;
+      }
+
+      .template-body {
+        padding: 10px;
+      }
+
+      .rightpanelbutton {
+        cursor: pointer;
+      }
+
+      .spread {
+        padding-top: 5px;
+        padding-bottom: 5px;
+      }
+
+      .table-flex {
+        flex-basis: 70%;
+      }
+
+      .table-settings-flex {
+        flex-basis: 25%;
       }
 
       .labelnopad {
@@ -153,9 +243,11 @@
         background-color: rgb(43, 60, 90);
         color: white;
         display: flex;
-        border: solid black;
-        justify-content: space-between;
-        border-top: none;
+        justify-content: space-around;
+        border-left: solid black;
+        border-right: solid black;
+        border-bottom: solid black;
+        -webkit-flex-flow: row wrap;
       }
 
       .iconPanel {
@@ -177,23 +269,24 @@
         overflow-y: scroll;
       }
 
-      html,
       body {
-        height: 100vh;
+        margin: 0px;
       }
 
-      .extendRight {
-        border-right: solid black;
+      html,
+      body {
+        margin: 0;
+        height: 100vh;
       }
 
       .copyHead {
         background-color: rgb(43, 60, 90);
         color: white;
-        border: solid black;
         display: flex;
-        justify-content: space-between;
-        border-left: none;
-        border-top: none;
+        justify-content: space-around;
+        border-right: solid black;
+        border-bottom: solid black;
+        -webkit-flex-flow: row wrap;
       }
 
       .copyPanel:hover {
@@ -203,8 +296,6 @@
       .copyText:hover {
         color: rgb(200, 200, 200);
       }
-
-
 
       .copyPanel {
         font-size: 20pt;
@@ -224,6 +315,16 @@
       .neg {
         margin-top: -32px;
       }
+      
+      .side-pad {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+      .a {
+        font-family: Arial;
+        font-size: 12pt;
+      }
 
 
       }
@@ -238,409 +339,375 @@
   <body>
     <div class="container-fluid" id="bmTemp">
       <div class="banner">
-        <div class="row">
-          <div class="col-xs-3 banner2" style='border-left: solid black'>
+        <div class="bannertop">
+          <div class="bannertopitem">
           </div>
-          <div class='col-xs-6 banner2' style='text-align: center; line-height: 48px'>
+          <div class='bannertopitem ' style='text-align: center; padding: 8px'>
             Bone Marrow Template
           </div>
-          <div class='col-xs-3 banner2 text-nowrap position-fixed ' style='text-align: right; border-right: solid black'>
+          <div class='bannertopitem' style='text-align: right'>
 
             <i class="clickedIcon fas fa-list pad rightpanelbutton" id="templateButton"></i>
-            <i class="icon fas fa-cog pad rightpanelbutton" id='settingsButton'></i>
+            <i class="icon fas fa-book pad rightpanelbutton" id='educationButton'></i>
             <i class="icon far fa-question-circle pad rightpanelbutton" id="helpButton"></i>
-            <i class="icon fas fa-book pad rightpanelbutton" id='educationButton' style='padding-right:-200px'></i>
+            <i class="icon fas fa-cog pad rightpanelbutton" id='settingsButton'></i>
           </div>
-
         </div>
-        <div class="row">
-          <div class='col-xs-6 iconHead'>
+        <div class="bannerbottom">
+          <div class='bannerbottomitem iconHead'>
             <i class="iconPanel clickedIcon fas fa-male pad" id='patient'></i>
             <i class="iconPanel icon fas fa-tint pad" id='blood'></i>
             <i class="iconPanel icon fas fa-syringe pad" id='aspirate'></i>
             <i class="iconPanel icon fas fa-bone pad" id='bone'></i>
             <i class="iconPanel icon fab fa-fulcrum pad" id='flow'></i>
           </div>
-          <div class='col-xs-6 copyHead' id='copyPanel'>
+          <div class='bannerbottomitem copyHead' id='copyPanel'>
             <span><i class="copyPanel icon fas fa-copy copy" style="text-align: left"></i></span><span class="copy copyText" id="everythingCopy">All</span><span class="copy copyText" id="finalCopy">Final</span><span class="copy copyText" id="clinicalCopy">Clinical</span><span class="copy copyText" id="microscopicCopy">Microscopic</span><span class="copy copyText" id="grossCopy">Gross</span>
 
           </div>
         </div>
       </div>
-      <div class="row container-1" style="min-height: calc(100vh - 48px); display: flex">
-        <div class="col-xs-6 extendRight">
-
-          <div class="row">
-            <div class="template-body pad" id="patientPanel">
-              <div class="bottom" style="text-align: center; font-size: 14pt">
-                <b>Patient/Specimen Characteristics</b>
+      <div class="flex-div">
+        <div class="panelleft">
+          <div class="template-body" id="patientPanel">
+            <div class="bottom" style="text-align: center; font-size: 14pt">
+              <b>Patient/Specimen Characteristics</b>
+            </div>
+            <p><b>Laterality:</b></p>
+            <div class="radio" id="latAll">
+              <label><input type="radio" name="laterality" value="" id="latR">Right</label>
+              <label><input type="radio" name="laterality" value="" id="latL">Left</label>
+              <label><input type="radio" name="laterality" value="" id="latB">Bilateral</label>
+              <label><input type="radio" name="laterality" value="" id="latN">Not Specified</label>
+            </div>
+            <p><b>Specimens:</b></p>
+            <div class="radio bottom">
+              <label><input type="radio" name="specNum" value="" id='specFive'>All Common Specimens</label>
+            </div>
+            <div class="checkbox" id='specTypes'>
+              <div>
+                <label><input type="checkbox" value="" id='specPBSmear'>Peripheral Blood Smear </label>
               </div>
-              <p><b>Laterality:</b></p>
-              <div class="radio" id="latAll">
-                <label><input type="radio" name="laterality" value="" id="latR">Right</label>
-                <label><input type="radio" name="laterality" value="" id="latL">Left</label>
-                <label><input type="radio" name="laterality" value="" id="latB">Bilateral</label>
-                <label><input type="radio" name="laterality" value="" id="latN">Not Specified</label>
+              <div>
+                <label><input type="checkbox" value="" id='specASmear'>Aspirate Smear</label>
+                <span id="aspDiv" style="display: none"><input type="input" value="" id='aspSize' name='age' maxlength="3" size="2"> cc
+                </span>
               </div>
-
-              <p><b>Specimens:</b></p>
-              <div class="radio">
-                <label><input type="radio" name="specNum" value="" id='specFive'>All Common Specimens</label>
+              <div>
+                <label><input type="checkbox" value="" id='specClot'>Particle Clot</label>
               </div>
-              <div class="checkbox" id='specTypes'>
-                <div class="row left">
-                  <label><input type="checkbox" value="" id='specPBSmear'>Peripheral Blood Smear </label>
-                </div>
-                <div class="row left">
-                  <label><input type="checkbox" value="" id='specASmear'>Aspirate Smear</label>
-                  <span id="aspDiv" style="display: none"><input type="input" value="" id='aspSize' name='age' maxlength="3" size="2"> cc
-                  </span>
-                </div>
-                <div class="row left">
-                  <label><input type="checkbox" value="" id='specClot'>Particle Clot</label>
-                </div>
-                <div class="row left">
+              <div>
 
-                  <label><input type="checkbox" value="" id='specCore' name='CORE BIOPSY'>Core Biopsy</label>
-                  <span id="coreDiv" style="display: none">
-                    <input type="input" value="" id='coreSize1' maxlength="3" size="2"> cm &nbsp
-                    <input type="input" value="" id='coreSize2' maxlength="3" size="2"> cm (if present)
-                  </span>
-                </div>
-                <div class="row left bottom">
+                <label><input type="checkbox" value="" id='specCore' name='CORE BIOPSY'>Core Biopsy</label>
+                <span id="coreDiv" style="display: none">
+                  <input type="input" value="" id='coreSize1' maxlength="3" size="2"> cm &nbsp
+                  <input type="input" value="" id='coreSize2' maxlength="3" size="2"> cm (if present)
+                </span>
+              </div>
+              <div class="bottom">
 
-                  <label><input type="checkbox" value="" id='specTouch'>Touch Imprint</label>
-                </div>
-                <div class="row left">
-                  <label><input type="checkbox" value="" id='specFlow'>Flow Cytometry</label>
-                </div>
-                <div class="row left">
-                  <label><input type="checkbox" value="" id='specGen'>Cytogenetics</label>
-                </div>
-                <div class="row left">
-                  <label><input type="checkbox" value="" id='specFISH'>FISH</label><input type="text" list="fish" id='fishList' style="display: none">
-                  <datalist id="fish">
-                    <option value="AML"></option>
-                    <option value="Myeloma"></option>
-                    <option value="MDS/MPN"></option>
-                  </datalist>
-                </div>
-                <div class="row left">
-                  <label><input type="checkbox" value="" id='specMolec'>Molecular</label><input type="text" list='molec' id='molecList' style="display: none">
-                  <datalist id="molec">
-                    <option value="NGS"></option>
-                  </datalist>
-                </div>
-                <div class="row left bottom">
-                  <label><input type="checkbox" value="" id='specPCLI'>Plasma Cell Labeling Index</label>
+                <label><input type="checkbox" value="" id='specTouch'>Touch Imprint</label>
+              </div>
+              <div>
+                <label><input type="checkbox" value="" id='specFlow'>Flow Cytometry</label>
+              </div>
+              <div>
+                <label><input type="checkbox" value="" id='specGen'>Cytogenetics</label>
+              </div>
+              <div>
+                <label><input type="checkbox" value="" id='specFISH'>FISH</label><input type="text" list="fish" id='fishList' style="display: none">
+                <datalist id="fish">
+                  <option value="AML"></option>
+                  <option value="Myeloma"></option>
+                  <option value="MDS/MPN"></option>
+                </datalist>
+              </div>
+              <div>
+                <label><input type="checkbox" value="" id='specMolec'>Molecular</label><input type="text" list='molec' id='molecList' style="display: none">
+                <datalist id="molec">
+                  <option value="NGS"></option>
+                </datalist>
+              </div>
+              <div class="bottom">
+                <label><input type="checkbox" value="" id='specPCLI'>Plasma Cell Labeling Index</label>
+              </div>
+              <div>
+                <b>Clinical History:</b>
+                <p></p>
+                Age: <input type="input" value="" id='clinAge' name='age' maxlength="3" size="3"><br><br> <textarea rows="4" id="chText" style="width: 100%"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="template-body" id="bloodPanel" style="display: none">
+            <div class="bottom" style="text-align: center; font-size: 14pt">
+              <b>Peripheral Blood</b>
+            </div>
+
+            <b>Paste CBC Here:</b><textarea rows="1" id="pbCBC" style="width: 100%">
+</textarea><br><br>
+            <div class="flex-table-div">
+              <div class="table-flex" id="pbCountTable">
+                <table class="center" style="width: 100%">
+                  <tr>
+                    <td><label id="pbLabel7" class="pbCellType labelnopad"><b>7.</b> Neuts</label><br>
+                      <input type="text" id="pb7" maxlength="5" size="3"></td>
+                    <td><label id="pbLabel8" class="pbCellType labelnopad"><b>8.</b> Lymphs</label><br>
+                      <input type="text" id="pb8" maxlength="5" size="3"></td>
+                    <td><label id="pbLabel9" class="pbCellType labelnopad"><b>9.</b> Mono</label><br>
+                      <input type="text" id="pb9" maxlength="5" size="3"></td>
+                  </tr>
+                  <tr>
+                    <td><label id="pbLabel4" class="pbCellType labelnopad"><b>4.</b> Eos</label><br>
+                      <input type="text" id="pb4" maxlength="5" size="3"></td>
+                    <td><label id="pbLabel5" class="pbCellType labelnopad"><b>5.</b> Baso</label><br>
+                      <input type="text" id="pb5" maxlength="5" size="3"></td>
+                    <td><label id="pbLabel6" class="pbCellType labelnopad"><b>6.</b> Plasma</label><br>
+                      <input type="text" id="pb6" maxlength="5" size="3"></td>
+                  </tr>
+                  <tr>
+                    <td><label id="pbLabel1" class="pbCellType labelnopad"><b>1.</b> NRBCs</label><br>
+                      <input type="text" id="pb1" maxlength="5" size="3"></td>
+                    <td><label id="pbLabel2" class="pbCellType labelnopad"><b>2.</b> Atypical</label><br>
+                      <input type="text" id="pb2" maxlength="5" size="3"></td>
+                    <td><label id="pbLabel3" class="pbCellType labelnopad"><b>3. </b><input type="input" value="" placeholder="Other" size="3"></label><br>
+                      <input type="text" id="pb3" maxlength="5" size="3"></td>
+                  </tr>
+                  <tr>
+                    <td class='noborder'></td>
+                    <td><label id="pbLabel0" class="pbCellType labelnopad"><b>0.</b> Blasts</label><br>
+                      <input type="text" id="pb0" maxlength="5" size="3"></td>
+                    <td class='noborder'></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="table-settings-flex">
+                <div>
+                  <label for="fname">Current Count:</label><br>
+                  <input type="text" id="pbCCount" maxlength="5" size="3">
                 </div>
                 <div>
-                  <b>Clinical History:</b>
-                  <p></p>
-                  Age: <input type="input" value="" id='clinAge' name='age' maxlength="3" size="3"><br><br> <textarea rows="4" id="chText" style="width: 100%"></textarea>
+                  <label for="fname">Desired Count:</label><br>
+                  <input type="text" id="pbDCount" list="pbDList" maxlength="4" size="3" placeholder="200"><datalist id="pbDList">
+                    <option value="100"></option>
+                    <option value="200"></option>
+                    <option value="300"></option>
+                    <option value="400"></option>
+                    <option value="500"></option>
+                  </datalist>
+                </div>
+                <div>
+                  <label for="fname">Total %</label><br>
+                  <input type="text" id="pbTotalPercent" maxlength="6" size="3">
                 </div>
               </div>
             </div>
-            <div class="template-body pad" id="bloodPanel" style="display: none">
-              <div class="bottom" style="text-align: center; font-size: 14pt">
-                <b>Peripheral Blood</b>
-              </div>
-
-              <b>Paste CBC Here:</b><textarea rows="1" id="pbCBC" style="width: 100%">
-</textarea>
-              <div class="row">
-                <div class="col-xs-9" id="pbCountTable">
-                  <table class="center" style="width:100%">
-                    <tr>
-                      <td><label id="pbLabel7" class="pbCellType labelnopad"><b>7.</b> Neuts</label><br>
-                        <input type="text" id="pb7" maxlength="5" size="3"></td>
-                      <td><label id="pbLabel8" class="pbCellType labelnopad"><b>8.</b> Lymphs</label><br>
-                        <input type="text" id="pb8" maxlength="5" size="3"></td>
-                      <td><label id="pbLabel9" class="pbCellType labelnopad"><b>9.</b> Mono</label><br>
-                        <input type="text" id="pb9" maxlength="5" size="3"></td>
-                    </tr>
-                    <tr>
-                      <td><label id="pbLabel4" class="pbCellType labelnopad"><b>4.</b> Eos</label><br>
-                        <input type="text" id="pb4" maxlength="5" size="3"></td>
-                      <td><label id="pbLabel5" class="pbCellType labelnopad"><b>5.</b> Baso</label><br>
-                        <input type="text" id="pb5" maxlength="5" size="3"></td>
-                      <td><label id="pbLabel6" class="pbCellType labelnopad"><b>6.</b> Plasma</label><br>
-                        <input type="text" id="pb6" maxlength="5" size="3"></td>
-                    </tr>
-                    <tr>
-                      <td><label id="pbLabel1" class="pbCellType labelnopad"><b>1.</b> NRBCs</label><br>
-                        <input type="text" id="pb1" maxlength="5" size="3"></td>
-                      <td><label id="pbLabel2" class="pbCellType labelnopad"><b>2.</b> Atypical</label><br>
-                        <input type="text" id="pb2" maxlength="5" size="3"></td>
-                      <td><label id="pbLabel3" class="pbCellType labelnopad"><b>3. </b><input type="input" value="" placeholder="Other" size="3"></label><br>
-                        <input type="text" id="pb3" maxlength="5" size="3"></td>
-                    </tr>
-                    <tr>
-                      <td class='noborder'></td>
-                      <td><label id="pbLabel0" class="pbCellType labelnopad"><b>0.</b> Blasts</label><br>
-                        <input type="text" id="pb0" maxlength="5" size="3"></td>
-                      <td class='noborder'></td>
-                    </tr>
-                  </table>
-                </div>
-                <div class="col-xs-3">
-                  <div>
-                    <label for="fname">Current Count:</label><br>
-                    <input type="text" id="pbCCount" maxlength="5" size="3">
-                  </div>
-                  <div>
-                    <label for="fname">Desired Count:</label><br>
-                    <input type="text" id="pbDCount" list="pbDList" maxlength="4" size="3" placeholder="200"><datalist id="pbDList">
-                      <option value="100"></option>
-                      <option value="200"></option>
-                      <option value="300"></option>
-                      <option value="400"></option>
-                      <option value="500"></option>
-                    </datalist>
-                  </div>
-                  <div>
-                    <label for="fname">Total %</label><br>
-                    <input type="text" id="pbTotalPercent" maxlength="6" size="3">
-                  </div>
-                </div>
-              </div>
+            <div>
               <b>Count Here:</b><textarea rows="4" id="pbCount" style="width: 100%">
 </textarea>
-              <div>
-                <b>Performed By: </b><input type="input" value="" id='pbPerformed'>
-              </div>
-              <div id="pbDescriptors">
-                <b>RBCs:</b> <label><input type="radio" name="rbc" value="" id='rbcNL'> Unremarkable</label><label><input type="checkbox" name="rbc" value="" id='rbcPC'> Polychromasia</label><label><input type="checkbox" name="rbc" value="" id='rbcAP'> Anisopoikilocytosis</label>
-                <div id="anisoDiv" style="display: none">
-
+            </div>
+            <div class="spread">
+              <b>Performed By: </b><input type="text" id="pbPerformed" list="pbPList" size="30"><datalist id="pbPList">
+                <option value="MaryAnn Hrisinko, MT (ASCP)"></option>
+                <option value="Pinal Patel, MLS (ASCP)"></option>
+              </datalist>
+            </div>
+            <div id="pbDescriptors">
+              <div class="flex-div spread" style="flex-wrap: wrap">
+                <div>
+                  <b>RBCs:</b>
+                  <label for='rbcNL'><input type="radio" name="rbc" value="" id='rbcNL'> Unremarkable</label>
                 </div>
+                <div>
+                  <label for='rbcPC'><input type="checkbox" name="rbc" value="" id='rbcPC'> Polychromasia</label>
+                </div>
+                <div>
+                  <label for='rbcAP' style="word-wrap: break-word"><input type="checkbox" name="rbc" value="" id='rbcAP'> Anisopoikilocytosis</label>
+                </div>
+              </div>
+              <div id="anisoDiv" style="display: none">
+              </div>
+              <div class="flex-div spread" style="flex-wrap: wrap">
                 <div>
                   <b>Neutrophils: </b><label><input type="radio" name="neut" value="" id='neutNL'> Unremarkable </label>
-                  <label><input type="checkbox" class="pbNeut" name="neut" value="" id='neutTC'> Toxic change</label><label><input type="checkbox" class="pbNeut" name="neut" value="" id='neutLS'> Left shift</label>
                 </div>
                 <div>
-                  <b>Platelets: </b><label><input type="radio" name="plt" value="" id='pltNL'> Unremarkable</label>
-                  <label><input type="radio" name="plt" value="" id='pltLP'> Occasional large platelets</label>
-
+                  <label><input type="checkbox" class="pbNeut" name="neut" value="" id='neutTC'> Toxic change</label>
+                </div>
+                <div>
+                  <label><input type="checkbox" class="pbNeut" name="neut" value="" id='neutLS'> Left shift</label>
                 </div>
               </div>
+              <div class="flex-div spread" style="flex-wrap: wrap">
+                <div>
+                  <b>Platelets: </b><label><input type="radio" name="plt" value="" id='pltNL'> Unremarkable</label>
+                </div>
+                <div>
+                  <label><input type="radio" name="plt" value="" id='pltLP'> Occasional large platelets</label>
+                </div>
+              </div>
+              <div class="flex-div spread" id='pbBlastDiv' style="display: none">
+                <div>
+                  <b>Blasts: </b><label><input type="radio" name="pbBlast" value="" id='pbBlastFrequent'> Frequent</label>
+                </div>
+                <div>
+                  <label><input type="radio" name="pbBlast" value="" id='pbBlastOccasional'> Occasional</label>
+                </div>
+                <div>
+                  <label><input type="radio" name="pbBlast" value="" id='pbBlastRare'> Rare</label>
+                </div>
+              </div>
+            </div>
+            <div class="spread">
               <b>Peripheral Blood Text:</b><textarea rows="4" id="pbText" style="width: 100%">
 </textarea>
             </div>
-            <div class="template-body pad" id="aspiratePanel" style="display: none">
-              <div class="bottom" style="text-align: center; font-size: 14pt">
-                <b>Bone Marrow Aspirate</b>
+          </div>
+          <div class="template-body" id="aspiratePanel" style="display: none">
+            <div class="bottom" style="text-align: center; font-size: 14pt">
+              <b>Bone Marrow Aspirate</b>
+            </div>
+            <div class="flex-table-div">
+              <div class="table-flex" id="aspCountTable">
+                <table class="center" style="width:100%">
+                  <tr>
+                    <td><label id="aspLabel7" class="aspCellType"><b>7.</b> Neuts</label><br>
+                      <input type="text" id="asp7" maxlength="5" size="3"></td>
+                    <td><label id="aspLabel8" class="aspCellType"><b>8.</b> Eos</label><br>
+                      <input type="text" id="asp8" maxlength="5" size="3"></td>
+                    <td><label id="aspLabel9" class="aspCellType"><b>9.</b> Mono</label><br>
+                      <input type="text" id="asp9" maxlength="5" size="3"></td>
+                  </tr>
+                  <tr>
+                    <td><label id="aspLabel4" class="aspCellType"><b>4.</b> NRBCs</label><br>
+                      <input type="text" id="asp4" maxlength="5" size="3"></td>
+                    <td><label id="aspLabel5" class="aspCellType"><b>5.</b> Lymphs</label><br>
+                      <input type="text" id="asp5" maxlength="5" size="3"></td>
+                    <td><label id="aspLabel6" class="aspCellType"><b>6.</b> Plasma</label><br>
+                      <input type="text" id="asp6" maxlength="5" size="3"></td>
+                  </tr>
+                  <tr>
+                    <td><label id="aspLabel1" class="aspCellType"><b>1.</b> Baso</label><br>
+                      <input type="text" id="asp1" maxlength="5" size="3"></td>
+                    <td><label id="aspLabel2" class="aspCellType"><b>2.</b> Atypical</label><br>
+                      <input type="text" id="asp2" maxlength="5" size="3"></td>
+                    <td><label id="aspLabel3" class="aspCellType"><b>3.</b> Other</label><br>
+                      <input type="text" id="asp3" maxlength="5" size="3"></td>
+                  </tr>
+                  <tr>
+                    <td class="noborder"></td>
+                    <td><label id="aspLabel0" class="aspCellType"><b>0.</b> Blasts</label><br>
+                      <input type="text" id="asp0" maxlength="5" size="3"></td>
+                    <td class="noborder"></td>
+                  </tr>
+                </table>
               </div>
-              <div class="row">
-                <div class="col-xs-9" id="aspCountTable">
-                  <table class="center" style="width:100%">
-                    <tr>
-                      <td><label id="aspLabel7" class="aspCellType"><b>7.</b> Neuts</label><br>
-                        <input type="text" id="asp7" maxlength="5" size="3"></td>
-                      <td><label id="aspLabel8" class="aspCellType"><b>8.</b> Eos</label><br>
-                        <input type="text" id="asp8" maxlength="5" size="3"></td>
-                      <td><label id="aspLabel9" class="aspCellType"><b>9.</b> Mono</label><br>
-                        <input type="text" id="asp9" maxlength="5" size="3"></td>
-                    </tr>
-                    <tr>
-                      <td><label id="aspLabel4" class="aspCellType"><b>4.</b> NRBCs</label><br>
-                        <input type="text" id="asp4" maxlength="5" size="3"></td>
-                      <td><label id="aspLabel5" class="aspCellType"><b>5.</b> Lymphs</label><br>
-                        <input type="text" id="asp5" maxlength="5" size="3"></td>
-                      <td><label id="aspLabel6" class="aspCellType"><b>6.</b> Plasma</label><br>
-                        <input type="text" id="asp6" maxlength="5" size="3"></td>
-                    </tr>
-                    <tr>
-                      <td><label id="aspLabel1" class="aspCellType"><b>1.</b> Baso</label><br>
-                        <input type="text" id="asp1" maxlength="5" size="3"></td>
-                      <td><label id="aspLabel2" class="aspCellType"><b>2.</b> Atypical</label><br>
-                        <input type="text" id="asp2" maxlength="5" size="3"></td>
-                      <td><label id="aspLabel3" class="aspCellType"><b>3.</b> Other</label><br>
-                        <input type="text" id="asp3" maxlength="5" size="3"></td>
-                    </tr>
-                    <tr>
-                      <td class="noborder"></td>
-                      <td><label id="aspLabel0" class="aspCellType"><b>0.</b> Blasts</label><br>
-                        <input type="text" id="asp0" maxlength="5" size="3"></td>
-                      <td class="noborder"></td>
-                    </tr>
-                  </table>
+              <div class="table-settings-flex">
+                <div>
+                  <label for="fname">Current Count:</label><br>
+                  <input type="text" id="aspCCount" maxlength="4" size="3">
                 </div>
-                <div class="col-xs-3">
-                  <div>
-                    <label for="fname">Current Count:</label><br>
-                    <input type="text" id="aspCCount" maxlength="4" size="3">
-                  </div>
-                  <div>
-                    <label for="fname">Desired Count:</label><br>
-                    <input type="text" id="aspDCount" list="aspDList" maxlength="4" size="3" placeholder="500"><datalist id="aspDList">
-                      <option value="100"></option>
-                      <option value="200"></option>
-                      <option value="300"></option>
-                      <option value="400"></option>
-                      <option value="500"></option>
-                    </datalist>
-                  </div>
-                  <div>
-                    <label for="fname">M:E ratio:</label><br>
-                    <input type="text" id="meRatio" maxlength="4" size="3">
-                  </div>
-                  <div>
-                    <label for="fname">Total %</label><br>
-                    <input type="text" id="aspTotalPercent" maxlength="6" size="3">
-                  </div>
+                <div>
+                  <label for="fname">Desired Count:</label><br>
+                  <input type="text" id="aspDCount" list="aspDList" maxlength="4" size="3" placeholder="500"><datalist id="aspDList">
+                    <option value="100"></option>
+                    <option value="200"></option>
+                    <option value="300"></option>
+                    <option value="400"></option>
+                    <option value="500"></option>
+                  </datalist>
+                </div>
+                <div>
+                  <label for="fname">M:E ratio:</label><br>
+                  <input type="text" id="meRatio" maxlength="4" size="3">
+                </div>
+                <div>
+                  <label for="fname">Total %</label><br>
+                  <input type="text" id="aspTotalPercent" maxlength="6" size="3">
                 </div>
               </div>
+            </div>
+            <div>
               <b>Count Here:</b>
               <textarea rows="4" id="aspCount" style="width: 100%; max-width: 100%">
 </textarea>
-              <div id="aspirateDiv">
-                <b>Adequacy:</b> <label><input class='adequacy' type="radio" name="adequacy" value="" id='aspAdequate'> Adequate</label><label><input class='adequacy' type="radio" value="" name="adequacy" id='aspInadequate'> Inadequate</label>
+            </div>
+            <div id="aspirateDiv">
+              <div class="flex-div spread" style="flex-wrap: wrap">
+                <div>
+                  <b>Adequacy:</b> <label><input class='adequacy' type="radio" name="adequacy" value="" id='aspAdequate'> Adequate</label>
+                </div>
+                <div>
+                  <label><input class='adequacy' type="radio" value="" name="adequacy" id='aspInadequate'> Inadequate</label>
+                </div>
                 <div id='aspDescriptorDiv'>
                 </div>
+              </div>
+              <div class="flex-div spread" style="flex-wrap: wrap">
                 <div>
                   <b>Erythroid Precursors: </b><label><input type="checkbox" value="" id='aspErythNL'> Unremarkable</label>
-                  <div><label><input type="checkbox" value="" id='aspErythNI' name='blasts'> Not increased</label><label><input type="checkbox" value="" id='aspErythInc' name='blasts'> Increased</label></div>
                 </div>
-                <div>
-                  <b>Myeloid Precursors: </b><label><input type="checkbox" value="" id='aspMyeloidNL'> Unremarkable</label>
-                  <div>
-                    <label><input type="radio" value="" id='aspMyeloidNI' name='aspMyeloidQuant'> Not increased</label><label><input type="radio" value="" id='aspMyeloidInc' name='aspMyeloidQuant'> Increased</label>
-                  </div>
+                <div><label><input type="radio" value="" id='aspErythNI' name='aspErythroidQuant'> Not increased</label>
                 </div>
+                <div><label><input type="radio" value="" id='aspErythInc' name='aspErythroidQuant'> Increased</label></div>
+              </div>
+              <div class="flex-div spread" style="flex-wrap: wrap">
+                <b>Myeloid Precursors: </b><label><input type="checkbox" value="" id='aspMyeloidNL'> Unremarkable</label>
                 <div>
-                  <b>Megakaryocytes:</b> <label><input type="radio" value="" id='aspMegAdeq' name='megs'> Adequate</label><label><input type="radio" value="" id='aspMegDec' name='megs'> Decreased</label><label><input type="radio" value="" id='aspMegInc' name='megs'> Increased</label>
-                  <div><label><input type="radio" value="" id='aspMegNL'> Unremarkable</label><label><input type="checkbox" value="" id='aspMegHF'> Hyplobated forms</label><label><input type="checkbox" value="" id='aspMegSN'> Separation of nuclei</label></div>
-                </div>
-                <div>
-                  <b>Blasts: </b><label><input type="checkbox" value="" id='aspBlastNI' name='blasts'> Not increased</label><label><input type="checkbox" value="" id='aspBlastInc' name='blasts'> Increased</label>
+                  <label><input type="radio" value="" id='aspMyeloidNI' name='aspMyeloidQuant'> Not increased</label><label><input type="radio" value="" id='aspMyeloidInc' name='aspMyeloidQuant'> Increased</label>
                 </div>
               </div>
-              <b>Aspirate Smear/Touch Preparation Text:</b><textarea rows="4" id="aspText" style="width: 100%">
+              <div>
+                <b>Megakaryocytes:</b> <label><input type="radio" value="" id='aspMegAdeq' name='megs'> Adequate</label><label><input type="radio" value="" id='aspMegDec' name='megs'> Decreased</label><label><input type="radio" value="" id='aspMegInc' name='megs'> Increased</label>
+                <div><label><input type="radio" value="" id='aspMegNL'> Unremarkable</label><label><input type="checkbox" value="" id='aspMegHF'> Hyplobated forms</label><label><input type="checkbox" value="" id='aspMegSN'> Separation of nuclei</label></div>
+              </div>
+              <div>
+                <b>Blasts: </b><label><input type="radio" value="" id='aspBlastNI' name='aspBlast'> Not increased</label><label><input type="radio" value="" id='aspBlastInc' name='aspBlast'> Increased</label>
+              </div>
+            </div>
+            <div class="spread">
+            <b>Aspirate Smear/Touch Preparation Text:</b><textarea rows="4" id="aspText" style="width: 100%">
 </textarea>
-              <div id='ironStainDiv'>
-                <label><input type="checkbox" checked='true' id='ironStain'> Iron Stain</label><br>
-                <b>Storage Iron: </b>
-                <label><input type="radio" name='ironQuant' id='ironStainInc'> Increased</label>
-                <label><input type="radio" name='ironQuant' id='ironStainAdeq'> Adequate</label>
-                <label><input type="radio" name='ironQuant' id='ironStainDec'> Decreased</label><br>
-                <b>Ring Sideroblasts: </b>
-                <label><input type="radio" name='ring' id='ringAbsent'> Absent</label>
-                <label><input type="radio" name='ring' id='ringPresent'> Present</label>
-              </div>
+            </div>       
+            <div id='ironStainDiv'>
+            <div>
+            <label><input type="checkbox" checked='true' id='ironStain'> Iron Stain</label>
             </div>
-            <div class="template-body pad" id="bonePanel" style="display: none">
-              <div class="bottom" style="text-align: center; font-size: 14pt">
-                <b>Bone Marrow Core Biopsy</b>
-              </div>
-              Text <div>
-              </div>
+            <div>
+            <b>Storage Iron: </b>
+              <label><input type="radio" name='ironQuant' id='ironStainInc'> Increased</label>
             </div>
-            <div class="template-body pad" id="flowPanel" style="display: none">
-              <div class="bottom" style="text-align: center; font-size: 14pt">
-                <b>Flow Cytometry</b>
-              </div><i class="icon far fa-question-circle rightalign" id="flowHelp"></i><textarea rows="4" id="fcText" style="width: 100%"></textarea>
+            <div>
+            <label><input type="radio" name='ironQuant' id='ironStainAdeq'> Adequate</label>
             </div>
+            <div>
+            <label><input type="radio" name='ironQuant' id='ironStainDec'> Decreased</label><br>
+            </div>
+            <div>
+            <div>
+             <b>Ring Sideroblasts: </b>
+              <label><input type="radio" name='ring' id='ringAbsent'> Absent</label>
+            </div>
+            <div>
+            <label><input type="radio" name='ring' id='ringPresent'> Present</label>
+            </div> 
+            </div>   
+            </div>
+          </div>
+          <div class="template-body" id="bonePanel" style="display: none">
+            <div class="bottom" style="text-align: center; font-size: 14pt">
+              <b>Bone Marrow Core Biopsy</b>
+            </div>
+            Text <div>
+            </div>
+          </div>
+          <div class="template-body" id="flowPanel" style="display: none">
+            <div class="bottom" style="text-align: center; font-size: 14pt">
+              <b>Flow Cytometry</b>
+            </div><i class="icon far fa-question-circle rightalign" id="flowHelp"></i><textarea rows="4" id="fcText" style="width: 100%"></textarea>
           </div>
         </div>
-        <div class="col-xs-6 extendLeft" id='rightDiv'>
-          <div id="helpScreen" class="rightpanel neg" style="display: none">
-            This is the help screen for people that need help.
-          </div>
-          <div id="flowDocumentationScreen" class="rightpanel neg" style="display: none">
-            <div class="header">
-              Flow Templates
-            </div>
-            Chronic:
-          </div>
-          <div id="settingsScreen" class="rightpanel neg" style="display: none">
-            <div>
-              Performed By: <input type="input" value="" id='savePerformed'>
-            </div>
-            <div>
-              Theme Color: <input type="color" id="themeColor" name="favcolor" value=#3379b7>
-            </div>
-            <div>
-              Peripheral Blood Count Orientation: (Under Construction Do Not Use)
-              <table class="center" style="width:100%">
-                <tr>
-                  <td><b>7. </b><input type="text" id="pbSave7" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
-                  <td><b>8. </b><input type="text" id="pbSave8" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
-                  <td><b>9. </b><input type="text" id="pbSave9" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
-                </tr>
-                <tr>
-                  <td><b>4. </b><input type="text" id="pbSave4" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
-                  <td><b>5. </b><input type="text" id="pbSave5" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
-                  <td><b>6. </b><input type="text" id="pbSave6" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
-                </tr>
-                <tr>
-                  <td><b>1. </b><input type="text" id="pbSave1" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
-                  <td><b>2. </b><input type="text" id="pbSave2" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
-                  <td><b>3. </b><input type="text" id="pbSave3" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
-                </tr>
-                <tr>
-                  <td class='noborder'></td>
-                  <td><b>0.</b><input type="text" id="pbSave0" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
-                  <td class='noborder'></td>
-                </tr>
-              </table>
-              <datalist id="cellTypeList">
-                <option value="Atypical"></option>
-                <option value="Baso"></option>
-                <option value="Blasts"></option>
-                <option value="Eos"></option>
-                <option value="Lymphs"></option>
-                <option value="Mono"></option>
-                <option value="Neuts"></option>
-                <option value="NRBCs"></option>
-                <option value="Other"></option>
-                <option value="Plasma"></option>
-              </datalist>
-            </div>
-            <div>
-              Aspirate Smear Count Orientation: (Under Construction Do Not Use)
-              <table class="center" style="width:100%">
-                <tr>
-                  <td><b>7. </b><input type="text" id="aspSave7" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
-                  <td><b>8. </b><input type="text" id="aspSave8" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
-                  <td><b>9. </b><input type="text" id="aspSave9" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
-                </tr>
-                <tr>
-                  <td><b>4. </b><input type="text" id="aspSave4" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
-                  <td><b>5. </b><input type="text" id="aspSave5" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
-                  <td><b>6. </b><input type="text" id="aspSave6" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
-                </tr>
-                <tr>
-                  <td><b>1. </b><input type="text" id="aspSave1" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
-                  <td><b>2. </b><input type="text" id="aspSave2" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
-                  <td><b>3. </b><input type="text" id="aspSave3" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
-                </tr>
-                <tr>
-                  <td class='noborder'></td>
-                  <td><b>0.</b><input type="text" id="aspSave0" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
-                  <td class='noborder'></td>
-                </tr>
-              </table>
-              <datalist id="cellTypeList">
-                <option value="Atypical"></option>
-                <option value="Baso"></option>
-                <option value="Blasts"></option>
-                <option value="Eos"></option>
-                <option value="Lymphs"></option>
-                <option value="Mono"></option>
-                <option value="Neuts"></option>
-                <option value="NRBCs"></option>
-                <option value="Other"></option>
-                <option value="Plasma"></option>
-              </datalist>
-            </div><br>
-
-            <button type="button" class="btn btn-primary" id="saveAll">Save Settings</button>
-          </div>
-          <div id="educationScreen" class="rightpanel neg" style="display: none">
-            This will be where educational references will be.
-          </div>
-          <div id="templateScreen" class="rightpanel" style="">
+        <div class="panelright" id='rightDiv'>
+          <div id="templateScreen" class="rightpanel side-pad">
             <div class="final" id="final2"></div>
             <div id="everythingCopyText" class='top'>
               <div id="final" style="display: none">
@@ -825,6 +892,114 @@
               </div>
             </div>
           </div>
+          <div id="helpScreen" class="rightpanel neg side-pad" style="display: none">
+            <h3 style="margin-top: 0px">
+              About:
+            </h3>
+            This is a web based application intended as a proof of concept for the standardized reporting of bone marrow biopsies in a smart template format. This application was enirely created by myself, Michael Moravek, MD, and is currently under construction. The project is not intended for clinical use in it's current state.<br><br>
+            If you have any questions or feedback, feel free to contact me:<br>
+            <a href="mailto: MikeMoravek@gmail.com"><i class="fas fa-envelope-square" style="color: rgb(0,172,238); font-size: 12pt"></i> MikeMoravek@gmail.com</a><br>
+            <a href="https://twitter.com/moravekmd"><i class="fab fa-twitter-square" style="color: rgb(0,172,238); font-size: 12pt" target="_blank"></i> @MoravekMD</a>
+          </div>
+          <div id="settingsScreen" class="rightpanel neg side-pad" style="display: none">
+            <h3 style="margin-top: 0px">
+              Settings:
+            </h3>
+            <div>
+              Performed By: <input type="input" value="" id='savePerformed'>
+            </div>
+            <div>
+              Theme Color: <input type="color" id="themeColor" name="favcolor" value=#3379b7>
+            </div>
+            <div>
+              Peripheral Blood Count Orientation: (Under Construction Do Not Use)
+              <table class="center" style="width:100%">
+                <tr>
+                  <td><b>7. </b><input type="text" id="pbSave7" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
+                  <td><b>8. </b><input type="text" id="pbSave8" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
+                  <td><b>9. </b><input type="text" id="pbSave9" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
+                </tr>
+                <tr>
+                  <td><b>4. </b><input type="text" id="pbSave4" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
+                  <td><b>5. </b><input type="text" id="pbSave5" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
+                  <td><b>6. </b><input type="text" id="pbSave6" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
+                </tr>
+                <tr>
+                  <td><b>1. </b><input type="text" id="pbSave1" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
+                  <td><b>2. </b><input type="text" id="pbSave2" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
+                  <td><b>3. </b><input type="text" id="pbSave3" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
+                </tr>
+                <tr>
+                  <td class='noborder'></td>
+                  <td><b>0.</b><input type="text" id="pbSave0" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
+                  <td class='noborder'></td>
+                </tr>
+              </table>
+              <datalist id="cellTypeList">
+                <option value="Atypical"></option>
+                <option value="Baso"></option>
+                <option value="Blasts"></option>
+                <option value="Eos"></option>
+                <option value="Lymphs"></option>
+                <option value="Mono"></option>
+                <option value="Neuts"></option>
+                <option value="NRBCs"></option>
+                <option value="Other"></option>
+                <option value="Plasma"></option>
+              </datalist>
+            </div>
+            <div>
+              Aspirate Smear Count Orientation: (Under Construction Do Not Use)
+              <table class="center" style="width:100%">
+                <tr>
+                  <td><b>7. </b><input type="text" id="aspSave7" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
+                  <td><b>8. </b><input type="text" id="aspSave8" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
+                  <td><b>9. </b><input type="text" id="aspSave9" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
+                </tr>
+                <tr>
+                  <td><b>4. </b><input type="text" id="aspSave4" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
+                  <td><b>5. </b><input type="text" id="aspSave5" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
+                  <td><b>6. </b><input type="text" id="aspSave6" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
+                </tr>
+                <tr>
+                  <td><b>1. </b><input type="text" id="aspSave1" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
+                  <td><b>2. </b><input type="text" id="aspSave2" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
+                  <td><b>3. </b><input type="text" id="aspSave3" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
+                </tr>
+                <tr>
+                  <td class='noborder'></td>
+                  <td><b>0.</b><input type="text" id="aspSave0" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
+                  <td class='noborder'></td>
+                </tr>
+              </table>
+              <datalist id="cellTypeList">
+                <option value="Atypical"></option>
+                <option value="Baso"></option>
+                <option value="Blasts"></option>
+                <option value="Eos"></option>
+                <option value="Lymphs"></option>
+                <option value="Mono"></option>
+                <option value="Neuts"></option>
+                <option value="NRBCs"></option>
+                <option value="Other"></option>
+                <option value="Plasma"></option>
+              </datalist>
+            </div><br>
+
+            <button type="button" class="btn btn-primary" id="saveAll">Save Settings</button>
+          </div>
+          <div id="educationScreen" class="rightpanel neg side-pad" style="display: none">
+            <h3 style="margin-top: 0px">
+              References:
+            </h3>
+            This will be where educational references will be.
+          </div>
+          <div id="flowDocumentationScreen" class="rightpanel neg side-pad" style="display: none">
+            <div class="header">
+              Flow Templates
+            </div>
+            Chronic:
+          </div>
         </div>
       </div>
     </div>
@@ -834,7 +1009,7 @@
         var performedName = localStorage.getItem("performedName");
         var themeColor = localStorage.getItem("themeColor");
         if (performedName != null && performedName != "null") {
-          $('#pbPerformed').val(performedName);
+          $('#pbPerformed').attr('placeholder', performedName);
           $('#savePerformed').val(performedName);
         }
         if (themeColor != null && themeColor != "null") {
@@ -988,20 +1163,6 @@
           document.execCommand("copy");
           document.getElementById('final2').removeChild(aux);
         }
-        $('#specFour').on('change keyup', function() {
-          if ($('#specFour').prop('checked')) {
-            $('#specCore').prop('checked', true);
-            $('#specTouch').prop('checked', true);
-            $('#specClot').prop('checked', true);
-            $('#specASmear').prop('checked', true);
-            $('#specPBSmear').prop('checked', false);
-          }
-          showDivs();
-          specCheck = true;
-          if (latCheck == true) {
-            grossDescription();
-          }
-        })
 
         $('#specTypes').on('change keyup', function() {
           showDivs();
@@ -1106,6 +1267,18 @@
             if ($('#pb1').val() > 0) {
               pbText += ' Nucleated red blood cells are seen.'
             }
+            console.log($('#pb0').val())
+            if (parseInt($('#pb0').val()) > 0) {
+              if ($('#pbBlastFrequent').prop('checked')) {
+                pbText += ' Frequent circulating blasts are identified.'
+              } else if ($('#pbBlastOccasional').prop('checked')) {
+                pbText += ' Occasional circulating blasts are identified.'
+              } else if ($('#pbBlastRare').prop('checked')) {
+                pbText += ' Rare circulating blasts are identified.'
+              } else {
+                pbText += ' Circulating blasts are identified.'
+              }
+            }
 
             if ($('#pbCount').val() != "") {
               var lymphocytes = parseInt($('#pb8').val()) / 100 * wbc;
@@ -1129,10 +1302,10 @@
               } else if ($('#neutTC').prop('checked')) {
                 pbText += ' and show toxic changes'
                 if ($('#neutLS').prop('checked')) {
-                  pbText += ' and a left shift to immaturity'
+                  pbText += ' and a shift to immaturity'
                 }
               } else if ($('#neutLS').prop('checked')) {
-                pbText += ' and show a left shift to immaturity'
+                pbText += ' and show a shift to immaturity'
               }
               pbText += '.'
             }
@@ -1207,8 +1380,9 @@
           $('#aspirateSmear').show();
           $('#aspirateText').show();
           $('#microscopic').show();
-        });
-        $('#aspirateText').html($('#aspText').val());
+        })
+
+        $('#aspirateText').html($('#aspText').val())
 
         function fillAsp() {
           var aspText = "";
@@ -1574,6 +1748,10 @@
           aspDescriptorList = aspDescriptorList.filter(Boolean);
         }
 
+        $('#pbPerformed').change(function() {
+          pbCounter();
+        })
+
         function pbCounter() {
           $('#specPBSmear').prop('checked', true);
           if ($('#pbDCount').val() == "") {
@@ -1591,7 +1769,6 @@
               var tempID = this.id.replace('Label', '')
               var tempNumber = tempID.replace('pb', '')
               var re = new RegExp(tempNumber, 'g');
-              console.log('#pb' + pbTypeList[tempNumber] + 'Table')
               if ($(this).html().indexOf('NRBC') != -1) {
                 $('#' + tempID).val((($('#pbCount').val().match(re) || []).length / (totalCells / 100)).toFixed(0));
                 $('#pb' + pbTypeList[tempNumber] + 'Table').html($('#' + tempID).val());
@@ -1605,8 +1782,10 @@
           }
           if ($('#pbCount').val().indexOf(pbTypeList.indexOf('Blasts')) != -1) {
             $('#pbBlastRow').show();
+            $('#pbBlastDiv').show();
           } else {
             $('#pbBlastRow').hide();
+            $('#pbBlastDiv').hide();
           }
 
           if ($('#pbCount').val().indexOf(pbTypeList.indexOf('NRBCs')) != -1) {
@@ -1643,9 +1822,14 @@
           if ($('#pbCBC').val() != "") {
             fillPB();
           }
-          if ($('#pbPerformed').val() != "") {
+
+          if ($('#pbPerformed').val() == "" && $('#pbPerformed').attr('placeholder') != undefined) {
+            $('#performedText').html('Performed by:   ' + $('#pbPerformed').attr('placeholder') + '<br><br>')
+          } else if ($('#pbPerformed').val() != "") {
+            console.log(2)
             $('#performedText').html('Performed by:   ' + $('#pbPerformed').val() + '<br><br>')
           }
+
         }
 
         $('#aspCount').keydown(function(e) {
@@ -1671,6 +1855,7 @@
           $('#aspTableCountHeader').html('Aspirate Smear (' + desiredCount + ' cells)');
           aspCounter();
         })
+
         $('#aspCountTable').change(function() {
           var totalVar = 0;
           $('.aspCellType').each(function() {
@@ -1682,7 +1867,6 @@
           } else {
             $('#meRatio').val('-')
           }
-          console.log($('#asp7').val())
           $('#aspTotalPercent').val(totalVar.toFixed(1) + "%");
           $('#aspNeutsTable').html($('#asp7').val());
           $('#aspEosTable').html($('#asp8').val());
@@ -1894,7 +2078,7 @@
         })
 
         function changeTheme(newThemeColor) {
-          $(".banner2").css("background-color", newThemeColor);
+          $(".bannertopitem").css("background-color", newThemeColor);
           $(".btn").css("background-color", newThemeColor);
           $(".btn").css("border-color", newThemeColor);
           $(".panel-heading").css("background-color", newThemeColor);
