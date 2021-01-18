@@ -1987,6 +1987,13 @@
         
 })
 
+$('#tpText').keyup(function(){
+$('#touchPrepText').html($('#tpText').val() + '<br><br>')
+          $('#aspirateSmear').show();
+          $('#touchPrepText').show();
+          $('#microscopic').show();
+})
+
         $('#ironStainDiv').change(function() {
           var ironText = "";
           if ($('#ironStain').prop('checked')) {
