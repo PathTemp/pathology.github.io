@@ -341,8 +341,9 @@
       <div class="banner">
         <div class="bannertop">
           <div class="bannertopitem">
+          <i class="fas fa-bars pad" id="menu"></i>
           </div>
-          <div class='bannertopitem ' style='text-align: center; padding: 8px'>
+          <div class='bannertopitem' style='text-align: center; padding: 8px'>
             Bone Marrow Template
           </div>
           <div class='bannertopitem' style='text-align: right'>
@@ -561,6 +562,7 @@
               <b>Peripheral Blood Text:</b><textarea rows="4" id="pbText" style="width: 100%">
 </textarea>
             </div>
+           
           </div>
           <div class="template-body" id="aspiratePanel" style="display: none">
             <div class="bottom" style="text-align: center; font-size: 14pt">
@@ -656,22 +658,35 @@
                   <label><input type="radio" value="" id='aspMyeloidNI' name='aspMyeloidQuant'> Not increased</label><label><input type="radio" value="" id='aspMyeloidInc' name='aspMyeloidQuant'> Increased</label>
                 </div>
               </div>
-              <div>
+              <div class="flex-div spread" style="flex-wrap: wrap">
                 <b>Megakaryocytes:</b> <label><input type="radio" value="" id='aspMegAdeq' name='megs'> Adequate</label><label><input type="radio" value="" id='aspMegDec' name='megs'> Decreased</label><label><input type="radio" value="" id='aspMegInc' name='megs'> Increased</label>
                 <div><label><input type="radio" value="" id='aspMegNL'> Unremarkable</label><label><input type="checkbox" value="" id='aspMegHF'> Hyplobated forms</label><label><input type="checkbox" value="" id='aspMegSN'> Separation of nuclei</label></div>
               </div>
-              <div>
+              <div class="flex-div spread" style="flex-wrap: wrap">
                 <b>Blasts: </b><label><input type="radio" value="" id='aspBlastNI' name='aspBlast'> Not increased</label><label><input type="radio" value="" id='aspBlastInc' name='aspBlast'> Increased</label>
               </div>
             </div>
             <div class="spread">
-            <b>Aspirate Smear/Touch Preparation Text:</b><textarea rows="4" id="aspText" style="width: 100%">
+            <b>Aspirate Smear Text:</b><textarea rows="4" id="aspText" style="width: 100%">
 </textarea>
-            </div>       
+            </div>
+             <div id ='touchPrepDiv' class="flex-div spread" style="flex-wrap: wrap">
+                <div>
+                  <b>Touch Preparation: </b><label><input type="radio" name="touchPrep" value="" id='touchPrepSimilar'> Similar to Aspirate</label>
+                </div>
+                <div>
+                  <label><input type="radio" name="touchPrep" value="" id='touchPrepDifferent'> Free Text</label>
+                </div>           
+              </div>
+              <div>
+<b>Touch Preparation Text:</b><textarea rows="4" id="tpText" style="width: 100%">
+</textarea>
+</div>
             <div id='ironStainDiv'>
             <div>
             <label><input type="checkbox" checked='true' id='ironStain'> Iron Stain</label>
             </div>
+            <div class="flex-div spread" style="flex-wrap: wrap">
             <div>
             <b>Storage Iron: </b>
               <label><input type="radio" name='ironQuant' id='ironStainInc'> Increased</label>
@@ -680,9 +695,13 @@
             <label><input type="radio" name='ironQuant' id='ironStainAdeq'> Adequate</label>
             </div>
             <div>
-            <label><input type="radio" name='ironQuant' id='ironStainDec'> Decreased</label><br>
+            <label><input type="radio" name='ironQuant' id='ironStainDec'> Decreased</label>           
             </div>
-            <div>
+                        <div>
+            <label><input type="radio" name='ironQuant' id='ironNoSpicules'> Not enough spicules</label>           
+            </div>
+            </div>
+            <div class="flex-div spread" style="flex-wrap: wrap">
             <div>
              <b>Ring Sideroblasts: </b>
               <label><input type="radio" name='ring' id='ringAbsent'> Absent</label>
@@ -860,11 +879,14 @@
                     </div>
                     <div id="aspirateText" style="display: none">
                     </div>
+                    <div id="touchPrepText" style="display: none">               
+                    </div>
                   </div>
                   <div id="specialStains" style="display: none">
                     <div class="h2">
                       Special Stains
                     </div>
+                    Bone marrow aspirate
                     <div id="specialStainsTable">
                       <table class='padleft' style="width:425px">
                         <tr>
@@ -1025,7 +1047,10 @@
           pbTypeListChange(pbTypeList);
         }
 
-        var countAudio = 'https://diffpath.github.io/media/Count-Click2.wav';
+        var countAudioBlast = 'https://diffpath.github.io/media/Count-Click-Blast.mp3';
+        var countAudioLow = 'https://diffpath.github.io/media/Count-Click-Low.mp3';
+        var countAudioMed = 'https://diffpath.github.io/media/Count-Click-Med.mp3';
+        var countAudioHigh = 'https://diffpath.github.io/media/Count-Click-High.mp3';
         var hundredAudio = 'https://diffpath.github.io/media/100-Soothing.wav';
         var finishedAudio = 'https://diffpath.github.io/media/Complete-Nice.mp3';
         var aspTypeList = ['Blasts', 'Baso', 'Atypical', 'Other', 'NRBCs', 'Lymphs', 'Plasma', 'Neuts', 'Eos', 'Mono'];
@@ -1396,12 +1421,13 @@
             aspText += "The bone marrow aspirate smears are " + listText(aspDescriptorList) + " precluding a meaningful marrow differential. "
           }
           if ($('#aspErythNL').prop('checked') && $('#aspMyeloidNL').prop('checked')) {
-            aspText += "Erythroid and myeloid precursors show progressive maturation with unremarkable morphology. "
-          } else if ($('#aspErythNL').prop('checked')) {
-            aspText += "Erythroid precursors show progressive maturation with unremarkable morphology. "
+            aspText += "Myeloid and erythroid precursors show progressive maturation with unremarkable morphology. "
           } else if ($('#aspMyeloidNL').prop('checked')) {
             aspText += "Myeloid precursors show progressive maturation with unremarkable morphology. "
           }
+          else if ($('#aspErythNL').prop('checked')) {
+            aspText += "Erythroid precursors show progressive maturation with unremarkable morphology. "
+          } 
           if ($('#aspMegAdeq').prop('checked')) {
             aspText += "Megakaryocytes are adequate"
             aspText = fillMegs(aspText);
@@ -1412,6 +1438,11 @@
             aspText += "Megakaryocytes are increased"
             aspText = fillMegs(aspText);
           }
+          
+          if ($('#aspBlastNI').prop('checked')) {
+          	aspText += "Blasts are not significantly increased. "
+          }
+          
           if ($('#asp'))
             $('#aspText').val(aspText);
           $('#aspirateText').html($('#aspText').val() + '<br><br>');
@@ -1428,10 +1459,10 @@
           } else if ($('#aspMegSN').prop('checked')) {
             aspText += " with separation of nuclei"
           }
-          aspText += "."
+          aspText += ". "
           return aspText
         }
-
+        
         function showDivs() {
           if ($('#specCore').prop('checked')) {
             $('#coreDiv').show();
@@ -1618,8 +1649,19 @@
           if (window.keypressed[e.which]) {
             e.preventDefault();
           } else {
-            window.keypressed[e.which] = true;
-            new Audio(countAudio).play()
+          if (e.which == 55 || e.which == 56 || e.which == 57){
+          window.keypressed[e.which] = true;
+          new Audio(countAudioHigh).play();
+          } else if (e.which == 52 || e.which == 53 || e.which == 54){
+          window.keypressed[e.which] = true;
+          new Audio(countAudioMed).play();
+          } else if (e.which == 49 || e.which == 50 || e.which == 51){
+          window.keypressed[e.which] = true;
+          new Audio(countAudioLow).play();
+          } else if (e.which == 48){
+          window.keypressed[e.which] = true;
+          new Audio(countAudioBlast).play();
+          }             
           }
         })
 
@@ -1836,8 +1878,19 @@
           if (window.keypressed[e.which]) {
             e.preventDefault();
           } else {
-            window.keypressed[e.which] = true;
-            new Audio(countAudio).play()
+          if (e.which == 55 || e.which == 56 || e.which == 57){
+          window.keypressed[e.which] = true;
+          new Audio(countAudioHigh).play();
+          } else if (e.which == 52 || e.which == 53 || e.which == 54){
+          window.keypressed[e.which] = true;
+          new Audio(countAudioMed).play();
+          } else if (e.which == 49 || e.which == 50 || e.which == 51){
+          window.keypressed[e.which] = true;
+          new Audio(countAudioLow).play();
+          } else if (e.which == 48){
+          window.keypressed[e.which] = true;
+          new Audio(countAudioBlast).play();
+          }             
           }
         })
 
@@ -1920,6 +1973,19 @@
             $('#performedText').html('Performed by:   ' + $('#pbPerformed').val() + '<br><br>')
           }
         }
+        
+        $('#touchPrepDiv').change(function(){
+        
+        if ($('#touchPrepSimilar').prop('checked')){
+        var touchPrep = "The bone marrow touch preparations are cellular and show findings similar to the aspirate smears."
+         $('#tpText').val(touchPrep);
+        	$('#touchPrepText').html($('#tpText').val() + '<br><br>')
+          $('#aspirateSmear').show();
+          $('#touchPrepText').show();
+          $('#microscopic').show();      
+        }
+        
+})
 
         $('#ironStainDiv').change(function() {
           var ironText = "";
@@ -1930,6 +1996,8 @@
               ironText += "There is adequate storage iron.";
             } else if ($('#ironStainDec').prop('checked')) {
               ironText += "There is decreased storage iron.";
+            } else if ($('#ironNoSpicules').prop('checked')) {
+              ironText += "There are too few spicules for assessment of storage iron.";
             }
             if ($('#ringPresent').prop('checked')) {
               ironText += " Ring sideroblasts are identified.";
