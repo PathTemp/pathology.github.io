@@ -1649,16 +1649,17 @@
           if (window.keypressed[e.which]) {
             e.preventDefault();
           } else {
-          if (e.which == 55 || e.which == 56 || e.which == 57){
+          console.log(e.which)
+          if (e.which == 55 || e.which == 56 || e.which == 57 || e.which == 103 || e.which == 104 || e.which == 105){
           window.keypressed[e.which] = true;
           new Audio(countAudioHigh).play();
-          } else if (e.which == 52 || e.which == 53 || e.which == 54){
+          } else if (e.which == 52 || e.which == 53 || e.which == 54 || e.which == 100 || e.which == 101 || e.which == 102){
           window.keypressed[e.which] = true;
           new Audio(countAudioMed).play();
-          } else if (e.which == 49 || e.which == 50 || e.which == 51){
+          } else if (e.which == 49 || e.which == 50 || e.which == 51 || e.which == 97 || e.which == 98 || e.which == 99){
           window.keypressed[e.which] = true;
           new Audio(countAudioLow).play();
-          } else if (e.which == 48){
+          } else if (e.which == 48 || e.which == 96){
           window.keypressed[e.which] = true;
           new Audio(countAudioBlast).play();
           }             
@@ -1878,16 +1879,17 @@
           if (window.keypressed[e.which]) {
             e.preventDefault();
           } else {
-          if (e.which == 55 || e.which == 56 || e.which == 57){
+          console.log(e.which)
+          if (e.which == 55 || e.which == 56 || e.which == 57 || e.which == 103 || e.which == 104 || e.which == 105){
           window.keypressed[e.which] = true;
           new Audio(countAudioHigh).play();
-          } else if (e.which == 52 || e.which == 53 || e.which == 54){
+          } else if (e.which == 52 || e.which == 53 || e.which == 54 || e.which == 100 || e.which == 101 || e.which == 102){
           window.keypressed[e.which] = true;
           new Audio(countAudioMed).play();
-          } else if (e.which == 49 || e.which == 50 || e.which == 51){
+          } else if (e.which == 49 || e.which == 50 || e.which == 51 || e.which == 97 || e.which == 98 || e.which == 99){
           window.keypressed[e.which] = true;
           new Audio(countAudioLow).play();
-          } else if (e.which == 48){
+          } else if (e.which == 48 || e.which == 96){
           window.keypressed[e.which] = true;
           new Audio(countAudioBlast).play();
           }             
@@ -1985,13 +1987,6 @@
           $('#microscopic').show();      
         }
         
-})
-
-$('#tpText').keyup(function(){
-$('#touchPrepText').html($('#tpText').val() + '<br><br>')
-          $('#aspirateSmear').show();
-          $('#touchPrepText').show();
-          $('#microscopic').show();
 })
 
         $('#ironStainDiv').change(function() {
