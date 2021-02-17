@@ -324,7 +324,14 @@
         font-family: Arial;
         font-size: 12pt;
       }
-
+      .other {
+  width: 100%;
+  display: flex;
+      }
+      
+      .otherInput {
+        flex:2;
+      }
 
       }
 
@@ -435,9 +442,10 @@
                   <input type="checkbox" id="agglutination">
                   <label for="agglutination"><b>RBC8:</b> Red blood cells show agglutination (see comment).</label>
                 </div>
-                <div id="rbcOtherDiv">
+                <div id="rbcOtherDiv" class="other">
                   <input type="checkbox" id="rbcOther">
-                  <label for="rbcOther"><b>Other:</b></label>
+                  <label for="rbcOther">&nbsp<b>Other:</b></label>
+                  <input type="text" class="otherInput">
                 </div>
               </div>
               <br>
@@ -605,32 +613,91 @@
                 <label for="RBCC11"><b>RBCC11</b> Red blood cell agglutination resolves by preheating, consistent with a cold agglutinin.</label>
               </div>
             </div>
-            <div><br>
+            <br>
+            <div>
               <span><b><u>Neutrophil/blast Comments</u></b><input type="checkbox" id="neutBlastCommentsShow" class="left">
                 <label for="neutBlastCommentsShow"> Show all</label></span>
               <div id="WBCC1Div">
                 <input type="checkbox" id="WBCC1">
                 <label for="WBCC1"><b>WBCC1</b> The etiology of the neutrophilia is unclear. Suggest follow up to rule out persistence.</label>
               </div>
-                            <div id="WBCC2Div">
+              <div id="WBCC2Div">
                 <input type="checkbox" id="WBCC2">
                 <label for="WBCC2"><b>WBCC2</b> The etiology of the neutropenia is unclear.</label>
               </div>
-                            <div id="WBCC3Div">
+              <div id="WBCC3Div">
                 <input type="checkbox" id="WBCC3">
                 <label for="WBCC3"><b>WBCC3</b> The findings are consistent with recent history of colony stimulating factor therapy.</label>
               </div>
-                            <div id="WBCC4Div">
+              <div id="WBCC4Div">
                 <input type="checkbox" id="WBCC4">
                 <label for="WBCC4"><b>WBCC4</b> The findings are worrisome for a myeloid neoplasm.</label>
               </div>
-                            <div id="WBCC5Div">
+              <div id="WBCC5Div">
                 <input type="checkbox" id="WBCC5">
                 <label for="WBCC5"><b>WBCC5</b> If clinically indicated, molecular analysis suggested, including BCR-ABL1, JAK-2, CALR</label>
               </div>
-                            <div id="WBCC6Div">
+              <div id="WBCC6Div">
                 <input type="checkbox" id="WBCC6">
                 <label for="WBCC6"><b>WBCC6</b> The findings are consistent with acute leukemia. Correlation with flow cytometry is suggested.</label>
+              </div>
+            </div>
+            <br>
+            <div>
+              <span><b><u>Lymphocyte Comments</u></b><input type="checkbox" id="lymphCommentsShow" class="left">
+                <label for="lymphCommentsShow"> Show all</label></span>
+              <div id="WBCC7Div">
+                <input type="checkbox" id="WBCC7">
+                <label for="WBCC7"><b>WBCC7</b> The etiology of the lymphocytosis is uncleaar, but is favored to be reactive.</label>
+              </div>
+              <div id="WBCC8Div">
+                <input type="checkbox" id="WBCC8">
+                <label for="WBCC8"><b>WBCC8</b> The etiology of the lymphocytisis is unclear. Suggest repeat CBC and differential to rule out persistance.</label>
+              </div>
+              <div id="WBCC9Div">
+                <input type="checkbox" id="WBCC9">
+                <label for="WBCC9"><b>WBCC9</b> The findings raise the possibility of a lymphoproliferative disorder. If clinically indicated, flow cytometric analysis may be considered for further evaluation.</label>
+              </div>
+              <div id="WBCC10Div">
+                <input type="checkbox" id="WBCC10">
+                <label for="WBCC10"><b>WBCC10</b> The findins raise the possibility of an acute viral infection. Correlation with clinical and serologic findings is recommended.</label>
+              </div>
+              <div id="WBCC11Div">
+                <input type="checkbox" id="WBCC11">
+                <label for="WBCC11"><b>WBCC11</b> The morphologic findings, together with the positive heterophile antibody test, are consistent with infectious mononucleosis. Clinical correlation is suggested.</label>
+              </div>
+              <div id="WBCC12Div">
+                <input type="checkbox" id="WBCC12">
+                <label for="WBCC12"><b>WBCC12</b> The findings are consistent with the patient's history of chronic lymphocytic leukemia.</label>
+              </div>
+            </div>
+            <br>
+            <div>
+              <span><b><u>Platelet Comments</u></b><input type="checkbox" id="plateletCommentsShow" class="left">
+                <label for="neutBlastCommentsShow"> Show all</label></span>
+              <div id="PLTC1Div">
+                <input type="checkbox" id="PLTC1">
+                <label for="PLTC1"><b>PLTC1</b> The etiology of the thrombocytopenia is not clear on review of the peripheral blood smear. There is no morphologic evidence of acute microangiopathic hemolysis. Clinical correlation is suggested.</label>
+              </div>
+                            <div id="PLTC2Div">
+                <input type="checkbox" id="PLTC2">
+                <label for="PLTC2"><b>PLTC2</b> The etiology of the thrombocytosis is not clear. Suggest follow up with CBC to rule out persistence.</label>
+              </div>
+                            <div id="PLTC3Div">
+                <input type="checkbox" id="PLTC3">
+                <label for="PLTC3"><b>PLTC3</b> The etiology of the thrombocytosis is not clear.</label>
+              </div>
+                            <div id="PLTC4Div">
+                <input type="checkbox" id="PLTC4">
+                <label for="PLTC4"><b>PLTC4</b> Platelet clumping is present; therefore, the automated platelet count may be an underestimate. If clinically indicated, redraw in a citrated (blue top) tube is suggested.</label>
+              </div>
+                            <div id="PLTC5Div">
+                <input type="checkbox" id="PLTC5">
+                <label for="PLTC5"><b>PLTC5</b> Platelet clumping is present, preventing an accurate reporting of platelet count by automated instrument. If clinically indicated, redraw in a citrated (blue top) tube is suggested.</label>
+              </div>
+                            <div id="PLTC6Div">
+                <input type="checkbox" id="PLTC6">
+                <label for="PLTC6"><b>PLTC6</b> If clinically indicated, molecular analysis suggested, including BCR-ABL1, JAK-2, CALR</label>
               </div>
               </div>
           </div>
