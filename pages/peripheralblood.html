@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -326,6 +327,17 @@ table {
       .otherInput {
         flex: 2;
       }
+      
+      .navigation {
+position: absolute;
+        background-color: rgb(43, 60, 90);
+        z-index: 20;
+        top: 0px;
+  left: 0;
+  width: 200px;
+  height: 100%;
+  border: solid;
+      }
 
       }
 
@@ -341,7 +353,7 @@ table {
       <div class="banner">
         <div class="bannertop">
           <div class="bannertopitem">
-            <i class="fas fa-bars pad" id="menu"></i>
+            <i class="fas fa-bars pad navigationButton"></i>
           </div>
           <div class='bannertopitem' style='text-align: center; padding: 8px'>
             Peripheral Blood Template
@@ -363,10 +375,19 @@ table {
             <i class="iconPanel icon fas fa-arrow-alt-circle-right pad" id='flow'></i>
           </div>
           <div class='bannerbottomitem copyHead' id='copyPanel'>
-            <span><i class="copyPanel icon fas fa-copy copy" style="text-align: left"></i></span><span class="copy copyText" id="finalCopy">Copy Final Text</span></div>
+          <span class="copy copyText" id="specimenCopy">Copy Specimen Text</span><span class="copy copyText" id="finalCopy">Copy Final Text</span></div>
         </div>
       </div>
       <div class="flex-div">
+        <div id='navigationPanel' class='navigation' style='display:none'>
+        
+          <div class="bannertopitem">
+            <i class="fas fa-bars pad navigationButton"></i>
+            <br>
+            
+<a href="https://diffpath.github.io/pages/bonemarrow.html" style="color: white">&nbsp Bone Marrow</a>
+          </div>
+        </div>
         <div class="panelleft">
           <div class="template-body" id="patientPanel">
 
@@ -613,7 +634,7 @@ table {
                     </div>
                     <div id="lymphocytosisNeoplasticDiv">
                       <input type="checkbox" id="lymphocytosisNeoplastic">
-                      <label for="lymphocytosisNeoplastic" id="lymphNeoplasticLabel"><b>WBC9:</b> Absolute lymphocytosis consisting of a monotonous population of predomonantly small to medium-sized lymphocytes with clumped chromatin (see comment).</label>
+                      <label for="lymphocytosisNeoplastic" id="lymphNeoplasticLabel"><b>WBC9:</b> Absolute lymphocytosis consisting of a monotonous population of predominantly small to medium-sized lymphocytes with clumped chromatin (see comment).</label>
                     </div>
                   </div>
                   <div id="lymphopeniaDiv">
@@ -674,9 +695,11 @@ table {
                     <input type="radio" name="thrombocytopenia" id="thrombocytopeniaOL">
                     <label for="thrombocytopeniaOL"> Occasional large platelets.</label>
                   </div>
-
-
                 </div>
+                                   <div>
+                    <input type="checkbox" id="pltClumping">
+                    <label for="pltClumping"><b>PLT4:</b> Platelet clumping is present (see comment).</label>
+                  </div>
                 <div id="pltOtherDiv" class="other">
                   <input type="checkbox" id="pltOther">
                   <label for="pltOther">&nbsp<b>Other:</b></label>
@@ -769,11 +792,11 @@ table {
                 <label for="lymphCommentsShow"> Show all</label></span>
               <div id="WBCC7Div" style="display: none">
                 <input type="checkbox" id="WBCC7" class="pbComment">
-                <label for="WBCC7"><b>WBCC7:</b> The etiology of the lymphocytosis is uncleaar, but is favored to be reactive.</label>
+                <label for="WBCC7"><b>WBCC7:</b> The etiology of the lymphocytosis is unclear but is favored to be reactive.</label>
               </div>
               <div id="WBCC8Div" style="display: none">
                 <input type="checkbox" id="WBCC8" class="pbComment">
-                <label for="WBCC8"><b>WBCC8:</b> The etiology of the lymphocytisis is unclear. Suggest repeat CBC and differential to rule out persistance.</label>
+                <label for="WBCC8"><b>WBCC8:</b> The etiology of the lymphocytosis is unclear. Suggest repeat CBC and differential to rule out persistance.</label>
               </div>
               <div id="WBCC9Div" style="display: none">
                 <input type="checkbox" id="WBCC9" class="pbComment">
@@ -781,7 +804,7 @@ table {
               </div>
               <div id="WBCC10Div" style="display: none">
                 <input type="checkbox" id="WBCC10" class="pbComment">
-                <label for="WBCC10"><b>WBCC10:</b> The findins raise the possibility of an acute viral infection. Correlation with clinical and serologic findings is recommended.</label>
+                <label for="WBCC10"><b>WBCC10:</b> The findings raise the possibility of an acute viral infection. Correlation with clinical and serologic findings is recommended.</label>
               </div>
               <div id="WBCC11Div" style="display: none">
                 <input type="checkbox" id="WBCC11" class="pbComment">
@@ -796,30 +819,36 @@ table {
             <div>
               <span><b><u>Platelet Comments</u></b><input type="checkbox" id="pltCommentsShow" class="commentsShow">
                 <label for="pltCommentsShow"> Show all</label></span>
-              <div id="PLTC1Div" style="display: none" class="pbComment">
-                <input type="checkbox" id="PLTC1">
+              <div id="PLTC1Div" style="display: none">
+                <input type="checkbox" id="PLTC1" class="pbComment">
                 <label for="PLTC1"><b>PLTC1:</b> The etiology of the thrombocytopenia is not clear on review of the peripheral blood smear. There is no morphologic evidence of acute microangiopathic hemolysis. Clinical correlation is suggested.</label>
               </div>
               <div id="PLTC2Div" style="display: none" class="pbComment">
-                <input type="checkbox" id="PLTC2">
+                <input type="checkbox" id="PLTC2" class="pbComment">
                 <label for="PLTC2"><b>PLTC2:</b> The etiology of the thrombocytosis is not clear. Suggest follow up with CBC to rule out persistence.</label>
               </div>
               <div id="PLTC3Div" style="display: none" class="pbComment">
-                <input type="checkbox" id="PLTC3">
+                <input type="checkbox" id="PLTC3" class="pbComment">
                 <label for="PLTC3"><b>PLTC3:</b> The etiology of the thrombocytosis is not clear.</label>
               </div>
               <div id="PLTC4Div" style="display: none" class="pbComment">
-                <input type="checkbox" id="PLTC4">
+                <input type="checkbox" id="PLTC4" class="pbComment">
                 <label for="PLTC4"><b>PLTC4:</b> Platelet clumping is present; therefore, the automated platelet count may be an underestimate. If clinically indicated, redraw in a citrated (blue top) tube is suggested.</label>
               </div>
               <div id="PLTC5Div" style="display: none" class="pbComment">
-                <input type="checkbox" id="PLTC5">
+                <input type="checkbox" id="PLTC5" class="pbComment">
                 <label for="PLTC5"><b>PLTC5:</b> Platelet clumping is present, preventing an accurate reporting of platelet count by automated instrument. If clinically indicated, redraw in a citrated (blue top) tube is suggested.</label>
               </div>
               <div id="PLTC6Div" style="display: none" class="pbComment">
-                <input type="checkbox" id="PLTC6">
+                <input type="checkbox" id="PLTC6" class="pbComment">
                 <label for="PLTC6"><b>PLTC6:</b> If clinically indicated, molecular analysis suggested, including BCR-ABL1, JAK-2, CALR.</label>
               </div>
+              <br><br>
+              <div id="commentOtherDiv" class="other">
+                  <input type="checkbox" id="commentOther" class="pbComment">
+                  <label for="commentOther">&nbsp<b>Other:</b></label>
+                  <input type="text" class="otherInput" id="commentOtherInput">
+                </div>
             </div>
           </div>
         </div>
@@ -828,14 +857,18 @@ table {
             <div class="final" id="final2"></div>
             <div id="everythingCopyText" class='top'>
               <div id="final">
-                                <div id="pbTableDiv" style="display: none">
+                <div id="pbTableDiv" style="display: none">
                 </div>
+
+
                 <div id="testFinalDiv" style="display: none">
                   <div id="testPerformed" class="h1">
                     Test Performed
                   </div>
-                  <div id="testFinal"></div>
+
                 </div>
+                                <div id="specimenCopyText">
+                <div id="testFinal"></div>
                 <div id="reasonFinalDiv" style="display: none">
                   <div id="reason" class="h1">
                     Reason for Consult
@@ -847,6 +880,7 @@ table {
                     Laboratory Criteria for Pathologist Review
                   </div>
                   <div id="labFinal"></div>
+                  </div>
                 </div>
                 <div id="finalDiagnosis" class="h1" style="display: none">
                   Final Diagnosis
@@ -931,6 +965,10 @@ table {
             $('#' + lastPanel).show();
           }
         }
+        
+        $('.navigationButton').click(function(){
+        $('#navigationPanel').toggle();
+        })
 
         $('.rightpanelbutton').click(function() {
           var iconId = this.id + "Panel";
@@ -999,8 +1037,8 @@ table {
           }
         })
 
-        $('#neutBlastShow').change(function() {
-          if ($('#neutBlastShow').prop('checked')) {
+        $('#neutShow').change(function() {
+          if ($('#neutShow').prop('checked')) {
             $('#adequateNeutDiv').show();
             $('#neutrophiliaDiv').show();
             $('#neutropeniaDiv').show();
@@ -1122,6 +1160,15 @@ table {
         $('.pbComment').change(function() {
         	fillFinal();
         })
+        
+        $('#commentOtherInput').keyup(function() {
+        	          if ($('#commentOtherInput').val() == "") {
+            $('#commentOther').prop('checked', false)
+          } else {
+            $('#commentOther').prop('checked', true)
+          }
+          fillFinal()
+        })
 
 
         function listText(listToConvert) {
@@ -1143,7 +1190,7 @@ table {
         }
 
         function createAniso() {
-          var anisoList = ['', 'acanthocytes', 'basophilic stippling', 'bite cells', 'blister cells', 'burr cells', 'Howell-Jolly bodies', 'macrocytes', 'macroovalocytes', 'microcytes', 'ovalocytes', 'schistocytes', 'sickle cells', 'spherocytes', 'target cells', 'teardrop forms']
+          var anisoList = ['', 'acanthocytes', 'basophilic stippling', 'bite cells', 'blister cells', 'burr cells', 'echinocytes', 'Howell-Jolly bodies', 'macrocytes', 'macroovalocytes', 'microcytes', 'ovalocytes', 'schistocytes', 'sickle cells', 'spherocytes', 'target cells', 'teardrop cells']
           anisoOptionList = [];
           finalAnisoList = [];
           var count = 0;
@@ -1465,6 +1512,7 @@ table {
             } else $('#labFinalDiv').hide();
             $('#labFinal').html(labCriteriaText);
             $('#testFinalDiv').show();
+            $('#testFinal').show();
           } else {
             $('#labFinalDiv').hide();
             $('#labCriteriaDiv').hide();
@@ -1472,11 +1520,13 @@ table {
             if ($('#requestedInput').val() != "") {
               $('#testFinal').html("Peripheral Blood Smear Pathologist Interpretation Requested by: " + $('#requestedInput').val());
               $('#testFinalDiv').show();
+              $('#testFinal').show();
               if ($('#finalCopyText').html().length > 0) {
                 $('#testFinal').html("Peripheral Blood Smear Pathologist Interpretation Requested by: " + $('#requestedInput').val() + "<br><br>")
               }
             } else {
               $('#testFinalDiv').hide();
+              $('#testFinal').hide();
             }
 
             if ($('#reasonInput').val() != "") {
@@ -1684,7 +1734,7 @@ table {
                 $('#WBCC1Div').hide();
                 $('#WBCC2Div').show();
                 finalText += "Absolute neutropenia."
-                if (!$('#neutBlastShow').prop('checked')) {
+                if (!$('#neutShow').prop('checked')) {
                   $('#neutrophiliaDiv').hide();
                   $('#adequateNeutDiv').hide();
                 }
@@ -1695,7 +1745,7 @@ table {
                 $('#WBCC4Div').show();
                 $('#WBCC5Div').show();
                 finalText += "Absolute neutrophilia."
-                if (!$('#neutBlastShow').prop('checked')) {
+                if (!$('#neutShow').prop('checked')) {
                   $('#neutropeniaDiv').hide();
                   $('#adequateNeutDiv').hide();
                 }
@@ -1703,7 +1753,7 @@ table {
                 $('#WBCC1Div').hide();
                 $('#WBCC2Div').hide();
                 finalText += "Neutrophils are adequate."
-                if (!$('#neutBlastShow').prop('checked')) {
+                if (!$('#neutShow').prop('checked')) {
                   $('#neutropeniaDiv').hide();
                   $('#neutrophiliaDiv').hide();
                 }
@@ -1747,7 +1797,7 @@ table {
             $('#neutropeniaDiv').show();
             $('#neutrophiliaDiv').show();
             $('#adequateNeutDiv').show();
-             $('#WBCC1Div').hide();
+            $('#WBCC1Div').hide();
             $('#WBCC2Div').hide();
             $('#WBCC3Div').hide();
             $('#WBCC4Div').hide();
@@ -1845,15 +1895,15 @@ table {
             $('#lymphSLLabel').html("<b>WBC7:</b> Absolute lymphocytosis consisting of small mature lymphocytes and large granular lymphocytes.");
             $('#lymphReactLabel').html("<b>WBC8:</b> Absolute lymphocytosis consisting of a heterogenous population of lymphocytes including small mature lymphocytes, large granular lymphocytes, and activated lymphocytes.");
             $('#lymphNeoplasticLabel').html("<b>WBC9:</b> Absolute lymphocytosis consisting of a monotonous population of predominantly small to medium-sized lymphocytes with clumped chromatin (see comment).");
-            if (lymph < lymphLow) {
+            if (lymph < lymphLow || lymph == undefined || lymph == "") {
               $('#lymphopeniaDiv').show();
             }
-            if (lymph > lymphHigh) {
+            if (lymph > lymphHigh || lymph == undefined || lymph == "") {
               $('#lymphocytosisSLDiv').show();
               $('#lymphocytosisReactDiv').show();
               $('#lymphocytosisNeoplasticDiv').show();
             }
-            if (lymph == "" || lymph < lymphHigh) {
+            if (lymph == "" || lymph == undefined || lymph < lymphHigh) {
             $('#WBCC7Div').hide();
             $('#WBCC8Div').hide();
             $('#WBCC9Div').hide();
@@ -1935,6 +1985,15 @@ table {
             $('#thrombocytosisDiv').show();
             $('#adequatePltDiv').show();
           }
+          
+          if ($('#pltClumping').prop('checked')) {
+          	finalText += " Platelet clumping is present (see comment)."
+            $('#PLTC4Div').show();
+            $('#PLTC5Div').show();
+          } else if (!$('#pltShow').prop('checked')){
+          	$('#PLTC4Div').hide();
+            $('#PLTC5Div').hide();
+          }
 
           if ($('#pltOther').prop('checked')) {
             finalText += " " + $('#pltOtherInput').val();
@@ -1996,16 +2055,16 @@ table {
               finalText += " The findings are consistent with acute leukemia. Correlation with flow cytometry is suggested.";
             }
             if ($('#WBCC7').prop('checked')) {
-              finalText += " The etiology of the lymphocytosis is uncleaar, but is favored to be reactive.";
+              finalText += " The etiology of the lymphocytosis is unclear but is favored to be reactive.";
             }
             if ($('#WBCC8').prop('checked')) {
-              finalText += " The etiology of the lymphocytisis is unclear. Suggest repeat CBC and differential to rule out persistance.";
+              finalText += " The etiology of the lymphocytosis is unclear. Suggest repeat CBC and differential to rule out persistance.";
             }
             if ($('#WBCC9').prop('checked')) {
               finalText += " The findings raise the possibility of a lymphoproliferative disorder. If clinically indicated, flow cytometric analysis may be considered for further evaluation.";
             }
             if ($('#WBCC10').prop('checked')) {
-              finalText += " The findins raise the possibility of an acute viral infection. Correlation with clinical and serologic findings is recommended.";
+              finalText += " The findings raise the possibility of an acute viral infection. Correlation with clinical and serologic findings is recommended.";
             }
             if ($('#WBCC11').prop('checked')) {
               finalText += " The morphologic findings, together with the positive heterophile antibody test, are consistent with infectious mononucleosis. Clinical correlation is suggested.";
@@ -2030,6 +2089,10 @@ table {
             }
             if ($('#PLTC6').prop('checked')) {
               finalText += " If clinically indicated, molecular analysis suggested, including BCR-ABL1, JAK-2, CALR.";
+            }
+            
+            if ($('#commentOther').prop('checked')) {
+            	finalText += " " + $('#commentOtherInput').val();
             }
 
 
