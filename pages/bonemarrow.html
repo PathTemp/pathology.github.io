@@ -601,71 +601,75 @@
                 <div class="flex-div" style="flex-wrap: wrap">
                   Nucleus:
                   <div>
-                    <label><input type="checkbox" id='blastIrregular'> Irregular</label>
+                    <label><input type="radio" id='blastIrregular' name='blastNucleus'> Irregular</label>
                   </div>
                   <div>
-                    <label><input type="checkbox" id='blastRound'> Round</label>
+                    <label><input type="radio" id='blastRound' name='blastNucleus'> Round</label>
                   </div>
                 </div>
                 <div class="flex-div" style="flex-wrap: wrap">
                   Chromatin:
                   <div>
-                    <label><input type="checkbox" id='blastFine'> Fine</label>
+                    <label><input type="radio" id='blastFine' name='blastChromatin'> Fine</label>
                   </div>
                   <div>
-                    <label><input type="checkbox" id='blastFinelyReticular'> Finely reticular</label>
+                    <label><input type="radio" id='blastFinelyReticular' name='blastChromatin'> Finely reticular</label>
                   </div>
                   <div>
-                    <label><input type="checkbox" id='blastDelicateLacy'> Delicate lacy</label>
+                    <label><input type="radio" id='blastDelicateLacy' name='blastChromatin'> Delicate lacy</label>
                   </div>
                   <div>
-                    <label><input type="checkbox" id='blastDispersed'> Dispersed</label>
+                    <label><input type="radio" id='blastDispersed' name='blastChromatin'> Dispersed</label>
                   </div>
                   <div>
-                    <label><input type="checkbox" id='blastCondensed'> Condensed</label>
+                    <label><input type="radio" id='blastCondensed' name='blastChromatin'> Condensed</label>
                   </div>
                 </div>
                 <div class="flex-div" style="flex-wrap: wrap">
                   Nucleolus:
                   <div>
-                    <label><input type="checkbox" id='blastProminent'> Prominent</label>
+                    <label><input type="radio" id='blastProminent' name='blastNucleolus'> Prominent</label>
                   </div>
                   <div>
-                    <label><input type="checkbox" id='blastConspicuous'> Conspicuous</label>
+                    <label><input type="radio" id='blastConspicuous' name='blastNucleolus'> Conspicuous</label>
 
                   </div>
                   <div>
-                    <label><input type="checkbox" id='blastInconspicuous'> Inconspicuous</label>
+                    <label><input type="radio" id='blastInconspicuous' name='blastNucleolus'> Inconspicuous</label>
 
                   </div>
                 </div>
                 <div class="flex-div" style="flex-wrap: wrap">
                   Cytoplasm Amount:
                   <div>
-                    <label><input type="checkbox" id='blastScant'> Scant</label>
+                    <label><input type="radio" id='blastScant' name='blastCAmount'> Scant</label>
 
                   </div>
                   <div>
-                    <label><input type="checkbox" id='blastModerate'> Moderate</label>
+                    <label><input type="radio" id='blastModerate' name='blastCAmount'> Moderate</label>
 
                   </div>
                   <div>
-                    <label><input type="checkbox" id='blastAbundant'> Abundant</label>
+                    <label><input type="radio" id='blastAbundant' name='blastCAmount'> Abundant</label>
 
                   </div>
                 </div>
                 <div class="flex-div" style="flex-wrap: wrap">
                   Cytoplasm Color:
                   <div>
-                    <label><input type="checkbox" id='blastPale'> Pale</label>
+                    <label><input type="radio" id='blastPale' name='blastCColor'> Pale</label>
 
                   </div>
                   <div>
-                    <label><input type="checkbox" id='blastBasophilic'> Basophilic</label>
+                    <label><input type="radio" id='blastBasophilic' name='blastCColor'> Basophilic</label>
 
                   </div>
                   <div>
-                    <label><input type="checkbox" id='blastAmphophilic'> Amphophilic</label>
+                    <label><input type="radio" id='blastBlue' name='blastCColor'> Blue</label>
+
+                  </div>
+                  <div>
+                    <label><input type="radio" id='blastAmphophilic' name='blastCColor'> Amphophilic</label>
 
                   </div>
                 </div>
@@ -1535,6 +1539,8 @@
               blastDescriptors.push('scant pale cytoplasm')
             } else if ($('#blastBasophilic').prop('checked')) {
               blastDescriptors.push('scant basophilic cytoplasm')
+            } else if ($('#blastBlue').prop('checked')) {
+              blastDescriptors.push('scant blue cytoplasm')
             } else if ($('#blastAmphophilic').prop('checked')) {
               blastDescriptors.push('scant amphophilic cytoplasm')
             } else {
@@ -1546,6 +1552,8 @@
               blastDescriptors.push('moderate pale cytoplasm')
             } else if ($('#blastBasophilic').prop('checked')) {
               blastDescriptors.push('moderate basophilic cytoplasm')
+            } else if ($('#blastBlue').prop('checked')) {
+              blastDescriptors.push('moderate blue cytoplasm')
             } else if ($('#blastAmphophilic').prop('checked')) {
               blastDescriptors.push('moderate amphophilic cytoplasm')
             } else {
@@ -1557,6 +1565,8 @@
               blastDescriptors.push('abundant pale cytoplasm')
             } else if ($('#blastBasophilic').prop('checked')) {
               blastDescriptors.push('abundant basophilic cytoplasm')
+            } else if ($('#blastBlue').prop('checked')) {
+              blastDescriptors.push('abundant blue cytoplasm')
             } else if ($('#blastAmphophilic').prop('checked')) {
               blastDescriptors.push('abundant amphophilic cytoplasm')
             } else {
@@ -1568,6 +1578,8 @@
               blastDescriptors.push('pale cytoplasm')
             } else if ($('#blastBasophilic').prop('checked')) {
               blastDescriptors.push('basophilic cytoplasm')
+            } else if ($('#blastBlue').prop('checked')) {
+              blastDescriptors.push('blue cytoplasm')
             } else if ($('#blastAmphophilic').prop('checked')) {
               blastDescriptors.push('amphophilic cytoplasm')
             }
