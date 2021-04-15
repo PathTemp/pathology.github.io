@@ -282,10 +282,6 @@
         margin: 0;
         height: 100vh;
       }
-      
-      select {
-        width: 200px !important;
-      }
 
       .copyHead {
         background-color: rgb(43, 60, 90);
@@ -573,9 +569,11 @@
                   <b>Neutrophils: </b><label><input type="radio" name="neut" value="" id='neutNL'> Unremarkable </label>
                   <label><input type="radio" name="neut" value="" id='neutAB'> Abnormal </label>
                 </div>
-              </div>
-                              <div id="neutDiv">
+                <div id="neutDiv">
                 </div>
+
+
+              </div>
               <div class="flex-div spread" style="flex-wrap: wrap">
                 <div>
                   <b>Platelets: </b><label><input type="radio" name="plt" value="" id='pltNL'> Unremarkable</label>
@@ -761,10 +759,9 @@
                 <div>
                   <label><input class='adequacy' type="radio" value="" name="adequacy" id='aspInadequate'> Inadequate</label>
                 </div>
-
-              </div>
-                              <div id='aspDescriptorDiv'>
+                <div id='aspDescriptorDiv'>
                 </div>
+              </div>
               <div class="flex-div spread" style="flex-wrap: wrap">
                 <div>
                   <b>Erythroid Precursors: </b><label><input type="checkbox" value="" id='aspErythNL'> Unremarkable</label>
@@ -775,12 +772,16 @@
               </div>
               <div class="flex-div spread" style="flex-wrap: wrap">
                 <b>Megakaryocytes:</b> <label><input type="radio" value="" id='aspMegAdeq' name='megs'> Adequate</label><label><input type="radio" value="" id='aspMegDec' name='megs'> Decreased</label><label><input type="radio" value="" id='aspMegInc' name='megs'> Increased</label>
+                </div>
+                <div class="flex-div" style="flex-wrap: wrap">
                 <div><label><input type="radio" value="" id='aspMegNL' name='megQuant'> Unremarkable</label>
                 </div>
                 <div><label><input type="radio" value="" id='aspMegAB' name='megQuant'> Abnormal</label></div>
-
+                
               </div>
-                <div id='megDiv'></div>
+<div id='megDiv' style='padding-bottom: 5px'>
+
+                </div>
               <div class="flex-div spread" style="flex-wrap: wrap">
                 <b>Blasts: </b><label><input type="radio" value="" id='aspBlastNI' name='aspBlast'> Not increased</label><label><input type="radio" value="" id='aspBlastInc' name='aspBlast'> Increased</label>
               </div>
@@ -789,7 +790,7 @@
               <b>Aspirate Smear Text:</b><textarea rows="4" id="aspText" style="width: 100%">
 </textarea>
             </div>
-            <div id='touchPrepDiv' class="flex-div spread" style="flex-wrap: wrap">
+            <div id ='touchPrepDiv' class="flex-div spread" style="flex-wrap: wrap">
               <div>
                 <b>Touch Preparation: </b><label><input type="radio" name="touchPrep" value="" id='touchPrepSimilar'> Similar to Aspirate</label>
               </div>
@@ -1842,9 +1843,9 @@
           }
 
           if ($('#aspBlastNI').prop('checked')) {
-            aspText += " Blasts are not significantly increased. "
+            aspText += "Blasts are not significantly increased. "
           } else if ($('#aspBlastInc').prop('checked')) {
-            aspText += " Blasts are significantly increased. "
+            aspText += "Blasts are significantly increased. "
           }
 
           if ($('#asp'))
@@ -2377,17 +2378,31 @@
         }
 
         $('#touchPrepDiv').change(function() {
+        console.log('hi')
 
           if ($('#touchPrepSimilar').prop('checked')) {
             var touchPrep = "The bone marrow touch preparations are cellular and show findings similar to the aspirate smears."
             $('#tpText').val(touchPrep);
-            $('#touchPrepText').html($('#tpText').val() + '<br><br>')
+            
             $('#aspirateSmear').show();
             $('#touchPrepText').show();
             $('#microscopic').show();
           }
+          $('#touchPrepText').html($('#tpText').val() + '<br><br>')
 
         })
+        
+        $('#tpText').on('input',function() {
+        	$('#touchPrepDifferent').prop('checked', true)
+        	$('#touchPrepSimilar').prop('checked', false)
+          $('#touchPrepText').html($('#tpText').val() + '<br><br>')
+          $('#aspirateSmear').show();
+            $('#touchPrepText').show();
+            $('#microscopic').show();
+          
+        })
+        
+        
 
         $('#ironStainDiv').change(function() {
           var ironText = "";
