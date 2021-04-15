@@ -54,6 +54,10 @@
 
       }
 
+      th {
+        text-align: left;
+      }
+
       table.padleft td {
         padding-left: 10px;
       }
@@ -315,7 +319,7 @@
       .neg {
         margin-top: -32px;
       }
-      
+
       .side-pad {
         padding-left: 10px;
         padding-right: 10px;
@@ -326,6 +330,21 @@
         font-size: 12pt;
       }
 
+      .navigationButton {
+        cursor: pointer;
+      }
+
+      .navigation {
+        position: fixed;
+        background-color: rgb(43, 60, 90);
+        z-index: 20;
+        top: 0px;
+        left: 0;
+        width: 200px;
+        height: 100%;
+        border: solid;
+        font-size: 12pt;
+      }
 
       }
 
@@ -341,7 +360,7 @@
       <div class="banner">
         <div class="bannertop">
           <div class="bannertopitem">
-          <i class="fas fa-bars pad" id="menu"></i>
+            <i class="icon fas fa-bars pad navigationButton"></i>
           </div>
           <div class='bannertopitem' style='text-align: center; padding: 8px'>
             Bone Marrow Template
@@ -369,6 +388,15 @@
         </div>
       </div>
       <div class="flex-div">
+        <div id='navigationPanel' class='navigation' style='display:none'>
+
+          <div class="bannertopitem">
+            <i class="fas fa-bars pad navigationButton"></i>
+            <br>
+
+            <a href="https://diffpath.github.io/pages/peripheralblood.html" style="color: white; font-size: 12pt">&nbsp Peripheral Blood</a>
+          </div>
+        </div>
         <div class="panelleft">
           <div class="template-body" id="patientPanel">
             <div class="bottom" style="text-align: center; font-size: 14pt">
@@ -386,28 +414,30 @@
               <label><input type="radio" name="specNum" value="" id='specFive'>All Common Specimens</label>
             </div>
             <div class="checkbox" id='specTypes'>
-              <div>
-                <label><input type="checkbox" value="" id='specPBSmear'>Peripheral Blood Smear </label>
+              <div class="flex-div" style="flex-wrap: wrap">
+                <label><input type="checkbox" value="" id='specPBSmear'>Peripheral Blood Smear</label>
+                <div><input type="input" id="pbSlides" value="" name='age' maxlength="3" size="2"> unstained slides
+                </div>
               </div>
-              <div>
+              <div class="flex-div" style="flex-wrap: wrap">
                 <label><input type="checkbox" value="" id='specASmear'>Aspirate Smear</label>
-                <span id="aspDiv" style="display: none"><input type="input" value="" id='aspSize' name='age' maxlength="3" size="2"> cc
-                </span>
+                <div id="aspDiv"><input type="input" value="" id='aspSize' name='age' maxlength="3" size="2"> cc
+                </div>
               </div>
               <div>
                 <label><input type="checkbox" value="" id='specClot'>Particle Clot</label>
               </div>
-              <div>
-
-                <label><input type="checkbox" value="" id='specCore' name='CORE BIOPSY'>Core Biopsy</label>
-                <span id="coreDiv" style="display: none">
-                  <input type="input" value="" id='coreSize1' maxlength="3" size="2"> cm &nbsp
-                  <input type="input" value="" id='coreSize2' maxlength="3" size="2"> cm (if present)
-                </span>
+              <div id="coreDiv" class="flex-div" style="flex-wrap: wrap">
+                <div>
+                  <label><input type="checkbox" value="" id='specCore'>Core Biopsy</label></div>
+                <div>
+                  <input type="input" class="coreSize" value="" id='coreSize0' maxlength="3" size="2"> cm &nbsp
+                </div>
               </div>
-              <div class="bottom">
-
+              <div class="flex-div bottom" style="flex-wrap: wrap">
                 <label><input type="checkbox" value="" id='specTouch'>Touch Imprint</label>
+                <div><input type="input" id="touchSlides" value="" name='age' maxlength="3" size="2"> unstained slides
+                </div>
               </div>
               <div>
                 <label><input type="checkbox" value="" id='specFlow'>Flow Cytometry</label>
@@ -416,21 +446,28 @@
                 <label><input type="checkbox" value="" id='specGen'>Cytogenetics</label>
               </div>
               <div>
-                <label><input type="checkbox" value="" id='specFISH'>FISH</label><input type="text" list="fish" id='fishList' style="display: none">
+                <label><input type="checkbox" value="" id='specFISH'>FISH</label><input type="text" list="fish" id='fishList'>
                 <datalist id="fish">
                   <option value="AML"></option>
-                  <option value="Myeloma"></option>
+                  <option value="ALL"></option>
+                  <option value="CLL"></option>
                   <option value="MDS/MPN"></option>
+                  <option value="Myeloma"></option>
                 </datalist>
               </div>
               <div>
-                <label><input type="checkbox" value="" id='specMolec'>Molecular</label><input type="text" list='molec' id='molecList' style="display: none">
+                <label><input type="checkbox" value="" id='specMolec'>Molecular</label><input type="text" list='molec' id='molecList'>
                 <datalist id="molec">
                   <option value="NGS"></option>
+                  <option value="T-cell receptor gene rearrangement"></option>
+                  <option value="IGH gene rearrangement"></option>
                 </datalist>
               </div>
-              <div class="bottom">
+              <div>
                 <label><input type="checkbox" value="" id='specPCLI'>Plasma Cell Labeling Index</label>
+              </div>
+              <div class="bottom">
+                <label><input type="checkbox" value="" id='specProtocol'>Protocol IRB#</label><input type="input" value="" id='protocolNumber'>
               </div>
               <div>
                 <b>Clinical History:</b>
@@ -450,32 +487,32 @@
               <div class="table-flex" id="pbCountTable">
                 <table class="center" style="width: 100%">
                   <tr>
-                    <td><label id="pbLabel7" class="pbCellType labelnopad"><b>7.</b> Neuts</label><br>
+                    <td><label id="pbLabel7" class="pbCellType labelnopad"></label><br>
                       <input type="text" id="pb7" maxlength="5" size="3"></td>
-                    <td><label id="pbLabel8" class="pbCellType labelnopad"><b>8.</b> Lymphs</label><br>
+                    <td><label id="pbLabel8" class="pbCellType labelnopad"></label><br>
                       <input type="text" id="pb8" maxlength="5" size="3"></td>
-                    <td><label id="pbLabel9" class="pbCellType labelnopad"><b>9.</b> Mono</label><br>
+                    <td><label id="pbLabel9" class="pbCellType labelnopad"></label><br>
                       <input type="text" id="pb9" maxlength="5" size="3"></td>
                   </tr>
                   <tr>
-                    <td><label id="pbLabel4" class="pbCellType labelnopad"><b>4.</b> Eos</label><br>
+                    <td><label id="pbLabel4" class="pbCellType labelnopad"></label><br>
                       <input type="text" id="pb4" maxlength="5" size="3"></td>
-                    <td><label id="pbLabel5" class="pbCellType labelnopad"><b>5.</b> Baso</label><br>
+                    <td><label id="pbLabel5" class="pbCellType labelnopad"></label><br>
                       <input type="text" id="pb5" maxlength="5" size="3"></td>
-                    <td><label id="pbLabel6" class="pbCellType labelnopad"><b>6.</b> Plasma</label><br>
+                    <td><label id="pbLabel6" class="pbCellType labelnopad"></label><br>
                       <input type="text" id="pb6" maxlength="5" size="3"></td>
                   </tr>
                   <tr>
-                    <td><label id="pbLabel1" class="pbCellType labelnopad"><b>1.</b> NRBCs</label><br>
+                    <td><label id="pbLabel1" class="pbCellType labelnopad"></label><br>
                       <input type="text" id="pb1" maxlength="5" size="3"></td>
-                    <td><label id="pbLabel2" class="pbCellType labelnopad"><b>2.</b> Atypical</label><br>
+                    <td><label id="pbLabel2" class="pbCellType labelnopad"></label><br>
                       <input type="text" id="pb2" maxlength="5" size="3"></td>
-                    <td><label id="pbLabel3" class="pbCellType labelnopad"><b>3. </b><input type="input" value="" placeholder="Other" size="3"></label><br>
+                    <td><label id="pbLabel3" class="pbCellType labelnopad"></label><br>
                       <input type="text" id="pb3" maxlength="5" size="3"></td>
                   </tr>
                   <tr>
                     <td class='noborder'></td>
-                    <td><label id="pbLabel0" class="pbCellType labelnopad"><b>0.</b> Blasts</label><br>
+                    <td><label id="pbLabel0" class="pbCellType labelnopad"></label><br>
                       <input type="text" id="pb0" maxlength="5" size="3"></td>
                     <td class='noborder'></td>
                   </tr>
@@ -530,13 +567,12 @@
               <div class="flex-div spread" style="flex-wrap: wrap">
                 <div>
                   <b>Neutrophils: </b><label><input type="radio" name="neut" value="" id='neutNL'> Unremarkable </label>
+                  <label><input type="radio" name="neut" value="" id='neutAB'> Abnormal </label>
                 </div>
-                <div>
-                  <label><input type="checkbox" class="pbNeut" name="neut" value="" id='neutTC'> Toxic change</label>
+                <div id="neutDiv">
                 </div>
-                <div>
-                  <label><input type="checkbox" class="pbNeut" name="neut" value="" id='neutLS'> Left shift</label>
-                </div>
+
+
               </div>
               <div class="flex-div spread" style="flex-wrap: wrap">
                 <div>
@@ -546,23 +582,101 @@
                   <label><input type="radio" name="plt" value="" id='pltLP'> Occasional large platelets</label>
                 </div>
               </div>
-              <div class="flex-div spread" id='pbBlastDiv' style="display: none">
+              <div id='pbBlastDiv' class='spread' style='display: none'>
                 <div>
-                  <b>Blasts: </b><label><input type="radio" name="pbBlast" value="" id='pbBlastFrequent'> Frequent</label>
+                  <b>Blasts: </b>
                 </div>
-                <div>
-                  <label><input type="radio" name="pbBlast" value="" id='pbBlastOccasional'> Occasional</label>
+                <div class="flex-div" style="flex-wrap: wrap">
+                  Size:
+                  <div>
+                    <label><input type="checkbox" value="" id='blastSmall'> Small</label>
+                  </div>
+                  <div>
+                    <label><input type="checkbox" value="" id='blastMedium'> Medium</label>
+                  </div>
+                  <div>
+                    <label><input type="checkbox" value="" id='blastLarge'> Large</label>
+                  </div>
                 </div>
-                <div>
-                  <label><input type="radio" name="pbBlast" value="" id='pbBlastRare'> Rare</label>
+                <div class="flex-div" style="flex-wrap: wrap">
+                  Nucleus:
+                  <div>
+                    <label><input type="checkbox" id='blastIrregular'> Irregular</label>
+                  </div>
+                  <div>
+                    <label><input type="checkbox" id='blastRound'> Round</label>
+                  </div>
                 </div>
+                <div class="flex-div" style="flex-wrap: wrap">
+                  Chromatin:
+                  <div>
+                    <label><input type="checkbox" id='blastFine'> Fine</label>
+                  </div>
+                  <div>
+                    <label><input type="checkbox" id='blastFinelyReticular'> Finely reticular</label>
+                  </div>
+                  <div>
+                    <label><input type="checkbox" id='blastDelicateLacy'> Delicate lacy</label>
+                  </div>
+                  <div>
+                    <label><input type="checkbox" id='blastDispersed'> Dispersed</label>
+                  </div>
+                  <div>
+                    <label><input type="checkbox" id='blastCondensed'> Condensed</label>
+                  </div>
+                </div>
+                <div class="flex-div" style="flex-wrap: wrap">
+                  Nucleolus:
+                  <div>
+                    <label><input type="checkbox" id='blastProminent'> Prominent</label>
+                  </div>
+                  <div>
+                    <label><input type="checkbox" id='blastConspicuous'> Conspicuous</label>
+
+                  </div>
+                  <div>
+                    <label><input type="checkbox" id='blastInconspicuous'> Inconspicuous</label>
+
+                  </div>
+                </div>
+                <div class="flex-div" style="flex-wrap: wrap">
+                  Cytoplasm Amount:
+                  <div>
+                    <label><input type="checkbox" id='blastScant'> Scant</label>
+
+                  </div>
+                  <div>
+                    <label><input type="checkbox" id='blastModerate'> Moderate</label>
+
+                  </div>
+                  <div>
+                    <label><input type="checkbox" id='blastAbundant'> Abundant</label>
+
+                  </div>
+                </div>
+                <div class="flex-div" style="flex-wrap: wrap">
+                  Cytoplasm Color:
+                  <div>
+                    <label><input type="checkbox" id='blastPale'> Pale</label>
+
+                  </div>
+                  <div>
+                    <label><input type="checkbox" id='blastBasophilic'> Basophilic</label>
+
+                  </div>
+                  <div>
+                    <label><input type="checkbox" id='blastAmphophilic'> Amphophilic</label>
+
+                  </div>
+                </div>
+
               </div>
             </div>
             <div class="spread">
               <b>Peripheral Blood Text:</b><textarea rows="4" id="pbText" style="width: 100%">
 </textarea>
             </div>
-           
+
           </div>
           <div class="template-body" id="aspiratePanel" style="display: none">
             <div class="bottom" style="text-align: center; font-size: 14pt">
@@ -576,7 +690,7 @@
                       <input type="text" id="asp7" maxlength="5" size="3"></td>
                     <td><label id="aspLabel8" class="aspCellType"><b>8.</b> Eos</label><br>
                       <input type="text" id="asp8" maxlength="5" size="3"></td>
-                    <td><label id="aspLabel9" class="aspCellType"><b>9.</b> Mono</label><br>
+                    <td><label id="aspLabel9" class="aspCellType"><b>9.</b> Monos</label><br>
                       <input type="text" id="asp9" maxlength="5" size="3"></td>
                   </tr>
                   <tr>
@@ -648,68 +762,67 @@
                 <div>
                   <b>Erythroid Precursors: </b><label><input type="checkbox" value="" id='aspErythNL'> Unremarkable</label>
                 </div>
-                <div><label><input type="radio" value="" id='aspErythNI' name='aspErythroidQuant'> Not increased</label>
-                </div>
-                <div><label><input type="radio" value="" id='aspErythInc' name='aspErythroidQuant'> Increased</label></div>
               </div>
               <div class="flex-div spread" style="flex-wrap: wrap">
                 <b>Myeloid Precursors: </b><label><input type="checkbox" value="" id='aspMyeloidNL'> Unremarkable</label>
-                <div>
-                  <label><input type="radio" value="" id='aspMyeloidNI' name='aspMyeloidQuant'> Not increased</label><label><input type="radio" value="" id='aspMyeloidInc' name='aspMyeloidQuant'> Increased</label>
-                </div>
               </div>
               <div class="flex-div spread" style="flex-wrap: wrap">
                 <b>Megakaryocytes:</b> <label><input type="radio" value="" id='aspMegAdeq' name='megs'> Adequate</label><label><input type="radio" value="" id='aspMegDec' name='megs'> Decreased</label><label><input type="radio" value="" id='aspMegInc' name='megs'> Increased</label>
-                <div><label><input type="radio" value="" id='aspMegNL'> Unremarkable</label><label><input type="checkbox" value="" id='aspMegHF'> Hyplobated forms</label><label><input type="checkbox" value="" id='aspMegSN'> Separation of nuclei</label></div>
+                <div><label><input type="radio" value="" id='aspMegNL' name='megQuant'> Unremarkable</label>
+                </div><div><label><input type="radio" value="" id='aspMegAB' name='megQuant'> Abnormal</label></div>
+                <div id='megDiv'>
+              
               </div>
+              </div>
+              
               <div class="flex-div spread" style="flex-wrap: wrap">
                 <b>Blasts: </b><label><input type="radio" value="" id='aspBlastNI' name='aspBlast'> Not increased</label><label><input type="radio" value="" id='aspBlastInc' name='aspBlast'> Increased</label>
               </div>
             </div>
             <div class="spread">
-            <b>Aspirate Smear Text:</b><textarea rows="4" id="aspText" style="width: 100%">
+              <b>Aspirate Smear Text:</b><textarea rows="4" id="aspText" style="width: 100%">
 </textarea>
             </div>
-             <div id ='touchPrepDiv' class="flex-div spread" style="flex-wrap: wrap">
-                <div>
-                  <b>Touch Preparation: </b><label><input type="radio" name="touchPrep" value="" id='touchPrepSimilar'> Similar to Aspirate</label>
-                </div>
-                <div>
-                  <label><input type="radio" name="touchPrep" value="" id='touchPrepDifferent'> Free Text</label>
-                </div>           
+            <div id='touchPrepDiv' class="flex-div spread" style="flex-wrap: wrap">
+              <div>
+                <b>Touch Preparation: </b><label><input type="radio" name="touchPrep" value="" id='touchPrepSimilar'> Similar to Aspirate</label>
               </div>
               <div>
-<b>Touch Preparation Text:</b><textarea rows="4" id="tpText" style="width: 100%">
+                <label><input type="radio" name="touchPrep" value="" id='touchPrepDifferent'> Free Text</label>
+              </div>
+            </div>
+            <div>
+              <b>Touch Preparation Text:</b><textarea rows="4" id="tpText" style="width: 100%">
 </textarea>
-</div>
+            </div>
             <div id='ironStainDiv'>
-            <div>
-            <label><input type="checkbox" checked='true' id='ironStain'> Iron Stain</label>
-            </div>
-            <div class="flex-div spread" style="flex-wrap: wrap">
-            <div>
-            <b>Storage Iron: </b>
-              <label><input type="radio" name='ironQuant' id='ironStainInc'> Increased</label>
-            </div>
-            <div>
-            <label><input type="radio" name='ironQuant' id='ironStainAdeq'> Adequate</label>
-            </div>
-            <div>
-            <label><input type="radio" name='ironQuant' id='ironStainDec'> Decreased</label>           
-            </div>
-                        <div>
-            <label><input type="radio" name='ironQuant' id='ironNoSpicules'> Not enough spicules</label>           
-            </div>
-            </div>
-            <div class="flex-div spread" style="flex-wrap: wrap">
-            <div>
-             <b>Ring Sideroblasts: </b>
-              <label><input type="radio" name='ring' id='ringAbsent'> Absent</label>
-            </div>
-            <div>
-            <label><input type="radio" name='ring' id='ringPresent'> Present</label>
-            </div> 
-            </div>   
+              <div>
+                <label><input type="checkbox" checked='true' id='ironStain'> Iron Stain</label>
+              </div>
+              <div class="flex-div spread" style="flex-wrap: wrap">
+                <div>
+                  <b>Storage Iron: </b>
+                  <label><input type="radio" name='ironQuant' id='ironStainInc'> Increased</label>
+                </div>
+                <div>
+                  <label><input type="radio" name='ironQuant' id='ironStainAdeq'> Adequate</label>
+                </div>
+                <div>
+                  <label><input type="radio" name='ironQuant' id='ironStainDec'> Decreased</label>
+                </div>
+                <div>
+                  <label><input type="radio" name='ironQuant' id='ironNoSpicules'> Not enough spicules</label>
+                </div>
+              </div>
+              <div class="flex-div spread" style="flex-wrap: wrap">
+                <div>
+                  <b>Ring Sideroblasts: </b>
+                  <label><input type="radio" name='ring' id='ringAbsent'> Absent</label>
+                </div>
+                <div>
+                  <label><input type="radio" name='ring' id='ringPresent'> Present</label>
+                </div>
+              </div>
             </div>
           </div>
           <div class="template-body" id="bonePanel" style="display: none">
@@ -766,24 +879,39 @@
                         <th style="width:17%">Result</th>
                         <th style="width:33%">Reference Range</th>
                       </tr>
-                      <tr id="pbBlastRow" style="display: none">
+                      <tr id="pbBlastsRow" style="display: none">
                         <td>Blasts</td>
                         <td id="pbBlastsTable"></td>
                         <td>0</td>
                       </tr>
-                      <tr>
+                      <tr id="pbPromyelocytesRow" style="display: none">
+                        <td>Promyelocytes</td>
+                        <td id="pbPromyelocytesTable"></td>
+                        <td>0</td>
+                      </tr>
+                      <tr id="pbMyelocytesRow" style="display: none">
+                        <td>Myelocytes</td>
+                        <td id="pbMyelocytesTable"></td>
+                        <td>0</td>
+                      </tr>
+                      <tr id="pbMetamyelocytesRow" style="display: none">
+                        <td>Metamyelocytes</td>
+                        <td id="pbMetamyelocytesTable"></td>
+                        <td>0</td>
+                      </tr>
+                      <tr class="pbRow">
                         <td>Neutrophils</td>
                         <td id="pbNeutsTable"></td>
                         <td>34 - 73%</td>
                       </tr>
-                      <tr>
+                      <tr class="pbRow">
                         <td>Lymphocytes</td>
                         <td id="pbLymphsTable"></td>
                         <td>15 - 50%</td>
                       </tr>
                       <tr>
                         <td>Monocytes</td>
-                        <td id="pbMonoTable"></td>
+                        <td id="pbMonosTable"></td>
                         <td>5 - 15%</td>
                       </tr>
                       <tr>
@@ -801,13 +929,21 @@
                         <td id="pbPlasmaTable"></td>
                         <td>0</td>
                       </tr>
-                      <tr id="pbNRBCRow" style="display: none">
+                      <tr id="pbAtypicalRow" style="display: none">
+                        <td>Atypical lymphocytes</td>
+                        <td id="pbAtypicalTable"></td>
+                        <td>0</td>
+                      </tr>
+                      <tr id="pbNRBCsRow" style="display: none">
                         <td>NRBC's/100 WBC</td>
                         <td id="pbNRBCsTable"></td>
                         <td>0</td>
                       </tr>
                     </table>
                     <br>
+                  </div>
+                  <div id='pbTableAlert' style="display: none">
+                    Warning! Counter has duplicate labels!
                   </div>
                   <div id='aspTable' style="display: none" class='left'>
                     <table class='padleft' style="width:425px">
@@ -820,6 +956,21 @@
                         <td>Blasts</td>
                         <td id="aspBlastsTable"></td>
                         <td>0 - 3%</td>
+                      </tr>
+                      <tr id="aspPromyelocytesRow" style="display: none">
+                        <td>Promyelocytes</td>
+                        <td id="aspPromyelocytesTable"></td>
+                        <td>0</td>
+                      </tr>
+                      <tr id="aspMyelocytesRow" style="display: none">
+                        <td>Myelocytes</td>
+                        <td id="aspMyelocytesTable"></td>
+                        <td>0</td>
+                      </tr>
+                      <tr id="aspMetamyelocytesRow" style="display: none">
+                        <td>Metamyelocytes</td>
+                        <td id="aspMetamyelocytesTable"></td>
+                        <td>0</td>
                       </tr>
                       <tr>
                         <td>Neutrophils & Precursors</td>
@@ -838,7 +989,7 @@
                       </tr>
                       <tr>
                         <td>Monocytes</td>
-                        <td id="aspMonoTable"></td>
+                        <td id="aspMonosTable"></td>
                         <td>0 - 2%</td>
                       </tr>
                       <tr>
@@ -879,7 +1030,7 @@
                     </div>
                     <div id="aspirateText" style="display: none">
                     </div>
-                    <div id="touchPrepText" style="display: none">               
+                    <div id="touchPrepText" style="display: none">
                     </div>
                   </div>
                   <div id="specialStains" style="display: none">
@@ -933,8 +1084,8 @@
             <div>
               Theme Color: <input type="color" id="themeColor" name="favcolor" value=#3379b7>
             </div>
-            <div>
-              Peripheral Blood Count Orientation: (Under Construction Do Not Use)
+            <div id='pbTypeSaveDiv'>
+              Peripheral Blood Count Orientation:
               <table class="center" style="width:100%">
                 <tr>
                   <td><b>7. </b><input type="text" id="pbSave7" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
@@ -953,7 +1104,7 @@
                 </tr>
                 <tr>
                   <td class='noborder'></td>
-                  <td><b>0.</b><input type="text" id="pbSave0" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
+                  <td><b>0. </b><input type="text" id="pbSave0" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
                   <td class='noborder'></td>
                 </tr>
               </table>
@@ -963,34 +1114,37 @@
                 <option value="Blasts"></option>
                 <option value="Eos"></option>
                 <option value="Lymphs"></option>
-                <option value="Mono"></option>
+                <option value="Metamyelocytes"></option>
+                <option value="Monos"></option>
+                <option value="Myelocytes"></option>
                 <option value="Neuts"></option>
                 <option value="NRBCs"></option>
                 <option value="Other"></option>
                 <option value="Plasma"></option>
+                <option value="Promyelocytes"></option>
               </datalist>
             </div>
             <div>
               Aspirate Smear Count Orientation: (Under Construction Do Not Use)
               <table class="center" style="width:100%">
                 <tr>
-                  <td><b>7. </b><input type="text" id="aspSave7" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
-                  <td><b>8. </b><input type="text" id="aspSave8" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
-                  <td><b>9. </b><input type="text" id="aspSave9" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
+                  <td><b>7. </b><input type="text" id="aspSave7" class="aspCellTypeSave" list="cellTypeList" size="6"></td>
+                  <td><b>8. </b><input type="text" id="aspSave8" class="aspCellTypeSave" list="cellTypeList" size="6"></td>
+                  <td><b>9. </b><input type="text" id="aspSave9" class="aspCellTypeSave" list="cellTypeList" size="6"></td>
                 </tr>
                 <tr>
-                  <td><b>4. </b><input type="text" id="aspSave4" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
-                  <td><b>5. </b><input type="text" id="aspSave5" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
-                  <td><b>6. </b><input type="text" id="aspSave6" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
+                  <td><b>4. </b><input type="text" id="aspSave4" class="aspCellTypeSave" list="cellTypeList" size="6"></td>
+                  <td><b>5. </b><input type="text" id="aspSave5" class="aspCellTypeSave" list="cellTypeList" size="6"></td>
+                  <td><b>6. </b><input type="text" id="aspSave6" class="aspCellTypeSave" list="cellTypeList" size="6"></td>
                 </tr>
                 <tr>
-                  <td><b>1. </b><input type="text" id="aspSave1" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
-                  <td><b>2. </b><input type="text" id="aspSave2" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
-                  <td><b>3. </b><input type="text" id="aspSave3" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
+                  <td><b>1. </b><input type="text" id="aspSave1" class="aspCellTypeSave" list="cellTypeList" size="6"></td>
+                  <td><b>2. </b><input type="text" id="aspSave2" class="aspCellTypeSave" list="cellTypeList" size="6"></td>
+                  <td><b>3. </b><input type="text" id="aspSave3" class="aspCellTypeSave" list="cellTypeList" size="6"></td>
                 </tr>
                 <tr>
                   <td class='noborder'></td>
-                  <td><b>0.</b><input type="text" id="aspSave0" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
+                  <td><b>0. </b><input type="text" id="aspSave0" class="aspCellTypeSave" list="cellTypeList" size="6"></td>
                   <td class='noborder'></td>
                 </tr>
               </table>
@@ -1000,7 +1154,7 @@
                 <option value="Blasts"></option>
                 <option value="Eos"></option>
                 <option value="Lymphs"></option>
-                <option value="Mono"></option>
+                <option value="Monos"></option>
                 <option value="Neuts"></option>
                 <option value="NRBCs"></option>
                 <option value="Other"></option>
@@ -1040,45 +1194,121 @@
         }
 
         var pbTypeList = JSON.parse(localStorage.getItem("pbTypeList"));
+        var pbCellTypes = ["Atypical", "Baso", "Blasts", "Eos", "Lymphs", "Metamyelocytes", "Monos", "Myelocytes", "Neuts", "NRBCs", "Plasma", "Promyelocytes"]
         if (pbTypeList != null && pbTypeList != "null") {
           pbTypeListChange(pbTypeList);
+          pbAddRows();
         } else {
-          pbTypeList = ['Blasts', 'NRBCs', 'Atypical', 'Other', 'Eos', 'Baso', 'Plasma', 'Neuts', 'Lymphs', 'Mono'];
+          pbTypeList = ['Blasts', 'NRBCs', 'Atypical', 'Other', 'Eos', 'Baso', 'Plasma', 'Neuts', 'Lymphs', 'Monos'];
           pbTypeListChange(pbTypeList);
         }
 
         var countAudioBlast = 'https://diffpath.github.io/media/Count-Click-Blast.mp3';
         var countAudioLow = 'https://diffpath.github.io/media/Count-Click-Low.mp3';
         var countAudioMed = 'https://diffpath.github.io/media/Count-Click-Med.mp3';
-        var countAudioHigh = 'https://diffpath.github.io/media/Count-Click-High.mp3';
-        var hundredAudio = 'https://diffpath.github.io/media/100-Soothing.wav';
+        var countAudioHigh = 'https://diffpath.github.io/media/Count-Click-High2.mp3';
+        var hundredAudio = 'https://diffpath.github.io/media/100-Soothing.mp3';
         var finishedAudio = 'https://diffpath.github.io/media/Complete-Nice.mp3';
-        var aspTypeList = ['Blasts', 'Baso', 'Atypical', 'Other', 'NRBCs', 'Lymphs', 'Plasma', 'Neuts', 'Eos', 'Mono'];
+        var aspTypeList = ['Blasts', 'Baso', 'Atypical', 'Other', 'NRBCs', 'Lymphs', 'Plasma', 'Neuts', 'Eos', 'Monos'];
         var header = '';
         var subHeader = '';
         var cbcReport = '';
+        var cbcArray = [];
         var specCheck, latCheck = false;
-        var wbc, wbcHigh, wbcLow, hgb, hgbHigh, hgbLow, mcv, mcvHigh, mcvLow, plt, pltHigh, pltLow, neutLow, neutHigh, lymphLow, lymphHigh, monoLow, monoHigh
-        var anisoVar = '';
-        var anisoIDList = [];
-        var anisoOptionList = [];
+        var wbc, wbcLow, wbcHigh, hgb, hgbLow, hgbHigh, mcv, mcvLow, mcvHigh, mchc, mchcLow, mchcHigh, plt, pltLow, pltHigh, mpv, mpvLow, mpvHigh, neut, neutHigh, neutLow, lymph, lymphHigh, lymphLow, mono, monoHigh, monoLow, eos, eosHigh, eosLow, baso, basoHigh, basoLow, nrbc, blast;
         var finalAnisoList = [];
+        var finalNeutList = [];
+        var finalMegList = [];
         var aspDescriptorList = [];
-        var lastPanel = ''
+        var lastPanel = '';
+        var pbDuplicateAlert = 0;
+        var anisoList = ['', 'acanthocytes', 'basophilic stippling', 'burr cells', 'Howell-Jolly bodies', 'macrocytes', 'macroovalocytes', 'microcytes', 'ovalocytes', 'schistocytes', 'sickle cells', 'spherocytes', 'target cells', 'teardrop forms']
+        var neutList = ['', 'hypogranular forms', 'hypolobated forms', 'monolobated forms', 'a shift to immaturity', 'toxic changes'];
+        var megList = ['', 'widely separated nuclear lobes', 'small hypolobated forms', 'micromegakaryocytes'];
+        var myeloidList = ['', 'hypogranular forms', 'hypolobated forms', 'monolobated forms', 'a shift to immaturity'];
+        var erythroidList = ['', 'nuclear budding', 'irregular nuclear contours'];
+
+        finalAnisoList = choices(neutList, "neut");
+        finalAnisoList = choices(megList, "meg");
+
         window.keypressed = {};
 
         $('.rightpanelbutton').click(function() {
           showPanel(this.id.replace('Button', 'Screen'))
         })
 
+        $('.navigationButton').click(function() {
+          $('#navigationPanel').toggle();
+        })
+
+        $('.pbCellTypeSave').change(function() {
+          pbDuplicateAlert = 0;
+          $('.pbCellTypeSave').each(function() {
+            var counter = 0
+            if ($(this).val() != "") {
+              var cellType = $(this).val()
+              pbTypeList[this.id.replace('pbSave', "")] = $(this).val()
+            } else {
+              var cellType = $(this).attr('placeholder');
+              pbTypeList[this.id.replace('pbSave', "")] = $(this).attr('placeholder')
+            }
+            $('.pbCellTypeSave').each(function() {
+              if ($(this).val() != "") {
+                var cellType2 = $(this).val()
+              } else {
+                var cellType2 = $(this).attr('placeholder');
+              }
+              if (cellType2 == cellType) {
+                counter++;
+              }
+            })
+            if (counter > 1) {
+              $(this).attr('style', "background-color:red;")
+              pbDuplicateAlert = 1;
+
+            } else {
+              $(this).attr('style', "background-color:white;")
+            }
+          })
+          $('.pbCellType').each(function() {
+            $(this).html('<b>' + this.id.replace('pbLabel', '') + ". </b>" + pbTypeList[this.id.replace('pbLabel', '')])
+          })
+          pbAddRows();
+          pbCounter();
+        })
+
+        function pbAddRows() {
+          for (var i = 0; i < pbTypeList.length; i++) {
+            if (pbCellTypes.indexOf(pbTypeList[i]) == -1) {
+              var html = "<tr id='pb" + pbTypeList[i] + "Row' style='display:none'><td>" + pbTypeList[i] + "</td><td id='pb" + pbTypeList[i] + "Table'></td><td>0</td></tr>";
+              $("#pbPlasmaRow").after(html);
+              pbCellTypes.push(pbTypeList[i]);
+            }
+          }
+        }
+
         function pbTypeListChange(pbTypeList) {
           $('.pbCellTypeSave').each(function() {
+            var counter = 0
             $(this).attr('placeholder', pbTypeList[this.id.replace('pbSave', '')])
+            for (var i = 0; i < pbTypeList.length; i++) {
+              if ($(this).attr('placeholder') == pbTypeList[i]) {
+                counter++;
+              }
+
+            }
+
+            if (counter > 1) {
+              $(this).attr('style', "background-color:red;")
+            } else {
+              $(this).attr('style', "background-color:white;")
+            }
           })
 
           $('.pbCellType').each(function() {
             $(this).html('<b>' + this.id.replace('pbLabel', '') + ". </b>" + pbTypeList[this.id.replace('pbLabel', '')])
           })
+          pbAddRows();
         }
 
         function showPanel(panelId) {
@@ -1138,7 +1368,6 @@
             $('#specFISH').prop('checked', true);
             $('#specMolec').prop('checked', true);
           }
-          showDivs();
           specCheck = true;
           if (latCheck == true) {
             grossDescription();
@@ -1190,7 +1419,6 @@
         }
 
         $('#specTypes').on('change keyup', function() {
-          showDivs();
           specCheck = true;
           if (latCheck == true) {
             grossDescription()
@@ -1203,6 +1431,7 @@
         })
 
         $('#pbDescriptors').change(function() {
+          $('#specPBSmear').prop('checked', true)
           fillPB();
         })
 
@@ -1246,6 +1475,114 @@
           $('#aspMegNL').prop('checked', false);
         })
 
+        function describeBlasts() {
+          var blastDescriptors = [];
+          var blastDescription = "";
+          if ($('#blastSmall').prop('checked')) {
+            blastDescription += ' The blasts are small'
+            if ($('#blastLarge').prop('checked')) {
+              blastDescription += ' to large in size'
+            } else if ($('#blastMedium').prop('checked')) {
+              blastDescription += ' to medium in size'
+            } else {
+              blastDescription += ' in size'
+            }
+          } else if ($('#blastMedium').prop('checked')) {
+            blastDescription += ' The blasts are medium';
+            if ($('#blastLarge').prop('checked')) {
+              blastDescription += ' to large in size'
+            } else {
+              blastDescription += ' in size'
+            }
+
+          } else if ($('#blastLarge').prop('checked')) {
+            blastDescription += ' The blasts are large in size'
+          }
+
+          if ($('#blastIrregular').prop('checked')) {
+            blastDescriptors.push('irregular nuclear contours')
+          }
+          if ($('#blastRound').prop('checked')) {
+            blastDescriptors.push('round nuclei')
+          }
+          if ($('#blastFine').prop('checked')) {
+            blastDescriptors.push('fine chromatin')
+          }
+          if ($('#blastFinelyReticular').prop('checked')) {
+            blastDescriptors.push('finely reticular chromatin')
+          }
+          if ($('#blastDelicateLacy').prop('checked')) {
+            blastDescriptors.push('delicate lacy chromatin')
+          }
+          if ($('#blastCondensed').prop('checked')) {
+            blastDescriptors.push('condensed chromatin')
+          }
+          if ($('#blastDispersed').prop('checked')) {
+            blastDescriptors.push('condensed chromatin')
+          }
+          if ($('#blastProminent').prop('checked')) {
+            blastDescriptors.push('prominent nucleoli')
+          }
+          if ($('#blastConspicuous').prop('checked')) {
+            blastDescriptors.push('conspicuous nucleoli')
+          }
+          if ($('#blastInconspicuous').prop('checked')) {
+            blastDescriptors.push('inconspicuous nucleoli')
+          }
+          if ($('#blastScant').prop('checked')) {
+            if ($('#blastPale').prop('checked')) {
+              blastDescriptors.push('scant pale cytoplasm')
+            } else if ($('#blastBasophilic').prop('checked')) {
+              blastDescriptors.push('scant basophilic cytoplasm')
+            } else if ($('#blastAmphophilic').prop('checked')) {
+              blastDescriptors.push('scant amphophilic cytoplasm')
+            } else {
+              blastDescriptors.push('scant cytoplasm')
+            }
+          }
+          if ($('#blastModerate').prop('checked')) {
+            if ($('#blastPale').prop('checked')) {
+              blastDescriptors.push('moderate pale cytoplasm')
+            } else if ($('#blastBasophilic').prop('checked')) {
+              blastDescriptors.push('moderate basophilic cytoplasm')
+            } else if ($('#blastAmphophilic').prop('checked')) {
+              blastDescriptors.push('moderate amphophilic cytoplasm')
+            } else {
+              blastDescriptors.push('moderate cytoplasm')
+            }
+          }
+          if ($('#blastAbundant').prop('checked')) {
+            if ($('#blastPale').prop('checked')) {
+              blastDescriptors.push('abundant pale cytoplasm')
+            } else if ($('#blastBasophilic').prop('checked')) {
+              blastDescriptors.push('abundant basophilic cytoplasm')
+            } else if ($('#blastAmphophilic').prop('checked')) {
+              blastDescriptors.push('abundant amphophilic cytoplasm')
+            } else {
+              blastDescriptors.push('abundant cytoplasm')
+            }
+          }
+          if (!$('#blastScant').prop('checked') && !$('#blastModerate').prop('checked') && !$('#blastAbundant').prop('checked')) {
+            if ($('#blastPale').prop('checked')) {
+              blastDescriptors.push('pale cytoplasm')
+            } else if ($('#blastBasophilic').prop('checked')) {
+              blastDescriptors.push('basophilic cytoplasm')
+            } else if ($('#blastAmphophilic').prop('checked')) {
+              blastDescriptors.push('amphophilic cytoplasm')
+            }
+          }
+          if ($('#blastSmall').prop('checked') || $('#blastMedium').prop('checked') || $('#blastLarge').prop('checked')) {
+            if (blastDescriptors.length != 0) {
+              blastDescription += " with " + listText(blastDescriptors) + "."
+            } else {
+              blastDescription += ".";
+            }
+          } else if (blastDescriptors.length != 0) {
+            blastDescription += ' The blasts have ' + listText(blastDescriptors) + "."
+          }
+          return blastDescription
+        }
+
         function fillPB() {
           var count = 0;
           if ($('#specPBSmear').prop('checked')) {
@@ -1271,7 +1608,7 @@
               pbText += ' with polychromasia';
               if ($('#rbcAP').prop('checked')) {
                 pbText += ' and anisopoikilocytosis'
-                if (anisoOptionList[0] != undefined && anisoOptionList[0] != "") {
+                if (finalAnisoList[0] != undefined && finalAnisoList[0] != "") {
                   pbText += ' including ' + listText(finalAnisoList)
                 }
                 pbText += '.'
@@ -1281,7 +1618,7 @@
 
             } else if ($('#rbcAP').prop('checked')) {
               pbText += ' with anisopoikilocytosis'
-              if (anisoOptionList[0] != undefined && anisoOptionList[0] != "") {
+              if (finalAnisoList[0] != undefined && finalAnisoList[0] != "") {
                 pbText += ' including ' + listText(finalAnisoList)
               }
               pbText += '.'
@@ -1289,52 +1626,82 @@
               pbText += '.'
             }
 
-            if ($('#pb1').val() > 0) {
-              pbText += ' Nucleated red blood cells are seen.'
-            }
-            console.log($('#pb0').val())
-            if (parseInt($('#pb0').val()) > 0) {
-              if ($('#pbBlastFrequent').prop('checked')) {
-                pbText += ' Frequent circulating blasts are identified.'
-              } else if ($('#pbBlastOccasional').prop('checked')) {
-                pbText += ' Occasional circulating blasts are identified.'
-              } else if ($('#pbBlastRare').prop('checked')) {
-                pbText += ' Rare circulating blasts are identified.'
-              } else {
-                pbText += ' Circulating blasts are identified.'
-              }
-            }
-
-            if ($('#pbCount').val() != "") {
-              var lymphocytes = parseInt($('#pb8').val()) / 100 * wbc;
-              if (lymphocytes > lymphHigh) {
-                pbText += ' There is absolute lymphocytosis.'
-              }
-            }
-
-            if ($('#pbCount').val() != "") {
-              var neutrophils = parseInt($('#pb7').val()) / 100 * wbc;
-              if (neutrophils < neutLow) {
-                pbText += ' Neutrophils are decreased'
-              } else if (neutrophils > neutHigh) {
-                pbText += ' Neutrophils are increased'
-              } else {
-                pbText += ' Neutrophils are adequate'
-              }
-
-              if ($('#neutNL').prop('checked')) {
-                pbText += ' with unremarkable morphology'
-              } else if ($('#neutTC').prop('checked')) {
-                pbText += ' and show toxic changes'
-                if ($('#neutLS').prop('checked')) {
-                  pbText += ' and a shift to immaturity'
+            for (var i = 0; i < pbTypeList.length; i++) {
+              if (pbTypeList[i] == "NRBCs") {
+                if ($('#pb' + i).val() * wbc < 20 && $('#pb' + i).val() * wbc > 0) {
+                  pbText += ' Rare nucleated red blood cells are seen.'
+                } else if ($('#pb' + i).val() * wbc < 100 && $('#pb' + i).val() * wbc > 0) {
+                  pbText += ' Occasional nucleated red blood cells are seen.'
+                } else if ($('#pb' + i).val() * wbc > 0) {
+                  pbText += ' Frequent nucleated red blood cells are seen.'
+                } else if ($('#pb' + i).val() > 0) {
+                  pbText += ' Nucleated red blood cells are seen.'
                 }
-              } else if ($('#neutLS').prop('checked')) {
-                pbText += ' and show a shift to immaturity'
               }
-              pbText += '.'
-            }
+              if (pbTypeList[i] == "Blasts") {
+                if (parseFloat($('#pb' + i).val()) > 0) {
+                  $('#pbBlastDiv').show();
+                  if (parseFloat($('#pb' + i).val()) * wbc < 20 && parseFloat($('#pb' + i).val()) * wbc > 0) {
+                    pbText += ' Rare circulating blasts are identified.'
+                  } else if (parseFloat($('#pb' + i).val()) * wbc < 100 && parseFloat($('#pb' + i).val()) * wbc > 0) {
+                    pbText += ' Occasional circulating blasts are identified.'
+                  } else if (parseFloat($('#pb' + i).val()) * wbc > 0) {
+                    pbText += ' Frequent circulating blasts are identified.'
+                  } else if (parseFloat($('#pb' + i).val()) > 0) {
+                    pbText += ' Circulating blasts are identified.'
+                  }
+                  pbText += describeBlasts();
+                } else {
+                  $('#pbBlastDiv').hide();
+                }
+              }
+              if (pbTypeList[i] == "Lymphs") {
+                var lymphocytes = parseFloat($('#pb' + i).val()) / 100 * wbc;
+                if (lymphocytes > lymphHigh) {
+                  pbText += ' There is absolute lymphocytosis.'
+                }
+              }
+              if (pbTypeList[i] == "Monos") {
+                var monocytes = parseFloat($('#pb' + i).val()) / 100 * wbc;
+                if (monocytes > monoHigh) {
+                  pbText += ' There is absolute monocytosis.'
+                }
+              }
+              if (pbTypeList[i] == "Eos") {
+                var eosinophils = parseFloat($('#pb' + i).val()) / 100 * wbc;
+                if (eosinophils > eosHigh) {
+                  pbText += ' There is absolute eosinophilia.'
+                }
+              }
+                            if (pbTypeList[i] == "Baso") {
+                var basophils = parseFloat($('#pb' + i).val()) / 100 * wbc;
+                if (basophils > basoHigh) {
+                  pbText += ' There is absolute basophilia.'
+                }
+              }
+              if (pbTypeList[i] == "Neuts") {
+                  var neutrophils = parseFloat($('#pb7').val()) / 100 * wbc;
+                  if (neutrophils < 0.1*neutLow) {
+                    pbText += ' Neutrophils are markedly decreased'
+                  } else if (neutrophils < neutLow) {
+                    pbText += ' Neutrophils are decreased'
+                  } else if (neutrophils > neutHigh) {
+                    pbText += ' Neutrophils are increased'
+                  } else {
+                    pbText += ' Neutrophils are adequate'
+                  }
+                  if ($('#neutNL').prop('checked')){
+                  pbText += ' and show unremarkable morphology.'
+                  } else if (finalNeutList[0] != undefined && finalNeutList[0] != "") {
+                    pbText += ' with ' + listText(finalNeutList) + '.'
+                  } else {
+                    pbText += '.'
+                  }
 
+                
+
+              }
+            }
             if (plt < pltLow) {
               pbText += ' Platelets are decreased'
               if ($('#pltNL').prop('checked')) {
@@ -1362,6 +1729,8 @@
               } else {
                 pbText += '.'
               }
+
+
             }
           } else {
             pbText = "A peripheral blood smear is not provided for review."
@@ -1424,25 +1793,35 @@
             aspText += "Myeloid and erythroid precursors show progressive maturation with unremarkable morphology. "
           } else if ($('#aspMyeloidNL').prop('checked')) {
             aspText += "Myeloid precursors show progressive maturation with unremarkable morphology. "
-          }
-          else if ($('#aspErythNL').prop('checked')) {
+          } else if ($('#aspErythNL').prop('checked')) {
             aspText += "Erythroid precursors show progressive maturation with unremarkable morphology. "
-          } 
+          }
           if ($('#aspMegAdeq').prop('checked')) {
             aspText += "Megakaryocytes are adequate"
-            aspText = fillMegs(aspText);
+            
           } else if ($('#aspMegDec').prop('checked')) {
             aspText += "Megakaryocytes are decreased"
-            aspText = fillMegs(aspText);
+            
           } else if ($('#aspMegInc').prop('checked')) {
             aspText += "Megakaryocytes are increased"
-            aspText = fillMegs(aspText);
+            
           }
-          
+          if ($('#aspMegAdeq').prop('checked') || $('#aspMegDec').prop('checked') || $('#aspMegInc').prop('checked')) {
+          if ($('#aspMegNL').prop('checked')){
+          aspText += " with unremarkable morphology" + ". "
+          } else if ($('#aspMegAB').prop('checked')){
+          aspText += " with " + listText(finalMegList) + ". "
+          } else {
+          aspText += ". "
+          }
+          } 
+
           if ($('#aspBlastNI').prop('checked')) {
-          	aspText += "Blasts are not significantly increased. "
+            aspText += " Blasts are not significantly increased. "
+          } else if ($('#aspBlastInc').prop('checked')) {
+            aspText += " Blasts are significantly increased. "
           }
-          
+
           if ($('#asp'))
             $('#aspText').val(aspText);
           $('#aspirateText').html($('#aspText').val() + '<br><br>');
@@ -1450,41 +1829,27 @@
           $('#aspirateText').show();
           $('#microscopic').show();
         }
-
-        function fillMegs(aspText) {
-          if ($('#aspMegNL').prop('checked')) {
-            aspText += " and show unremarkable morphology"
-          } else if ($('#aspMegHF').prop('checked')) {
-            aspText += " with hypolobated forms"
-          } else if ($('#aspMegSN').prop('checked')) {
-            aspText += " with separation of nuclei"
-          }
-          aspText += ". "
-          return aspText
-        }
-        
-        function showDivs() {
+        $('#coreDiv').keyup(function() {
+          var coreValues = [];
           if ($('#specCore').prop('checked')) {
-            $('#coreDiv').show();
+            var coreChecked = "checked='true'";
           } else {
-            $('#coreDiv').hide()
+            var coreChecked = "";
           }
-          if ($('#specASmear').prop('checked')) {
-            $('#aspDiv').show();
-          } else {
-            $('#aspDiv').hide()
+          var coreDiv = "<div><label><input type='checkbox' value='' id='specCore'" + coreChecked + ">Core Biopsy</label></div>";
+          $(".coreSize").each(function() {
+            coreValues.push($(this).val())
+          })
+          coreValues = coreValues.filter(Boolean)
+          for (var i = 0; i < coreValues.length; i++) {
+            coreDiv += "<div><input type='input' class='coreSize' value='" + coreValues[i] + "' id='coreSize" + i + "' maxlength='3' size='2'> cm &nbsp</div>"
           }
-          if ($('#specFISH').prop('checked')) {
-            $('#fishList').show();
-          } else {
-            $('#fishList').hide()
-          }
-          if ($('#specMolec').prop('checked')) {
-            $('#molecList').show();
-          } else {
-            $('#molecList').hide()
-          }
-        }
+          coreDiv += "<div><input type='input' class='coreSize' value='' id='coreSize" + coreValues.length + "' maxlength='3' size='2'> cm &nbsp</div>"
+          var focusedElement = "#" + $(':focus').attr('id')
+          $('#coreDiv').html(coreDiv)
+          var num = $(focusedElement).val();
+          $(focusedElement).focus().val('').val(num);
+        });
 
         function grossDescription() {
           $('#gross').show();
@@ -1500,13 +1865,15 @@
           } else if ($('#latB').prop('checked')) {
             laterality = "bilateral";
           }
-
           if ($('#specPBSmear').prop('checked')) {
             grossText += "<br>" + "Peripheral blood smear"
             headerSpecs.push("peripheral blood smear")
-
+            if ($('#pbSlides').val() != "") {
+              grossText += ": " + $('#pbSlides').val() + " unstained slides"
+            }
             if ($('#pbCount').val() != "") {
               pbCounter();
+
             } else if ($('#pbCBC').val() != "") {
               fillPB();
             } else {
@@ -1524,31 +1891,37 @@
           if ($('#specASmear').prop('checked')) {
             grossText += "<br>" + "Bone marrow aspirate, " + laterality + " posterior iliac crest"
             headerSpecs.push("bone marrow aspirate")
+            if ($('#aspSize').val() != "") {
+              grossText += ": " + $('#aspSize').val() + " cc"
+            }
           }
-          if ($('#aspSize').val() != "") {
-            grossText += " (" + $('#aspSize').val() + " cc)"
-          }
+
           if ($('#specClot').prop('checked')) {
             grossText += "<br>" + "Particle clot (formalin fixed)"
           }
-          if ($('#specCore').prop('checked')) {
-            grossText += "<br>" + "Bone marrow core biopsy, " + laterality + " posterior iliac crest "
-            headerSpecs.push(laterality + " posterior iliac crest bone marrow core biopsy")
-            if ($('#coreSize1').val() != "" && $('#coreSize2').val() != "") {
-              grossText += " (" + $('#coreSize1').val() + " cm and " + $('#coreSize2').val() + " cm, B5 fixed)"
-            } else if ($('#coreSize1').val() != "") {
-              grossText += " (" + $('#coreSize1').val() + " cm, B5 fixed)"
-            } else if ($('#coreSize2').val() != "") {
-              grossText += " (" + $('#coreSize2').val() + " cm, B5 fixed)"
-            } else {
-              grossText += "(B5 fixed)"
+          var coreValues = [];
+          $(".coreSize").each(function() {
+            if ($(this).val() != "") {
+              coreValues.push($(this).val() + " cm")
             }
+          })
+          if ($('#specCore').prop('checked')) {
+            grossText += "<br>" + "Bone marrow core biopsy, " + laterality + " posterior iliac crest"
+            headerSpecs.push(laterality + " posterior iliac crest bone marrow core biopsy")
+
+            if ($('#coreSize0').val() != "") {
+              grossText += ": " + listText(coreValues)
+            }
+            grossText += " (B5 fixed)"
           }
           if ($('#specTouch').prop('checked')) {
             grossText += "<br>" + "Touch preparation, " + laterality
+            if ($('#touchSlides').val() != "") {
+              grossText += ": " + $('#touchSlides').val() + " unstained slides"
+            }
           }
           if ($('#specFlow').prop('checked')) {
-            grossText += "<br>" + "Flow cytometry - Bone marrow aspirate submitted to Flow Cytometry Laboratory at Northwestern Memorial Hospital (NMH)."
+            grossText += "<br>" + "Flow cytometry: Bone marrow aspirate submitted to Flow Cytometry Laboratory at Northwestern Memorial Hospital (NMH)."
           }
 
           if ($('#specFISH').prop('checked')) {
@@ -1557,21 +1930,25 @@
             }
           }
           if ($('#specGen').prop('checked') && $('#specFISH').prop('checked')) {
-            grossText += "<br>" + "Cytogenetics/FISH - Bone marrow aspirate submitted to Cytogenetic Laboratory at Northwestern Memorial Hospital for conventional cytogenetic studies and FISH analysis" + fishText
+            grossText += "<br>" + "Cytogenetics/FISH: Bone marrow aspirate submitted to Cytogenetic Laboratory at Northwestern Memorial Hospital for conventional cytogenetic studies and FISH analysis" + fishText
           } else if ($('#specGen').prop('checked')) {
-            grossText += "<br>" + "Cytogenetics - Bone marrow aspirate submitted to Cytogenetic Laboratory at Northwestern Memorial Hospital for conventional cytogenetic studies"
+            grossText += "<br>" + "Cytogenetics: Bone marrow aspirate submitted to Cytogenetic Laboratory at Northwestern Memorial Hospital for conventional cytogenetic studies"
           } else if ($('#specFISH').prop('checked')) {
-            grossText += "<br>" + "FISH - Bone marrow aspirate submitted to Cytogenetic Laboratory at Northwestern Memorial Hospital for FISH analysis" + fishText
+            grossText += "<br>" + "FISH: Bone marrow aspirate submitted to Cytogenetic Laboratory at Northwestern Memorial Hospital for FISH analysis" + fishText
           }
 
           if ($('#specMolec').prop('checked')) {
-            grossText += "<br>" + "Molecular testing - Bone marrow aspirate submitted to the molecular laboratory at NMH"
+            grossText += "<br>" + "Molecular testing: Bone marrow aspirate submitted to the molecular laboratory at NMH"
             if ($('#molecList').val() != 0) {
               grossText += " for " + $('#molecList').val()
             }
           }
           if ($('#specPCLI').prop('checked')) {
-            grossText += "<br>" + "Plasma cell labeling index - Bone marrow aspirate submitted to Mayo lab for plasma cell labeling index"
+            grossText += "<br>" + "Plasma cell labeling index: Bone marrow aspirate submitted to Mayo lab for plasma cell labeling index"
+          }
+
+          if ($('#specProtocol').prop('checked') && $('#protocolNumber').val() != "") {
+            grossText += "<br>" + "Protocol: IRB#" + $('#protocolNumber').val();
           }
           $("#grossText").html(grossText);
           for (var i = 0; i < headerSpecs.length; i++) {
@@ -1586,7 +1963,6 @@
             }
           }
           headerText += ":";
-
           $("#header").html(headerText.charAt(0).toUpperCase() + headerText.slice(1) + "<br>" + "<br>");
           $('#final').show();
         }
@@ -1620,49 +1996,37 @@
         $('#pbCountTable').change(function() {
           var totalVar = 0;
           $('.pbCellType').each(function() {
+            var tempID = this.id.replace('Label', '')
+            var tempNumber = tempID.replace('pb', '')
             if ($('#' + this.id).html().indexOf('NRBC') != -1) {
               $('#' + this.id.replace('Label', '')).val(parseFloat($('#' + this.id.replace('Label', '')).val().replace(/%/g, '')))
             } else {
               $('#' + this.id.replace('Label', '')).val(parseFloat($('#' + this.id.replace('Label', '')).val().replace(/%/g, '')).toFixed(1) + "%")
               totalVar += parseFloat($('#' + this.id.replace('Label', '')).val().replace(/%/g, ''))
             }
+            $('#pb' + pbTypeList[tempNumber] + 'Table').html($("#" + tempID).val());
           })
-          $('#pbTotalPercent').val(totalVar + "%");
-          $('#pbNeutsTable').html($('#pb7').val());
-          $('#pbLymphsTable').html($('#pb8').val());
-          $('#pbMonoTable').html($('#pb9').val());
-          $('#pbEosTable').html($('#pb4').val());
-          $('#pbBasoTable').html($('#pb5').val());
-          if ($('#pb6').val() > 0) {
-            $('#pbPlasmaTable').html($('#pb6').val());
-            $('#pbPlasmaRow').show();
-          }
-          if ($('#pb1').val() > 0) {
-            $('#pbNRBCsTable').html($('#pb1').val());
-            $('#pbNRBCRow').show();
-          }
+          $('#pbTotalPercent').val(totalVar.toFixed(1) + "%");
 
-          $('#pbBlastsTable').html($('#pb0').val());
         })
 
         $('#pbCount').keydown(function(e) {
           if (window.keypressed[e.which]) {
             e.preventDefault();
           } else {
-          console.log(e.which)
-          if (e.which == 55 || e.which == 56 || e.which == 57 || e.which == 103 || e.which == 104 || e.which == 105){
-          window.keypressed[e.which] = true;
-          new Audio(countAudioHigh).play();
-          } else if (e.which == 52 || e.which == 53 || e.which == 54 || e.which == 100 || e.which == 101 || e.which == 102){
-          window.keypressed[e.which] = true;
-          new Audio(countAudioMed).play();
-          } else if (e.which == 49 || e.which == 50 || e.which == 51 || e.which == 97 || e.which == 98 || e.which == 99){
-          window.keypressed[e.which] = true;
-          new Audio(countAudioLow).play();
-          } else if (e.which == 48 || e.which == 96){
-          window.keypressed[e.which] = true;
-          new Audio(countAudioBlast).play();
-          }             
+            if (e.which == 55 || e.which == 56 || e.which == 57 || e.which == 103 || e.which == 104 || e.which == 105) {
+              window.keypressed[e.which] = true;
+              new Audio(countAudioHigh).play();
+            } else if (e.which == 52 || e.which == 53 || e.which == 54 || e.which == 100 || e.which == 101 || e.which == 102) {
+              window.keypressed[e.which] = true;
+              new Audio(countAudioMed).play();
+            } else if (e.which == 49 || e.which == 50 || e.which == 51 || e.which == 97 || e.which == 98 || e.which == 99) {
+              window.keypressed[e.which] = true;
+              new Audio(countAudioLow).play();
+            } else if (e.which == 48 || e.which == 96) {
+              window.keypressed[e.which] = true;
+              new Audio(countAudioBlast).play();
+            }
           }
         })
 
@@ -1673,7 +2037,7 @@
 
         $('#rbcAP').change(function() {
           if ($('#rbcAP').prop('checked')) {
-            createAniso();
+            finalAnisoList = choices(anisoList, "aniso");
             $('#anisoDiv').show()
           } else {
             $('#anisoDiv').hide()
@@ -1681,68 +2045,89 @@
         })
 
         $('#anisoDiv').change(function() {
-          createAniso()
+          finalAnisoList = choices(anisoList, "aniso");
+
         })
 
-        function createAniso() {
-          var anisoList = ['', 'acanthocytes', 'basophilic stippling', 'burr cells', 'Howell-Jolly bodies', 'macrocytes', 'macroovalocytes', 'microcytes', 'ovalocytes', 'schistocytes', 'sickle cells', 'spherocytes', 'target cells', 'teardrop forms']
-          anisoOptionList = [];
-          finalAnisoList = [];
+        $('#neutDiv').change(function() {
+          finalNeutList = choices(neutList, "neut");
+          if (finalNeutList.length > 0){
+          	$('#neutNL').prop('checked', false);
+            $('#neutAB').prop('checked', true);
+          }
+        })
+        
+         $('#megDiv').change(function() {
+          finalMegList = choices(megList, "meg");
+          if (finalMegList.length > 0){
+          	$('#aspMegNL').prop('checked', false);
+            $('#aspMegAB').prop('checked', true);
+          }
+        })
+
+        function choices(inputList, inputLabel) {
+          var choiceList = [...inputList];
+          var choiceOptionList = [];
+          var finalChoiceList = [];
           var count = 0;
           var testVar = ""
-          $('.aniso').each(function() {
-            if (anisoOptionList.indexOf($('#' + this.id).val()) == -1) {
-              anisoOptionList.push($('#' + this.id).val())
+          $('.' + inputLabel).each(function() {
+            if (choiceOptionList.indexOf($('#' + this.id).val()) == -1) {
+              choiceOptionList.push($('#' + this.id).val())
             }
           })
-          for (var i = 0; i < anisoOptionList.length; i++) {
-            if (anisoOptionList[i] != '') {
-              testVar += '<div><select id="aniso' + count + '" class="aniso">'
-              for (var j = 0; j < anisoList.length; j++) {
-                testVar += '<option value="' + anisoList[j] + '"'
-                if (anisoList[j] == anisoOptionList[i]) {
+          for (var i = 0; i < choiceOptionList.length; i++) {
+            if (choiceOptionList[i] != '') {
+              testVar += '<div><select id="' + inputLabel + count + '" class="' + inputLabel + '" style="width: 150px !important;">'
+              for (var j = 0; j < choiceList.length; j++) {
+                testVar += '<option value="' + choiceList[j] + '"'
+                if (choiceList[j] == choiceOptionList[i]) {
                   testVar += ' selected'
                 }
-                testVar += '>' + anisoList[j].charAt(0).toUpperCase() + anisoList[j].slice(1) + '</option>';
+                testVar += '>' + choiceList[j].charAt(0).toUpperCase() + choiceList[j].slice(1) + '</option>';
+
               }
-              anisoList.splice($.inArray(anisoOptionList[i], anisoList), 1);
-              testVar += '</select>&nbsp<label><input type="radio" name="anisoQuant' + count + '" id="anisoFreq' + count + '"'
-              if ($('#anisoFreq' + count).prop('checked')) {
+              choiceList.splice($.inArray(choiceOptionList[i], choiceList), 1);
+              testVar += '</select>&nbsp<label><input type="radio" name="' + inputLabel + 'Quant' + count + '" id="' + inputLabel + 'Freq' + count + '"'
+              if ($('#' + inputLabel + 'Freq' + count).prop('checked')) {
                 testVar += ' checked'
               }
               testVar += '> Frequent</label>';
-              testVar += '</select>&nbsp<label><input type="radio" name="anisoQuant' + count + '" id="anisoOccas' + count + '"'
-              if ($('#anisoOccas' + count).prop('checked')) {
+              testVar += '</select>&nbsp<label><input type="radio" name="' + inputLabel + 'Quant' + count + '" id="' + inputLabel + 'Occas' + count + '"'
+              if ($('#' + inputLabel + 'Occas' + count).prop('checked')) {
                 testVar += ' checked'
               }
               testVar += '> Occasional</label>';
-              testVar += '</select>&nbsp<label><input type="radio" name="anisoQuant' + count + '" id="anisoRare' + count + '"'
-              if ($('#anisoRare' + count).prop('checked')) {
+              testVar += '</select>&nbsp<label><input type="radio" name="' + inputLabel + 'Quant' + count + '" id="' + inputLabel + 'Rare' + count + '"'
+              if ($('#' + inputLabel + 'Rare' + count).prop('checked')) {
                 testVar += ' checked';
               }
               testVar += '> Rare</label></div>';
 
-              if ($('#anisoFreq' + count).prop('checked')) {
-                finalAnisoList.push('frequent ' + anisoOptionList[i]);
-              } else if ($('#anisoOccas' + count).prop('checked')) {
-                finalAnisoList.push('occasional ' + anisoOptionList[i]);
-              } else if ($('#anisoRare' + count).prop('checked')) {
-                finalAnisoList.push('rare ' + anisoOptionList[i]);
+              if ($('#' + inputLabel + 'Freq' + count).prop('checked')) {
+                finalChoiceList.push('frequent ' + choiceOptionList[i]);
+              } else if ($('#' + inputLabel + 'Occas' + count).prop('checked')) {
+                finalChoiceList.push('occasional ' + choiceOptionList[i]);
+              } else if ($('#' + inputLabel + 'Rare' + count).prop('checked')) {
+                finalChoiceList.push('rare ' + choiceOptionList[i]);
               } else {
-                finalAnisoList.push(anisoOptionList[i]);
+                finalChoiceList.push(choiceOptionList[i]);
               }
             }
             count++;
           }
-          testVar += '<div><select id="aniso' + count + '" class="aniso">'
-          for (var i = 0; i < anisoList.length; i++) {
-            testVar += '<option value="' + anisoList[i] + '"'
-            testVar += '>' + anisoList[i].charAt(0).toUpperCase() + anisoList[i].slice(1) + '</option>';
+
+          testVar += '<div><select id="' + inputLabel + count + '" class="' + inputLabel + '" style="width: 150px !important;">'
+          for (var i = 0; i < choiceList.length; i++) {
+            testVar += '<option value="' + choiceList[i] + '"'
+            testVar += '>' + choiceList[i].charAt(0).toUpperCase() + choiceList[i].slice(1) + '</option>';
           }
           testVar += '</select></div>';
           count++;
-          $('#anisoDiv').html(testVar);
-          anisoOptionList = anisoOptionList.filter(Boolean);
+          $('#' + inputLabel + 'Div').html(testVar);
+          choiceOptionList = choiceOptionList.filter(Boolean);
+          return finalChoiceList
+
         }
 
         $('.adequacy').change(function() {
@@ -1795,104 +2180,94 @@
           pbCounter();
         })
 
+
         function pbCounter() {
-          $('#specPBSmear').prop('checked', true);
-          if ($('#pbDCount').val() == "") {
-            var desiredCount = $('#pbDCount').attr('placeholder');
-          } else {
-            var desiredCount = $('#pbDCount').val()
-          }
-          var totalVar = 0
-          var re = new RegExp("(?!" + +pbTypeList.indexOf('NRBCs') + ")\\d", "g")
-          var totalCells = ($('#pbCount').val().match(re) || []).length;
+          if (pbDuplicateAlert != 1) {
 
-          if (totalCells != 0) {
-            $('.pbCellType').each(function() {
 
-              var tempID = this.id.replace('Label', '')
-              var tempNumber = tempID.replace('pb', '')
-              var re = new RegExp(tempNumber, 'g');
-              if ($(this).html().indexOf('NRBC') != -1) {
-                $('#' + tempID).val((($('#pbCount').val().match(re) || []).length / (totalCells / 100)).toFixed(0));
-                $('#pb' + pbTypeList[tempNumber] + 'Table').html($('#' + tempID).val());
+            $('#specPBSmear').prop('checked', true);
+            if ($('#pbDCount').val() == "") {
+              var desiredCount = $('#pbDCount').attr('placeholder');
+            } else {
+              var desiredCount = $('#pbDCount').val()
+            }
+            var totalVar = 0
+            var re = new RegExp("(?!" + +pbTypeList.indexOf('NRBCs') + ")\\d", "g")
+            var totalCells = ($('#pbCount').val().match(re) || []).length;
+
+            if (totalCells != 0) {
+              $('.pbCellType').each(function() {
+                var tempID = this.id.replace('Label', '')
+                var tempNumber = tempID.replace('pb', '')
+                var re = new RegExp(tempNumber, 'g');
+                if ($(this).html().indexOf('NRBC') != -1) {
+                  $('#' + tempID).val((Math.round(($('#pbCount').val().match(re) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1));
+                  $('#pb' + pbTypeList[tempNumber] + 'Table').html($('#' + tempID).val());
+                } else {
+                  var tempPercent = (Math.round(($('#pbCount').val().match(re) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
+                  $('#' + tempID).val(tempPercent + "%");
+                  $('#pb' + pbTypeList[tempNumber] + 'Table').html(tempPercent + "%");
+                  totalVar += parseFloat($('#' + tempID).val().replace(/%/g, ''))
+                }
+              })
+            }
+
+            for (var i = 0; i < pbTypeList.length; i++) {
+              if ($('#pb' + i).val() != "" && $('#pb' + i).val() != "0.0%" && $('#pb' + i).val() != 0) {
+
+                $('#pb' + pbTypeList[i] + 'Row').show();
               } else {
-                var tempPercent = (Math.round(($('#pbCount').val().match(re) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
-                $('#' + tempID).val(tempPercent + "%");
-                $('#pb' + pbTypeList[tempNumber] + 'Table').html(tempPercent + "%");
-                totalVar += parseFloat($('#' + tempID).val().replace(/%/g, ''))
+                $('#pb' + pbTypeList[i] + 'Row').hide();
               }
-            })
-          }
-          if ($('#pbCount').val().indexOf(pbTypeList.indexOf('Blasts')) != -1) {
-            $('#pbBlastRow').show();
-            $('#pbBlastDiv').show();
-          } else {
-            $('#pbBlastRow').hide();
-            $('#pbBlastDiv').hide();
-          }
+            }
 
-          if ($('#pbCount').val().indexOf(pbTypeList.indexOf('NRBCs')) != -1) {
-            $('#pbNRBCRow').show();
-          } else {
-            $('#pbNRBCRow').hide();
-          }
 
-          if ($('#pbCount').val().indexOf(pbTypeList.indexOf('Atypical')) != -1) {
-            $('#pbAtypicalRow').show();
-          } else {
-            $('#pbAtypicalRow').hide();
-          }
+            if (totalCells == desiredCount) {
+              new Audio(finishedAudio).play()
 
-          if ($('#pbCount').val().indexOf(pbTypeList.indexOf('Plasma')) != -1) {
-            $('#pbPlasmaRow').show();
-          } else {
-            $('#pbPlasmaRow').hide();
-          }
+            } else if (totalCells != 0 && totalCells % 100 == 0) {
+              new Audio(hundredAudio).play()
+            }
 
-          if (totalCells == desiredCount) {
-            new Audio(finishedAudio).play()
-
-          } else if (totalCells != 0 && totalCells % 100 == 0) {
-            new Audio(hundredAudio).play()
-          }
-
-          $('#pbTotalPercent').val(totalVar.toFixed(1) + "%");
-          $('#pbTableCountHeader').html('Peripheral blood (' + desiredCount + ' cells)');
-          $('#microscopic').show();
-          $('#diff').show();
-          $('#pbTable').show();
-          $('#pbCCount').val(totalCells);
-          if ($('#pbCBC').val() != "") {
+            $('#pbTotalPercent').val(totalVar.toFixed(1) + "%");
+            $('#pbTableCountHeader').html('Peripheral blood (' + desiredCount + ' cells)');
+            $('#microscopic').show();
+            $('#diff').show();
+            $('#pbTable').show();
+            $('#pbTableAlert').hide()
+            $('#pbCCount').val(totalCells);
             fillPB();
-          }
+            $('#peripheralBlood').show();
 
-          if ($('#pbPerformed').val() == "" && $('#pbPerformed').attr('placeholder') != undefined) {
-            $('#performedText').html('Performed by:   ' + $('#pbPerformed').attr('placeholder') + '<br><br>')
-          } else if ($('#pbPerformed').val() != "") {
-            console.log(2)
-            $('#performedText').html('Performed by:   ' + $('#pbPerformed').val() + '<br><br>')
-          }
 
+            if ($('#pbPerformed').val() == "" && $('#pbPerformed').attr('placeholder') != undefined) {
+              $('#performedText').html('Performed by:   ' + $('#pbPerformed').attr('placeholder') + '<br><br>')
+            } else if ($('#pbPerformed').val() != "") {
+              $('#performedText').html('Performed by:   ' + $('#pbPerformed').val() + '<br><br>')
+            }
+          } else {
+            $('#pbTableAlert').show()
+            $('#pbTable').hide()
+          }
         }
 
         $('#aspCount').keydown(function(e) {
           if (window.keypressed[e.which]) {
             e.preventDefault();
           } else {
-          console.log(e.which)
-          if (e.which == 55 || e.which == 56 || e.which == 57 || e.which == 103 || e.which == 104 || e.which == 105){
-          window.keypressed[e.which] = true;
-          new Audio(countAudioHigh).play();
-          } else if (e.which == 52 || e.which == 53 || e.which == 54 || e.which == 100 || e.which == 101 || e.which == 102){
-          window.keypressed[e.which] = true;
-          new Audio(countAudioMed).play();
-          } else if (e.which == 49 || e.which == 50 || e.which == 51 || e.which == 97 || e.which == 98 || e.which == 99){
-          window.keypressed[e.which] = true;
-          new Audio(countAudioLow).play();
-          } else if (e.which == 48 || e.which == 96){
-          window.keypressed[e.which] = true;
-          new Audio(countAudioBlast).play();
-          }             
+            if (e.which == 55 || e.which == 56 || e.which == 57 || e.which == 103 || e.which == 104 || e.which == 105) {
+              window.keypressed[e.which] = true;
+              new Audio(countAudioHigh).play();
+            } else if (e.which == 52 || e.which == 53 || e.which == 54 || e.which == 100 || e.which == 101 || e.which == 102) {
+              window.keypressed[e.which] = true;
+              new Audio(countAudioMed).play();
+            } else if (e.which == 49 || e.which == 50 || e.which == 51 || e.which == 97 || e.which == 98 || e.which == 99) {
+              window.keypressed[e.which] = true;
+              new Audio(countAudioLow).play();
+            } else if (e.which == 48 || e.which == 96) {
+              window.keypressed[e.which] = true;
+              new Audio(countAudioBlast).play();
+            }
           }
         })
 
@@ -1925,7 +2300,7 @@
           $('#aspTotalPercent').val(totalVar.toFixed(1) + "%");
           $('#aspNeutsTable').html($('#asp7').val());
           $('#aspEosTable').html($('#asp8').val());
-          $('#aspMonoTable').html($('#asp9').val());
+          $('#aspMonosTable').html($('#asp9').val());
           $('#aspNRBCsTable').html($('#asp4').val());
           $('#aspLymphsTable').html($('#asp5').val());
           $('#aspPlasmaTable').html($('#asp6').val());
@@ -1975,19 +2350,19 @@
             $('#performedText').html('Performed by:   ' + $('#pbPerformed').val() + '<br><br>')
           }
         }
-        
-        $('#touchPrepDiv').change(function(){
-        
-        if ($('#touchPrepSimilar').prop('checked')){
-        var touchPrep = "The bone marrow touch preparations are cellular and show findings similar to the aspirate smears."
-         $('#tpText').val(touchPrep);
-        	$('#touchPrepText').html($('#tpText').val() + '<br><br>')
-          $('#aspirateSmear').show();
-          $('#touchPrepText').show();
-          $('#microscopic').show();      
-        }
-        
-})
+
+        $('#touchPrepDiv').change(function() {
+
+          if ($('#touchPrepSimilar').prop('checked')) {
+            var touchPrep = "The bone marrow touch preparations are cellular and show findings similar to the aspirate smears."
+            $('#tpText').val(touchPrep);
+            $('#touchPrepText').html($('#tpText').val() + '<br><br>')
+            $('#aspirateSmear').show();
+            $('#touchPrepText').show();
+            $('#microscopic').show();
+          }
+
+        })
 
         $('#ironStainDiv').change(function() {
           var ironText = "";
@@ -2012,7 +2387,8 @@
           }
         })
 
-        $('#pbCBC').on('keyup change', function() {
+        $('#pbCBC').bind('input', function() {
+          var cbcTable = "<table id='pbtable'><tr><th></th><th>Result</th><th>Reference Range</th></tr>"
           var cbcFinal = [];
           var cbcToggle = 0;
           var cbcLines = "";
@@ -2028,74 +2404,44 @@
             ["%", "RDW", "RBC DIST WIDTH"],
             [" K/uL", "PLT", "PLT CNT", "PLATELETS, BLOOD"]
           ];
+          var cbcVariables = ["WBC", "RBC", "HGB", "HCT", "MCV", "PLT", "AbsoluteNeutrophils", "AbsoluteLymphocytes", "AbsoluteBasophils", "AbsoluteMonocytes", "AbsoluteEosinophils"]
           var cbcLines = $('#pbCBC').val().split("\n")
           var pbText = ""
+          var counter = 0;
           for (var i = 0; i < cbcLines.length; i++) {
             cbcFinal.push(cbcLines[i].split("\t"))
           }
           for (var i = 0; i < cbcFinal.length; i++) {
-            for (var j = 0; j < cbcFinal[i].length; j++) {
-              cbcFinal[i][j] = cbcFinal[i][j].trim();
-              if (cbcFinal[i][0].replace(/\s/g, '') == "WBC" || cbcFinal[i][0].replace(/\s/g, '').indexOf('WHITE BLOOD CELLS') != -1) {
-                if (cbcFinal[i][j].indexOf("-") == -1 && /\d/.test(cbcFinal[i][j])) {
-                  wbc = parseFloat(cbcFinal[i][j].replace(/[^\d.-]/g, ''));
-                } else if (cbcFinal[i][j].indexOf("-") != -1) {
-                  wbcLow = parseFloat(cbcFinal[i][j].split(" ")[0])
-                  wbcHigh = parseFloat(cbcFinal[i][j].split(" ")[2])
-                }
-              }
+            var t1 = performance.now();
+            if (cbcVariables.includes(cbcFinal[i][0].replace(/\s/g, ''))) {
+              cbcArray[counter] = [cbcFinal[i][0].replace(/\s/g, ''), "", "", "", ""];
 
-              if (cbcFinal[i][0].replace(/\s/g, '') == "HGB") {
-                if (cbcFinal[i][j].indexOf("-") == -1 && /\d/.test(cbcFinal[i][j])) {
-                  hgb = parseFloat(cbcFinal[i][j].replace(/[^\d.-]/g, ''));
-                } else if (cbcFinal[i][j].indexOf("-") != -1) {
-                  hgbLow = parseFloat(cbcFinal[i][j].split(" ")[0])
-                  hgbHigh = parseFloat(cbcFinal[i][j].split(" ")[2])
-                }
-              } else if (cbcFinal[i][0].replace(/\s/g, '') == "PLT") {
-                if (cbcFinal[i][j].indexOf("-") == -1 && /\d/.test(cbcFinal[i][j])) {
-                  plt = parseInt(cbcFinal[i][j].replace(/[^\d.-]/g, ''));
-                } else if (cbcFinal[i][j].indexOf("-") != -1) {
-                  pltLow = parseFloat(cbcFinal[i][j].split(" ")[0])
-                  pltHigh = parseFloat(cbcFinal[i][j].split(" ")[2])
-                }
-              } else if (cbcFinal[i][0].replace(/\s/g, '') == "MCV") {
-                if (cbcFinal[i][j].indexOf("-") == -1 && /\d/.test(cbcFinal[i][j])) {
-                  mcv = parseFloat(cbcFinal[i][j].replace(/[^\d.-]/g, ''));
-                } else if (cbcFinal[i][j].indexOf("-") != -1) {
-                  mcvLow = parseFloat(cbcFinal[i][j].split(" ")[0])
-                  mcvHigh = parseFloat(cbcFinal[i][j].split(" ")[2])
-                }
-              }
-              if (cbcFinal[i][0].indexOf("Absolute Lymphocytes") != -1) {
-                if (cbcFinal[i][j].indexOf("-") != -1) {
-                  lymphLow = parseFloat(cbcFinal[i][j].split(" ")[0])
-                  lymphHigh = parseFloat(cbcFinal[i][j].split(" ")[2])
-                }
-              }
 
-              if (cbcFinal[i][0].indexOf("Absolute Neutrophils") != -1 || cbcFinal[i][0].indexOf("GRAN #") != -1) {
-                if (cbcFinal[i][j].indexOf("-") != -1) {
-                  neutLow = parseFloat(cbcFinal[i][j].split(" ")[0])
-                  neutHigh = parseFloat(cbcFinal[i][j].split(" ")[2])
+              for (var j = 0; j < cbcFinal[i].length; j++) {
+                if (cbcFinal[i][j].indexOf("-") == -1 && /\d/.test(cbcFinal[i][j]) && cbcArray[counter][1] == "") {
+                  cbcArray[counter][1] = parseFloat(cbcFinal[i][j].replace(/[^\d.-]/g, ''));
+                } else if (cbcFinal[i][j].indexOf("-") != -1 && cbcArray[counter][1] == "") {
+                  cbcArray[counter][2] = parseFloat(cbcFinal[i][j].split(" ")[0]);
+                  cbcArray[counter][3] = parseFloat(cbcFinal[i][j].split(" ")[2]);
+                  cbcArray[counter][4] = cbcFinal[i][j].split(" ")[3];
                 }
               }
+              counter++
 
-              if (cbcFinal[i].indexOf('Resulting Agency') != -1) {
-                if (cbcFinal[i].indexOf('NMH') != -1) {
-                  var laboratory = "Northwestern Memorial Hospital"
-                } else if (cbcFinal[i].indexOf('MISYS') != -1) {
-                  var laboratory = "Lurie Children's Hospital of Chicago";
-                } else {
-                  var laboratory = cbcFinal[i][j];
-                }
+            } else if (cbcFinal[i].indexOf('Resulting Agency') != -1) {
+              if (cbcFinal[i].indexOf('NMH Lab') != -1 || cbcFinal[i].indexOf('NMH') != -1) {
+                var laboratory = "Northwestern Memorial Hospital"
+              } else if (cbcFinal[i].indexOf('MISYS') != -1) {
+                var laboratory = "Lurie Children's Hospital of Chicago";
+              } else {
+                var laboratory = cbcFinal[i].filter(Boolean)[1]
               }
+            }
+            if (cbcFinal[i][0].indexOf("Specimen Collected:") != -1) {
 
-              if (cbcFinal[i][j].indexOf("Specimen Collected:") != -1) {
-                var cbcTemp = cbcFinal
-                collectedDate = cbcTemp[i][j].split(" ")[2]
-                cbcHeader = "The following CBC is from " + collectedDate + " and was performed at " + laboratory + ":" + "<br>" + "<br>"
-              }
+              var cbcTemp = cbcFinal
+              collectedDate = cbcTemp[i][0].split(" ")[2]
+              cbcHeader = "The following CBC is from " + collectedDate + " and was performed at " + laboratory + ":" + "<br><br>"
             }
             for (var y = 0; y < cbc.length; y++) {
               if (cbc[y].indexOf(cbcFinal[i][0]) != -1) {
@@ -2120,13 +2466,58 @@
                 cbcToggle = 0;
               }
             }
+
           }
-          $("#clinicalCBC").html(cbcHeader + cbcText);
+          fillCBC();
+          $("#clinicalCBC").html(cbcHeader + cbcText + "<br><br>");
           $('#clinical').show();
           $('#clinicalCBC').show();
           $('#peripheralBlood').show();
           fillPB();
         })
+
+        function fillCBC() {
+          var finalText = "";
+          for (let i = 0; i < cbcArray.length; i++) {
+            if (cbcArray[i][0] == "WBC") {
+              wbc = cbcArray[i][1];
+              wbcLow = cbcArray[i][2];
+              wbcHigh = cbcArray[i][3];
+            } else if (cbcArray[i][0] == "HGB") {
+              hgb = cbcArray[i][1];
+              hgbLow = cbcArray[i][2];
+              hgbHigh = cbcArray[i][3];
+            } else if (cbcArray[i][0] == "MCV") {
+              mcv = cbcArray[i][1];
+              mcvLow = cbcArray[i][2];
+              mcvHigh = cbcArray[i][3];
+            } else if (cbcArray[i][0] == "PLT") {
+              plt = cbcArray[i][1];
+              pltLow = cbcArray[i][2];
+              pltHigh = cbcArray[i][3];
+            } else if (cbcArray[i][0] == "AbsoluteNeutrophils") {
+              neut = cbcArray[i][1];
+              neutLow = cbcArray[i][2];
+              neutHigh = cbcArray[i][3];
+            } else if (cbcArray[i][0] == "AbsoluteLymphocytes") {
+              lymph = cbcArray[i][1];
+              lymphLow = cbcArray[i][2];
+              lymphHigh = cbcArray[i][3];
+            } else if (cbcArray[i][0] == "AbsoluteMonocytes") {
+              mono = cbcArray[i][1];
+              monoLow = cbcArray[i][2];
+              monoHigh = cbcArray[i][3];
+            } else if (cbcArray[i][0] == "AbsoluteEosinophils") {
+              eos = cbcArray[i][1];
+              eosLow = cbcArray[i][2];
+              eosHigh = cbcArray[i][3];
+            } else if (cbcArray[i][0] == "AbsoluteBasophils") {
+              baso = cbcArray[i][1];
+              basoLow = cbcArray[i][2];
+              basoHigh = cbcArray[i][3];
+            }
+          }
+        }
 
         $('#saveAll').click(function() {
           if ($('#savePerformed').val() != "") {
@@ -2155,7 +2546,7 @@
           $(".panel").css("border-color", newThemeColor);
           $(".iconHead").css("background-color", newThemeColor);
           $(".copyHead").css("background-color", newThemeColor);
-
+          $(".navigation").css("background-color", newThemeColor);
         }
 
         $('#themeColor').change(function() {
@@ -2175,9 +2566,7 @@
         })
 
         $('#flowHelp').click(function() {
-
           togglePanel('flowDocumentationScreen')
-
         })
       });
 
