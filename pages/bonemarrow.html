@@ -949,8 +949,8 @@
                     </table>
                     <br>
                   </div>
-                  <div id='pbTableAlert' style="display: none">
-                    Warning! Counter has duplicate labels!
+                  <div id='pbTableAlert' class='bottom' style="display: none">
+                   <b>Warning! Counter has duplicate labels!</b> 
                   </div>
                   <div id='aspTable' style="display: none" class='left'>
                     <table class='padleft' style="width:425px">
@@ -1432,8 +1432,8 @@
           }
         })
 
-        $('#pbText').change(function() {
-          $('#bloodText').html($('#pbText').val());
+        $('#pbText').keyup(function() {
+          $('#bloodText').html($('#pbText').val() + '<br><br>');
           $('#microscopic').show();
         })
 
@@ -1788,21 +1788,13 @@
           fillAsp();
         })
 
-        $('#aspText').change(function() {
-          $('#aspirateText').html($('#aspText').val());
+        $('#aspText').keyup(function() {
+          $('#aspirateText').html($('#aspText').val() + '<br><br>');
           $('#aspirateSmear').show();
           $('#aspirateText').show();
           $('#microscopic').show();
         })
 
-        $('#aspText').change(function() {
-          $('#aspirateText').html($('#aspText').val());
-          $('#aspirateSmear').show();
-          $('#aspirateText').show();
-          $('#microscopic').show();
-        })
-
-        $('#aspirateText').html($('#aspText').val())
 
         function fillAsp() {
           var aspText = "";
@@ -2209,7 +2201,6 @@
 
         function pbCounter() {
           if (pbDuplicateAlert != 1) {
-
 
             $('#specPBSmear').prop('checked', true);
             if ($('#pbDCount').val() == "") {
