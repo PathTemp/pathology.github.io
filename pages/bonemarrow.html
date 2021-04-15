@@ -769,12 +769,13 @@
               <div class="flex-div spread" style="flex-wrap: wrap">
                 <b>Megakaryocytes:</b> <label><input type="radio" value="" id='aspMegAdeq' name='megs'> Adequate</label><label><input type="radio" value="" id='aspMegDec' name='megs'> Decreased</label><label><input type="radio" value="" id='aspMegInc' name='megs'> Increased</label>
                 <div><label><input type="radio" value="" id='aspMegNL' name='megQuant'> Unremarkable</label>
-                </div><div><label><input type="radio" value="" id='aspMegAB' name='megQuant'> Abnormal</label></div>
+                </div>
+                <div><label><input type="radio" value="" id='aspMegAB' name='megQuant'> Abnormal</label></div>
                 <div id='megDiv'>
-              
+
+                </div>
               </div>
-              </div>
-              
+
               <div class="flex-div spread" style="flex-wrap: wrap">
                 <b>Blasts: </b><label><input type="radio" value="" id='aspBlastNI' name='aspBlast'> Not increased</label><label><input type="radio" value="" id='aspBlastInc' name='aspBlast'> Increased</label>
               </div>
@@ -1638,6 +1639,8 @@
                   pbText += ' Nucleated red blood cells are seen.'
                 }
               }
+            }
+            for (var i = 0; i < pbTypeList.length; i++) {
               if (pbTypeList[i] == "Blasts") {
                 if (parseFloat($('#pb' + i).val()) > 0) {
                   $('#pbBlastDiv').show();
@@ -1655,53 +1658,62 @@
                   $('#pbBlastDiv').hide();
                 }
               }
-              if (pbTypeList[i] == "Lymphs") {
-                var lymphocytes = parseFloat($('#pb' + i).val()) / 100 * wbc;
-                if (lymphocytes > lymphHigh) {
-                  pbText += ' There is absolute lymphocytosis.'
+            }
+            for (var i = 0; i < pbTypeList.length; i++) {
+              if (pbTypeList[i] == "Neuts") {
+                var neutrophils = parseFloat($('#pb' + i).val()) / 100 * wbc;
+                if (neutrophils < 0.1 * neutLow) {
+                  pbText += ' Neutrophils are markedly decreased'
+                } else if (neutrophils < neutLow) {
+                  pbText += ' Neutrophils are decreased'
+                } else if (neutrophils > neutHigh) {
+                  pbText += ' Neutrophils are increased'
+                } else {
+                  pbText += ' Neutrophils are adequate'
+                }
+                if ($('#neutNL').prop('checked')) {
+                  pbText += ' and show unremarkable morphology.'
+                } else if (finalNeutList[0] != undefined && finalNeutList[0] != "") {
+                  pbText += ' with ' + listText(finalNeutList) + '.'
+                } else {
+                  pbText += '.'
                 }
               }
+            }
+
+            for (var i = 0; i < pbTypeList.length; i++) {
               if (pbTypeList[i] == "Monos") {
                 var monocytes = parseFloat($('#pb' + i).val()) / 100 * wbc;
                 if (monocytes > monoHigh) {
                   pbText += ' There is absolute monocytosis.'
                 }
               }
+            }
+            for (var i = 0; i < pbTypeList.length; i++) {
               if (pbTypeList[i] == "Eos") {
                 var eosinophils = parseFloat($('#pb' + i).val()) / 100 * wbc;
                 if (eosinophils > eosHigh) {
                   pbText += ' There is absolute eosinophilia.'
                 }
               }
-                            if (pbTypeList[i] == "Baso") {
+            }
+            for (var i = 0; i < pbTypeList.length; i++) {
+              if (pbTypeList[i] == "Baso") {
                 var basophils = parseFloat($('#pb' + i).val()) / 100 * wbc;
                 if (basophils > basoHigh) {
                   pbText += ' There is absolute basophilia.'
                 }
               }
-              if (pbTypeList[i] == "Neuts") {
-                  var neutrophils = parseFloat($('#pb7').val()) / 100 * wbc;
-                  if (neutrophils < 0.1*neutLow) {
-                    pbText += ' Neutrophils are markedly decreased'
-                  } else if (neutrophils < neutLow) {
-                    pbText += ' Neutrophils are decreased'
-                  } else if (neutrophils > neutHigh) {
-                    pbText += ' Neutrophils are increased'
-                  } else {
-                    pbText += ' Neutrophils are adequate'
-                  }
-                  if ($('#neutNL').prop('checked')){
-                  pbText += ' and show unremarkable morphology.'
-                  } else if (finalNeutList[0] != undefined && finalNeutList[0] != "") {
-                    pbText += ' with ' + listText(finalNeutList) + '.'
-                  } else {
-                    pbText += '.'
-                  }
-
-                
-
+            }
+            for (var i = 0; i < pbTypeList.length; i++) {
+              if (pbTypeList[i] == "Lymphs") {
+                var lymphocytes = parseFloat($('#pb' + i).val()) / 100 * wbc;
+                if (lymphocytes > lymphHigh) {
+                  pbText += ' There is absolute lymphocytosis.'
+                }
               }
             }
+
             if (plt < pltLow) {
               pbText += ' Platelets are decreased'
               if ($('#pltNL').prop('checked')) {
@@ -1798,23 +1810,23 @@
           }
           if ($('#aspMegAdeq').prop('checked')) {
             aspText += "Megakaryocytes are adequate"
-            
+
           } else if ($('#aspMegDec').prop('checked')) {
             aspText += "Megakaryocytes are decreased"
-            
+
           } else if ($('#aspMegInc').prop('checked')) {
             aspText += "Megakaryocytes are increased"
-            
+
           }
           if ($('#aspMegAdeq').prop('checked') || $('#aspMegDec').prop('checked') || $('#aspMegInc').prop('checked')) {
-          if ($('#aspMegNL').prop('checked')){
-          aspText += " with unremarkable morphology" + ". "
-          } else if ($('#aspMegAB').prop('checked')){
-          aspText += " with " + listText(finalMegList) + ". "
-          } else {
-          aspText += ". "
+            if ($('#aspMegNL').prop('checked')) {
+              aspText += " with unremarkable morphology" + ". "
+            } else if ($('#aspMegAB').prop('checked')) {
+              aspText += " with " + listText(finalMegList) + ". "
+            } else {
+              aspText += ". "
+            }
           }
-          } 
 
           if ($('#aspBlastNI').prop('checked')) {
             aspText += " Blasts are not significantly increased. "
@@ -2051,16 +2063,16 @@
 
         $('#neutDiv').change(function() {
           finalNeutList = choices(neutList, "neut");
-          if (finalNeutList.length > 0){
-          	$('#neutNL').prop('checked', false);
+          if (finalNeutList.length > 0) {
+            $('#neutNL').prop('checked', false);
             $('#neutAB').prop('checked', true);
           }
         })
-        
-         $('#megDiv').change(function() {
+
+        $('#megDiv').change(function() {
           finalMegList = choices(megList, "meg");
-          if (finalMegList.length > 0){
-          	$('#aspMegNL').prop('checked', false);
+          if (finalMegList.length > 0) {
+            $('#aspMegNL').prop('checked', false);
             $('#aspMegAB').prop('checked', true);
           }
         })
