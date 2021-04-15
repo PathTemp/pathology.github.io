@@ -282,6 +282,10 @@
         margin: 0;
         height: 100vh;
       }
+      
+      select {
+        width: 200px !important;
+      }
 
       .copyHead {
         background-color: rgb(43, 60, 90);
@@ -569,11 +573,9 @@
                   <b>Neutrophils: </b><label><input type="radio" name="neut" value="" id='neutNL'> Unremarkable </label>
                   <label><input type="radio" name="neut" value="" id='neutAB'> Abnormal </label>
                 </div>
-                <div id="neutDiv">
-                </div>
-
-
               </div>
+                              <div id="neutDiv">
+                </div>
               <div class="flex-div spread" style="flex-wrap: wrap">
                 <div>
                   <b>Platelets: </b><label><input type="radio" name="plt" value="" id='pltNL'> Unremarkable</label>
@@ -759,9 +761,10 @@
                 <div>
                   <label><input class='adequacy' type="radio" value="" name="adequacy" id='aspInadequate'> Inadequate</label>
                 </div>
-                <div id='aspDescriptorDiv'>
-                </div>
+
               </div>
+                              <div id='aspDescriptorDiv'>
+                </div>
               <div class="flex-div spread" style="flex-wrap: wrap">
                 <div>
                   <b>Erythroid Precursors: </b><label><input type="checkbox" value="" id='aspErythNL'> Unremarkable</label>
@@ -775,11 +778,9 @@
                 <div><label><input type="radio" value="" id='aspMegNL' name='megQuant'> Unremarkable</label>
                 </div>
                 <div><label><input type="radio" value="" id='aspMegAB' name='megQuant'> Abnormal</label></div>
-                <div id='megDiv'>
 
-                </div>
               </div>
-
+                <div id='megDiv'></div>
               <div class="flex-div spread" style="flex-wrap: wrap">
                 <b>Blasts: </b><label><input type="radio" value="" id='aspBlastNI' name='aspBlast'> Not increased</label><label><input type="radio" value="" id='aspBlastInc' name='aspBlast'> Increased</label>
               </div>
