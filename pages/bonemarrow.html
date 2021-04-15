@@ -1082,7 +1082,7 @@
               Performed By: <input type="input" value="" id='savePerformed'>
             </div>
             <div>
-              Theme Color: <input type="color" id="themeColor" name="favcolor" value=#3379b7>
+              Theme Color: <input type="color" id="themeColor" name="favcolor" value=#2b3c5a>
             </div>
             <div id='pbTypeSaveDiv'>
               Peripheral Blood Count Orientation:
@@ -2078,7 +2078,7 @@
           })
           for (var i = 0; i < choiceOptionList.length; i++) {
             if (choiceOptionList[i] != '') {
-              testVar += '<div><select id="' + inputLabel + count + '" class="' + inputLabel + '" style="width: 150px !important;">'
+              testVar += '<div><select id="' + inputLabel + count + '" class="' + inputLabel + '" style="width: 200px !important;">'
               for (var j = 0; j < choiceList.length; j++) {
                 testVar += '<option value="' + choiceList[j] + '"'
                 if (choiceList[j] == choiceOptionList[i]) {
@@ -2117,7 +2117,7 @@
             count++;
           }
 
-          testVar += '<div><select id="' + inputLabel + count + '" class="' + inputLabel + '" style="width: 150px !important;">'
+          testVar += '<div><select id="' + inputLabel + count + '" class="' + inputLabel + '" style="width: 200px !important;">'
           for (var i = 0; i < choiceList.length; i++) {
             testVar += '<option value="' + choiceList[i] + '"'
             testVar += '>' + choiceList[i].charAt(0).toUpperCase() + choiceList[i].slice(1) + '</option>';
@@ -2540,8 +2540,6 @@
 
         function changeTheme(newThemeColor) {
           $(".bannertopitem").css("background-color", newThemeColor);
-          $(".btn").css("background-color", newThemeColor);
-          $(".btn").css("border-color", newThemeColor);
           $(".panel-heading").css("background-color", newThemeColor);
           $(".panel").css("border-color", newThemeColor);
           $(".iconHead").css("background-color", newThemeColor);
