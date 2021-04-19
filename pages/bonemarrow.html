@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -834,8 +835,21 @@
             <div class="bottom" style="text-align: center; font-size: 14pt">
               <b>Bone Marrow Core Biopsy</b>
             </div>
-            Text <div>
-            </div>
+                         <div class="flex-div spread" style="flex-wrap: wrap">
+                <div>
+                  <b>Adequacy:</b> <label><input class='adequacy' type="radio" name="coreAdequacy" value="" id='coreAdequate'> Adequate</label>
+                </div>
+                <div>
+                  <label><input class='adequacy' type="radio" value="" name="coreAdequacy" id='coreInadequate'> Inadequate</label>
+                </div>
+                <div id='coreDescriptorDiv'>
+                </div>
+              </div>
+              <div class="flex-div spread" style="flex-wrap: wrap">
+                <div>
+                  <b>Cellularity: </b><input class='adequacy' type="input" value="" id='coreCellularity'>
+                </div>
+              </div>
           </div>
           <div class="template-body" id="flowPanel" style="display: none">
             <div class="bottom" style="text-align: center; font-size: 14pt">
@@ -997,12 +1011,17 @@
                         <td id="aspMonosTable"></td>
                         <td>0 - 2%</td>
                       </tr>
+                      <tr id="aspAtypicalRow" style="display: none">
+                        <td>Atypical lymphocytes</td>
+                        <td id="aspAtypicalTable"></td>
+                        <td>0</td>
+                      </tr>
                       <tr>
                         <td>Lymphocytes</td>
                         <td id="aspLymphsTable"></td>
                         <td>10 - 15%</td>
                       </tr>
-                      <tr>
+                      <tr id='aspPlasmaRow'>
                         <td>Plasma Cells</td>
                         <td id="aspPlasmaTable"></td>
                         <td>0 - 1%</td>
@@ -1036,6 +1055,15 @@
                     <div id="aspirateText" style="display: none">
                     </div>
                     <div id="touchPrepText" style="display: none">
+                    </div>
+                  </div>
+                  <div id="coreBiopsy" style="display: none">
+                    <div class="h2">
+                      Bone Marrow Core Biopsy (Decalcified)/Particle Clot
+                    </div>
+                    <div id="coreText" style="display: none">
+                    </div>
+                    <div id="particleClotText" style="display: none">
                     </div>
                   </div>
                   <div id="specialStains" style="display: none">
@@ -1074,7 +1102,7 @@
             <h3 style="margin-top: 0px">
               About:
             </h3>
-            This is a web based application intended as a proof of concept for the standardized reporting of bone marrow biopsies in a smart template format. This application was enirely created by myself, Michael Moravek, MD, and is currently under construction. The project is not intended for clinical use in it's current state.<br><br>
+            This is a web based application intended as a proof of concept for the standardized reporting of bone marrow biopsies in a "smart" template format. This application was enirely created by myself, Michael Moravek, MD, and is currently under construction. The project is not intended for clinical use in it's current state.<br><br>
             If you have any questions or feedback, feel free to contact me:<br>
             <a href="mailto: MikeMoravek@gmail.com"><i class="fas fa-envelope-square" style="color: rgb(0,172,238); font-size: 12pt"></i> MikeMoravek@gmail.com</a><br>
             <a href="https://twitter.com/moravekmd"><i class="fab fa-twitter-square" style="color: rgb(0,172,238); font-size: 12pt" target="_blank"></i> @MoravekMD</a>
@@ -1083,37 +1111,37 @@
             <h3 style="margin-top: 0px">
               Settings:
             </h3>
-            <div>
+            <div class='spread'>
               Performed By: <input type="input" value="" id='savePerformed'>
             </div>
-            <div>
+            <div class='spread'>
               Theme Color: <input type="color" id="themeColor" name="favcolor" value=#2b3c5a>
             </div>
-            <div id='pbTypeSaveDiv'>
+            <div id='pbTypeSaveDiv' class='spread'>
               Peripheral Blood Count Orientation:
               <table class="center" style="width:100%">
                 <tr>
-                  <td><b>7. </b><input type="text" id="pbSave7" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
-                  <td><b>8. </b><input type="text" id="pbSave8" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
-                  <td><b>9. </b><input type="text" id="pbSave9" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
+                  <td><b>7. </b><input type="text" id="pbSave7" class="pbCellTypeSave" list="pbCellTypeList" size="6"></td>
+                  <td><b>8. </b><input type="text" id="pbSave8" class="pbCellTypeSave" list="pbCellTypeList" size="6"></td>
+                  <td><b>9. </b><input type="text" id="pbSave9" class="pbCellTypeSave" list="pbCellTypeList" size="6"></td>
                 </tr>
                 <tr>
-                  <td><b>4. </b><input type="text" id="pbSave4" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
-                  <td><b>5. </b><input type="text" id="pbSave5" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
-                  <td><b>6. </b><input type="text" id="pbSave6" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
+                  <td><b>4. </b><input type="text" id="pbSave4" class="pbCellTypeSave" list="pbCellTypeList" size="6"></td>
+                  <td><b>5. </b><input type="text" id="pbSave5" class="pbCellTypeSave" list="pbCellTypeList" size="6"></td>
+                  <td><b>6. </b><input type="text" id="pbSave6" class="pbCellTypeSave" list="pbCellTypeList" size="6"></td>
                 </tr>
                 <tr>
-                  <td><b>1. </b><input type="text" id="pbSave1" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
-                  <td><b>2. </b><input type="text" id="pbSave2" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
-                  <td><b>3. </b><input type="text" id="pbSave3" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
+                  <td><b>1. </b><input type="text" id="pbSave1" class="pbCellTypeSave" list="pbCellTypeList" size="6"></td>
+                  <td><b>2. </b><input type="text" id="pbSave2" class="pbCellTypeSave" list="pbCellTypeList" size="6"></td>
+                  <td><b>3. </b><input type="text" id="pbSave3" class="pbCellTypeSave" list="pbCellTypeList" size="6"></td>
                 </tr>
                 <tr>
                   <td class='noborder'></td>
-                  <td><b>0. </b><input type="text" id="pbSave0" class="pbCellTypeSave" list="cellTypeList" size="6"></td>
+                  <td><b>0. </b><input type="text" id="pbSave0" class="pbCellTypeSave" list="pbCellTypeList" size="6"></td>
                   <td class='noborder'></td>
                 </tr>
               </table>
-              <datalist id="cellTypeList">
+              <datalist id="pbCellTypeList">
                 <option value="Atypical"></option>
                 <option value="Baso"></option>
                 <option value="Blasts"></option>
@@ -1129,41 +1157,44 @@
                 <option value="Promyelocytes"></option>
               </datalist>
             </div>
-            <div>
-              Aspirate Smear Count Orientation: (Under Construction Do Not Use)
+            <div class="spread">
+              Aspirate Smear Count Orientation:
               <table class="center" style="width:100%">
                 <tr>
-                  <td><b>7. </b><input type="text" id="aspSave7" class="aspCellTypeSave" list="cellTypeList" size="6"></td>
-                  <td><b>8. </b><input type="text" id="aspSave8" class="aspCellTypeSave" list="cellTypeList" size="6"></td>
-                  <td><b>9. </b><input type="text" id="aspSave9" class="aspCellTypeSave" list="cellTypeList" size="6"></td>
+                  <td><b>7. </b><input type="text" id="aspSave7" class="aspCellTypeSave" list="aspCellTypeList" size="6"></td>
+                  <td><b>8. </b><input type="text" id="aspSave8" class="aspCellTypeSave" list="aspCellTypeList" size="6"></td>
+                  <td><b>9. </b><input type="text" id="aspSave9" class="aspCellTypeSave" list="aspCellTypeList" size="6"></td>
                 </tr>
                 <tr>
-                  <td><b>4. </b><input type="text" id="aspSave4" class="aspCellTypeSave" list="cellTypeList" size="6"></td>
-                  <td><b>5. </b><input type="text" id="aspSave5" class="aspCellTypeSave" list="cellTypeList" size="6"></td>
-                  <td><b>6. </b><input type="text" id="aspSave6" class="aspCellTypeSave" list="cellTypeList" size="6"></td>
+                  <td><b>4. </b><input type="text" id="aspSave4" class="aspCellTypeSave" list="aspCellTypeList" size="6"></td>
+                  <td><b>5. </b><input type="text" id="aspSave5" class="aspCellTypeSave" list="aspCellTypeList" size="6"></td>
+                  <td><b>6. </b><input type="text" id="aspSave6" class="aspCellTypeSave" list="aspCellTypeList" size="6"></td>
                 </tr>
                 <tr>
-                  <td><b>1. </b><input type="text" id="aspSave1" class="aspCellTypeSave" list="cellTypeList" size="6"></td>
-                  <td><b>2. </b><input type="text" id="aspSave2" class="aspCellTypeSave" list="cellTypeList" size="6"></td>
-                  <td><b>3. </b><input type="text" id="aspSave3" class="aspCellTypeSave" list="cellTypeList" size="6"></td>
+                  <td><b>1. </b><input type="text" id="aspSave1" class="aspCellTypeSave" list="aspCellTypeList" size="6"></td>
+                  <td><b>2. </b><input type="text" id="aspSave2" class="aspCellTypeSave" list="aspCellTypeList" size="6"></td>
+                  <td><b>3. </b><input type="text" id="aspSave3" class="aspCellTypeSave" list="aspCellTypeList" size="6"></td>
                 </tr>
                 <tr>
                   <td class='noborder'></td>
-                  <td><b>0. </b><input type="text" id="aspSave0" class="aspCellTypeSave" list="cellTypeList" size="6"></td>
+                  <td><b>0. </b><input type="text" id="aspSave0" class="aspCellTypeSave" list="aspCellTypeList" size="6"></td>
                   <td class='noborder'></td>
                 </tr>
               </table>
-              <datalist id="cellTypeList">
+              <datalist id="aspCellTypeList">
                 <option value="Atypical"></option>
                 <option value="Baso"></option>
                 <option value="Blasts"></option>
                 <option value="Eos"></option>
                 <option value="Lymphs"></option>
+                <option value="Metamyelocytes"></option>
                 <option value="Monos"></option>
+                <option value="Myelocytes"></option>
                 <option value="Neuts"></option>
                 <option value="NRBCs"></option>
                 <option value="Other"></option>
                 <option value="Plasma"></option>
+                <option value="Promyelocytes"></option>
               </datalist>
             </div><br>
 
@@ -1201,11 +1232,21 @@
         var pbTypeList = JSON.parse(localStorage.getItem("pbTypeList"));
         var pbCellTypes = ["Atypical", "Baso", "Blasts", "Eos", "Lymphs", "Metamyelocytes", "Monos", "Myelocytes", "Neuts", "NRBCs", "Plasma", "Promyelocytes"]
         if (pbTypeList != null && pbTypeList != "null") {
-          pbTypeListChange(pbTypeList);
-          pbAddRows();
+          pbTypeListChange('pb',pbTypeList, pbCellTypes);
+          pbAddRows('pb',pbTypeList, pbCellTypes);
         } else {
           pbTypeList = ['Blasts', 'NRBCs', 'Atypical', 'Other', 'Eos', 'Baso', 'Plasma', 'Neuts', 'Lymphs', 'Monos'];
-          pbTypeListChange(pbTypeList);
+          pbTypeListChange('pb',pbTypeList, pbCellTypes);
+        }
+        
+        var aspTypeList = JSON.parse(localStorage.getItem("aspTypeList"));
+        var aspCellTypes = ["Atypical", "Baso", "Blasts", "Eos", "Lymphs", "Metamyelocytes", "Monos", "Myelocytes", "Neuts", "NRBCs", "Plasma", "Promyelocytes"]
+        if (aspTypeList != null && aspTypeList != "null") {
+          pbTypeListChange('asp',aspTypeList, pbCellTypes);
+          pbAddRows('asp',aspTypeList, aspCellTypes);
+        } else {
+          aspTypeList = ['Blasts', 'NRBCs', 'Atypical', 'Other', 'Eos', 'Baso', 'Plasma', 'Neuts', 'Lymphs', 'Monos'];
+          pbTypeListChange('asp',aspTypeList, pbCellTypes);
         }
 
         var countAudioBlast = 'https://diffpath.github.io/media/Count-Click-Blast.mp3';
@@ -1214,7 +1255,6 @@
         var countAudioHigh = 'https://diffpath.github.io/media/Count-Click-High2.mp3';
         var hundredAudio = 'https://diffpath.github.io/media/100-Soothing.mp3';
         var finishedAudio = 'https://diffpath.github.io/media/Complete-Nice.mp3';
-        var aspTypeList = ['Blasts', 'Baso', 'Atypical', 'Other', 'NRBCs', 'Lymphs', 'Plasma', 'Neuts', 'Eos', 'Monos'];
         var header = '';
         var subHeader = '';
         var cbcReport = '';
@@ -1224,17 +1264,21 @@
         var finalAnisoList = [];
         var finalNeutList = [];
         var finalMegList = [];
-        var aspDescriptorList = [];
+        var finalAspList = [];
+        var aspDescriptorList = ['', 'hemodilute', 'paucicellular', 'hypocellular', 'virtually acellular', 'paucispicular', 'aspiculate'];
+        var coreDescriptorList = [];
         var lastPanel = '';
         var pbDuplicateAlert = 0;
+        var aspDuplicateAlert = 0;
         var anisoList = ['', 'acanthocytes', 'basophilic stippling', 'burr cells', 'Howell-Jolly bodies', 'macrocytes', 'macroovalocytes', 'microcytes', 'ovalocytes', 'schistocytes', 'sickle cells', 'spherocytes', 'target cells', 'teardrop forms']
         var neutList = ['', 'hypogranular forms', 'hypolobated forms', 'monolobated forms', 'a shift to immaturity', 'toxic changes'];
         var megList = ['', 'widely separated nuclear lobes', 'small hypolobated forms', 'micromegakaryocytes'];
         var myeloidList = ['', 'hypogranular forms', 'hypolobated forms', 'monolobated forms', 'a shift to immaturity'];
         var erythroidList = ['', 'nuclear budding', 'irregular nuclear contours'];
 
-        finalAnisoList = choices(neutList, "neut");
-        finalAnisoList = choices(megList, "meg");
+        choices(neutList, "neut",1);
+        choices(megList, "meg",1);
+        choices(aspDescriptorList,"aspDescriptor",0);
 
         window.keypressed = {};
 
@@ -1247,17 +1291,26 @@
         })
 
         $('.pbCellTypeSave').change(function() {
-          pbDuplicateAlert = 0;
-          $('.pbCellTypeSave').each(function() {
+				pbDuplicateAlert = cellSave('pb',pbTypeList,pbCellTypes)
+        
+        })
+        
+        $('.aspCellTypeSave').change(function() {
+				aspDuplicateAlert = cellSave('asp',aspTypeList,aspCellTypes)
+        })
+        
+        function cellSave(x,y,z){
+          var duplicateAlert = 0;
+          $('.'+ x +'CellTypeSave').each(function() {
             var counter = 0
             if ($(this).val() != "") {
               var cellType = $(this).val()
-              pbTypeList[this.id.replace('pbSave', "")] = $(this).val()
+              y[this.id.replace(x+'Save', "")] = $(this).val()
             } else {
               var cellType = $(this).attr('placeholder');
-              pbTypeList[this.id.replace('pbSave', "")] = $(this).attr('placeholder')
+              y[this.id.replace(x+'Save', "")] = $(this).attr('placeholder')
             }
-            $('.pbCellTypeSave').each(function() {
+            $('.' + x + 'CellTypeSave').each(function() {
               if ($(this).val() != "") {
                 var cellType2 = $(this).val()
               } else {
@@ -1269,40 +1322,39 @@
             })
             if (counter > 1) {
               $(this).attr('style', "background-color:red;")
-              pbDuplicateAlert = 1;
+              duplicateAlert = 1;
 
             } else {
               $(this).attr('style', "background-color:white;")
             }
           })
-          $('.pbCellType').each(function() {
-            $(this).html('<b>' + this.id.replace('pbLabel', '') + ". </b>" + pbTypeList[this.id.replace('pbLabel', '')])
+          $('.' + x + 'CellType').each(function() {
+            $(this).html('<b>' + this.id.replace(x + 'Label', '') + ". </b>" + y[this.id.replace(x + 'Label', '')])
           })
-          pbAddRows();
-          pbCounter();
-        })
+          pbAddRows(x,y,z);
+          pbCounter(x,y,duplicateAlert);
+          return duplicateAlert;
+          }
 
-        function pbAddRows() {
-          for (var i = 0; i < pbTypeList.length; i++) {
-            if (pbCellTypes.indexOf(pbTypeList[i]) == -1) {
-              var html = "<tr id='pb" + pbTypeList[i] + "Row' style='display:none'><td>" + pbTypeList[i] + "</td><td id='pb" + pbTypeList[i] + "Table'></td><td>0</td></tr>";
-              $("#pbPlasmaRow").after(html);
-              pbCellTypes.push(pbTypeList[i]);
+        function pbAddRows(x,y,z) {
+          for (var i = 0; i < y.length; i++) {
+            if (z.indexOf(y[i]) == -1) {
+              var html = "<tr id='" + x + y[i] + "Row' style='display:none'><td>" + y[i] + "</td><td id='" + x + y[i] + "Table'></td><td>0</td></tr>";
+              $("#" + x + "PlasmaRow").after(html);
+              z.push(y[i]);
             }
           }
         }
 
-        function pbTypeListChange(pbTypeList) {
-          $('.pbCellTypeSave').each(function() {
+        function pbTypeListChange(x,y,z) {
+          $('.' + x + 'CellTypeSave').each(function() {
             var counter = 0
-            $(this).attr('placeholder', pbTypeList[this.id.replace('pbSave', '')])
-            for (var i = 0; i < pbTypeList.length; i++) {
-              if ($(this).attr('placeholder') == pbTypeList[i]) {
+            $(this).attr('placeholder', y[this.id.replace(x+'Save', '')])
+            for (var i = 0; i < y.length; i++) {
+              if ($(this).attr('placeholder') == y[i]) {
                 counter++;
               }
-
             }
-
             if (counter > 1) {
               $(this).attr('style', "background-color:red;")
             } else {
@@ -1310,10 +1362,10 @@
             }
           })
 
-          $('.pbCellType').each(function() {
-            $(this).html('<b>' + this.id.replace('pbLabel', '') + ". </b>" + pbTypeList[this.id.replace('pbLabel', '')])
+          $('.' + x + 'CellType').each(function() {
+            $(this).html('<b>' + this.id.replace(x+'Label','') + ". </b>" + y[this.id.replace(x+'Label','')])
           })
-          pbAddRows();
+          pbAddRows(x,y,z);
         }
 
         function showPanel(panelId) {
@@ -1783,8 +1835,16 @@
         }
 
         $('#aspirateDiv').change(function() {
+        
           fillAsp();
         })
+        
+        $('#bonePanel').change(function() {
+        
+          fillCore();
+        })
+        
+        
 
         $('#aspText').keyup(function() {
           $('#aspirateText').html($('#aspText').val() + '<br><br>');
@@ -1792,18 +1852,37 @@
           $('#aspirateText').show();
           $('#microscopic').show();
         })
+        
+        function fillCore(){
+        	var coreText = "";
+          if ($('#coreAdequate').prop('checked') && coreDescriptorList[0] == undefined) {
+          coreText += "The bone marrow core biopsy is adequate for interpretation."
+          } else if ($('#coreInadequate').prop('checked')) {
+          coreText += "The bone marrow core biopsy is inadequate for interpretation."
+          }
+          
+          
+          if (coreText != ""){
+          coreText += "<br><br>"
+          }
+          $('#coreText').html(coreText);
+          $('#coreText').show();
+          $('#coreBiopsy').show();
+          $('#microscopic').show();
+        }
 
 
         function fillAsp() {
           var aspText = "";
-          if ($('#aspAdequate').prop('checked') && aspDescriptorList[0] == undefined) {
+          
+          if ($('#aspAdequate').prop('checked') && finalAspList[0] == undefined) {
             aspText += "The bone marrow aspirate smears are cellular and adequate for interpretation. "
           } else if ($('#aspAdequate').prop('checked')) {
-            aspText += "The bone marrow aspirate smears are " + listText(aspDescriptorList) + " but are adequate for interpretation. "
-          } else if ($('#aspInadequate').prop('checked') && aspDescriptorList[0] == undefined) {
+            aspText += "The bone marrow aspirate smears are " + listText(finalAspList) + " but are adequate for interpretation. "
+          } else if ($('#aspInadequate').prop('checked') && finalAspList[0] == undefined) {
             aspText += "The bone marrow aspirate smears are inadequate for interpretation thus precluding a meaningful marrow differential. "
           } else if ($('#aspInadequate').prop('checked')) {
-            aspText += "The bone marrow aspirate smears are " + listText(aspDescriptorList) + " precluding a meaningful marrow differential. "
+            aspText += "The bone marrow aspirate smears are " + listText(finalAspList) + " thus precluding a meaningful marrow differential. "
           }
           if ($('#aspErythNL').prop('checked') && $('#aspMyeloidNL').prop('checked')) {
             aspText += "Myeloid and erythroid precursors show progressive maturation with unremarkable morphology. "
@@ -1888,7 +1967,7 @@
               grossText += ": " + $('#pbSlides').val() + " unstained slides"
             }
             if ($('#pbCount').val() != "") {
-              pbCounter();
+              pbCounter('pb',pbTypeList,pbDuplicateAlert);
 
             } else if ($('#pbCBC').val() != "") {
               fillPB();
@@ -2006,7 +2085,7 @@
             var desiredCount = $('#pbDCount').val()
           }
           $('#pbTableCountHeader').html('Peripheral blood (' + desiredCount + ' cells)');
-          pbCounter();
+          pbCounter('pb',pbTypeList,pbDuplicateAlert);
         })
 
         $('#pbCountTable').change(function() {
@@ -2027,7 +2106,11 @@
         })
 
         $('#pbCount').keydown(function(e) {
-          if (window.keypressed[e.which]) {
+        countNoise(e);  
+        })
+        
+        function countNoise(e) {
+        if (window.keypressed[e.which]) {
             e.preventDefault();
           } else {
             if (e.which == 55 || e.which == 56 || e.which == 57 || e.which == 103 || e.which == 104 || e.which == 105) {
@@ -2044,16 +2127,16 @@
               new Audio(countAudioBlast).play();
             }
           }
-        })
+        }
 
         $('#pbCount').keyup(function(e) {
           window.keypressed[e.which] = false;
-          pbCounter();
+          pbCounter('pb',pbTypeList,pbDuplicateAlert);
         })
 
         $('#rbcAP').change(function() {
           if ($('#rbcAP').prop('checked')) {
-            finalAnisoList = choices(anisoList, "aniso");
+            finalAnisoList = choices(anisoList, "aniso",1);
             $('#anisoDiv').show()
           } else {
             $('#anisoDiv').hide()
@@ -2061,12 +2144,12 @@
         })
 
         $('#anisoDiv').change(function() {
-          finalAnisoList = choices(anisoList, "aniso");
+          finalAnisoList = choices(anisoList, "aniso",1);
 
         })
 
         $('#neutDiv').change(function() {
-          finalNeutList = choices(neutList, "neut");
+          finalNeutList = choices(neutList, "neut",1);
           if (finalNeutList.length > 0) {
             $('#neutNL').prop('checked', false);
             $('#neutAB').prop('checked', true);
@@ -2074,14 +2157,19 @@
         })
 
         $('#megDiv').change(function() {
-          finalMegList = choices(megList, "meg");
+          finalMegList = choices(megList, "meg",1);
+          console.log(finalMegList)
           if (finalMegList.length > 0) {
             $('#aspMegNL').prop('checked', false);
             $('#aspMegAB').prop('checked', true);
           }
         })
+        
+        $('#aspDescriptorDiv').change(function() {
+          finalAspList = choices(aspDescriptorList, "aspDescriptor",0);
+        })
 
-        function choices(inputList, inputLabel) {
+        function choices(inputList, inputLabel, z) {
           var choiceList = [...inputList];
           var choiceOptionList = [];
           var finalChoiceList = [];
@@ -2103,6 +2191,7 @@
                 testVar += '>' + choiceList[j].charAt(0).toUpperCase() + choiceList[j].slice(1) + '</option>';
 
               }
+              if (z != 0){
               choiceList.splice($.inArray(choiceOptionList[i], choiceList), 1);
               testVar += '</select>&nbsp<label><input type="radio" name="' + inputLabel + 'Quant' + count + '" id="' + inputLabel + 'Freq' + count + '"'
               if ($('#' + inputLabel + 'Freq' + count).prop('checked')) {
@@ -2129,6 +2218,11 @@
               } else {
                 finalChoiceList.push(choiceOptionList[i]);
               }
+              } else {
+              testVar += '</select>'
+              finalChoiceList.push(choiceOptionList[i]);
+              }
+              
             }
             count++;
           }
@@ -2142,100 +2236,68 @@
           count++;
           $('#' + inputLabel + 'Div').html(testVar);
           choiceOptionList = choiceOptionList.filter(Boolean);
+
           return finalChoiceList
 
         }
 
         $('.adequacy').change(function() {
-          createAspDescriptors();
+          finalAspList = choices(aspDescriptorList,'aspDescriptor',0);
         })
-
-        $('#aspDescriptorDiv').change(function() {
-          createAspDescriptors()
-        })
-
-        function createAspDescriptors() {
-          var aspList = ['', 'hemodilute', 'paucicellular', 'hypocellular', 'virtually acellular', 'paucispicular', 'aspiculate']
-          aspDescriptorList = [];
-          var count = 0;
-          var testVar = ""
-          $('.aspAdeq').each(function() {
-            if (aspDescriptorList.indexOf($('#' + this.id).val()) == -1) {
-              aspDescriptorList.push($('#' + this.id).val())
-            }
-          })
-          for (var i = 0; i < aspDescriptorList.length; i++) {
-            if (aspDescriptorList[i] != '') {
-              testVar += '<div><select id="aspAdeq' + count + '" class="aspAdeq">'
-              for (var j = 0; j < aspList.length; j++) {
-                testVar += '<option value="' + aspList[j] + '"'
-                if (aspList[j] == aspDescriptorList[i]) {
-                  testVar += ' selected'
-                }
-                testVar += '>' + aspList[j].charAt(0).toUpperCase() + aspList[j].slice(1) + '</option>';
-              }
-              aspList.splice($.inArray(aspDescriptorList[i], aspList), 1);
-              testVar += '</select></div>'
-            }
-            count++;
-          }
-
-          testVar += '<div><select id="aspAdeq' + count + '" class="aspAdeq">'
-
-          for (var i = 0; i < aspList.length; i++) {
-            testVar += '<option value="' + aspList[i] + '"'
-            testVar += '>' + aspList[i].charAt(0).toUpperCase() + aspList[i].slice(1) + '</option>';
-          }
-          testVar += '</select></div>';
-          count++;
-          $('#aspDescriptorDiv').html(testVar);
-          aspDescriptorList = aspDescriptorList.filter(Boolean);
-        }
 
         $('#pbPerformed').change(function() {
-          pbCounter();
+          pbCounter('pb',pbTypeList,pbDuplicateAlert);
         })
 
 
-        function pbCounter() {
-          if (pbDuplicateAlert != 1) {
-
+        function pbCounter(x,y,z) {        
+          if (z != 1) {
+          	if (x == 'pb'){
+            var re = new RegExp("(?!" + y.indexOf('NRBCs') + ")\\d", "g")
             $('#specPBSmear').prop('checked', true);
-            if ($('#pbDCount').val() == "") {
-              var desiredCount = $('#pbDCount').attr('placeholder');
+            var totalCells = ($('#pbCount').val().match(re) || []).length;
+            } else if (x == 'asp'){
+            var totalCells = ($('#aspCount').val().match(/[0-9]/g) || []).length;
+            }
+            
+            if ($('#' + x + 'DCount').val() == "") {
+              var desiredCount = $('#' + x + 'DCount').attr('placeholder');
             } else {
-              var desiredCount = $('#pbDCount').val()
+              var desiredCount = $('#' + x + 'DCount').val()
             }
             var totalVar = 0
-            var re = new RegExp("(?!" + +pbTypeList.indexOf('NRBCs') + ")\\d", "g")
-            var totalCells = ($('#pbCount').val().match(re) || []).length;
-
             if (totalCells != 0) {
-              $('.pbCellType').each(function() {
-                var tempID = this.id.replace('Label', '')
-                var tempNumber = tempID.replace('pb', '')
-                var re = new RegExp(tempNumber, 'g');
-                if ($(this).html().indexOf('NRBC') != -1) {
-                  $('#' + tempID).val((Math.round(($('#pbCount').val().match(re) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1));
-                  $('#pb' + pbTypeList[tempNumber] + 'Table').html($('#' + tempID).val());
-                } else {
-                  var tempPercent = (Math.round(($('#pbCount').val().match(re) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
-                  $('#' + tempID).val(tempPercent + "%");
-                  $('#pb' + pbTypeList[tempNumber] + 'Table').html(tempPercent + "%");
-                  totalVar += parseFloat($('#' + tempID).val().replace(/%/g, ''))
-                }
-              })
-            }
-
-            for (var i = 0; i < pbTypeList.length; i++) {
-              if ($('#pb' + i).val() != "" && $('#pb' + i).val() != "0.0%" && $('#pb' + i).val() != 0) {
-
-                $('#pb' + pbTypeList[i] + 'Row').show();
+            	var myeloid = 0;        	
+            	for (var i = 0; i <y.length; i++){
+              var re = new RegExp(i, 'g');
+              if (y[i] == "NRBCs" && x == 'pb'){
+              $('#' + x + i).val((Math.round(($('#' + x + 'Count').val().match(re) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1));
+              $('#' + x + y[i] + 'Table').html($('#' + x + i).val());
+              var erythroid = ($('#' + x + 'Count').val().match(re) || []).length;
               } else {
-                $('#pb' + pbTypeList[i] + 'Row').hide();
+              if (y[i] == "NRBCs"){
+              var erythroid = ($('#' + x + 'Count').val().match(re) || []).length;
+              }
+              var tempPercent = (Math.round(($('#' + x + 'Count').val().match(re) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
+                  $('#' + x + i).val(tempPercent + "%");
+                  $('#' + x + y[i] + 'Table').html(tempPercent + "%");
+                  totalVar += parseFloat($('#' + x + i).val().replace(/%/g, ''))
+              }
+              if (x == 'asp' && (y[i] == "Promyelocytes" || y[i] == "Myelocytes" || y[i] == "Metamyelocytes" || y[i] == "Neuts" || y[i] == "Monos" || y[i] == "Eos" || y[i] == "Baso")){
+              myeloid += ($('#' + x + 'Count').val().match(re) || []).length;
+              }
+              if ($('#' + x + i).val() != "" && $('#' + x + i).val() != "0.0%" && $('#' + x + i).val() != 0) {
+                $('#' + x + y[i] + 'Row').show();
+              } else {
+                $('#' + x + y[i] + 'Row').hide();
+              }
+              }
+              if (erythroid > 0){
+              $('#meRatio').val((myeloid/erythroid).toFixed(1));
+              } else {
+              $('#meRatio').val("-")
               }
             }
-
 
             if (totalCells == desiredCount) {
               new Audio(finishedAudio).play()
@@ -2244,51 +2306,40 @@
               new Audio(hundredAudio).play()
             }
 
-            $('#pbTotalPercent').val(totalVar.toFixed(1) + "%");
-            $('#pbTableCountHeader').html('Peripheral blood (' + desiredCount + ' cells)');
+            $('#' + x + 'TotalPercent').val(totalVar.toFixed(1) + "%");
+            if (x == 'pb'){
+            $('#' + x + 'TableCountHeader').html('Peripheral blood (' + desiredCount + ' cells)');
+            $('#peripheralBlood').show();
+            } else if (x == 'asp'){
+            $('#aspTableCountHeader').html('Aspirate Smear (' + desiredCount + ' cells)')
+            $('#aspMETable').html($('#meRatio').val());
+            }
+            
             $('#microscopic').show();
             $('#diff').show();
-            $('#pbTable').show();
-            $('#pbTableAlert').hide()
-            $('#pbCCount').val(totalCells);
+            $('#' + x + 'Table').show();
+            $('#' + x + 'TableAlert').hide()
+            $('#' + x + 'CCount').val(totalCells);
             fillPB();
-            $('#peripheralBlood').show();
-
-
+            
             if ($('#pbPerformed').val() == "" && $('#pbPerformed').attr('placeholder') != undefined) {
               $('#performedText').html('Performed by:   ' + $('#pbPerformed').attr('placeholder') + '<br><br>')
             } else if ($('#pbPerformed').val() != "") {
               $('#performedText').html('Performed by:   ' + $('#pbPerformed').val() + '<br><br>')
             }
           } else {
-            $('#pbTableAlert').show()
-            $('#pbTable').hide()
+            $('#' + x + 'TableAlert').show()
+            $('#' + x + 'Table').hide()
           }
         }
 
         $('#aspCount').keydown(function(e) {
-          if (window.keypressed[e.which]) {
-            e.preventDefault();
-          } else {
-            if (e.which == 55 || e.which == 56 || e.which == 57 || e.which == 103 || e.which == 104 || e.which == 105) {
-              window.keypressed[e.which] = true;
-              new Audio(countAudioHigh).play();
-            } else if (e.which == 52 || e.which == 53 || e.which == 54 || e.which == 100 || e.which == 101 || e.which == 102) {
-              window.keypressed[e.which] = true;
-              new Audio(countAudioMed).play();
-            } else if (e.which == 49 || e.which == 50 || e.which == 51 || e.which == 97 || e.which == 98 || e.which == 99) {
-              window.keypressed[e.which] = true;
-              new Audio(countAudioLow).play();
-            } else if (e.which == 48 || e.which == 96) {
-              window.keypressed[e.which] = true;
-              new Audio(countAudioBlast).play();
-            }
-          }
+				countNoise(e);
         })
 
         $('#aspCount').keyup(function(e) {
           window.keypressed[e.which] = false;
-          aspCounter();
+          pbCounter('asp',aspTypeList,aspDuplicateAlert);
         })
 
         $('#aspDCount').change(function() {
@@ -2298,7 +2349,7 @@
             var desiredCount = $('#aspDCount').val()
           }
           $('#aspTableCountHeader').html('Aspirate Smear (' + desiredCount + ' cells)');
-          aspCounter();
+          pbCounter('asp',aspTypeList,aspDuplicateAlert);
         })
 
         $('#aspCountTable').change(function() {
@@ -2324,55 +2375,10 @@
           $('#aspMETable').html($('#meRatio').val())
         })
 
-        function aspCounter() {
-          if ($('#aspDCount').val() == "") {
-            var desiredCount = $('#aspDCount').attr('placeholder');
-          } else {
-            var desiredCount = $('#aspDCount').val()
-          }
-          var totalCells = ($('#aspCount').val().match(/[0-9]/g) || []).length;
-          $('#aspCCount').val(totalCells);
-          if (totalCells != 0) {
-            $('.aspCellType').each(function() {
-              var tempID = this.id.replace('Label', '')
-              var tempNumber = tempID.replace('asp', '')
-              var re = new RegExp(tempNumber, 'g');
-              var tempPercent = (Math.round(($('#aspCount').val().match(re) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
-              $('#' + tempID).val(tempPercent + "%");
-              $('#asp' + aspTypeList[tempNumber] + 'Table').html(tempPercent + "%");
-              totalVar += parseFloat($('#' + tempID).val().replace(/%/g, ''))
-
-            })
-          }
-          if (($('#aspCount').val().match(/4/g) || []).length != 0) {
-            $('#meRatio').val(((($('#aspCount').val().match(/[7-9]|1/g) || []).length / ($('#aspCount').val().match(/4/g) || []).length).toFixed(1)) + ":1")
-          } else {
-            $('#meRatio').val('-')
-          }
-          var totalVar = parseFloat($('#asp0').val().replace(/%/g, '')) + parseFloat($('#asp1').val().replace(/%/g, '')) + parseFloat($('#asp2').val().replace(/%/g, '')) + parseFloat($('#asp3').val().replace(/%/g, '')) + parseFloat($('#asp4').val().replace(/%/g, '')) + parseFloat($('#asp5').val().replace(/%/g, '')) + parseFloat($('#asp6').val().replace(/%/g, '')) + parseFloat($('#asp7').val().replace(/%/g, '')) + parseFloat($('#asp8').val().replace(/%/g, '')) + parseFloat($('#asp9').val().replace(/%/g, ''));
-          $('#aspTotalPercent').val(totalVar.toFixed(1) + "%");
-          if (totalCells == desiredCount) {
-            new Audio(finishedAudio).play()
-          } else if (totalCells != 0 && totalCells % 100 == 0) {
-            new Audio(hundredAudio).play()
-          }
-          $('#aspTableCountHeader').html('Aspirate Smear (' + desiredCount + ' cells)')
-          $('#aspMETable').html($('#meRatio').val());
-          $('#microscopic').show();
-          $('#diff').show();
-          $('#aspTable').show();
-          if ($('#pbPerformed').val() != "") {
-            $('#performedText').html('Performed by:   ' + $('#pbPerformed').val() + '<br><br>')
-          }
-        }
-
         $('#touchPrepDiv').change(function() {
-        console.log('hi')
-
           if ($('#touchPrepSimilar').prop('checked')) {
             var touchPrep = "The bone marrow touch preparations are cellular and show findings similar to the aspirate smears."
             $('#tpText').val(touchPrep);
-            
             $('#aspirateSmear').show();
             $('#touchPrepText').show();
             $('#microscopic').show();
@@ -2564,7 +2570,16 @@
             }
           })
           localStorage.setItem("pbTypeList", JSON.stringify(pbTypeList));
-          pbTypeListChange(pbTypeList)
+          pbTypeListChange('pb',pbTypeList,pbCellTypes)
+           $('.aspCellTypeSave').each(function() {
+            if ($(this).val() == "") {
+              aspTypeList[this.id.replace('aspSave', "")] = $(this).attr('placeholder')
+            } else {
+              aspTypeList[this.id.replace('aspSave', "")] = $(this).val()
+            }
+          })
+          localStorage.setItem("aspTypeList", JSON.stringify(aspTypeList));
+          pbTypeListChange('asp',aspTypeList,pbCellTypes)
         })
 
         function changeTheme(newThemeColor) {
@@ -2583,7 +2598,7 @@
         $('#fcText').keyup(function() {
           var dotFlow = [
             ["chronicneg", "Flow cytometric immunophenotyping performed on the bone marrow aspirate reveals a polytypic B-cell population and a T-cell population without evidence of immunophenotypic abnormality based on the markers assayed."],
-            ["ballneg", "Flow cytometric immunophenotyping performed on the bone marrow aspirate reveals no immunophenotypic evidence of an abnormal B lymphoblast population"]
+            ["ballneg", "Flow cytometric immunophenotyping performed on the bone marrow aspirate reveals no immunophenotypic evidence of an abnormal B-lymphoblast population."]
           ]
           for (var i = 0; i < dotFlow.length; i++) {
             if ($('#fcText').val().indexOf("." + dotFlow[i][0] + " ") != -1) {
