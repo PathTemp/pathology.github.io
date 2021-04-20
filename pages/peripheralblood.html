@@ -602,7 +602,7 @@ position: absolute;
                   </div>
                   <div>
                     <input type="checkbox" id="neutHypogranular" class="neutAbnormal">
-                    <label for="neutHypolobated"> Hypogranular forms</label><br>
+                    <label for="neutHypogranular"> Hypogranular forms</label><br>
                   </div>
                 </div>
                 <div id="monocytosisDiv">
@@ -850,6 +850,10 @@ position: absolute;
                   <label for="commentOther">&nbsp<b>Other:</b></label>
                   <input type="text" class="otherInput" id="commentOtherInput">
                 </div>
+                <div id="HEMC1Div" class="pbComment">
+                <input type="checkbox" id="HEMC1" class="pbComment">
+                <label for="HEMC1"><b>HEMC1:</b></label>Dr. <input type="text" class="otherInput" id="HEMCDR1" size=12> discussed the case with <input type="text" id="HEMCDR2" size=12> at <input type="text" id="HEMCTime" size=5> on <input type="text" id="HEMCDate" size=5>.
+              </div>
             </div>
           </div>
         </div>
@@ -1171,6 +1175,15 @@ position: absolute;
           }
           fillFinal()
         })
+        
+         $('#HEMC1Div').keyup(function() {
+        if ($('#HEMCDR1').val() == "" && $('#HEMCDR2').val() == "" && $('#HEMCDRTime').val() == "") {
+            $('#HEMC1').prop('checked', false)
+          } else {
+            $('#HEMC1').prop('checked', true)
+          }
+          fillFinal()
+        })
 
 
         function listText(listToConvert) {
@@ -1253,7 +1266,7 @@ position: absolute;
           anisoOptionList = anisoOptionList.filter(Boolean);
         }
 
-        $('#pbCBC').on('change', function() {
+        $('#pbCBC').on('input', function() {
           var cbcTable = "<table id='pbtable'><tr><th></th><th>Result</th><th>Reference Range</th></tr>"
           var cbcFinal = [];
           var cbc = [
@@ -1687,8 +1700,6 @@ position: absolute;
             if ($('#rbcOther').prop('checked')) {
               finalText += " " + $('#rbcOtherInput').val();
             }
-
-            finalText += "<br><br>"
           } else {
             $('#hgbAdequateDiv').show();
             $('#microAnemiaDiv').show();
@@ -1707,7 +1718,10 @@ position: absolute;
             $('#RBCC11Div').hide();
           }
 
-          if ($('#blast').prop('checked')) {
+          if ($('#blast').prop('checked') && finalText != "") {
+          	finalText += '<br><br>'}
+
+					if ($('#blast').prop('checked')){          
             $('#WBCC3Div').show();
             $('#WBCC4Div').show();
             $('#WBCC5Div').show();
@@ -1724,8 +1738,10 @@ position: absolute;
             }
             $('#blastLabel').html("<b>WBC6:</b> Blasts are present (<input type='text' id='blastCount' size='1' value='" + blast + "'>%)(see comment).")
             finalText += "Blasts are present " + blastString + "(see comment).";
-
-            finalText += "<br><br>"
+          }
+          
+          if ($('#neutDiv :checkbox:checked').length > 0 && finalText != "") {
+          finalText += "<br><br>"
           }
 
           if ($('#neutDiv :checkbox:checked').length > 0) {
@@ -1798,8 +1814,6 @@ position: absolute;
             if ($('#neutOther').prop('checked')) {
               finalText += " " + $('#neutOtherInput').val();
             }
-
-            finalText += "<br><br>"
           } else {
             $('#neutropeniaDiv').show();
             $('#neutrophiliaDiv').show();
@@ -1812,7 +1826,9 @@ position: absolute;
             $('#WBCC6Div').hide();
           }
 
-
+					 if ((lymph > lymphHigh || $('#lymphDiv :checkbox:checked').length > 0) && finalText != "") {
+           finalText += "<br><br>"
+           }
 
           if (lymph > lymphHigh || $('#lymphDiv :checkbox:checked').length > 0) {
             if ($('#lymphQuantDiv :checkbox:checked').length > 1) {
@@ -1896,7 +1912,6 @@ position: absolute;
               if ($('#lymphOther').prop('checked')) {
                 finalText += " " + $('#lymphOtherInput').val();
               }
-              finalText += "<br><br>"
             }
           } else {
             $('#lymphSLLabel').html("<b>WBC7:</b> Absolute lymphocytosis consisting of small mature lymphocytes and large granular lymphocytes.");
@@ -1920,64 +1935,65 @@ position: absolute;
             }
           }
 
-          if ($('#monocytosis').prop('checked')) {
-            finalText += "Absolute monocytosis with mature-appearing morphology."
-            finalText += "<br><br>"
+          if ($('#monocytosis').prop('checked') && finalText != "") {
+            finalText += "<br><br> Absolute monocytosis with mature-appearing morphology."
           }
+          
+          var plateletText = ""
 
           if ($('input.pltQuant:checkbox:checked').length > 1) {
-            finalText += "***Incompatible Platelet Characteristics***"
+            plateletText += "***Incompatible Platelet Characteristics***"
           } else if ($('#thrombocytopenia').prop('checked')) {
             $('#PLTC1Div').show();
             $('#PLTC2Div').hide();
             $('#PLTC3Div').hide();
             $('#PLTC6Div').hide();
-            finalText += "Thrombocytopenia"
+            plateletText += "Thrombocytopenia"
             if (!$('#pltShow').prop('checked')) {
               $('#thrombocytosisDiv').hide();
               $('#adequatePltDiv').hide();
             }
             if ($('#thrombocytopeniaUM').prop('checked')) {
-              finalText += " with unremarkable platelet morphology.";
+              plateletText += " with unremarkable platelet morphology.";
             } else if ($('#thrombocytopeniaOL').prop('checked')) {
-              finalText += " with occasional large platelets.";
+              plateletText += " with occasional large platelets.";
             } else {
-              finalText += ".";
+              plateletText += ".";
             }
           } else if ($('#thrombocytosis').prop('checked')) {
             $('#PLTC1Div').hide();
             $('#PLTC2Div').show();
             $('#PLTC3Div').show();
             $('#PLTC6Div').show();
-            finalText += "Thrombocytosis";
+            plateletText += "Thrombocytosis";
             if (!$('#pltShow').prop('checked')) {
               $('#thrombocytopeniaDiv').hide();
               $('#adequatePltDiv').hide();
             }
             if ($('#thrombocytosisUM').prop('checked')) {
-              finalText += " with unremarkable platelet morphology.";
+              plateletText += " with unremarkable platelet morphology.";
             } else if ($('#thrombocytosisOL').prop('checked')) {
-              finalText += " with occasional large platelets.";
+              plateletText += " with occasional large platelets.";
             } else {
-              finalText += "."
+              plateletText += "."
             }
           } else if ($('#adequatePlt').prop('checked')) {
             $('#PLTC1Div').hide();
             $('#PLTC2Div').hide();
             $('#PLTC3Div').hide();
             $('#PLTC6Div').hide();
-            finalText += "Platelets are adequate";
+            plateletText += "Platelets are adequate";
             if (!$('#pltShow').prop('checked')) {
               $('#thrombocytopeniaDiv').hide();
               $('#thrombocytosisDiv').hide();
             }
 
             if ($('#adequatePltUM').prop('checked')) {
-              finalText += " with unremarkable morphology.";;
+              plateletText += " with unremarkable morphology.";;
             } else if ($('#adequatePltOL').prop('checked')) {
-              finalText += " with occasional large platelets.";
+              plateletText += " with occasional large platelets.";
             } else {
-              finalText += ".";
+              plateletText += ".";
             }
 
 
@@ -1994,7 +2010,7 @@ position: absolute;
           }
           
           if ($('#pltClumping').prop('checked')) {
-          	finalText += " Platelet clumping is present (see comment)."
+          	plateletText += " Platelet clumping is present (see comment)."
             $('#PLTC4Div').show();
             $('#PLTC5Div').show();
           } else if (!$('#pltShow').prop('checked')){
@@ -2003,107 +2019,122 @@ position: absolute;
           }
 
           if ($('#pltOther').prop('checked')) {
-            finalText += " " + $('#pltOtherInput').val();
+            plateletText += " " + $('#pltOtherInput').val();
           }
-
-
-          if ($('input.pbComment:checkbox:checked').length > 0) {
-            finalText += "<br><br>"
-            finalText += "Comment:"
+          
+          if (finalText != "" && plateletText != ""){
+          	finalText += "<br><br>"
+          }
+          
+          finalText += plateletText;
+          
+          var commentText = "";
             if ($('#RBCC1').prop('checked')) {
-              finalText += " The etiology of the patient's anemia is not clear on review of the peripheral blood smear.";
+              commentText += " The etiology of the patient's anemia is not clear on review of the peripheral blood smear.";
             }
             if ($('#RBCC2').prop('checked')) {
-              finalText += " There is no morphologic evidence of hemolysis. Clinical correlation is suggested.";
+              commentText += " There is no morphologic evidence of hemolysis. Clinical correlation is suggested.";
             }
             if ($('#RBCC3').prop('checked')) {
-              finalText += " The red cell indices, morphology, and iron studies are consistent with iron deficiency anemia.";
+              commentText += " The red cell indices, morphology, and iron studies are consistent with iron deficiency anemia.";
             }
             if ($('#RBCC4').prop('checked')) {
-              finalText += " The red cell indices, morphology, and iron studies are consistent with anemia of chronic disease.";
+              commentText += " The red cell indices, morphology, and iron studies are consistent with anemia of chronic disease.";
             }
             if ($('#RBCC5').prop('checked')) {
-              finalText += " The red cell indices, morphology, and iron studies are suggestive of iron deficiency anemia and/or anemia of chronic disease. Clinical correlation is recommended.";
+              commentText += " The red cell indices, morphology, and iron studies are suggestive of iron deficiency anemia and/or anemia of chronic disease. Clinical correlation is recommended.";
             }
             if ($('#RBCC6').prop('checked')) {
-              finalText += " Although rare schistocytes are seen, the findings are not definite for acute microangiopathic hemolysis. Clinical correlation is suggested.";
+              commentText += " Although rare schistocytes are seen, the findings are not definite for acute microangiopathic hemolysis. Clinical correlation is suggested.";
             }
             if ($('#RBCC7').prop('checked')) {
-              finalText += " The presence of schistocytes raises the possibility of a microangiopathic hemolysis. Clinical correlation suggested.";
+              commentText += " The presence of schistocytes raises the possibility of a microangiopathic hemolysis. Clinical correlation suggested.";
             }
             if ($('#RBCC8').prop('checked')) {
-              finalText += " The presence of spherocytes raises the possibility of immune hemolysis. Clinical correlation suggested.";
+              commentText += " The presence of spherocytes raises the possibility of immune hemolysis. Clinical correlation suggested.";
             }
             if ($('#RBCC9').prop('checked')) {
-              finalText += " The presence of bite/blister cells raises the possibility of a Heinz body hemolytic anemia. If clinically indicated, submitting a fresh blood sample for Heinz body test is suggested.";
+              commentText += " The presence of bite/blister cells raises the possibility of a Heinz body hemolytic anemia. If clinically indicated, submitting a fresh blood sample for Heinz body test is suggested.";
             }
             if ($('#RBCC10').prop('checked')) {
-              finalText += " Correlation with vitamin B12 and folate levels recommended to evaluate the macrocytic anemia.";
+              commentText += " Correlation with vitamin B12 and folate levels recommended to evaluate the macrocytic anemia.";
             }
             if ($('#RBCC11').prop('checked')) {
-              finalText += " Red blood cell agglutination resolves by preheating, consistent with a cold agglutinin.";
+              commentText += " Red blood cell agglutination resolves by preheating, consistent with a cold agglutinin.";
             }
             if ($('#WBCC1').prop('checked')) {
-              finalText += " The etiology of the neutrophilia is unclear. Suggest follow up to rule out persistence.";
+              commentText += " The etiology of the neutrophilia is unclear. Suggest follow up to rule out persistence.";
             }
             if ($('#WBCC2').prop('checked')) {
-              finalText += " The etiology of the neutropenia is unclear.";
+              commentText += " The etiology of the neutropenia is unclear.";
             }
             if ($('#WBCC3').prop('checked')) {
-              finalText += " The findings are consistent with recent history of colony stimulating factor therapy.";
+              commentText += " The findings are consistent with recent history of colony stimulating factor therapy.";
             }
             if ($('#WBCC4').prop('checked')) {
-              finalText += " The findings are worrisome for a myeloid neoplasm.";
+              commentText += " The findings are worrisome for a myeloid neoplasm.";
             }
             if ($('#WBCC5').prop('checked')) {
-              finalText += " If clinically indicated, molecular analysis suggested, including BCR-ABL1, JAK-2, CALR.";
+              commentText += " If clinically indicated, molecular analysis suggested, including BCR-ABL1, JAK-2, CALR.";
             }
             if ($('#WBCC6').prop('checked')) {
-              finalText += " The findings are consistent with acute leukemia. Correlation with flow cytometry is suggested.";
+              commentText += " The findings are consistent with acute leukemia. Correlation with flow cytometry is suggested.";
             }
             if ($('#WBCC7').prop('checked')) {
-              finalText += " The etiology of the lymphocytosis is unclear but is favored to be reactive.";
+              commentText += " The etiology of the lymphocytosis is unclear but is favored to be reactive.";
             }
             if ($('#WBCC8').prop('checked')) {
-              finalText += " The etiology of the lymphocytosis is unclear. Suggest repeat CBC and differential to rule out persistance.";
+              commentText += " The etiology of the lymphocytosis is unclear. Suggest repeat CBC and differential to rule out persistance.";
             }
             if ($('#WBCC9').prop('checked')) {
-              finalText += " The findings raise the possibility of a lymphoproliferative disorder. If clinically indicated, flow cytometric analysis may be considered for further evaluation.";
+              commentText += " The findings raise the possibility of a lymphoproliferative disorder. If clinically indicated, flow cytometric analysis may be considered for further evaluation.";
             }
             if ($('#WBCC10').prop('checked')) {
-              finalText += " The findings raise the possibility of an acute viral infection. Correlation with clinical and serologic findings is recommended.";
+              commentText += " The findings raise the possibility of an acute viral infection. Correlation with clinical and serologic findings is recommended.";
             }
             if ($('#WBCC11').prop('checked')) {
-              finalText += " The morphologic findings, together with the positive heterophile antibody test, are consistent with infectious mononucleosis. Clinical correlation is suggested.";
+              commentText += " The morphologic findings, together with the positive heterophile antibody test, are consistent with infectious mononucleosis. Clinical correlation is suggested.";
             }
             if ($('#WBCC12').prop('checked')) {
-              finalText += " The findings are consistent with the patient's history of chronic lymphocytic leukemia.";
+              commentText += " The findings are consistent with the patient's history of chronic lymphocytic leukemia.";
             }
             if ($('#PLTC1').prop('checked')) {
-              finalText += " The etiology of the thrombocytopenia is not clear on review of the peripheral blood smear. There is no morphologic evidence of acute microangiopathic hemolysis. Clinical correlation is suggested.";
+              commentText += " The etiology of the thrombocytopenia is not clear on review of the peripheral blood smear. There is no morphologic evidence of acute microangiopathic hemolysis. Clinical correlation is suggested.";
             }
             if ($('#PLTC2').prop('checked')) {
-              finalText += " The etiology of the thrombocytosis is not clear. Suggest follow up with CBC to rule out persistence.";
+              commentText += " The etiology of the thrombocytosis is not clear. Suggest follow up with CBC to rule out persistence.";
             }
             if ($('#PLTC3').prop('checked')) {
-              finalText += " The etiology of the thrombocytosis is not clear.";
+              commentText += " The etiology of the thrombocytosis is not clear.";
             }
             if ($('#PLTC4').prop('checked')) {
-              finalText += " Platelet clumping is present; therefore, the automated platelet count may be an underestimate. If clinically indicated, redraw in a citrated (blue top) tube is suggested.";
+              commentText += " Platelet clumping is present; therefore, the automated platelet count may be an underestimate. If clinically indicated, redraw in a citrated (blue top) tube is suggested.";
             }
             if ($('#PLTC5').prop('checked')) {
-              finalText += " Platelet clumping is present, preventing an accurate reporting of platelet count by automated instrument. If clinically indicated, redraw in a citrated (blue top) tube is suggested.";
+              commentText += " Platelet clumping is present, preventing an accurate reporting of platelet count by automated instrument. If clinically indicated, redraw in a citrated (blue top) tube is suggested.";
             }
             if ($('#PLTC6').prop('checked')) {
-              finalText += " If clinically indicated, molecular analysis suggested, including BCR-ABL1, JAK-2, CALR.";
+              commentText += " If clinically indicated, molecular analysis suggested, including BCR-ABL1, JAK-2, CALR.";
             }
             
             if ($('#commentOther').prop('checked')) {
-            	finalText += " " + $('#commentOtherInput').val();
+            	commentText += " " + $('#commentOtherInput').val();
             }
-
-
-          }
+            
+            if ($('#HEMC1').prop('checked')) {
+            	if (($('#HEMCDR1').val() !="" || $('#HEMCDR2').val() != "" || $('#HEMCTime').val() != "") && $('#HEMCDate').val() == ""){
+              $('#HEMCDate').val(new Date().getMonth() + 1 + '/' + new Date().getDate() + '/' + new Date().getFullYear())
+              }
+              if (($('#HEMCDR1').val() !="" && $('#HEMCDR2').val() != "" && $('#HEMCTime').val() != "") && $('#HEMCDate').val() != ""){
+              commentText += " Dr. " + $('#HEMCDR1').val() + " discussed the case with " + $('#HEMCDR2').val() + " at " + $('#HEMCTime').val() + " on " + $('#HEMCDate').val();
+              
+              }
+            }
+            if (commentText != "" && finalText != ""){
+            finalText += "<br><br>" + "Comment: " + commentText}
+            else if (commentText != ""){
+            finalText += "Comment: " + commentText
+            }
           showComments();
 
           if (finalText.length > 0) {
