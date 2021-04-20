@@ -368,11 +368,9 @@ position: absolute;
         </div>
         <div class="bannerbottom">
           <div class='bannerbottomitem iconHead'>
-            <i class="iconPanel icon fas fa-arrow-alt-circle-left pad" id='bone'></i>
             <i class="iconPanel clickedIcon fas fa-male pad" id='patient'></i>
             <i class="iconPanel icon fas fa-tint pad" id='description'></i>
             <i class="iconPanel icon fas fa-bars pad" id='comment'></i>
-            <i class="iconPanel icon fas fa-arrow-alt-circle-right pad" id='flow'></i>
           </div>
           <div class='bannerbottomitem copyHead' id='copyPanel'>
           <span class="copy copyText" id="specimenCopy">Copy Specimen Text</span><span class="copy copyText" id="finalCopy">Copy Final Text</span></div>
@@ -385,7 +383,7 @@ position: absolute;
             <i class="fas fa-bars pad navigationButton"></i>
             <br>
             
-<a href="https://diffpath.github.io/pages/bonemarrow.html" style="color: white">&nbsp Bone Marrow</a>
+<a href="https://diffpath.github.io/pages/bonemarrow.html" style="color: white; font-size: 12pt">&nbsp Bone Marrow</a>
           </div>
         </div>
         <div class="panelleft">
@@ -433,7 +431,7 @@ position: absolute;
                     <label for="lc5">MCV &ge; 120 fL </label>
                   </td>
                   <td> <input type="checkbox" id="lc6" class="lcClass">
-                    <label for="lc6">Absolute lymphocytosis (&ge; K/uL)</label>
+                    <label for="lc6">Absolute lymphocytosis (&ge; 5.0 K/uL)</label>
                   </td>
                 </tr>
                 <tr>
@@ -602,7 +600,10 @@ position: absolute;
                     <input type="checkbox" id="neutHypolobated" class="neutAbnormal">
                     <label for="neutHypolobated"> Hypolobated nuclei</label><br>
                   </div>
-
+                  <div>
+                    <input type="checkbox" id="neutHypogranular" class="neutAbnormal">
+                    <label for="neutHypolobated"> Hypogranular forms</label><br>
+                  </div>
                 </div>
                 <div id="monocytosisDiv">
                   <input type="checkbox" id="monocytosis">
@@ -796,7 +797,7 @@ position: absolute;
               </div>
               <div id="WBCC8Div" style="display: none">
                 <input type="checkbox" id="WBCC8" class="pbComment">
-                <label for="WBCC8"><b>WBCC8:</b> The etiology of the lymphocytosis is unclear. Suggest repeat CBC and differential to rule out persistance.</label>
+                <label for="WBCC8"><b>WBCC8:</b> The etiology of the lymphocytosis is unclear. Suggest repeat CBC and differential to rule out persistence.</label>
               </div>
               <div id="WBCC9Div" style="display: none">
                 <input type="checkbox" id="WBCC9" class="pbComment">
@@ -1105,6 +1106,7 @@ position: absolute;
           $('#toxic').prop('checked', false);
           $('#neutShift').prop('checked', false);
           $('#neutHypolobated').prop('checked', false);
+          $('#neutHypogranular').prop('checked', false);
           $('#neutDescription').prop('checked', true)
         })
 
@@ -1190,7 +1192,7 @@ position: absolute;
         }
 
         function createAniso() {
-          var anisoList = ['', 'acanthocytes', 'basophilic stippling', 'bite cells', 'blister cells', 'burr cells', 'echinocytes', 'Howell-Jolly bodies', 'macrocytes', 'macroovalocytes', 'microcytes', 'ovalocytes', 'schistocytes', 'sickle cells', 'spherocytes', 'target cells', 'teardrop cells']
+          var anisoList = ['', 'acanthocytes', 'basophilic stippling', 'bite cells', 'blister cells', 'burr cells', 'echinocytes', 'elliptocytes', 'Howell-Jolly bodies', 'macrocytes', 'macroovalocytes', 'microcytes', 'ovalocytes', 'schistocytes', 'sickle cells', 'spherocytes', 'target cells', 'teardrop cells']
           anisoOptionList = [];
           finalAnisoList = [];
           var count = 0;
@@ -1262,7 +1264,7 @@ position: absolute;
             ["%", "RDW", "RBC DIST WIDTH"],
             [" K/uL", "PLT", "PLT CNT", "PLATELETS, BLOOD"]
           ];
-          var cbcVariables = ["WBC", "RBC", "HGB", "HCT", "MCV", "MCH", "MCHC", "RDW", "PLT", "MPV", "Neutrophils", "Lymphocytes", "Monocytes", "Eosinophils", "Basophils", "AbsoluteNeutrophils", "AbsoluteLymphocytes", "AbsoluteMonocytes", "AbsoluteEosinophils", "AbsoluteBasophils", "NucleatedRedBloodCells,Automated"]
+          var cbcVariables = ["WBC", "RBC", "HGB", "HCT", "MCV", "MCH", "MCHC", "RDW", "PLT", "MPV", "Blasts", "Neutrophils", "Lymphocytes", "Monocytes", "Eosinophils", "Basophils", "AbsoluteBlasts","AbsoluteNeutrophils", "AbsoluteLymphocytes", "AbsoluteMonocytes", "AbsoluteEosinophils", "AbsoluteBasophils", "NucleatedRedBloodCells,Automated"]
           var cbcLines = $('#pbCBC').val().split("\n")
           var pbText = ""
           var counter = 0;
@@ -1464,7 +1466,7 @@ position: absolute;
                 labCriteriaText += " MCV &ge; 120 fL."
               }
               if ($('#lc6').prop('checked')) {
-                labCriteriaText += " Absolute lymphocytosis."
+                labCriteriaText += " Absolute lymphocytosis (&ge; 5.0 K/uL)."
               }
               if ($('#lc7').prop('checked')) {
                 labCriteriaText += " >&ge; 5 giant platelets present per 100 WBCs."
@@ -1776,6 +1778,11 @@ position: absolute;
                 if ($('#neutHypolobated').prop('checked')) {
                   $('#WBCC4Div').show();
                   neutDescriptorList.push("hypolobated nuclei")
+                }
+                
+                                if ($('#neutHypogranular').prop('checked')) {
+                  $('#WBCC4Div').show();
+                  neutDescriptorList.push("hypologranular forms")
                 }
 
                 if ($('#neutShift').prop('checked')) {
