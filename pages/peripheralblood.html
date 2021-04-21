@@ -518,7 +518,7 @@ position: absolute;
                 </div>
                   <div>
                   <input type="checkbox" id="hypochromicNormo">
-                    <label for="hypochromic">Hypochromic</label>
+                    <label for="hypochromicNormo">Hypochromic</label>
                   </div>
                 </div>
                 <div id="microAnemiaDiv" class="flex-div" style="flex-wrap: wrap">
@@ -528,7 +528,7 @@ position: absolute;
                   </div>
                   <div>
                     <input type="checkbox" id="hypochromicMicro">
-                    <label for="hypochromic">Hypochromic</label>
+                    <label for="hypochromicMicro">Hypochromic</label>
                   </div>
 
                 </div>
@@ -1660,11 +1660,7 @@ position: absolute;
               $('#RBCC4Div').show();
               $('#RBCC5Div').show();
               $('#RBCC10Div').hide();
-              if ($('#hypochromicNormo').prop('checked')) {
-                finalText += "Normocytic hypochromic anemia."
-              } else {
-                finalText += "Normocytic anemia."
-              }
+              finalText += "Normocytic hypochromic anemia."
               if (!$('#rbcShow').prop('checked')) {
                 $('#hgbAdequateDiv').hide();
                 $('#microAnemiaDiv').hide();
