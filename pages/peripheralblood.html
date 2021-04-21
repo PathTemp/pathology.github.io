@@ -1389,22 +1389,12 @@ position: absolute;
               $('#normoAnemia').prop('checked', false);
               $('#hgbAdequate').prop('checked', false);
             } else if (mcv != undefined) {
-            if (mchc < mchcLow) {
-                $('#microAnemia').prop('checked', false);
-                $('#hypochromicMicro').prop('checked', false);
-                $('#hypochromicNormo').prop('checked', true);
-                $('#macroAnemia').prop('checked', false);
-                $('#normoAnemia').prop('checked', true);
-                $('#hgbAdequate').prop('checked', false);
-              } else {
 
               $('#microAnemia').prop('checked', false);
-              $('#hypochromicNormo').prop('checked', false);
             	$('#hypochromicMicro').prop('checked', false);
               $('#macroAnemia').prop('checked', false);
               $('#normoAnemia').prop('checked', true);
               $('#hgbAdequate').prop('checked', false);
-            }
             }
           } else if (hgb > hgbHigh) {
 
@@ -1660,7 +1650,11 @@ position: absolute;
               $('#RBCC4Div').show();
               $('#RBCC5Div').show();
               $('#RBCC10Div').hide();
-              finalText += "Normocytic hypochromic anemia."
+              if ($('#hypochromicNormo').prop('checked')) {
+                finalText += "Normocytic hypochromic anemia."
+              } else {
+                finalText += "Normocytic anemia."
+              }
               if (!$('#rbcShow').prop('checked')) {
                 $('#hgbAdequateDiv').hide();
                 $('#microAnemiaDiv').hide();
