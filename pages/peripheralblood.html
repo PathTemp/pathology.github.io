@@ -400,7 +400,7 @@ position: absolute;
               </div>
               <br>
 
-              <div id="reasonDiv">
+              <div id="reasonDiv" class="other">
                 <label><b>Reason for Consult:</b></label>
 
                 <input type="text" class="otherInput" id="reasonInput">
@@ -511,9 +511,15 @@ position: absolute;
                   <input type="checkbox" id="hgbAdequate" class="rbcQuant">
                   <label for="hgbAdequate"><b>RBC1:</b> Hemoglobin is adequate.</label>
                 </div>
-                <div id="normoAnemiaDiv">
-                  <input type="checkbox" id="normoAnemia" class="rbcQuant">
+                <div id="normoAnemiaDiv" class="flex-div" style="flex-wrap: wrap">
+                <div>
+                <input type="checkbox" id="normoAnemia" class="rbcQuant">
                   <label for="normoAnemia"><b>RBC2:</b> Normocytic anemia.</label><br>
+                </div>
+                  <div>
+                  <input type="checkbox" id="hypochromicNormo">
+                    <label for="hypochromic">Hypochromic</label>
+                  </div>
                 </div>
                 <div id="microAnemiaDiv" class="flex-div" style="flex-wrap: wrap">
                   <div>
@@ -521,7 +527,7 @@ position: absolute;
                     <label for="microAnemia"><b>RBC3:</b> Microcytic anemia.</label>
                   </div>
                   <div>
-                    <input type="checkbox" id="hypochromic">
+                    <input type="checkbox" id="hypochromicMicro">
                     <label for="hypochromic">Hypochromic</label>
                   </div>
 
@@ -1362,36 +1368,50 @@ position: absolute;
             if (mcv < mcvLow) {
               if (mchc < mchcLow) {
                 $('#microAnemia').prop('checked', true);
-                $('#hypochromic').prop('checked', true);
+                $('#hypochromicMicro').prop('checked', true);
+                $('#hypochromicNormo').prop('checked', false);
                 $('#macroAnemia').prop('checked', false);
                 $('#normoAnemia').prop('checked', false);
                 $('#hgbAdequate').prop('checked', false);
               } else {
                 $('#microAnemia').prop('checked', true);
-                $('#hypochromic').prop('checked', false);
+                $('#hypochromicNormo').prop('checked', false);
+            $('#hypochromicMicro').prop('checked', false);
                 $('#macroAnemia').prop('checked', false);
                 $('#normoAnemia').prop('checked', false);
                 $('#hgbAdequate').prop('checked', false);
               }
             } else if (mcv > mcvHigh) {
               $('#microAnemia').prop('checked', false);
-              $('#hypochromic').prop('checked', false);
+              $('#hypochromicNormo').prop('checked', false);
+            $('#hypochromicMicro').prop('checked', false);
               $('#macroAnemia').prop('checked', true);
               $('#normoAnemia').prop('checked', false);
               $('#hgbAdequate').prop('checked', false);
             } else if (mcv != undefined) {
+            if (mchc < mchcLow) {
+                $('#microAnemia').prop('checked', false);
+                $('#hypochromicMicro').prop('checked', false);
+                $('#hypochromicNormo').prop('checked', true);
+                $('#macroAnemia').prop('checked', false);
+                $('#normoAnemia').prop('checked', true);
+                $('#hgbAdequate').prop('checked', false);
+              } else {
 
               $('#microAnemia').prop('checked', false);
-              $('#hypochromic').prop('checked', false);
+              $('#hypochromicNormo').prop('checked', false);
+            	$('#hypochromicMicro').prop('checked', false);
               $('#macroAnemia').prop('checked', false);
               $('#normoAnemia').prop('checked', true);
               $('#hgbAdequate').prop('checked', false);
+            }
             }
           } else if (hgb > hgbHigh) {
 
           } else if (hgb != undefined) {
             $('#microAnemia').prop('checked', false);
-            $('#hypochromic').prop('checked', false);
+            $('#hypochromicNormo').prop('checked', false);
+            $('#hypochromicMicro').prop('checked', false);
             $('#macroAnemia').prop('checked', false);
             $('#normoAnemia').prop('checked', false);
             $('#hgbAdequate').prop('checked', true);
@@ -1610,7 +1630,7 @@ position: absolute;
               $('#RBCC4Div').show();
               $('#RBCC5Div').show();
               $('#RBCC10Div').hide();
-              if ($('#hypochromic').prop('checked')) {
+              if ($('#hypochromicMicro').prop('checked')) {
                 finalText += "Microcytic hypochromic anemia."
               } else {
                 finalText += "Microcytic anemia."
@@ -1640,7 +1660,11 @@ position: absolute;
               $('#RBCC4Div').show();
               $('#RBCC5Div').show();
               $('#RBCC10Div').hide();
-              finalText += "Normocytic anemia."
+              if ($('#hypochromicNormo').prop('checked')) {
+                finalText += "Normocytic hypochromic anemia."
+              } else {
+                finalText += "Normocytic anemia."
+              }
               if (!$('#rbcShow').prop('checked')) {
                 $('#hgbAdequateDiv').hide();
                 $('#microAnemiaDiv').hide();
