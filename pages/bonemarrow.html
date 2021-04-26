@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -347,6 +346,20 @@
         font-size: 12pt;
       }
 
+      .saveBox {
+        position: fixed;
+        background-color: rgb(43, 60, 90);
+        width: 30%;
+        height: 20%;
+        top: 40%;
+        left: 35%;
+        color: white;
+        border-radius: 5px;
+        display: none;
+
+
+      }
+
       }
 
     </style>
@@ -371,6 +384,7 @@
             <i class="clickedIcon fas fa-list pad rightpanelbutton" id="templateButton"></i>
             <i class="icon fas fa-book pad rightpanelbutton" id='educationButton'></i>
             <i class="icon far fa-question-circle pad rightpanelbutton" id="helpButton"></i>
+            <i class="icon fas fa-save pad rightpanelbutton" id="saveButton"></i>
             <i class="icon fas fa-cog pad rightpanelbutton" id='settingsButton'></i>
           </div>
         </div>
@@ -405,49 +419,49 @@
             </div>
             <p><b>Laterality:</b></p>
             <div class="radio" id="latAll">
-              <label><input type="radio" name="laterality" value="" id="latR">Right</label>
-              <label><input type="radio" name="laterality" value="" id="latL">Left</label>
-              <label><input type="radio" name="laterality" value="" id="latB">Bilateral</label>
-              <label><input type="radio" name="laterality" value="" id="latN">Not Specified</label>
+              <label><input type="radio" class='save' name="laterality" value="" id="latR">Right</label>
+              <label><input type="radio" class='save' name="laterality" value="" id="latL">Left</label>
+              <label><input type="radio" class='save' name="laterality" value="" id="latB">Bilateral</label>
+              <label><input type="radio" class='save' name="laterality" value="" id="latN">Not Specified</label>
             </div>
             <p><b>Specimens:</b></p>
             <div class="radio bottom">
-              <label><input type="radio" name="specNum" value="" id='specFive'>All Common Specimens</label>
+              <label><input type="radio" class='save' name="specNum" value="" id='specFive'>All Common Specimens</label>
             </div>
             <div class="checkbox" id='specTypes'>
               <div class="flex-div" style="flex-wrap: wrap">
-                <label><input type="checkbox" value="" id='specPBSmear'>Peripheral Blood Smear</label>
-                <div><input type="input" id="pbSlides" value="" name='age' maxlength="3" size="2"> unstained slides
+                <label><input type="checkbox" class='save' value="" id='specPBSmear'>Peripheral Blood Smear</label>
+                <div><input type="input" class='save' id="pbSlides" value="" name='age' maxlength="3" size="2"> unstained slides
                 </div>
               </div>
               <div class="flex-div" style="flex-wrap: wrap">
-                <label><input type="checkbox" value="" id='specASmear'>Aspirate Smear</label>
-                <div id="aspDiv"><input type="input" value="" id='aspSize' name='age' maxlength="3" size="2"> cc
+                <label><input type="checkbox" class='save' value="" id='specASmear'>Aspirate Smear</label>
+                <div id="aspDiv"><input type="input" class='save' value="" id='aspSize' name='age' maxlength="3" size="2"> cc
                 </div>
               </div>
               <div>
-                <label><input type="checkbox" value="" id='specClot'>Particle Clot</label>
+                <label><input type="checkbox" class='save' value="" id='specClot'>Particle Clot</label>
               </div>
               <div id="coreDiv" class="flex-div" style="flex-wrap: wrap">
                 <div>
-                  <label><input type="checkbox" value="" id='specCore'>Core Biopsy</label></div>
+                  <label><input type="checkbox" class='save' value="" id='specCore'>Core Biopsy</label></div>
                 <div>
-                  <input type="input" class="coreSize" value="" id='coreSize0' maxlength="3" size="2"> cm &nbsp
+                  <input type="input" class="coreSize save" value="" id='coreSize0' maxlength="3" size="2"> cm &nbsp
                 </div>
               </div>
               <div class="flex-div bottom" style="flex-wrap: wrap">
-                <label><input type="checkbox" value="" id='specTouch'>Touch Imprint</label>
-                <div><input type="input" id="touchSlides" value="" name='age' maxlength="3" size="2"> unstained slides
+                <label><input type="checkbox" class='save' value="" id='specTouch'>Touch Imprint</label>
+                <div><input type="input" class='save' id="touchSlides" value="" name='age' maxlength="3" size="2"> unstained slides
                 </div>
               </div>
               <div>
-                <label><input type="checkbox" value="" id='specFlow'>Flow Cytometry</label>
+                <label><input type="checkbox" class='save' value="" id='specFlow'>Flow Cytometry</label>
               </div>
               <div>
-                <label><input type="checkbox" value="" id='specGen'>Cytogenetics</label>
+                <label><input type="checkbox" class='save' value="" id='specGen'>Cytogenetics</label>
               </div>
               <div>
-                <label><input type="checkbox" value="" id='specFISH'>FISH</label><input type="text" list="fish" id='fishList'>
+                <label><input type="checkbox" class='save' value="" id='specFISH'>FISH</label><input type="text" class='save' list="fish" id='fishList'>
                 <datalist id="fish">
                   <option value="AML"></option>
                   <option value="ALL"></option>
@@ -457,7 +471,7 @@
                 </datalist>
               </div>
               <div>
-                <label><input type="checkbox" value="" id='specMolec'>Molecular</label><input type="text" list='molec' id='molecList'>
+                <label><input type="checkbox" class='save' value="" id='specMolec'>Molecular</label><input type="text" class='save' list='molec' id='molecList'>
                 <datalist id="molec">
                   <option value="NGS"></option>
                   <option value="T-cell receptor gene rearrangement"></option>
@@ -465,15 +479,15 @@
                 </datalist>
               </div>
               <div>
-                <label><input type="checkbox" value="" id='specPCLI'>Plasma Cell Labeling Index</label>
+                <label><input type="checkbox" class='save' value="" id='specPCLI'>Plasma Cell Labeling Index</label>
               </div>
               <div class="bottom">
-                <label><input type="checkbox" value="" id='specProtocol'>Protocol IRB#</label><input type="input" value="" id='protocolNumber'>
+                <label><input type="checkbox" class='save' value="" id='specProtocol'>Protocol IRB#</label><input type="input" class='save' value="" id='protocolNumber'>
               </div>
               <div>
                 <b>Clinical History:</b>
                 <p></p>
-                Age: <input type="input" value="" id='clinAge' name='age' maxlength="3" size="3"><br><br> <textarea rows="4" id="chText" style="width: 100%"></textarea>
+                Age: <input type="input" class='save' value="" id='clinAge' name='age' maxlength="3" size="3"><br><br> <textarea rows="4" id="chText" style="width: 100%"></textarea>
               </div>
             </div>
           </div>
@@ -482,39 +496,39 @@
               <b>Peripheral Blood</b>
             </div>
 
-            <b>Paste CBC Here:</b><textarea rows="1" id="pbCBC" style="width: 100%">
+            <b>Paste CBC Here:</b><textarea class="save" rows="1" id="pbCBC" style="width: 100%">
 </textarea><br><br>
             <div class="flex-table-div">
               <div class="table-flex" id="pbCountTable">
                 <table class="center" style="width: 100%">
                   <tr>
                     <td><label id="pbLabel7" class="pbCellType labelnopad"></label><br>
-                      <input type="text" id="pb7" maxlength="5" size="3"></td>
+                      <input type="text" class='save' id="pb7" maxlength="5" size="3"></td>
                     <td><label id="pbLabel8" class="pbCellType labelnopad"></label><br>
-                      <input type="text" id="pb8" maxlength="5" size="3"></td>
+                      <input type="text" class='save' id="pb8" maxlength="5" size="3"></td>
                     <td><label id="pbLabel9" class="pbCellType labelnopad"></label><br>
-                      <input type="text" id="pb9" maxlength="5" size="3"></td>
+                      <input type="text" class='save' id="pb9" maxlength="5" size="3"></td>
                   </tr>
                   <tr>
                     <td><label id="pbLabel4" class="pbCellType labelnopad"></label><br>
-                      <input type="text" id="pb4" maxlength="5" size="3"></td>
+                      <input type="text" class='save' id="pb4" maxlength="5" size="3"></td>
                     <td><label id="pbLabel5" class="pbCellType labelnopad"></label><br>
-                      <input type="text" id="pb5" maxlength="5" size="3"></td>
+                      <input type="text" class='save' id="pb5" maxlength="5" size="3"></td>
                     <td><label id="pbLabel6" class="pbCellType labelnopad"></label><br>
-                      <input type="text" id="pb6" maxlength="5" size="3"></td>
+                      <input type="text" class='save' id="pb6" maxlength="5" size="3"></td>
                   </tr>
                   <tr>
                     <td><label id="pbLabel1" class="pbCellType labelnopad"></label><br>
-                      <input type="text" id="pb1" maxlength="5" size="3"></td>
+                      <input type="text" class='save' id="pb1" maxlength="5" size="3"></td>
                     <td><label id="pbLabel2" class="pbCellType labelnopad"></label><br>
-                      <input type="text" id="pb2" maxlength="5" size="3"></td>
+                      <input type="text" class='save' id="pb2" maxlength="5" size="3"></td>
                     <td><label id="pbLabel3" class="pbCellType labelnopad"></label><br>
-                      <input type="text" id="pb3" maxlength="5" size="3"></td>
+                      <input type="text" class='save' id="pb3" maxlength="5" size="3"></td>
                   </tr>
                   <tr>
                     <td class='noborder'></td>
                     <td><label id="pbLabel0" class="pbCellType labelnopad"></label><br>
-                      <input type="text" id="pb0" maxlength="5" size="3"></td>
+                      <input type="text" class='save' id="pb0" maxlength="5" size="3"></td>
                     <td class='noborder'></td>
                   </tr>
                 </table>
@@ -522,30 +536,31 @@
               <div class="table-settings-flex">
                 <div>
                   <label for="fname">Current Count:</label><br>
-                  <input type="text" id="pbCCount" maxlength="5" size="3">
+                  <input type="text" class='save' id="pbCCount" maxlength="5" size="3">
                 </div>
                 <div>
                   <label for="fname">Desired Count:</label><br>
-                  <input type="text" id="pbDCount" list="pbDList" maxlength="4" size="3" placeholder="200"><datalist id="pbDList">
+                  <input type="text" class='save' id="pbDCount" list="pbDList" maxlength="4" size="3" placeholder="200"><datalist id="pbDList">
                     <option value="100"></option>
                     <option value="200"></option>
                     <option value="300"></option>
                     <option value="400"></option>
                     <option value="500"></option>
+                    <option value="1000"></option>
                   </datalist>
                 </div>
                 <div>
                   <label for="fname">Total %</label><br>
-                  <input type="text" id="pbTotalPercent" maxlength="6" size="3">
+                  <input type="text" class='save' id="pbTotalPercent" maxlength="6" size="3">
                 </div>
               </div>
             </div>
             <div>
-              <b>Count Here:</b><textarea rows="4" id="pbCount" style="width: 100%">
+              <b>Count Here:</b><textarea class='save' rows="4" id="pbCount" style="width: 100%">
 </textarea>
             </div>
             <div class="spread">
-              <b>Performed By: </b><input type="text" id="pbPerformed" list="pbPList" size="30"><datalist id="pbPList">
+              <b>Performed By: </b><input type="text" class='save' id="pbPerformed" list="pbPList" size="30"><datalist id="pbPList">
                 <option value="MaryAnn Hrisinko, MT (ASCP)"></option>
                 <option value="Pinal Patel, MLS (ASCP)"></option>
               </datalist>
@@ -554,31 +569,31 @@
               <div class="flex-div spread" style="flex-wrap: wrap">
                 <div>
                   <b>RBCs:</b>
-                  <label for='rbcNL'><input type="radio" name="rbc" value="" id='rbcNL'> Unremarkable</label>
+                  <label for='rbcNL'><input type="radio" class='save' name="rbc" value="" id='rbcNL'> Unremarkable</label>
                 </div>
                 <div>
-                  <label for='rbcPC'><input type="checkbox" name="rbc" value="" id='rbcPC'> Polychromasia</label>
+                  <label for='rbcPC'><input type="checkbox" class='save' name="rbc" value="" id='rbcPC'> Polychromasia</label>
                 </div>
                 <div>
-                  <label for='rbcAP' style="word-wrap: break-word"><input type="checkbox" name="rbc" value="" id='rbcAP'> Anisopoikilocytosis</label>
+                  <label for='rbcAP' style="word-wrap: break-word"><input type="checkbox" class='save' name="rbc" value="" id='rbcAP'> Anisopoikilocytosis</label>
                 </div>
               </div>
               <div id="anisoDiv" style="display: none">
               </div>
               <div class="flex-div spread" style="flex-wrap: wrap">
                 <div>
-                  <b>Neutrophils: </b><label><input type="radio" name="neut" value="" id='neutNL'> Unremarkable </label>
-                  <label><input type="radio" name="neut" value="" id='neutAB'> Abnormal </label>
+                  <b>Neutrophils: </b><label><input type="radio" class='save' name="neut" value="" id='neutNL'> Unremarkable </label>
+                  <label><input type="radio" class='save' name="neut" value="" id='neutAB'> Abnormal </label>
                 </div>
               </div>
-                              <div id="neutDiv">
-                </div>
+              <div id="neutDiv">
+              </div>
               <div class="flex-div spread" style="flex-wrap: wrap">
                 <div>
-                  <b>Platelets: </b><label><input type="radio" name="plt" value="" id='pltNL'> Unremarkable</label>
+                  <b>Platelets: </b><label><input type="radio" class='save' name="plt" value="" id='pltNL'> Unremarkable</label>
                 </div>
                 <div>
-                  <label><input type="radio" name="plt" value="" id='pltLP'> Occasional large platelets</label>
+                  <label><input type="radio" class='save' name="plt" value="" id='pltLP'> Occasional large platelets</label>
                 </div>
               </div>
               <div id='pbBlastDiv' class='spread' style='display: none'>
@@ -588,87 +603,87 @@
                 <div class="flex-div" style="flex-wrap: wrap">
                   Size:
                   <div>
-                    <label><input type="checkbox" value="" id='blastSmall'> Small</label>
+                    <label><input type="checkbox" class='save' value="" id='blastSmall'> Small</label>
                   </div>
                   <div>
-                    <label><input type="checkbox" value="" id='blastMedium'> Medium</label>
+                    <label><input type="checkbox" class='save' value="" id='blastMedium'> Medium</label>
                   </div>
                   <div>
-                    <label><input type="checkbox" value="" id='blastLarge'> Large</label>
+                    <label><input type="checkbox" class='save' value="" id='blastLarge'> Large</label>
                   </div>
                 </div>
                 <div class="flex-div" style="flex-wrap: wrap">
                   Nucleus:
                   <div>
-                    <label><input type="radio" id='blastIrregular' name='blastNucleus'> Irregular</label>
+                    <label><input type="radio" class='save' id='blastIrregular' name='blastNucleus'> Irregular</label>
                   </div>
                   <div>
-                    <label><input type="radio" id='blastRound' name='blastNucleus'> Round</label>
+                    <label><input type="radio" class='save' id='blastRound' name='blastNucleus'> Round</label>
                   </div>
                 </div>
                 <div class="flex-div" style="flex-wrap: wrap">
                   Chromatin:
                   <div>
-                    <label><input type="radio" id='blastFine' name='blastChromatin'> Fine</label>
+                    <label><input type="radio" class='save' id='blastFine' name='blastChromatin'> Fine</label>
                   </div>
                   <div>
-                    <label><input type="radio" id='blastFinelyReticular' name='blastChromatin'> Finely reticular</label>
+                    <label><input type="radio" class='save' id='blastFinelyReticular' name='blastChromatin'> Finely reticular</label>
                   </div>
                   <div>
-                    <label><input type="radio" id='blastDelicateLacy' name='blastChromatin'> Delicate lacy</label>
+                    <label><input type="radio" class='save' id='blastDelicateLacy' name='blastChromatin'> Delicate lacy</label>
                   </div>
                   <div>
-                    <label><input type="radio" id='blastDispersed' name='blastChromatin'> Dispersed</label>
+                    <label><input type="radio" class='save' id='blastDispersed' name='blastChromatin'> Dispersed</label>
                   </div>
                   <div>
-                    <label><input type="radio" id='blastCondensed' name='blastChromatin'> Condensed</label>
+                    <label><input type="radio" class='save' id='blastCondensed' name='blastChromatin'> Condensed</label>
                   </div>
                 </div>
                 <div class="flex-div" style="flex-wrap: wrap">
                   Nucleolus:
                   <div>
-                    <label><input type="radio" id='blastProminent' name='blastNucleolus'> Prominent</label>
+                    <label><input type="radio" class='save' id='blastProminent' name='blastNucleolus'> Prominent</label>
                   </div>
                   <div>
-                    <label><input type="radio" id='blastConspicuous' name='blastNucleolus'> Conspicuous</label>
+                    <label><input type="radio" class='save' id='blastConspicuous' name='blastNucleolus'> Conspicuous</label>
 
                   </div>
                   <div>
-                    <label><input type="radio" id='blastInconspicuous' name='blastNucleolus'> Inconspicuous</label>
+                    <label><input type="radio" class='save' id='blastInconspicuous' name='blastNucleolus'> Inconspicuous</label>
 
                   </div>
                 </div>
                 <div class="flex-div" style="flex-wrap: wrap">
                   Cytoplasm Amount:
                   <div>
-                    <label><input type="radio" id='blastScant' name='blastCAmount'> Scant</label>
+                    <label><input type="radio" class='save' id='blastScant' name='blastCAmount'> Scant</label>
 
                   </div>
                   <div>
-                    <label><input type="radio" id='blastModerate' name='blastCAmount'> Moderate</label>
+                    <label><input type="radio" class='save' id='blastModerate' name='blastCAmount'> Moderate</label>
 
                   </div>
                   <div>
-                    <label><input type="radio" id='blastAbundant' name='blastCAmount'> Abundant</label>
+                    <label><input type="radio" class='save' id='blastAbundant' name='blastCAmount'> Abundant</label>
 
                   </div>
                 </div>
                 <div class="flex-div" style="flex-wrap: wrap">
                   Cytoplasm Color:
                   <div>
-                    <label><input type="radio" id='blastPale' name='blastCColor'> Pale</label>
+                    <label><input type="radio" class='save' id='blastPale' name='blastCColor'> Pale</label>
 
                   </div>
                   <div>
-                    <label><input type="radio" id='blastBasophilic' name='blastCColor'> Basophilic</label>
+                    <label><input type="radio" class='save' id='blastBasophilic' name='blastCColor'> Basophilic</label>
 
                   </div>
                   <div>
-                    <label><input type="radio" id='blastBlue' name='blastCColor'> Blue</label>
+                    <label><input type="radio" class='save' id='blastBlue' name='blastCColor'> Blue</label>
 
                   </div>
                   <div>
-                    <label><input type="radio" id='blastAmphophilic' name='blastCColor'> Amphophilic</label>
+                    <label><input type="radio" class='save' id='blastAmphophilic' name='blastCColor'> Amphophilic</label>
 
                   </div>
                 </div>
@@ -676,7 +691,7 @@
               </div>
             </div>
             <div class="spread">
-              <b>Peripheral Blood Text:</b><textarea rows="4" id="pbText" style="width: 100%">
+              <b>Peripheral Blood Text:</b><textarea class='save' rows="4" id="pbText" style="width: 100%">
 </textarea>
             </div>
 
@@ -690,32 +705,32 @@
                 <table class="center" style="width:100%">
                   <tr>
                     <td><label id="aspLabel7" class="aspCellType"><b>7.</b> Neuts</label><br>
-                      <input type="text" id="asp7" maxlength="5" size="3"></td>
+                      <input type="text" class='save' id="asp7" maxlength="5" size="3"></td>
                     <td><label id="aspLabel8" class="aspCellType"><b>8.</b> Eos</label><br>
-                      <input type="text" id="asp8" maxlength="5" size="3"></td>
+                      <input type="text" class='save' id="asp8" maxlength="5" size="3"></td>
                     <td><label id="aspLabel9" class="aspCellType"><b>9.</b> Monos</label><br>
-                      <input type="text" id="asp9" maxlength="5" size="3"></td>
+                      <input type="text" class='save' id="asp9" maxlength="5" size="3"></td>
                   </tr>
                   <tr>
                     <td><label id="aspLabel4" class="aspCellType"><b>4.</b> NRBCs</label><br>
-                      <input type="text" id="asp4" maxlength="5" size="3"></td>
+                      <input type="text" class='save' id="asp4" maxlength="5" size="3"></td>
                     <td><label id="aspLabel5" class="aspCellType"><b>5.</b> Lymphs</label><br>
-                      <input type="text" id="asp5" maxlength="5" size="3"></td>
+                      <input type="text" class='save' id="asp5" maxlength="5" size="3"></td>
                     <td><label id="aspLabel6" class="aspCellType"><b>6.</b> Plasma</label><br>
-                      <input type="text" id="asp6" maxlength="5" size="3"></td>
+                      <input type="text" class='save' id="asp6" maxlength="5" size="3"></td>
                   </tr>
                   <tr>
                     <td><label id="aspLabel1" class="aspCellType"><b>1.</b> Baso</label><br>
-                      <input type="text" id="asp1" maxlength="5" size="3"></td>
+                      <input type="text" class='save' id="asp1" maxlength="5" size="3"></td>
                     <td><label id="aspLabel2" class="aspCellType"><b>2.</b> Atypical</label><br>
-                      <input type="text" id="asp2" maxlength="5" size="3"></td>
+                      <input type="text" class='save' id="asp2" maxlength="5" size="3"></td>
                     <td><label id="aspLabel3" class="aspCellType"><b>3.</b> Other</label><br>
-                      <input type="text" id="asp3" maxlength="5" size="3"></td>
+                      <input type="text" class='save' id="asp3" maxlength="5" size="3"></td>
                   </tr>
                   <tr>
                     <td class="noborder"></td>
                     <td><label id="aspLabel0" class="aspCellType"><b>0.</b> Blasts</label><br>
-                      <input type="text" id="asp0" maxlength="5" size="3"></td>
+                      <input type="text" class='save' id="asp0" maxlength="5" size="3"></td>
                     <td class="noborder"></td>
                   </tr>
                 </table>
@@ -723,110 +738,123 @@
               <div class="table-settings-flex">
                 <div>
                   <label for="fname">Current Count:</label><br>
-                  <input type="text" id="aspCCount" maxlength="4" size="3">
+                  <input type="text" class='save' id="aspCCount" maxlength="4" size="3">
                 </div>
                 <div>
                   <label for="fname">Desired Count:</label><br>
-                  <input type="text" id="aspDCount" list="aspDList" maxlength="4" size="3" placeholder="500"><datalist id="aspDList">
+                  <input type="text" class='save' id="aspDCount" list="aspDList" maxlength="4" size="3" placeholder="500"><datalist id="aspDList">
                     <option value="100"></option>
                     <option value="200"></option>
                     <option value="300"></option>
                     <option value="400"></option>
                     <option value="500"></option>
+                    <option value="1000"></option>
                   </datalist>
                 </div>
                 <div>
                   <label for="fname">M:E ratio:</label><br>
-                  <input type="text" id="meRatio" maxlength="4" size="3">
+                  <input type="text" class='save' id="meRatio" maxlength="4" size="3">
                 </div>
                 <div>
                   <label for="fname">Total %</label><br>
-                  <input type="text" id="aspTotalPercent" maxlength="6" size="3">
+                  <input type="text" class='save' id="aspTotalPercent" maxlength="6" size="3">
                 </div>
               </div>
             </div>
             <div>
               <b>Count Here:</b>
-              <textarea rows="4" id="aspCount" style="width: 100%; max-width: 100%">
+              <textarea class='save' rows="4" id="aspCount" style="width: 100%; max-width: 100%">
 </textarea>
             </div>
             <div id="aspirateDiv">
               <div class="flex-div spread" style="flex-wrap: wrap">
                 <div>
-                  <b>Adequacy:</b> <label><input class='adequacy' type="radio" name="adequacy" value="" id='aspAdequate'> Adequate</label>
+                  <b>Adequacy:</b> <label><input class='adequacy save' type="radio" name="adequacy" value="" id='aspAdequate'> Adequate</label>
                 </div>
                 <div>
-                  <label><input class='adequacy' type="radio" value="" name="adequacy" id='aspInadequate'> Inadequate</label>
+                  <label><input class='adequacy save' type="radio" value="" name="adequacy" id='aspInadequate'> Inadequate</label>
                 </div>
                 <div id='aspDescriptorDiv'>
                 </div>
               </div>
               <div class="flex-div spread" style="flex-wrap: wrap">
                 <div>
-                  <b>Erythroid Precursors: </b><label><input type="checkbox" value="" id='aspErythNL'> Unremarkable</label>
+                  <b>Erythroid Precursors: </b><label><input type="checkbox" class='save' value="" id='aspErythNL'> Unremarkable</label>
                 </div>
               </div>
               <div class="flex-div spread" style="flex-wrap: wrap">
-                <b>Myeloid Precursors: </b><label><input type="checkbox" value="" id='aspMyeloidNL'> Unremarkable</label>
+                <b>Myeloid Precursors: </b><label><input type="checkbox" class='save' value="" id='aspMyeloidNL'> Unremarkable</label>
               </div>
               <div class="flex-div spread" style="flex-wrap: wrap">
-                <b>Megakaryocytes:</b> <label><input type="radio" value="" id='aspMegAdeq' name='megs'> Adequate</label><label><input type="radio" value="" id='aspMegDec' name='megs'> Decreased</label><label><input type="radio" value="" id='aspMegInc' name='megs'> Increased</label>
+                <div>
+                  <b>Megakaryocytes:</b>
                 </div>
-                <div class="flex-div" style="flex-wrap: wrap">
-                <div><label><input type="radio" value="" id='aspMegNL' name='megQuant'> Unremarkable</label>
+                <div>
+                  <label><input type="radio" class='save' value="" id='aspMegAdeq' name='megs'> Adequate</label>
                 </div>
-                <div><label><input type="radio" value="" id='aspMegAB' name='megQuant'> Abnormal</label></div>
-                
+                <div>
+                  <label><input type="radio" class='save' value="" id='aspMegDec' name='megs'> Decreased</label>
+                </div>
+                <div>
+                  <label><input type="radio" class='save' value="" id='aspMegInc' name='megs'> Increased</label>
+                </div>
               </div>
-<div id='megDiv' style='padding-bottom: 5px'>
+              <div class="flex-div" style="flex-wrap: wrap">
+                <div><label><input type="radio" class='save' value="" id='aspMegNL' name='megQuant'> Unremarkable</label>
+                </div>
+                <div><label><input type="radio" class='save' value="" id='aspMegAB' name='megQuant'> Abnormal</label></div>
 
-                </div>
+              </div>
+              <div id='megDiv' style='padding-bottom: 5px'>
+
+              </div>
               <div class="flex-div spread" style="flex-wrap: wrap">
-                <b>Blasts: </b><label><input type="radio" value="" id='aspBlastNI' name='aspBlast'> Not increased</label><label><input type="radio" value="" id='aspBlastInc' name='aspBlast'> Increased</label>
+                <b>Blasts: </b><label><input type="radio" class='save' value="" id='aspBlastNI' name='aspBlast'> Not increased</label>
+                <label><input type="radio" class='save' value="" id='aspBlastInc' name='aspBlast'> Increased</label>
               </div>
             </div>
             <div class="spread">
-              <b>Aspirate Smear Text:</b><textarea rows="4" id="aspText" style="width: 100%">
+              <b>Aspirate Smear Text:</b><textarea class='save' rows="4" id="aspText" style="width: 100%">
 </textarea>
             </div>
-            <div id ='touchPrepDiv' class="flex-div spread" style="flex-wrap: wrap">
+            <div id='touchPrepDiv' class="flex-div spread" style="flex-wrap: wrap">
               <div>
-                <b>Touch Preparation: </b><label><input type="radio" name="touchPrep" value="" id='touchPrepSimilar'> Similar to Aspirate</label>
+                <b>Touch Preparation: </b><label><input type="radio" class='save' name="touchPrep" value="" id='touchPrepSimilar'> Similar to Aspirate</label>
               </div>
               <div>
-                <label><input type="radio" name="touchPrep" value="" id='touchPrepDifferent'> Free Text</label>
+                <label><input type="radio" class='save' name="touchPrep" value="" id='touchPrepDifferent'> Free Text</label>
               </div>
             </div>
             <div>
-              <b>Touch Preparation Text:</b><textarea rows="4" id="tpText" style="width: 100%">
+              <b>Touch Preparation Text:</b><textarea class='save' rows="4" id="tpText" style="width: 100%">
 </textarea>
             </div>
             <div id='ironStainDiv'>
               <div>
-                <label><input type="checkbox" checked='true' id='ironStain'> Iron Stain</label>
+                <label><input type="checkbox" class='save' id='ironStain'> Iron Stain</label>
               </div>
               <div class="flex-div spread" style="flex-wrap: wrap">
                 <div>
                   <b>Storage Iron: </b>
-                  <label><input type="radio" name='ironQuant' id='ironStainInc'> Increased</label>
+                  <label><input type="radio" class='save' name='ironQuant' id='ironStainInc'> Increased</label>
                 </div>
                 <div>
-                  <label><input type="radio" name='ironQuant' id='ironStainAdeq'> Adequate</label>
+                  <label><input type="radio" class='save' name='ironQuant' id='ironStainAdeq'> Adequate</label>
                 </div>
                 <div>
-                  <label><input type="radio" name='ironQuant' id='ironStainDec'> Decreased</label>
+                  <label><input type="radio" class='save' name='ironQuant' id='ironStainDec'> Decreased</label>
                 </div>
                 <div>
-                  <label><input type="radio" name='ironQuant' id='ironNoSpicules'> Not enough spicules</label>
+                  <label><input type="radio" class='save' name='ironQuant' id='ironNoSpicules'> Not enough spicules</label>
                 </div>
               </div>
               <div class="flex-div spread" style="flex-wrap: wrap">
                 <div>
                   <b>Ring Sideroblasts: </b>
-                  <label><input type="radio" name='ring' id='ringAbsent'> Absent</label>
+                  <label><input type="radio" class='save' name='ring' id='ringAbsent'> Absent</label>
                 </div>
                 <div>
-                  <label><input type="radio" name='ring' id='ringPresent'> Present</label>
+                  <label><input type="radio" class='save' name='ring' id='ringPresent'> Present</label>
                 </div>
               </div>
             </div>
@@ -835,26 +863,29 @@
             <div class="bottom" style="text-align: center; font-size: 14pt">
               <b>Bone Marrow Core Biopsy</b>
             </div>
-                         <div class="flex-div spread" style="flex-wrap: wrap">
-                <div>
-                  <b>Adequacy:</b> <label><input class='adequacy' type="radio" name="coreAdequacy" value="" id='coreAdequate'> Adequate</label>
-                </div>
-                <div>
-                  <label><input class='adequacy' type="radio" value="" name="coreAdequacy" id='coreInadequate'> Inadequate</label>
-                </div>
-                <div id='coreDescriptorDiv'>
-                </div>
+            <div class="flex-div spread" style="flex-wrap: wrap">
+              <div>
+                <b>Adequacy:</b> <label><input class='adequacy save' type="radio" name="coreAdequacy" value="" id='coreAdequate'> Adequate</label>
               </div>
-              <div class="flex-div spread" style="flex-wrap: wrap">
-                <div>
-                  <b>Cellularity: </b><input class='adequacy' type="input" value="" id='coreCellularity'>
-                </div>
+              <div>
+                <label><input class='adequacy save' type="radio" value="" name="coreAdequacy" id='coreInadequate'> Inadequate</label>
               </div>
+              <div id='coreDescriptorDiv'>
+              </div>
+            </div>
+            <div class="flex-div spread" style="flex-wrap: wrap">
+              <div>
+                <b>Cellularity: </b><input class='save' type="input" value="" id='coreCellularity'>
+              </div>
+            </div>
+            <div id='testDiv'>
+
+            </div>
           </div>
           <div class="template-body" id="flowPanel" style="display: none">
             <div class="bottom" style="text-align: center; font-size: 14pt">
               <b>Flow Cytometry</b>
-            </div><i class="icon far fa-question-circle rightalign" id="flowHelp"></i><textarea rows="4" id="fcText" style="width: 100%"></textarea>
+            </div><i class="icon far fa-question-circle rightalign" id="flowHelp"></i><textarea class='save' rows="4" id="fcText" style="width: 100%"></textarea>
           </div>
         </div>
         <div class="panelright" id='rightDiv'>
@@ -962,7 +993,7 @@
                     <br>
                   </div>
                   <div id='pbTableAlert' class='bottom' style="display: none">
-                   <b>Warning! Counter has duplicate labels!</b> 
+                    <b>Warning! Counter has duplicate labels!</b>
                   </div>
                   <div id='aspTable' style="display: none" class='left'>
                     <table class='padleft' style="width:425px">
@@ -1121,23 +1152,23 @@
               Peripheral Blood Count Orientation:
               <table class="center" style="width:100%">
                 <tr>
-                  <td><b>7. </b><input type="text" id="pbSave7" class="pbCellTypeSave" list="pbCellTypeList" size="6"></td>
-                  <td><b>8. </b><input type="text" id="pbSave8" class="pbCellTypeSave" list="pbCellTypeList" size="6"></td>
-                  <td><b>9. </b><input type="text" id="pbSave9" class="pbCellTypeSave" list="pbCellTypeList" size="6"></td>
+                  <td><b>7. </b><input type="text" id="pbSave7" class="pbCellTypeSave save" list="pbCellTypeList" size="6"></td>
+                  <td><b>8. </b><input type="text" id="pbSave8" class="pbCellTypeSave save" list="pbCellTypeList" size="6"></td>
+                  <td><b>9. </b><input type="text" id="pbSave9" class="pbCellTypeSave save" list="pbCellTypeList" size="6"></td>
                 </tr>
                 <tr>
-                  <td><b>4. </b><input type="text" id="pbSave4" class="pbCellTypeSave" list="pbCellTypeList" size="6"></td>
-                  <td><b>5. </b><input type="text" id="pbSave5" class="pbCellTypeSave" list="pbCellTypeList" size="6"></td>
-                  <td><b>6. </b><input type="text" id="pbSave6" class="pbCellTypeSave" list="pbCellTypeList" size="6"></td>
+                  <td><b>4. </b><input type="text" id="pbSave4" class="pbCellTypeSave save" list="pbCellTypeList" size="6"></td>
+                  <td><b>5. </b><input type="text" id="pbSave5" class="pbCellTypeSave save" list="pbCellTypeList" size="6"></td>
+                  <td><b>6. </b><input type="text" id="pbSave6" class="pbCellTypeSave save" list="pbCellTypeList" size="6"></td>
                 </tr>
                 <tr>
-                  <td><b>1. </b><input type="text" id="pbSave1" class="pbCellTypeSave" list="pbCellTypeList" size="6"></td>
-                  <td><b>2. </b><input type="text" id="pbSave2" class="pbCellTypeSave" list="pbCellTypeList" size="6"></td>
-                  <td><b>3. </b><input type="text" id="pbSave3" class="pbCellTypeSave" list="pbCellTypeList" size="6"></td>
+                  <td><b>1. </b><input type="text" id="pbSave1" class="pbCellTypeSave save" list="pbCellTypeList" size="6"></td>
+                  <td><b>2. </b><input type="text" id="pbSave2" class="pbCellTypeSave save" list="pbCellTypeList" size="6"></td>
+                  <td><b>3. </b><input type="text" id="pbSave3" class="pbCellTypeSave save" list="pbCellTypeList" size="6"></td>
                 </tr>
                 <tr>
                   <td class='noborder'></td>
-                  <td><b>0. </b><input type="text" id="pbSave0" class="pbCellTypeSave" list="pbCellTypeList" size="6"></td>
+                  <td><b>0. </b><input type="text" id="pbSave0" class="pbCellTypeSave save" list="pbCellTypeList" size="6"></td>
                   <td class='noborder'></td>
                 </tr>
               </table>
@@ -1161,23 +1192,23 @@
               Aspirate Smear Count Orientation:
               <table class="center" style="width:100%">
                 <tr>
-                  <td><b>7. </b><input type="text" id="aspSave7" class="aspCellTypeSave" list="aspCellTypeList" size="6"></td>
-                  <td><b>8. </b><input type="text" id="aspSave8" class="aspCellTypeSave" list="aspCellTypeList" size="6"></td>
-                  <td><b>9. </b><input type="text" id="aspSave9" class="aspCellTypeSave" list="aspCellTypeList" size="6"></td>
+                  <td><b>7. </b><input type="text" id="aspSave7" class="aspCellTypeSave save" list="aspCellTypeList" size="6"></td>
+                  <td><b>8. </b><input type="text" id="aspSave8" class="aspCellTypeSave save" list="aspCellTypeList" size="6"></td>
+                  <td><b>9. </b><input type="text" id="aspSave9" class="aspCellTypeSave save" list="aspCellTypeList" size="6"></td>
                 </tr>
                 <tr>
-                  <td><b>4. </b><input type="text" id="aspSave4" class="aspCellTypeSave" list="aspCellTypeList" size="6"></td>
-                  <td><b>5. </b><input type="text" id="aspSave5" class="aspCellTypeSave" list="aspCellTypeList" size="6"></td>
-                  <td><b>6. </b><input type="text" id="aspSave6" class="aspCellTypeSave" list="aspCellTypeList" size="6"></td>
+                  <td><b>4. </b><input type="text" id="aspSave4" class="aspCellTypeSave save" list="aspCellTypeList" size="6"></td>
+                  <td><b>5. </b><input type="text" id="aspSave5" class="aspCellTypeSave save" list="aspCellTypeList" size="6"></td>
+                  <td><b>6. </b><input type="text" id="aspSave6" class="aspCellTypeSave save" list="aspCellTypeList" size="6"></td>
                 </tr>
                 <tr>
-                  <td><b>1. </b><input type="text" id="aspSave1" class="aspCellTypeSave" list="aspCellTypeList" size="6"></td>
-                  <td><b>2. </b><input type="text" id="aspSave2" class="aspCellTypeSave" list="aspCellTypeList" size="6"></td>
-                  <td><b>3. </b><input type="text" id="aspSave3" class="aspCellTypeSave" list="aspCellTypeList" size="6"></td>
+                  <td><b>1. </b><input type="text" id="aspSave1" class="aspCellTypeSave save" list="aspCellTypeList" size="6"></td>
+                  <td><b>2. </b><input type="text" id="aspSave2" class="aspCellTypeSave save" list="aspCellTypeList" size="6"></td>
+                  <td><b>3. </b><input type="text" id="aspSave3" class="aspCellTypeSave save" list="aspCellTypeList" size="6"></td>
                 </tr>
                 <tr>
                   <td class='noborder'></td>
-                  <td><b>0. </b><input type="text" id="aspSave0" class="aspCellTypeSave" list="aspCellTypeList" size="6"></td>
+                  <td><b>0. </b><input type="text" id="aspSave0" class="aspCellTypeSave save" list="aspCellTypeList" size="6"></td>
                   <td class='noborder'></td>
                 </tr>
               </table>
@@ -1200,6 +1231,34 @@
 
             <button type="button" class="btn btn-primary" id="saveAll">Save Settings</button>
           </div>
+          <div id="saveScreen" class="rightpanel neg side-pad" style="display: none">
+            <h3 style="margin-top: 0px">
+              Save:
+            </h3>
+            <div class='spread'>
+              Save as: <input type="input" value="" id='saveName'>
+            </div>
+            <button type="button" class="btn btn-primary" id="saveTemplate">Save</button>
+            <button type="button" class="btn btn-primary" id="saveClearTemplate">Save and Clear</button>
+            <h3>
+              Load:
+            </h3>
+            <div>
+              <select id="loadTemplate" name="load" style="width: 200px !important;" size=10 multiple>
+
+              </select>
+            </div>
+
+            <div>
+              <button type="button" class="btn btn-primary" id="loadButton">Load</button>
+              <button type="button" class="btn btn-primary" id="deleteButton">Delete Selected</button>
+            </div>
+
+
+
+
+          </div>
+
           <div id="educationScreen" class="rightpanel neg side-pad" style="display: none">
             <h3 style="margin-top: 0px">
               References:
@@ -1232,21 +1291,28 @@
         var pbTypeList = JSON.parse(localStorage.getItem("pbTypeList"));
         var pbCellTypes = ["Atypical", "Baso", "Blasts", "Eos", "Lymphs", "Metamyelocytes", "Monos", "Myelocytes", "Neuts", "NRBCs", "Plasma", "Promyelocytes"]
         if (pbTypeList != null && pbTypeList != "null") {
-          pbTypeListChange('pb',pbTypeList, pbCellTypes);
-          pbAddRows('pb',pbTypeList, pbCellTypes);
+          pbTypeListChange('pb', pbTypeList, pbCellTypes);
+          pbAddRows('pb', pbTypeList, pbCellTypes);
         } else {
           pbTypeList = ['Blasts', 'NRBCs', 'Atypical', 'Other', 'Eos', 'Baso', 'Plasma', 'Neuts', 'Lymphs', 'Monos'];
-          pbTypeListChange('pb',pbTypeList, pbCellTypes);
+          pbTypeListChange('pb', pbTypeList, pbCellTypes);
         }
-        
+
         var aspTypeList = JSON.parse(localStorage.getItem("aspTypeList"));
         var aspCellTypes = ["Atypical", "Baso", "Blasts", "Eos", "Lymphs", "Metamyelocytes", "Monos", "Myelocytes", "Neuts", "NRBCs", "Plasma", "Promyelocytes"]
         if (aspTypeList != null && aspTypeList != "null") {
-          pbTypeListChange('asp',aspTypeList, pbCellTypes);
-          pbAddRows('asp',aspTypeList, aspCellTypes);
+          pbTypeListChange('asp', aspTypeList, pbCellTypes);
+          pbAddRows('asp', aspTypeList, aspCellTypes);
         } else {
           aspTypeList = ['Blasts', 'NRBCs', 'Atypical', 'Other', 'Eos', 'Baso', 'Plasma', 'Neuts', 'Lymphs', 'Monos'];
-          pbTypeListChange('asp',aspTypeList, pbCellTypes);
+          pbTypeListChange('asp', aspTypeList, pbCellTypes);
+        }
+
+        var saveFiles = JSON.parse(localStorage.getItem("saveFiles"));
+        if (saveFiles != null && aspTypeList != "null") {
+          fillTemplateLoader(saveFiles);
+        } else {
+          saveFiles = [];
         }
 
         var countAudioBlast = 'https://diffpath.github.io/media/Count-Click-Blast.mp3';
@@ -1265,20 +1331,23 @@
         var finalNeutList = [];
         var finalMegList = [];
         var finalAspList = [];
+        var selectedAnisoList = [];
+        var selectedNeutList = [];
+        var selectedMegList = [];
+        var selectedAspList = [];
+        var coreValues = [];
         var aspDescriptorList = ['', 'hemodilute', 'paucicellular', 'hypocellular', 'virtually acellular', 'paucispicular', 'aspiculate'];
         var coreDescriptorList = [];
         var lastPanel = '';
         var pbDuplicateAlert = 0;
         var aspDuplicateAlert = 0;
         var anisoList = ['', 'acanthocytes', 'basophilic stippling', 'burr cells', 'Howell-Jolly bodies', 'macrocytes', 'macroovalocytes', 'microcytes', 'ovalocytes', 'schistocytes', 'sickle cells', 'spherocytes', 'target cells', 'teardrop forms']
+
         var neutList = ['', 'hypogranular forms', 'hypolobated forms', 'monolobated forms', 'a shift to immaturity', 'toxic changes'];
         var megList = ['', 'widely separated nuclear lobes', 'small hypolobated forms', 'micromegakaryocytes'];
         var myeloidList = ['', 'hypogranular forms', 'hypolobated forms', 'monolobated forms', 'a shift to immaturity'];
         var erythroidList = ['', 'nuclear budding', 'irregular nuclear contours'];
 
-        choices(neutList, "neut",1);
-        choices(megList, "meg",1);
-        choices(aspDescriptorList,"aspDescriptor",0);
 
         window.keypressed = {};
 
@@ -1291,24 +1360,24 @@
         })
 
         $('.pbCellTypeSave').change(function() {
-				pbDuplicateAlert = cellSave('pb',pbTypeList,pbCellTypes)
-        
+          pbDuplicateAlert = cellSave('pb', pbTypeList, pbCellTypes)
+
         })
-        
+
         $('.aspCellTypeSave').change(function() {
-				aspDuplicateAlert = cellSave('asp',aspTypeList,aspCellTypes)
+          aspDuplicateAlert = cellSave('asp', aspTypeList, aspCellTypes)
         })
-        
-        function cellSave(x,y,z){
+
+        function cellSave(x, y, z) {
           var duplicateAlert = 0;
-          $('.'+ x +'CellTypeSave').each(function() {
+          $('.' + x + 'CellTypeSave').each(function() {
             var counter = 0
             if ($(this).val() != "") {
               var cellType = $(this).val()
-              y[this.id.replace(x+'Save', "")] = $(this).val()
+              y[this.id.replace(x + 'Save', "")] = $(this).val()
             } else {
               var cellType = $(this).attr('placeholder');
-              y[this.id.replace(x+'Save', "")] = $(this).attr('placeholder')
+              y[this.id.replace(x + 'Save', "")] = $(this).attr('placeholder')
             }
             $('.' + x + 'CellTypeSave').each(function() {
               if ($(this).val() != "") {
@@ -1331,12 +1400,12 @@
           $('.' + x + 'CellType').each(function() {
             $(this).html('<b>' + this.id.replace(x + 'Label', '') + ". </b>" + y[this.id.replace(x + 'Label', '')])
           })
-          pbAddRows(x,y,z);
-          pbCounter(x,y,duplicateAlert);
+          pbAddRows(x, y, z);
+          pbCounter(x, y, duplicateAlert);
           return duplicateAlert;
-          }
+        }
 
-        function pbAddRows(x,y,z) {
+        function pbAddRows(x, y, z) {
           for (var i = 0; i < y.length; i++) {
             if (z.indexOf(y[i]) == -1) {
               var html = "<tr id='" + x + y[i] + "Row' style='display:none'><td>" + y[i] + "</td><td id='" + x + y[i] + "Table'></td><td>0</td></tr>";
@@ -1346,10 +1415,10 @@
           }
         }
 
-        function pbTypeListChange(x,y,z) {
+        function pbTypeListChange(x, y, z) {
           $('.' + x + 'CellTypeSave').each(function() {
             var counter = 0
-            $(this).attr('placeholder', y[this.id.replace(x+'Save', '')])
+            $(this).attr('placeholder', y[this.id.replace(x + 'Save', '')])
             for (var i = 0; i < y.length; i++) {
               if ($(this).attr('placeholder') == y[i]) {
                 counter++;
@@ -1363,22 +1432,29 @@
           })
 
           $('.' + x + 'CellType').each(function() {
-            $(this).html('<b>' + this.id.replace(x+'Label','') + ". </b>" + y[this.id.replace(x+'Label','')])
+            $(this).html('<b>' + this.id.replace(x + 'Label', '') + ". </b>" + y[this.id.replace(x + 'Label', '')])
           })
-          pbAddRows(x,y,z);
+          pbAddRows(x, y, z);
         }
 
         function showPanel(panelId) {
           if (panelId == 'templateScreen') {
             $('#copyPanel').show();
+
           } else {
             $('#copyPanel').hide();
           }
           $(".rightpanel").each(function() {
             if (this.id == panelId) {
+
               $("#" + this.id).show();
+              $("#" + panelId.replace('Screen', 'Button')).addClass("clickedIcon");
+              $("#" + panelId.replace('Screen', 'Button')).removeClass("icon");
+
             } else {
               $("#" + this.id).hide()
+              $("#" + this.id.replace('Screen', 'Button')).removeClass("clickedIcon");
+              $("#" + this.id.replace('Screen', 'Button')).addClass("icon");
             }
 
           })
@@ -1431,15 +1507,7 @@
           }
         })
 
-        $('.rightpanelbutton').click(function() {
-          var iconId = this.id + "Panel";
-          $(".rightpanelbutton").each(function() {
-            $("#" + this.id).addClass("icon");
-            $("#" + this.id).removeClass("clickedIcon");
-          })
-          $("#" + this.id).addClass("clickedIcon");
-          $("#" + this.id).removeClass("icon");
-        })
+
 
         $('.iconPanel').click(function() {
           var iconId = this.id + "Panel";
@@ -1483,8 +1551,10 @@
         })
 
         $('#pbText').keyup(function() {
-          $('#bloodText').html($('#pbText').val() + '<br><br>');
-          $('#microscopic').show();
+        if ($('#pbText').val() != ""){
+        $('#bloodText').html($('#pbText').val() + '<br><br>');
+          $('#microscopic').show();        
+        }          
         })
 
         $('#pbDescriptors').change(function() {
@@ -1808,12 +1878,20 @@
 
 
             }
+            $('#microscopic').show();
           } else {
             pbText = "A peripheral blood smear is not provided for review."
           }
           $('#pbText').val(pbText);
+          
+          if(pbText!="" && ($('#pbCount').val() != "" || $('#pbCBC').val() || $('#bloodPanel :checkbox:checked').length > 0 || $('#bloodPanel :radio:checked').length > 0)){
+          $('#peripheralBlood').show();
           $('#bloodText').html($('#pbText').val() + '<br><br>');
-          $('#microscopic').show();
+          } else {
+          $('#peripheralBlood').hide();
+          }
+          
+          
         }
 
         function listText(listToConvert) {
@@ -1835,46 +1913,55 @@
         }
 
         $('#aspirateDiv').change(function() {
-        
           fillAsp();
         })
-        
+
         $('#bonePanel').change(function() {
-        
+
           fillCore();
         })
-        
-        
+
+
 
         $('#aspText').keyup(function() {
-          $('#aspirateText').html($('#aspText').val() + '<br><br>');
+        if ($('#aspText').val()!=""){
+        $('#aspirateText').html($('#aspText').val() + '<br><br>');
           $('#aspirateSmear').show();
           $('#aspirateText').show();
           $('#microscopic').show();
+        } else {
+        $('#aspirateSmear').hide();
+        }
+          
         })
-        
-        function fillCore(){
-        	var coreText = "";
+
+        function fillCore() {
+          var coreText = "";
           if ($('#coreAdequate').prop('checked') && coreDescriptorList[0] == undefined) {
-          coreText += "The bone marrow core biopsy is adequate for interpretation."
+            coreText += "The bone marrow core biopsy is adequate for interpretation."
           } else if ($('#coreInadequate').prop('checked')) {
-          coreText += "The bone marrow core biopsy is inadequate for interpretation."
+            coreText += "The bone marrow core biopsy is inadequate for interpretation."
           }
           
-          
-          if (coreText != ""){
-          coreText += "<br><br>"
-          }
           $('#coreText').html(coreText);
-          $('#coreText').show();
+
+
+          if (coreText != "") {
+            coreText += "<br><br>"
+           $('#coreText').show();
           $('#coreBiopsy').show();
           $('#microscopic').show();
+          } else {
+          $('#coreText').hide();
+          $('#coreBiopsy').hide();
+          }
+          
+
         }
 
 
         function fillAsp() {
           var aspText = "";
-          
           if ($('#aspAdequate').prop('checked') && finalAspList[0] == undefined) {
             aspText += "The bone marrow aspirate smears are cellular and adequate for interpretation. "
           } else if ($('#aspAdequate').prop('checked')) {
@@ -1916,25 +2003,30 @@
           } else if ($('#aspBlastInc').prop('checked')) {
             aspText += "Blasts are significantly increased. "
           }
+          
+          $('#aspText').val(aspText);
 
-          if ($('#asp'))
-            $('#aspText').val(aspText);
+          if (aspText != ""){
           $('#aspirateText').html($('#aspText').val() + '<br><br>');
           $('#aspirateSmear').show();
           $('#aspirateText').show();
           $('#microscopic').show();
+          } else if ($('#tpText').val() == ""){
+          $('#aspirateSmear').hide();
+          $('#aspirateText').hide();
+          } else {
+          $('#aspirateText').hide();
+          }         
         }
-        $('#coreDiv').keyup(function() {
-          var coreValues = [];
+
+        function coreCreator(coreValues) {
           if ($('#specCore').prop('checked')) {
             var coreChecked = "checked='true'";
           } else {
             var coreChecked = "";
           }
-          var coreDiv = "<div><label><input type='checkbox' value='' id='specCore'" + coreChecked + ">Core Biopsy</label></div>";
-          $(".coreSize").each(function() {
-            coreValues.push($(this).val())
-          })
+          var coreDiv = "<div><label><input type='checkbox' class='save' value='' id='specCore'" + coreChecked + ">Core Biopsy</label></div>";
+
           coreValues = coreValues.filter(Boolean)
           for (var i = 0; i < coreValues.length; i++) {
             coreDiv += "<div><input type='input' class='coreSize' value='" + coreValues[i] + "' id='coreSize" + i + "' maxlength='3' size='2'> cm &nbsp</div>"
@@ -1944,10 +2036,20 @@
           $('#coreDiv').html(coreDiv)
           var num = $(focusedElement).val();
           $(focusedElement).focus().val('').val(num);
-        });
+
+
+        }
+        $('#coreDiv').keyup(function() {
+          coreValues = [];
+          $(".coreSize").each(function() {
+            coreValues.push($(this).val())
+          });
+          coreCreator(coreValues)
+        })
+
 
         function grossDescription() {
-          $('#gross').show();
+          
           var laterality = "";
           var grossText = "";
           var headerText = "";
@@ -1967,7 +2069,7 @@
               grossText += ": " + $('#pbSlides').val() + " unstained slides"
             }
             if ($('#pbCount').val() != "") {
-              pbCounter('pb',pbTypeList,pbDuplicateAlert);
+              pbCounter('pb', pbTypeList, pbDuplicateAlert);
 
             } else if ($('#pbCBC').val() != "") {
               fillPB();
@@ -1989,15 +2091,18 @@
             if ($('#aspSize').val() != "") {
               grossText += ": " + $('#aspSize').val() + " cc"
             }
+            if ($('#aspCount').val() != "") {
+              pbCounter('asp', aspTypeList, aspDuplicateAlert);
+            }
           }
 
           if ($('#specClot').prop('checked')) {
             grossText += "<br>" + "Particle clot (formalin fixed)"
           }
-          var coreValues = [];
+          var coreFinal = [];
           $(".coreSize").each(function() {
             if ($(this).val() != "") {
-              coreValues.push($(this).val() + " cm")
+              coreFinal.push($(this).val() + " cm")
             }
           })
           if ($('#specCore').prop('checked')) {
@@ -2005,7 +2110,7 @@
             headerSpecs.push(laterality + " posterior iliac crest bone marrow core biopsy")
 
             if ($('#coreSize0').val() != "") {
-              grossText += ": " + listText(coreValues)
+              grossText += ": " + listText(coreFinal)
             }
             grossText += " (B5 fixed)"
           }
@@ -2046,20 +2151,23 @@
             grossText += "<br>" + "Protocol: IRB#" + $('#protocolNumber').val();
           }
           $("#grossText").html(grossText);
-          for (var i = 0; i < headerSpecs.length; i++) {
-            if (i == 0) {
-              headerText += headerSpecs[0];
-            } else if (i == headerSpecs.length - 1 && headerSpecs.length > 2) {
-              headerText += ", and " + headerSpecs[i];
-            } else if (i == headerSpecs.length - 1 && headerSpecs.length == 2) {
-              headerText += " and " + headerSpecs[i];
-            } else {
-              headerText += ", " + headerSpecs[i];
-            }
-          }
+          headerText = listText(headerSpecs)
+          if (headerText != ""){
           headerText += ":";
           $("#header").html(headerText.charAt(0).toUpperCase() + headerText.slice(1) + "<br>" + "<br>");
+          
           $('#final').show();
+          } else {
+          $('#final').hide();
+          }
+          
+
+          if(grossText != ""){
+          $('#gross').show();          
+          } else {
+          $('#gross').hide(); 
+          }
+          
         }
 
         $('#specTypes').change(function() {
@@ -2074,8 +2182,13 @@
         })
 
         $('#chText').keyup(function() {
-          $('#clinical').show();
-          $("#clinicalHistory").html($('#chText').val() + "<br><br>")
+        if ($('#chText').val() != ""){
+        $('#clinical').show();
+        $("#clinicalHistory").html($('#chText').val() + "<br><br>")
+        } else if ($('#pbCBC').val() == ""){
+        $('#clinical').hide();
+}
+          
         })
 
         $('#pbDCount').change(function() {
@@ -2085,7 +2198,7 @@
             var desiredCount = $('#pbDCount').val()
           }
           $('#pbTableCountHeader').html('Peripheral blood (' + desiredCount + ' cells)');
-          pbCounter('pb',pbTypeList,pbDuplicateAlert);
+          pbCounter('pb', pbTypeList, pbDuplicateAlert);
         })
 
         $('#pbCountTable').change(function() {
@@ -2106,11 +2219,11 @@
         })
 
         $('#pbCount').keydown(function(e) {
-        countNoise(e);  
+          countNoise(e);
         })
-        
+
         function countNoise(e) {
-        if (window.keypressed[e.which]) {
+          if (window.keypressed[e.which]) {
             e.preventDefault();
           } else {
             if (e.which == 55 || e.which == 56 || e.which == 57 || e.which == 103 || e.which == 104 || e.which == 105) {
@@ -2131,12 +2244,12 @@
 
         $('#pbCount').keyup(function(e) {
           window.keypressed[e.which] = false;
-          pbCounter('pb',pbTypeList,pbDuplicateAlert);
+          pbCounter('pb', pbTypeList, pbDuplicateAlert);
         })
 
         $('#rbcAP').change(function() {
           if ($('#rbcAP').prop('checked')) {
-            finalAnisoList = choices(anisoList, "aniso",1);
+
             $('#anisoDiv').show()
           } else {
             $('#anisoDiv').hide()
@@ -2144,42 +2257,84 @@
         })
 
         $('#anisoDiv').change(function() {
-          finalAnisoList = choices(anisoList, "aniso",1);
+
 
         })
 
-        $('#neutDiv').change(function() {
-          finalNeutList = choices(neutList, "neut",1);
-          if (finalNeutList.length > 0) {
-            $('#neutNL').prop('checked', false);
-            $('#neutAB').prop('checked', true);
-          }
-        })
+
 
         $('#megDiv').change(function() {
-          finalMegList = choices(megList, "meg",1);
-          console.log(finalMegList)
+
           if (finalMegList.length > 0) {
             $('#aspMegNL').prop('checked', false);
             $('#aspMegAB').prop('checked', true);
           }
         })
-        
-        $('#aspDescriptorDiv').change(function() {
-          finalAspList = choices(aspDescriptorList, "aspDescriptor",0);
+
+
+        $('#neutDiv').change(function() {
+          selectedNeutList = []
+          $('.neut').each(function() {
+            if (selectedNeutList.indexOf($('#' + this.id).val()) == -1) {
+              selectedNeutList.push($('#' + this.id).val())
+            }
+          })
+          if (selectedNeutList.length != 0) {
+            $('#neutAB').prop('checked', true)
+          }
+          selectedNeutList = selectedNeutList.filter(Boolean)
+          finalNeutList = choices(selectedNeutList, neutList, "neut", 1);
         })
 
-        function choices(inputList, inputLabel, z) {
+        $('#anisoDiv').change(function() {
+          selectedAnisoList = []
+          $('.aniso').each(function() {
+            if (selectedAnisoList.indexOf($('#' + this.id).val()) == -1) {
+              selectedAnisoList.push($('#' + this.id).val())
+            }
+          })
+          selectedAnisoList = selectedAnisoList.filter(Boolean)
+          finalAnisoList = choices(selectedAnisoList, anisoList, "aniso", 1);
+        })
+
+
+        $('#aspDescriptorDiv').change(function() {
+          selectedAspList = []
+          $('.aspDescriptor').each(function() {
+            if (selectedAspList.indexOf($('#' + this.id).val()) == -1) {
+              selectedAspList.push($('#' + this.id).val())
+            }
+          })
+
+          selectedAspList = selectedAspList.filter(Boolean)
+          finalAspList = choices(selectedAspList, aspDescriptorList, "aspDescriptor", 0);
+        })
+
+        $('#megDiv').change(function() {
+          selectedMegList = []
+          $('.meg').each(function() {
+            if (selectedMegList.indexOf($('#' + this.id).val()) == -1) {
+              selectedMegList.push($('#' + this.id).val())
+            }
+          })
+          if (selectedMegList.length != 0) {
+
+          }
+          selectedMegList = selectedMegList.filter(Boolean)
+          finalMegList = choices(selectedMegList, megList, "meg", 1);
+        })
+
+        choices(selectedAspList, aspDescriptorList, "aspDescriptor", 0);
+        choices(selectedAnisoList, anisoList, "aniso", 1);
+        choices(selectedNeutList, neutList, "neut", 1);
+        choices(selectedMegList, megList, "meg", 1);
+
+        function choices(w, inputList, inputLabel, z) {
           var choiceList = [...inputList];
-          var choiceOptionList = [];
+          var choiceOptionList = w;
           var finalChoiceList = [];
           var count = 0;
           var testVar = ""
-          $('.' + inputLabel).each(function() {
-            if (choiceOptionList.indexOf($('#' + this.id).val()) == -1) {
-              choiceOptionList.push($('#' + this.id).val())
-            }
-          })
           for (var i = 0; i < choiceOptionList.length; i++) {
             if (choiceOptionList[i] != '') {
               testVar += '<div><select id="' + inputLabel + count + '" class="' + inputLabel + '" style="width: 200px !important;">'
@@ -2191,41 +2346,45 @@
                 testVar += '>' + choiceList[j].charAt(0).toUpperCase() + choiceList[j].slice(1) + '</option>';
 
               }
-              if (z != 0){
-              choiceList.splice($.inArray(choiceOptionList[i], choiceList), 1);
-              testVar += '</select>&nbsp<label><input type="radio" name="' + inputLabel + 'Quant' + count + '" id="' + inputLabel + 'Freq' + count + '"'
-              if ($('#' + inputLabel + 'Freq' + count).prop('checked')) {
-                testVar += ' checked'
-              }
-              testVar += '> Frequent</label>';
-              testVar += '</select>&nbsp<label><input type="radio" name="' + inputLabel + 'Quant' + count + '" id="' + inputLabel + 'Occas' + count + '"'
-              if ($('#' + inputLabel + 'Occas' + count).prop('checked')) {
-                testVar += ' checked'
-              }
-              testVar += '> Occasional</label>';
-              testVar += '</select>&nbsp<label><input type="radio" name="' + inputLabel + 'Quant' + count + '" id="' + inputLabel + 'Rare' + count + '"'
-              if ($('#' + inputLabel + 'Rare' + count).prop('checked')) {
-                testVar += ' checked';
-              }
-              testVar += '> Rare</label></div>';
+              if (z != 0) {
+                choiceList.splice($.inArray(choiceOptionList[i], choiceList), 1);
+                testVar += '</select>&nbsp<label><input type="radio" class="save2" name="' + inputLabel + 'Quant' + count + '" id="' + inputLabel + 'Freq' + count + '"'
+                if ($('#' + inputLabel + 'Freq' + count).prop('checked')) {
+                  testVar += ' checked'
+                }
+                testVar += '> Frequent</label>';
+                testVar += '</select>&nbsp<label><input type="radio" class="save2" name="' + inputLabel + 'Quant' + count + '" id="' + inputLabel + 'Occas' + count + '"'
+                if ($('#' + inputLabel + 'Occas' + count).prop('checked')) {
+                  testVar += ' checked'
+                }
+                testVar += '> Occasional</label>';
+                testVar += '</select>&nbsp<label><input type="radio" class="save2" name="' + inputLabel + 'Quant' + count + '" id="' + inputLabel + 'Rare' + count + '"'
+                if ($('#' + inputLabel + 'Rare' + count).prop('checked')) {
+                  testVar += ' checked';
+                }
+                testVar += '> Rare</label></div>';
 
-              if ($('#' + inputLabel + 'Freq' + count).prop('checked')) {
-                finalChoiceList.push('frequent ' + choiceOptionList[i]);
-              } else if ($('#' + inputLabel + 'Occas' + count).prop('checked')) {
-                finalChoiceList.push('occasional ' + choiceOptionList[i]);
-              } else if ($('#' + inputLabel + 'Rare' + count).prop('checked')) {
-                finalChoiceList.push('rare ' + choiceOptionList[i]);
+                if ($('#' + inputLabel + 'Freq' + count).prop('checked')) {
+                  console.log('hi')
+                  finalChoiceList.push('frequent ' + choiceOptionList[i]);
+
+                } else if ($('#' + inputLabel + 'Occas' + count).prop('checked')) {
+                  finalChoiceList.push('occasional ' + choiceOptionList[i]);
+                } else if ($('#' + inputLabel + 'Rare' + count).prop('checked')) {
+                  finalChoiceList.push('rare ' + choiceOptionList[i]);
+                } else {
+                  finalChoiceList.push(choiceOptionList[i]);
+                }
               } else {
+                choiceList.splice($.inArray(choiceOptionList[i], choiceList), 1);
+                testVar += '</select>'
                 finalChoiceList.push(choiceOptionList[i]);
               }
-              } else {
-              testVar += '</select>'
-              finalChoiceList.push(choiceOptionList[i]);
-              }
-              
+
             }
             count++;
           }
+
 
           testVar += '<div><select id="' + inputLabel + count + '" class="' + inputLabel + '" style="width: 200px !important;">'
           for (var i = 0; i < choiceList.length; i++) {
@@ -2236,97 +2395,113 @@
           count++;
           $('#' + inputLabel + 'Div').html(testVar);
           choiceOptionList = choiceOptionList.filter(Boolean);
+          console.log(finalChoiceList)
 
           return finalChoiceList
 
         }
 
-        $('.adequacy').change(function() {
-          finalAspList = choices(aspDescriptorList,'aspDescriptor',0);
-        })
+
 
         $('#pbPerformed').change(function() {
-          pbCounter('pb',pbTypeList,pbDuplicateAlert);
+          pbCounter('pb', pbTypeList, pbDuplicateAlert);
         })
 
 
-        function pbCounter(x,y,z) {        
+        function pbCounter(x, y, z) {
           if (z != 1) {
-          	if (x == 'pb'){
-            var re = new RegExp("(?!" + y.indexOf('NRBCs') + ")\\d", "g")
-            $('#specPBSmear').prop('checked', true);
-            var totalCells = ($('#pbCount').val().match(re) || []).length;
-            } else if (x == 'asp'){
-            var totalCells = ($('#aspCount').val().match(/[0-9]/g) || []).length;
+            if (x == 'pb') {
+              var re = new RegExp("(?!" + y.indexOf('NRBCs') + ")\\d", "g")
+              
+              var totalCells = ($('#pbCount').val().match(re) || []).length;
+              if (totalCells >0){
+              $('#specPBSmear').prop('checked', true);
+              }
+            } else if (x == 'asp') {
+              var totalCells = ($('#aspCount').val().match(/[0-9]/g) || []).length;
             }
-            
+
             if ($('#' + x + 'DCount').val() == "") {
               var desiredCount = $('#' + x + 'DCount').attr('placeholder');
             } else {
               var desiredCount = $('#' + x + 'DCount').val()
             }
             var totalVar = 0
-            if (totalCells != 0) {
-            	var myeloid = 0;        	
-            	for (var i = 0; i <y.length; i++){
-              var re = new RegExp(i, 'g');
-              if (y[i] == "NRBCs" && x == 'pb'){
-              $('#' + x + i).val((Math.round(($('#' + x + 'Count').val().match(re) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1));
-              $('#' + x + y[i] + 'Table').html($('#' + x + i).val());
-              var erythroid = ($('#' + x + 'Count').val().match(re) || []).length;
-              } else {
-              if (y[i] == "NRBCs"){
-              var erythroid = ($('#' + x + 'Count').val().match(re) || []).length;
-              }
-              var tempPercent = (Math.round(($('#' + x + 'Count').val().match(re) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
-                  $('#' + x + i).val(tempPercent + "%");
-                  $('#' + x + y[i] + 'Table').html(tempPercent + "%");
-                  totalVar += parseFloat($('#' + x + i).val().replace(/%/g, ''))
-              }
-              if (x == 'asp' && (y[i] == "Promyelocytes" || y[i] == "Myelocytes" || y[i] == "Metamyelocytes" || y[i] == "Neuts" || y[i] == "Monos" || y[i] == "Eos" || y[i] == "Baso")){
-              myeloid += ($('#' + x + 'Count').val().match(re) || []).length;
-              }
-              if ($('#' + x + i).val() != "" && $('#' + x + i).val() != "0.0%" && $('#' + x + i).val() != 0) {
-                $('#' + x + y[i] + 'Row').show();
-              } else {
-                $('#' + x + y[i] + 'Row').hide();
-              }
-              }
-              if (erythroid > 0){
-              $('#meRatio').val((myeloid/erythroid).toFixed(1));
-              } else {
-              $('#meRatio').val("-")
-              }
-            }
-
-            if (totalCells == desiredCount) {
+                        if (totalCells == desiredCount) {
               new Audio(finishedAudio).play()
 
             } else if (totalCells != 0 && totalCells % 100 == 0) {
               new Audio(hundredAudio).play()
             }
-
-            $('#' + x + 'TotalPercent').val(totalVar.toFixed(1) + "%");
-            if (x == 'pb'){
-            $('#' + x + 'TableCountHeader').html('Peripheral blood (' + desiredCount + ' cells)');
-            $('#peripheralBlood').show();
-            } else if (x == 'asp'){
-            $('#aspTableCountHeader').html('Aspirate Smear (' + desiredCount + ' cells)')
-            $('#aspMETable').html($('#meRatio').val());
-            }
             
-            $('#microscopic').show();
-            $('#diff').show();
-            $('#' + x + 'Table').show();
-            $('#' + x + 'TableAlert').hide()
-            $('#' + x + 'CCount').val(totalCells);
-            fillPB();
-            
-            if ($('#pbPerformed').val() == "" && $('#pbPerformed').attr('placeholder') != undefined) {
+            if (totalCells != 0) {
+              var myeloid = 0;
+              for (var i = 0; i < y.length; i++) {
+                var re = new RegExp(i, 'g');
+                if (y[i] == "NRBCs" && x == 'pb') {
+                  $('#' + x + i).val((Math.round(($('#' + x + 'Count').val().match(re) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1));
+                  $('#' + x + y[i] + 'Table').html($('#' + x + i).val());
+                  var erythroid = ($('#' + x + 'Count').val().match(re) || []).length;
+                } else {
+                  if (y[i] == "NRBCs") {
+                    var erythroid = ($('#' + x + 'Count').val().match(re) || []).length;
+                  }
+                  var tempPercent = (Math.round(($('#' + x + 'Count').val().match(re) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
+                  $('#' + x + i).val(tempPercent + "%");
+                  $('#' + x + y[i] + 'Table').html(tempPercent + "%");
+                  totalVar += parseFloat($('#' + x + i).val().replace(/%/g, ''))
+                }
+                if (x == 'asp' && (y[i] == "Promyelocytes" || y[i] == "Myelocytes" || y[i] == "Metamyelocytes" || y[i] == "Neuts" || y[i] == "Monos" || y[i] == "Eos" || y[i] == "Baso")) {
+                  myeloid += ($('#' + x + 'Count').val().match(re) || []).length;
+                }
+                if ($('#' + x + i).val() != "" && $('#' + x + i).val() != "0.0%" && $('#' + x + i).val() != 0) {
+                  $('#' + x + y[i] + 'Row').show();
+                } else {
+                  $('#' + x + y[i] + 'Row').hide();
+                }
+              }
+              if (erythroid > 0) {
+                $('#meRatio').val((myeloid / erythroid).toFixed(1));
+              } else {
+                $('#meRatio').val("-")
+              }
+              $('#' + x + 'Table').show();
+              if ($('#pbPerformed').val() == "" && $('#pbPerformed').attr('placeholder') != undefined) {
               $('#performedText').html('Performed by:   ' + $('#pbPerformed').attr('placeholder') + '<br><br>')
             } else if ($('#pbPerformed').val() != "") {
               $('#performedText').html('Performed by:   ' + $('#pbPerformed').val() + '<br><br>')
             }
+            } else {
+            $('#' + x + 'Table').hide();
+            }
+
+
+
+            $('#' + x + 'TotalPercent').val(totalVar.toFixed(1) + "%");
+            if (x == 'pb') {
+              $('#' + x + 'TableCountHeader').html('Peripheral blood (' + desiredCount + ' cells)');
+              
+            } else if (x == 'asp') {
+              $('#aspTableCountHeader').html('Aspirate Smear (' + desiredCount + ' cells)')
+              $('#aspMETable').html($('#meRatio').val());
+            }
+            
+         		if ($('#pbCount').val() == "" && $('#aspCount').val() == ""){
+            $('#diff').hide();
+            $('#performedText').hide();
+            } else {
+            $('#microscopic').show();
+            $('#diff').show();
+            $('#performedText').show();
+            }
+
+            
+            
+            $('#' + x + 'TableAlert').hide()
+            $('#' + x + 'CCount').val(totalCells);
+            fillPB();
+
+            
           } else {
             $('#' + x + 'TableAlert').show()
             $('#' + x + 'Table').hide()
@@ -2334,12 +2509,12 @@
         }
 
         $('#aspCount').keydown(function(e) {
-				countNoise(e);
+          countNoise(e);
         })
 
         $('#aspCount').keyup(function(e) {
           window.keypressed[e.which] = false;
-          pbCounter('asp',aspTypeList,aspDuplicateAlert);
+          pbCounter('asp', aspTypeList, aspDuplicateAlert);
         })
 
         $('#aspDCount').change(function() {
@@ -2349,7 +2524,7 @@
             var desiredCount = $('#aspDCount').val()
           }
           $('#aspTableCountHeader').html('Aspirate Smear (' + desiredCount + ' cells)');
-          pbCounter('asp',aspTypeList,aspDuplicateAlert);
+          pbCounter('asp', aspTypeList, aspDuplicateAlert);
         })
 
         $('#aspCountTable').change(function() {
@@ -2376,30 +2551,37 @@
         })
 
         $('#touchPrepDiv').change(function() {
+          fillTouch();
+        })
+
+        function fillTouch() {
           if ($('#touchPrepSimilar').prop('checked')) {
             var touchPrep = "The bone marrow touch preparations are cellular and show findings similar to the aspirate smears."
             $('#tpText').val(touchPrep);
             $('#aspirateSmear').show();
             $('#touchPrepText').show();
             $('#microscopic').show();
+            $('#touchPrepText').html($('#tpText').val() + '<br><br>');
           }
-          $('#touchPrepText').html($('#tpText').val() + '<br><br>')
+          
+        }
 
-        })
-        
-        $('#tpText').on('input',function() {
-        	$('#touchPrepDifferent').prop('checked', true)
-        	$('#touchPrepSimilar').prop('checked', false)
+        $('#tpText').on('input', function() {
+          $('#touchPrepDifferent').prop('checked', true)
+          $('#touchPrepSimilar').prop('checked', false)
           $('#touchPrepText').html($('#tpText').val() + '<br><br>')
           $('#aspirateSmear').show();
-            $('#touchPrepText').show();
-            $('#microscopic').show();
-          
+          $('#touchPrepText').show();
+          $('#microscopic').show();
+
         })
-        
-        
 
         $('#ironStainDiv').change(function() {
+          fillStains();
+
+        })
+
+        function fillStains() {
           var ironText = "";
           if ($('#ironStain').prop('checked')) {
             if ($('#ironStainInc').prop('checked')) {
@@ -2419,10 +2601,12 @@
             $('#ssIronTable').html(ironText);
             $('#microscopic').show();
             $('#specialStains').show();
+          } else {
+          $('#specialStains').hide();
           }
-        })
+        }
 
-        $('#pbCBC').bind('input', function() {
+        function parseCBC() {
           var cbcTable = "<table id='pbtable'><tr><th></th><th>Result</th><th>Reference Range</th></tr>"
           var cbcFinal = [];
           var cbcToggle = 0;
@@ -2504,11 +2688,24 @@
 
           }
           fillCBC();
-          $("#clinicalCBC").html(cbcHeader + cbcText + "<br><br>");
+          if (cbcText != ""){
+           $("#clinicalCBC").html(cbcHeader + cbcText + "<br><br>");
           $('#clinical').show();
           $('#clinicalCBC').show();
           $('#peripheralBlood').show();
+          } else if ($('#chText').val() == ""){
+          $('#clinical').hide();
+          $('#clinicalCBC').hide();
+          } else {
+          $('#clinicalCBC').hide();
+          }
+         
+          
           fillPB();
+        }
+
+        $('#pbCBC').bind('input', function() {
+          parseCBC();
         })
 
         function fillCBC() {
@@ -2555,6 +2752,7 @@
         }
 
         $('#saveAll').click(function() {
+          saveFiles = JSON.parse(localStorage.getItem("saveFiles"));
           if ($('#savePerformed').val() != "") {
             localStorage.setItem("performedName", $('#savePerformed').val());
             $('#pbPerformed').val($('#savePerformed').val());
@@ -2570,8 +2768,8 @@
             }
           })
           localStorage.setItem("pbTypeList", JSON.stringify(pbTypeList));
-          pbTypeListChange('pb',pbTypeList,pbCellTypes)
-           $('.aspCellTypeSave').each(function() {
+          pbTypeListChange('pb', pbTypeList, pbCellTypes)
+          $('.aspCellTypeSave').each(function() {
             if ($(this).val() == "") {
               aspTypeList[this.id.replace('aspSave', "")] = $(this).attr('placeholder')
             } else {
@@ -2579,8 +2777,206 @@
             }
           })
           localStorage.setItem("aspTypeList", JSON.stringify(aspTypeList));
-          pbTypeListChange('asp',aspTypeList,pbCellTypes)
+          pbTypeListChange('asp', aspTypeList, pbCellTypes)
         })
+
+
+        $('#saveTemplate').click(function() {
+          if ($('#saveName').val() == "") {
+            alert('Please enter a file name.')
+          } else if (saveFiles.indexOf($('#saveName').val()) != -1) {
+            if (confirm("Would you like to overwrite the template with the name " + $('#saveName').val() + "?")) {
+              saveFiles1()
+            }
+          } else {
+            saveFiles1()
+          }
+        })
+
+        $('#saveClearTemplate').click(function() {
+          if ($('#saveName').val() == "") {
+            alert('Please enter a file name.')
+          } else if (saveFiles.indexOf($('#saveName').val()) != -1) {
+            if (confirm("Would you like to overwrite the template with the name " + $('#saveName').val() + "?")) {
+              saveFiles1()
+            }
+          } else {
+            saveFiles1()
+          }
+          $('.save').each(function() {
+            if ($(this).prop('type') == 'checkbox' || $(this).prop('type') == 'radio') {
+              $(this).prop('checked', false)
+            } else {
+              $(this).val("")
+            }
+          })
+          $('.save2').each(function() {
+            if ($(this).prop('type') == 'checkbox' || $(this).prop('type') == 'radio') {
+              $(this).prop('checked', false)
+            } else {
+              $(this).val("")
+            }
+          })
+          selectedAnisoList = [];;
+          selectedAspList = [];
+          selectedNeutList = [];
+          selectedMegList = [];
+          choices(selectedNeutList, neutList, "neut", 1);
+          choices(selectedAspList, aspDescriptorList, "aspDescriptor", 0);
+          choices(selectedMegList, megList, "meg", 1);
+          choices(selectedAnisoList, anisoList, "aniso", 1);
+          grossDescription();
+          fillPB();
+          fillAsp();
+          fillTouch();
+          fillCore();
+          fillStains();
+          coreCreator([])
+          pbCounter('pb', pbTypeList, pbDuplicateAlert);
+          pbCounter('asp', aspTypeList, aspDuplicateAlert);
+          showPanel('templateScreen')
+        })
+
+        function saveFiles1() {
+          var saveAll = [
+            [],
+            [],
+            [],
+            []
+          ]
+          $('.save').each(function() {
+            if ($(this).prop('type') == 'checkbox' || $(this).prop('type') == 'radio') {
+              saveAll[0].push([this.id, $(this).prop('checked')])
+            } else {
+              saveAll[0].push([this.id, $(this).val()])
+            }
+          })
+          saveAll[1] = [
+            [selectedAnisoList, anisoList, 'aniso', 1],
+            [selectedAspList, aspDescriptorList, 'aspDescriptor', 0],
+            [selectedNeutList, neutList, 'neut', 1],
+            [selectedMegList, megList, 'meg', 1]
+          ]
+
+          $('.save2').each(function() {
+            saveAll[2].push([this.id, $(this).prop('checked')])
+          });
+
+          saveAll[3] = coreValues
+          localStorage.setItem("saveName" + $('#saveName').val(), JSON.stringify(saveAll));
+          if (saveFiles.indexOf($('#saveName').val()) == -1) {
+            saveFiles.push($('#saveName').val())
+          }
+          localStorage.setItem("saveFiles", JSON.stringify(saveFiles));
+          fillTemplateLoader(saveFiles)
+        }
+
+        $('#deleteButton').click(function() {
+          if ($('#loadTemplate').val().length == 0) {
+            alert('Please select a template to delete.')
+
+          } else if ($('#loadTemplate').val().length == 1) {
+            if (confirm("Are you sure you want to delete this template? This cannot be undone.")) {
+              deleteTemps();
+            }
+          } else {
+            if (confirm("Are you sure you want to delete these templates? This cannot be undone.")) {
+              deleteTemps();
+            }
+          }
+        })
+
+        function deleteTemps() {
+          var deleteTemps = $('#loadTemplate').val()
+
+          console.log("1", saveFiles)
+          for (var i = 0; i < deleteTemps.length; i++) {
+            localStorage.removeItem(deleteTemps[i]);
+            saveFiles.splice(saveFiles.indexOf(deleteTemps[i]), 1)
+          }
+          localStorage.setItem("saveFiles", JSON.stringify(saveFiles));
+          fillTemplateLoader(saveFiles)
+        }
+
+
+        $('#loadButton').click(function() {
+          if ($('#loadTemplate').val() == null) {
+            alert('Please select a file to load.')
+          } else {
+            var loadArray = JSON.parse(localStorage.getItem("saveName" + $('#loadTemplate').val()));
+            for (var i = 0; i < loadArray[0].length; i++) {
+              if ($("#" + loadArray[0][i][0]).prop('type') == 'checkbox' || $("#" + loadArray[0][i][0]).prop('type') == 'radio') {
+                $("#" + loadArray[0][i][0]).prop('checked', loadArray[0][i][1])
+              } else {
+                $("#" + loadArray[0][i][0]).val(loadArray[0][i][1])
+              }
+            }
+          }
+          if ($('#pbCBC').val() != "") {
+            parseCBC();
+          }
+
+          for (var i = 0; i < loadArray[1].length; i++) {
+            if (loadArray[1][i][2] == 'aniso') {
+              selectedAnisoList = loadArray[1][i][0]
+              finalAnisoList = choices(loadArray[1][i][0], loadArray[1][i][1], loadArray[1][i][2], loadArray[1][i][3])
+            } else if (loadArray[1][i][2] == 'aspDescriptor') {
+              selectedAspList = loadArray[1][i][0]
+              finalAspList = choices(loadArray[1][i][0], loadArray[1][i][1], loadArray[1][i][2], loadArray[1][i][3])
+            } else if (loadArray[1][i][2] == 'neut') {
+              selectedNeutList = loadArray[1][i][0]
+              finalNeutList = choices(loadArray[1][i][0], loadArray[1][i][1], loadArray[1][i][2], loadArray[1][i][3])
+            } else if (loadArray[1][i][2] == 'meg') {
+              selectedMegList = loadArray[1][i][0]
+              finalMegList = choices(loadArray[1][i][0], loadArray[1][i][1], loadArray[1][i][2], loadArray[1][i][3])
+            }
+          }
+          for (var i = 0; i < loadArray[2].length; i++) {
+            $("#" + loadArray[2][i][0]).prop('checked', loadArray[2][i][1])
+          }
+          for (var i = 0; i < loadArray[1].length; i++) {
+            var x = loadArray[1][i][0] + "List"
+            if (loadArray[1][i][2] == 'aniso') {
+
+              finalAnisoList = choices(loadArray[1][i][0], loadArray[1][i][1], loadArray[1][i][2], loadArray[1][i][3])
+            } else if (loadArray[1][i][2] == 'aspDescriptor') {
+
+              finalAspList = choices(loadArray[1][i][0], loadArray[1][i][1], loadArray[1][i][2], loadArray[1][i][3])
+            } else if (loadArray[1][i][2] == 'neut') {
+
+              finalNeutList = choices(loadArray[1][i][0], loadArray[1][i][1], loadArray[1][i][2], loadArray[1][i][3])
+            } else if (loadArray[1][i][2] == 'meg') {
+
+              finalMegList = choices(loadArray[1][i][0], loadArray[1][i][1], loadArray[1][i][2], loadArray[1][i][3])
+            }
+          }
+
+          coreValues = loadArray[3]
+          coreCreator(loadArray[3])
+          if ($('#rbcAP').prop('checked')) {
+
+            $('#anisoDiv').show()
+          } else {
+            $('#anisoDiv').hide()
+          }
+          grossDescription();
+          fillPB();
+          fillAsp();
+          fillTouch();
+          fillCore();
+          fillStains();
+          pbCounter('pb', pbTypeList, pbDuplicateAlert);
+          pbCounter('asp', aspTypeList, aspDuplicateAlert);
+          showPanel('templateScreen')
+
+        })
+
+        function fillTemplateLoader(x) {
+          $('#loadTemplate').empty();
+          for (var i = 0; i < x.length; i++) {
+            $('#loadTemplate').append($('<option>').val(x[i]).text(x[i]))
+          }
+        }
 
         function changeTheme(newThemeColor) {
           $(".bannertopitem").css("background-color", newThemeColor);
