@@ -1,0 +1,3100 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+
+    <script src="https://kit.fontawesome.com/f6f9c2cc49.js" crossorigin="anonymous"></script>
+    <style>
+      ::-webkit-input-placeholder {
+        color: black;
+        opacity: 1 !important;
+      }
+
+      input:focus::placeholder {
+        color: transparent;
+      }
+
+      div {
+        font-family: Arial;
+        font-size: 11pt;
+      }
+
+      textarea {
+        max-width: 100%;
+      }
+
+      br {
+        font-family: Arial;
+        font-size: 11pt;
+      }
+
+      input {
+        display: inline-block;
+        padding: 0px 0px;
+        line-height: 80%;
+      }
+
+      label {
+        font-weight: Normal;
+        padding-right: 15px;
+        padding-left: 0px;
+      }
+
+      table {
+        border-collapse: collapse;
+        font-family: Arial;
+        table-layout: fixed;
+        font-size: 11pt;
+      }
+
+      th,
+      td {
+        border: 1px solid black;
+        vertical-align: text-top;
+
+      }
+
+      th {
+        text-align: left;
+      }
+
+      table.padleft td {
+        padding-left: 10px;
+      }
+
+      table.padleft th {
+        padding-left: 10px;
+      }
+
+      a:link {
+        text-decoration: none;
+      }
+
+      a:visited {
+        text-decoration: none;
+      }
+
+      .noborder {
+        border: none;
+      }
+
+      .center {
+        text-align: center;
+      }
+
+      .banner {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+
+      .bannertop {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        align-items: stretch;
+        border: solid black;
+      }
+
+      .bannertopitem {
+        color: white;
+        font-size: 20pt;
+        font-weight: bold;
+        padding: 0;
+        margin: 0;
+        flex-basis: 33.33%;
+        background-color: rgb(43, 60, 90);
+      }
+
+      .bannerbottom {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        align-items: stretch;
+        border-top: none;
+      }
+
+      .bannerbottomitem {
+        color: white;
+        font-size: 20pt;
+        font-weight: bold;
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        flex-basis: 50%;
+        background-color: rgb(43, 60, 90);
+      }
+
+      .flex-div {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+      }
+
+      .flex-table-div {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        width: 100%;
+        align-content: stretch;
+        justify-content: space-between;
+      }
+
+      .panelleft {
+        box-sizing: border-box;
+        flex-basis: 50%;
+        border-right: solid black;
+        min-height: 100vh;
+      }
+
+      .panelright {
+        flex-basis: 50%;
+      }
+
+      .template-body {
+        padding: 10px;
+      }
+
+      .rightpanelbutton {
+        cursor: pointer;
+      }
+
+      .pointer {
+        cursor: pointer;
+      }
+
+      .spread {
+        padding-top: 5px;
+        padding-bottom: 5px;
+      }
+
+      .table-flex {
+        flex-basis: 70%;
+      }
+
+      .table-settings-flex {
+        flex-basis: 25%;
+      }
+
+      .labelnopad {
+        padding-right: 0px;
+      }
+
+      .pad {
+        padding: 10px;
+      }
+
+      .top {
+        padding-top: 15px;
+      }
+
+      .left {
+        padding-left: 15px;
+      }
+
+      .bottom {
+        padding-bottom: 15px;
+      }
+
+      .right {
+        padding-right: 15px;
+      }
+
+      .h1 {
+        font-size: 14pt;
+        font-family: Arial;
+        color: red;
+        text-decoration: underline;
+        font-style: italic;
+        font-weight: bold;
+        margin: 0px;
+      }
+
+      .h2 {
+        font-size: 14pt;
+        font-family: Arial;
+        font-weight: bold;
+        margin: 0px;
+      }
+
+      .smallText {
+        font-size: 8pt;
+        font-family: Arial;
+      }
+
+      .header {
+        font-size: 11pt;
+        font-family: Arial;
+        font-weight: bold;
+        margin: 0px;
+
+      }
+
+      .clickedIcon {
+        color: lime;
+      }
+
+      .clickedIcon:hover {
+        color: lime;
+      }
+
+      .iconHead {
+        background-color: rgb(43, 60, 90);
+        color: white;
+        display: flex;
+        justify-content: space-around;
+        border-left: solid black;
+        border-right: solid black;
+        border-bottom: solid black;
+        -webkit-flex-flow: row wrap;
+      }
+
+      .iconPanel {
+        font-size: 20pt;
+        padding: 5px;
+        cursor: pointer
+      }
+
+      .icon:hover {
+        color: rgb(200, 200, 200);
+      }
+
+      .fullBorder {
+        border-style: solid;
+        border-color: black;
+      }
+
+      html {
+        overflow-y: scroll;
+      }
+
+      body {
+        margin: 0px;
+      }
+
+      html,
+      body {
+        margin: 0;
+        height: 100vh;
+      }
+
+      .copyHead {
+        background-color: rgb(43, 60, 90);
+        color: white;
+        display: flex;
+        justify-content: space-around;
+        border-right: solid black;
+        border-bottom: solid black;
+        -webkit-flex-flow: row wrap;
+      }
+
+      .copyPanel:hover {
+        color: white;
+      }
+
+      .copyText:hover {
+        color: rgb(200, 200, 200);
+      }
+
+      .copyPanel {
+        font-size: 20pt;
+        padding: 5px;
+      }
+
+      .copyText {
+        font-size: 14pt;
+        padding: 5px;
+        cursor: pointer
+      }
+
+      .copyText:active {
+        color: lime;
+      }
+
+      .neg {
+        margin-top: -32px;
+      }
+
+      .side-pad {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+      .a {
+        font-family: Arial;
+        font-size: 12pt;
+      }
+
+      .navigationButton {
+        cursor: pointer;
+      }
+
+      .navigation {
+        position: fixed;
+        background-color: rgb(43, 60, 90);
+        z-index: 20;
+        top: 0px;
+        left: 0;
+        width: 200px;
+        height: 100%;
+        border: solid;
+        font-size: 12pt;
+      }
+
+      .saveBox {
+        position: fixed;
+        background-color: rgb(43, 60, 90);
+        width: 30%;
+        height: 20%;
+        top: 40%;
+        left: 35%;
+        color: white;
+        border-radius: 5px;
+        display: none;
+
+
+      }
+
+      }
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <meta charset="utf-8">
+    <title></title>
+
+  </head>
+
+  <body>
+    <div class="container-fluid" id="bmTemp">
+      <div class="banner">
+        <div class="bannertop">
+          <div class="bannertopitem">
+            <i class="icon fas fa-bars pad navigationButton"></i>
+          </div>
+          <div class='bannertopitem' style='text-align: center; padding: 8px'>
+            Bone Marrow Template
+          </div>
+          <div class='bannertopitem' style='text-align: right'>
+
+            <i class="clickedIcon fas fa-list pad rightpanelbutton" id="templateButton"></i>
+            <i class="icon fas fa-book pad rightpanelbutton" id='educationButton'></i>
+            <i class="icon far fa-question-circle pad rightpanelbutton" id="helpButton"></i>
+            <i class="icon fas fa-save pad rightpanelbutton" id="saveButton"></i>
+            <i class="icon fas fa-cog pad rightpanelbutton" id='settingsButton'></i>
+          </div>
+        </div>
+        <div class="bannerbottom">
+          <div class='bannerbottomitem iconHead'>
+            <i class="iconPanel clickedIcon fas fa-male pad" id='patient'></i>
+            <i class="iconPanel icon fas fa-tint pad" id='blood'></i>
+            <i class="iconPanel icon fas fa-syringe pad" id='aspirate'></i>
+            <i class="iconPanel icon fas fa-bone pad" id='bone'></i>
+            <i class="iconPanel icon fab fa-fulcrum pad" id='flow'></i>
+          </div>
+          <div class='bannerbottomitem copyHead' id='copyPanel'>
+            <span><i class="copyPanel icon fas fa-copy copy" style="text-align: left"></i></span><span class="copy copyText" id="everythingCopy">All</span><span class="copy copyText" id="finalCopy">Final</span><span class="copy copyText" id="clinicalCopy">Clinical</span><span class="copy copyText" id="microscopicCopy">Microscopic</span><span class="copy copyText" id="grossCopy">Gross</span>
+
+          </div>
+        </div>
+      </div>
+      <div class="flex-div">
+        <div id='navigationPanel' class='navigation' style='display:none'>
+
+          <div class="bannertopitem">
+            <i class="fas fa-bars pad navigationButton"></i>
+            <br>
+
+            <a href="https://diffpath.github.io/pages/peripheralblood.html" style="color: white; font-size: 12pt">&nbsp Peripheral Blood</a>
+          </div>
+        </div>
+        <div class="panelleft">
+          <div class="template-body" id="patientPanel">
+            <div class="bottom" style="text-align: center; font-size: 14pt">
+              <b>Patient/Specimen Characteristics</b>
+            </div>
+            <p><b>Laterality:</b></p>
+            <div class="radio" id="latAll">
+              <label><input type="radio" class='save' name="laterality" value="" id="latR">Right</label>
+              <label><input type="radio" class='save' name="laterality" value="" id="latL">Left</label>
+              <label><input type="radio" class='save' name="laterality" value="" id="latB">Bilateral</label>
+              <label><input type="radio" class='save' name="laterality" value="" id="latN">Not Specified</label>
+            </div>
+            <p><b>Specimens:</b></p>
+            <div class="radio bottom">
+              <label><input type="radio" class='save' name="specNum" value="" id='specFive'>All Common Specimens</label>
+            </div>
+            <div class="checkbox" id='specTypes'>
+              <div class="flex-div" style="flex-wrap: wrap">
+                <label><input type="checkbox" class='save' value="" id='specPBSmear'>Peripheral Blood Smear</label>
+                <div><input type="input" class='save' id="pbSlides" value="" name='age' maxlength="3" size="2"> unstained slides
+                </div>
+              </div>
+              <div class="flex-div" style="flex-wrap: wrap">
+                <label><input type="checkbox" class='save' value="" id='specASmear'>Aspirate Smear</label>
+                <div id="aspDiv"><input type="input" class='save' value="" id='aspSize' name='age' maxlength="3" size="2"> cc
+                </div>
+              </div>
+              <div>
+                <label><input type="checkbox" class='save' value="" id='specClot'>Particle Clot</label>
+              </div>
+              <div id="coreDiv" class="flex-div" style="flex-wrap: wrap">
+                <div>
+                  <label><input type="checkbox" class='save' value="" id='specCore'>Core Biopsy</label></div>
+                <div>
+                  <input type="input" class="coreSize save" value="" id='coreSize0' maxlength="3" size="2"> cm &nbsp
+                </div>
+              </div>
+              <div class="flex-div bottom" style="flex-wrap: wrap">
+                <label><input type="checkbox" class='save' value="" id='specTouch'>Touch Imprint</label>
+                <div><input type="input" class='save' id="touchSlides" value="" name='age' maxlength="3" size="2"> unstained slides
+                </div>
+              </div>
+              <div>
+                <label><input type="checkbox" class='save' value="" id='specFlow'>Flow Cytometry</label>
+              </div>
+              <div>
+                <label><input type="checkbox" class='save' value="" id='specGen'>Cytogenetics</label>
+              </div>
+              <div>
+                <label><input type="checkbox" class='save' value="" id='specFISH'>FISH</label><input type="text" class='save' list="fish" id='fishList'>
+                <datalist id="fish">
+                  <option value="AML"></option>
+                  <option value="ALL"></option>
+                  <option value="CLL"></option>
+                  <option value="MDS/MPN"></option>
+                  <option value="Myeloma"></option>
+                </datalist>
+              </div>
+              <div>
+                <label><input type="checkbox" class='save' value="" id='specMolec'>Molecular</label><input type="text" class='save' list='molec' id='molecList'>
+                <datalist id="molec">
+                  <option value="NGS"></option>
+                  <option value="T-cell receptor gene rearrangement"></option>
+                  <option value="IGH gene rearrangement"></option>
+                </datalist>
+              </div>
+              <div>
+                <label><input type="checkbox" class='save' value="" id='specPCLI'>Plasma Cell Labeling Index</label>
+              </div>
+              <div class="bottom">
+                <label><input type="checkbox" class='save' value="" id='specProtocol'>Protocol IRB#</label><input type="input" class='save' value="" id='protocolNumber'>
+              </div>
+              <div>
+                <b>Clinical History:</b>
+                <p></p>
+                Age: <input type="input" class='save' value="" id='clinAge' name='age' maxlength="3" size="3"><br><br> <textarea rows="4" id="chText" style="width: 100%"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="template-body" id="bloodPanel" style="display: none">
+            <div class="bottom" style="text-align: center; font-size: 14pt">
+              <b>Peripheral Blood</b>
+            </div>
+
+            <b>Paste CBC Here:</b><textarea rows="1" id="pbCBC" style="width: 100%">
+</textarea><br><br>
+            <div class="flex-table-div">
+              <div class="table-flex" id="pbCountTable">
+                <table class="center" style="width: 100%">
+                  <tr>
+                    <td><label id="pbLabel7" class="pbCellType labelnopad"></label><br>
+                      <input type="text" class='save' id="pb7" maxlength="5" size="3"></td>
+                    <td><label id="pbLabel8" class="pbCellType labelnopad"></label><br>
+                      <input type="text" class='save' id="pb8" maxlength="5" size="3"></td>
+                    <td><label id="pbLabel9" class="pbCellType labelnopad"></label><br>
+                      <input type="text" class='save' id="pb9" maxlength="5" size="3"></td>
+                  </tr>
+                  <tr>
+                    <td><label id="pbLabel4" class="pbCellType labelnopad"></label><br>
+                      <input type="text" class='save' id="pb4" maxlength="5" size="3"></td>
+                    <td><label id="pbLabel5" class="pbCellType labelnopad"></label><br>
+                      <input type="text" class='save' id="pb5" maxlength="5" size="3"></td>
+                    <td><label id="pbLabel6" class="pbCellType labelnopad"></label><br>
+                      <input type="text" class='save' id="pb6" maxlength="5" size="3"></td>
+                  </tr>
+                  <tr>
+                    <td><label id="pbLabel1" class="pbCellType labelnopad"></label><br>
+                      <input type="text" class='save' id="pb1" maxlength="5" size="3"></td>
+                    <td><label id="pbLabel2" class="pbCellType labelnopad"></label><br>
+                      <input type="text" class='save' id="pb2" maxlength="5" size="3"></td>
+                    <td><label id="pbLabel3" class="pbCellType labelnopad"></label><br>
+                      <input type="text" class='save' id="pb3" maxlength="5" size="3"></td>
+                  </tr>
+                  <tr>
+                    <td class='noborder'></td>
+                    <td><label id="pbLabel0" class="pbCellType labelnopad"></label><br>
+                      <input type="text" class='save' id="pb0" maxlength="5" size="3"></td>
+                    <td class='noborder'></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="table-settings-flex">
+                <div>
+                  <label for="fname">Current Count:</label><br>
+                  <input type="text" class='save' id="pbCCount" maxlength="5" size="3">
+                </div>
+                <div>
+                  <label for="fname">Desired Count:</label><br>
+                  <input type="text" class='save' id="pbDCount" list="pbDList" maxlength="4" size="3" placeholder="200"><datalist id="pbDList">
+                    <option value="100"></option>
+                    <option value="200"></option>
+                    <option value="300"></option>
+                    <option value="400"></option>
+                    <option value="500"></option>
+                    <option value="1000"></option>
+                  </datalist>
+                </div>
+                <div>
+                  <label for="fname">Total %</label><br>
+                  <input type="text" class='save' id="pbTotalPercent" maxlength="6" size="3">
+                </div>
+              </div>
+            </div>
+            <div>
+              <b>Count Here:</b><textarea class='save' rows="4" id="pbCount" style="width: 100%">
+</textarea>
+            </div>
+            <div class="spread">
+              <b>Performed By: </b><input type="text" class='save' id="pbPerformed" list="pbPList" size="30"><datalist id="pbPList">
+                <option value="MaryAnn Hrisinko, MT (ASCP)"></option>
+                <option value="Pinal Patel, MLS (ASCP)"></option>
+              </datalist>
+            </div>
+            <div id="pbDescriptors">
+              <div class="flex-div spread" style="flex-wrap: wrap">
+                <div>
+                  <b>RBCs:</b>
+                  <label for='rbcNL'><input type="radio" class='save' name="rbc" value="" id='rbcNL'> Unremarkable</label>
+                </div>
+                <div>
+                  <label for='rbcPC'><input type="checkbox" class='save' name="rbc" value="" id='rbcPC'> Polychromasia</label>
+                </div>
+                <div>
+                  <label for='rbcAP' style="word-wrap: break-word"><input type="checkbox" class='save' name="rbc" value="" id='rbcAP'> Anisopoikilocytosis</label>
+                </div>
+              </div>
+              <div id="anisoDiv" style="display: none">
+              </div>
+              <div class="flex-div spread" style="flex-wrap: wrap">
+                <div>
+                  <b>Neutrophils: </b><label><input type="radio" class='save' name="neut" value="" id='neutNL'> Unremarkable </label>
+                  <label><input type="radio" class='save' name="neut" value="" id='neutAB'> Abnormal </label>
+                </div>
+              </div>
+              <div id="neutDiv" class="descriptors">
+              </div>
+              <div class="flex-div spread" style="flex-wrap: wrap">
+                <div>
+                  <b>Platelets: </b><label><input type="radio" class='save' name="plt" value="" id='pltNL'> Unremarkable</label>
+                </div>
+                <div>
+                  <label><input type="radio" class='save' name="plt" value="" id='pltLP'> Occasional large platelets</label>
+                </div>
+              </div>
+              <div id='pbBlastDiv' class='spread' style='display: none'>
+                <div>
+                  <b>Blasts: </b>
+                </div>
+                <div class="flex-div" style="flex-wrap: wrap">
+                  Size:
+                  <div>
+                    <label><input type="checkbox" class='save' value="" id='blastSmall'> Small</label>
+                  </div>
+                  <div>
+                    <label><input type="checkbox" class='save' value="" id='blastMedium'> Medium</label>
+                  </div>
+                  <div>
+                    <label><input type="checkbox" class='save' value="" id='blastLarge'> Large</label>
+                  </div>
+                </div>
+                <div class="flex-div" style="flex-wrap: wrap">
+                  Nucleus:
+                  <div>
+                    <label><input type="radio" class='save' id='blastIrregular' name='blastNucleus'> Irregular</label>
+                  </div>
+                  <div>
+                    <label><input type="radio" class='save' id='blastRound' name='blastNucleus'> Round</label>
+                  </div>
+                </div>
+                <div class="flex-div" style="flex-wrap: wrap">
+                  Chromatin:
+                  <div>
+                    <label><input type="radio" class='save' id='blastFine' name='blastChromatin'> Fine</label>
+                  </div>
+                  <div>
+                    <label><input type="radio" class='save' id='blastFinelyReticular' name='blastChromatin'> Finely reticular</label>
+                  </div>
+                  <div>
+                    <label><input type="radio" class='save' id='blastDelicateLacy' name='blastChromatin'> Delicate lacy</label>
+                  </div>
+                  <div>
+                    <label><input type="radio" class='save' id='blastDispersed' name='blastChromatin'> Dispersed</label>
+                  </div>
+                  <div>
+                    <label><input type="radio" class='save' id='blastCondensed' name='blastChromatin'> Condensed</label>
+                  </div>
+                </div>
+                <div class="flex-div" style="flex-wrap: wrap">
+                  Nucleolus:
+                  <div>
+                    <label><input type="radio" class='save' id='blastProminent' name='blastNucleolus'> Prominent</label>
+                  </div>
+                  <div>
+                    <label><input type="radio" class='save' id='blastConspicuous' name='blastNucleolus'> Conspicuous</label>
+
+                  </div>
+                  <div>
+                    <label><input type="radio" class='save' id='blastInconspicuous' name='blastNucleolus'> Inconspicuous</label>
+
+                  </div>
+                </div>
+                <div class="flex-div" style="flex-wrap: wrap">
+                  Cytoplasm Amount:
+                  <div>
+                    <label><input type="radio" class='save' id='blastScant' name='blastCAmount'> Scant</label>
+
+                  </div>
+                  <div>
+                    <label><input type="radio" class='save' id='blastModerate' name='blastCAmount'> Moderate</label>
+
+                  </div>
+                  <div>
+                    <label><input type="radio" class='save' id='blastAbundant' name='blastCAmount'> Abundant</label>
+
+                  </div>
+                </div>
+                <div class="flex-div" style="flex-wrap: wrap">
+                  Cytoplasm Color:
+                  <div>
+                    <label><input type="radio" class='save' id='blastPale' name='blastCColor'> Pale</label>
+
+                  </div>
+                  <div>
+                    <label><input type="radio" class='save' id='blastBasophilic' name='blastCColor'> Basophilic</label>
+
+                  </div>
+                  <div>
+                    <label><input type="radio" class='save' id='blastBlue' name='blastCColor'> Blue</label>
+
+                  </div>
+                  <div>
+                    <label><input type="radio" class='save' id='blastAmphophilic' name='blastCColor'> Amphophilic</label>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="spread">
+              <b>Peripheral Blood Text:</b><textarea class='save' rows="4" id="pbText" style="width: 100%">
+</textarea>
+            </div>
+
+          </div>
+          <div class="template-body" id="aspiratePanel" style="display: none">
+            <div class="bottom" style="text-align: center; font-size: 14pt">
+              <b>Bone Marrow Aspirate</b>
+            </div>
+            <div class="flex-table-div">
+              <div class="table-flex" id="aspCountTable">
+                <table class="center" style="width:100%">
+                  <tr>
+                    <td><label id="aspLabel7" class="aspCellType"><b>7.</b> Neuts</label><br>
+                      <input type="text" class='save' id="asp7" maxlength="5" size="3"></td>
+                    <td><label id="aspLabel8" class="aspCellType"><b>8.</b> Eos</label><br>
+                      <input type="text" class='save' id="asp8" maxlength="5" size="3"></td>
+                    <td><label id="aspLabel9" class="aspCellType"><b>9.</b> Monos</label><br>
+                      <input type="text" class='save' id="asp9" maxlength="5" size="3"></td>
+                  </tr>
+                  <tr>
+                    <td><label id="aspLabel4" class="aspCellType"><b>4.</b> NRBCs</label><br>
+                      <input type="text" class='save' id="asp4" maxlength="5" size="3"></td>
+                    <td><label id="aspLabel5" class="aspCellType"><b>5.</b> Lymphs</label><br>
+                      <input type="text" class='save' id="asp5" maxlength="5" size="3"></td>
+                    <td><label id="aspLabel6" class="aspCellType"><b>6.</b> Plasma</label><br>
+                      <input type="text" class='save' id="asp6" maxlength="5" size="3"></td>
+                  </tr>
+                  <tr>
+                    <td><label id="aspLabel1" class="aspCellType"><b>1.</b> Baso</label><br>
+                      <input type="text" class='save' id="asp1" maxlength="5" size="3"></td>
+                    <td><label id="aspLabel2" class="aspCellType"><b>2.</b> Atypical</label><br>
+                      <input type="text" class='save' id="asp2" maxlength="5" size="3"></td>
+                    <td><label id="aspLabel3" class="aspCellType"><b>3.</b> Other</label><br>
+                      <input type="text" class='save' id="asp3" maxlength="5" size="3"></td>
+                  </tr>
+                  <tr>
+                    <td class="noborder"></td>
+                    <td><label id="aspLabel0" class="aspCellType"><b>0.</b> Blasts</label><br>
+                      <input type="text" class='save' id="asp0" maxlength="5" size="3"></td>
+                    <td class="noborder"></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="table-settings-flex">
+                <div>
+                  <label for="fname">Current Count:</label><br>
+                  <input type="text" class='save' id="aspCCount" maxlength="4" size="3">
+                </div>
+                <div>
+                  <label for="fname">Desired Count:</label><br>
+                  <input type="text" class='save' id="aspDCount" list="aspDList" maxlength="4" size="3" placeholder="500"><datalist id="aspDList">
+                    <option value="100"></option>
+                    <option value="200"></option>
+                    <option value="300"></option>
+                    <option value="400"></option>
+                    <option value="500"></option>
+                    <option value="1000"></option>
+                  </datalist>
+                </div>
+                <div>
+                  <label for="fname">M:E ratio:</label><br>
+                  <input type="text" class='save' id="meRatio" maxlength="4" size="3">
+                </div>
+                <div>
+                  <label for="fname">Total %</label><br>
+                  <input type="text" class='save' id="aspTotalPercent" maxlength="6" size="3">
+                </div>
+              </div>
+            </div>
+            <div>
+              <b>Count Here:</b>
+              <textarea class='save' rows="4" id="aspCount" style="width: 100%; max-width: 100%">
+</textarea>
+            </div>
+            <div id="aspirateDiv">
+              <div class="flex-div spread" style="flex-wrap: wrap">
+                <div>
+                  <b>Adequacy:</b> <label><input class='adequacy save' type="radio" name="adequacy" value="" id='aspAdequate'> Adequate</label>
+                </div>
+                <div>
+                  <label><input class='adequacy save' type="radio" value="" name="adequacy" id='aspInadequate'> Inadequate</label>
+                </div>
+                <div id='aspDescriptorDiv'>
+                </div>
+              </div>
+              <div class="flex-div spread" style="flex-wrap: wrap">
+                <div>
+                  <b>Erythroid Precursors: </b><label><input type="checkbox" class='save' value="" id='aspErythNL'> Unremarkable</label>
+                </div>
+              </div>
+              <div class="flex-div spread" style="flex-wrap: wrap">
+                <b>Myeloid Precursors: </b><label><input type="checkbox" class='save' value="" id='aspMyeloidNL'> Unremarkable</label>
+              </div>
+              <div class="flex-div spread" style="flex-wrap: wrap">
+                <div>
+                  <b>Megakaryocytes:</b>
+                </div>
+                <div>
+                  <label><input type="radio" class='save' value="" id='aspMegAdeq' name='megs'> Adequate</label>
+                </div>
+                <div>
+                  <label><input type="radio" class='save' value="" id='aspMegDec' name='megs'> Decreased</label>
+                </div>
+                <div>
+                  <label><input type="radio" class='save' value="" id='aspMegInc' name='megs'> Increased</label>
+                </div>
+              </div>
+              <div class="flex-div" style="flex-wrap: wrap">
+                <div><label><input type="radio" class='save' value="" id='aspMegNL' name='megQuant'> Unremarkable</label>
+                </div>
+                <div><label><input type="radio" class='save' value="" id='aspMegAB' name='megQuant'> Abnormal</label></div>
+
+              </div>
+              <div id='megDiv' style='padding-bottom: 5px'>
+
+              </div>
+              <div class="flex-div spread" style="flex-wrap: wrap">
+                <b>Blasts: </b><label><input type="radio" class='save' value="" id='aspBlastNI' name='aspBlast'> Not increased</label>
+                <label><input type="radio" class='save' value="" id='aspBlastInc' name='aspBlast'> Increased</label>
+              </div>
+            </div>
+            <div class="spread">
+              <b>Aspirate Smear Text:</b><textarea class='save' rows="4" id="aspText" style="width: 100%">
+</textarea>
+            </div>
+            <div id='touchPrepDiv' class="flex-div spread" style="flex-wrap: wrap">
+              <div>
+                <b>Touch Preparation: </b><label><input type="radio" class='save' name="touchPrep" value="" id='touchPrepSimilar'> Similar to Aspirate</label>
+              </div>
+              <div>
+                <label><input type="radio" class='save' name="touchPrep" value="" id='touchPrepDifferent'> Free Text</label>
+              </div>
+            </div>
+            <div>
+              <b>Touch Preparation Text:</b><textarea class='save' rows="4" id="tpText" style="width: 100%">
+</textarea>
+            </div>
+            <div id='ironStainDiv'>
+              <div>
+                <label><input type="checkbox" class='save' id='ironStain'> Iron Stain</label>
+              </div>
+              <div class="flex-div spread" style="flex-wrap: wrap">
+                <div>
+                  <b>Storage Iron: </b>
+                  <label><input type="radio" class='save' name='ironQuant' id='ironStainInc'> Increased</label>
+                </div>
+                <div>
+                  <label><input type="radio" class='save' name='ironQuant' id='ironStainAdeq'> Adequate</label>
+                </div>
+                <div>
+                  <label><input type="radio" class='save' name='ironQuant' id='ironStainDec'> Decreased</label>
+                </div>
+                <div>
+                  <label><input type="radio" class='save' name='ironQuant' id='ironNoSpicules'> Not enough spicules</label>
+                </div>
+              </div>
+              <div class="flex-div spread" style="flex-wrap: wrap">
+                <div>
+                  <b>Ring Sideroblasts: </b>
+                  <label><input type="radio" class='save' name='ring' id='ringAbsent'> Absent</label>
+                </div>
+                <div>
+                  <label><input type="radio" class='save' name='ring' id='ringPresent'> Present</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="template-body" id="bonePanel" style="display: none">
+            <div class="flex-div">
+              <div style="flex-basis: 10%;">
+
+              </div>
+              <div class="bottom" style="text-align: center; font-size: 14pt; flex-basis: 80%;">
+                <b>Bone Marrow Core Biopsy</b>
+              </div>
+              <div style="text-align: right; flex-basis: 10%;">
+                <i class="icon far fa-question-circle rightalign pointer" id="coreHelp"></i>
+              </div>
+            </div>
+
+            <div class="flex-div spread" style="flex-wrap: wrap">
+              <div>
+                <b>Adequacy:</b> <label><input class='adequacy save' type="radio" name="coreAdequacy" value="" id='coreAdequate'> Adequate</label>
+              </div>
+              <div>
+                <label><input class='adequacy save' type="radio" value="" name="coreAdequacy" id='coreInadequate'> Inadequate</label>
+              </div>
+              <div id='coreDescriptorDiv'>
+              </div>
+            </div>
+            <div class="flex-div spread" style="flex-wrap: wrap">
+              <div>
+                <b>Cellularity: </b><input class='save' type="input" value="" id='coreCellularity'>
+              </div>
+            </div>
+            <div id='testDiv'>
+
+            </div>
+          </div>
+          <div class="template-body flex-div" id="flowPanel" style="display: none; flex-wrap: wrap; align-items: stretch">
+            <div style="flex-basis: 10%;">
+
+            </div>
+            <div class="bottom" style="text-align: center; font-size: 14pt; flex-basis: 80%;">
+              <b>Flow Cytometry</b>
+            </div>
+            <div style="text-align: right; flex-basis: 10%;">
+              <i class="icon far fa-question-circle rightalign pointer" id="flowHelp"></i>
+            </div><textarea class='save' rows="4" id="fcText" style="width: 100%"></textarea>
+          </div>
+        </div>
+        <div class="panelright" id='rightDiv'>
+          <div id="templateScreen" class="rightpanel side-pad">
+            <div class="final" id="final2"></div>
+            <div id="everythingCopyText" class='top'>
+              <div id="final" style="display: none">
+                <div class="h1">
+                  Final Diagnosis
+                </div>
+                <div id="finalCopyText">
+                  <div class="header" id="header">
+                  </div>
+                </div>
+              </div>
+              <div id="clinical" style="display: none">
+                <div class="h1">
+                  Clinical Information
+                </div>
+                <div id="clinicalCopyText">
+
+                  <div id="clinicalHistory">
+                  </div>
+                  <div id="clinicalCBC" style="display: none">
+                  </div>
+
+                </div>
+              </div>
+              <div id="microscopic" style="display: none">
+                <div class="h1">
+                  Microscopic Description
+                </div>
+                <div id="microscopicCopyText">
+                  <div id="diff" class='header' style="display: none">
+                    Differential Count<br><br>
+                  </div>
+                  <div id='pbTable' style="display: none" class='left'>
+                    <table class='padleft' style="width:425px">
+                      <tr>
+                        <th style="width:50%" id="pbTableCountHeader"></th>
+                        <th style="width:17%">Result</th>
+                        <th style="width:33%">Reference Range</th>
+                      </tr>
+                      <tr id="pbBlastsRow" style="display: none">
+                        <td>Blasts</td>
+                        <td id="pbBlastsTable"></td>
+                        <td>0</td>
+                      </tr>
+                      <tr id="pbPromyelocytesRow" style="display: none">
+                        <td>Promyelocytes</td>
+                        <td id="pbPromyelocytesTable"></td>
+                        <td>0</td>
+                      </tr>
+                      <tr id="pbMyelocytesRow" style="display: none">
+                        <td>Myelocytes</td>
+                        <td id="pbMyelocytesTable"></td>
+                        <td>0</td>
+                      </tr>
+                      <tr id="pbMetamyelocytesRow" style="display: none">
+                        <td>Metamyelocytes</td>
+                        <td id="pbMetamyelocytesTable"></td>
+                        <td>0</td>
+                      </tr>
+                      <tr class="pbRow">
+                        <td>Neutrophils</td>
+                        <td id="pbNeutsTable"></td>
+                        <td>34 - 73%</td>
+                      </tr>
+                      <tr class="pbRow">
+                        <td>Lymphocytes</td>
+                        <td id="pbLymphsTable"></td>
+                        <td>15 - 50%</td>
+                      </tr>
+                      <tr>
+                        <td>Monocytes</td>
+                        <td id="pbMonosTable"></td>
+                        <td>5 - 15%</td>
+                      </tr>
+                      <tr>
+                        <td>Eosinophils</td>
+                        <td id="pbEosTable"></td>
+                        <td>0 - 8%</td>
+                      </tr>
+                      <tr>
+                        <td>Basophils</td>
+                        <td id="pbBasoTable"></td>
+                        <td>0 - 2%</td>
+                      </tr>
+                      <tr id="pbPlasmaRow" style="display: none">
+                        <td>Plasma Cells</td>
+                        <td id="pbPlasmaTable"></td>
+                        <td>0</td>
+                      </tr>
+                      <tr id="pbAtypicalRow" style="display: none">
+                        <td>Atypical lymphocytes</td>
+                        <td id="pbAtypicalTable"></td>
+                        <td>0</td>
+                      </tr>
+                      <tr id="pbNRBCsRow" style="display: none">
+                        <td>NRBC's/100 WBC</td>
+                        <td id="pbNRBCsTable"></td>
+                        <td>0</td>
+                      </tr>
+                    </table>
+                    <br>
+                  </div>
+                  <div id='pbTableAlert' class='bottom' style="display: none">
+                    <b>Warning! Counter has duplicate labels!</b>
+                  </div>
+                  <div id='aspTable' style="display: none" class='left'>
+                    <table class='padleft' style="width:425px">
+                      <tr>
+                        <th style="width:50%" id="aspTableCountHeader"></th>
+                        <th style="width:17%">Result</th>
+                        <th style="width:33%">Reference Range</th>
+                      </tr>
+                      <tr>
+                        <td>Blasts</td>
+                        <td id="aspBlastsTable"></td>
+                        <td>0 - 3%</td>
+                      </tr>
+                      <tr id="aspPromyelocytesRow" style="display: none">
+                        <td>Promyelocytes</td>
+                        <td id="aspPromyelocytesTable"></td>
+                        <td>0</td>
+                      </tr>
+                      <tr id="aspMyelocytesRow" style="display: none">
+                        <td>Myelocytes</td>
+                        <td id="aspMyelocytesTable"></td>
+                        <td>0</td>
+                      </tr>
+                      <tr id="aspMetamyelocytesRow" style="display: none">
+                        <td>Metamyelocytes</td>
+                        <td id="aspMetamyelocytesTable"></td>
+                        <td>0</td>
+                      </tr>
+                      <tr>
+                        <td>Neutrophils & Precursors</td>
+                        <td id="aspNeutsTable"></td>
+                        <td>33 - 63%</td>
+                      </tr>
+                      <tr>
+                        <td>Eosinophils & Precursors</td>
+                        <td id="aspEosTable"></td>
+                        <td>1 - 5%</td>
+                      </tr>
+                      <tr>
+                        <td>Basophils & Precursors</td>
+                        <td id="aspBasoTable"></td>
+                        <td>0 - 1%</td>
+                      </tr>
+                      <tr>
+                        <td>Monocytes</td>
+                        <td id="aspMonosTable"></td>
+                        <td>0 - 2%</td>
+                      </tr>
+                      <tr id="aspAtypicalRow" style="display: none">
+                        <td>Atypical lymphocytes</td>
+                        <td id="aspAtypicalTable"></td>
+                        <td>0</td>
+                      </tr>
+                      <tr>
+                        <td>Lymphocytes</td>
+                        <td id="aspLymphsTable"></td>
+                        <td>10 - 15%</td>
+                      </tr>
+                      <tr id='aspPlasmaRow'>
+                        <td>Plasma Cells</td>
+                        <td id="aspPlasmaTable"></td>
+                        <td>0 - 1%</td>
+                      </tr>
+                      <tr>
+                        <td>Erythroid Precursors</td>
+                        <td id="aspNRBCsTable"></td>
+                        <td>15 - 27%</td>
+                      </tr>
+                      <tr>
+                        <td>M:E Ratio</td>
+                        <td id="aspMETable"></td>
+                        <td>1.5 - 3.3</td>
+                      </tr>
+                    </table>
+                    <br>
+                  </div>
+                  <div id='performedText'>
+                  </div>
+                  <div id="peripheralBlood" style="display: none">
+                    <div class="h2">
+                      Peripheral Blood Smear
+                    </div>
+                    <div id="bloodText">
+                    </div>
+                  </div>
+                  <div id="aspirateSmear" style="display: none">
+                    <div class="h2">
+                      Bone Marrow Aspirate Smear/Touch Preparation
+                    </div>
+                    <div id="aspirateText" style="display: none">
+                    </div>
+                    <div id="touchPrepText" style="display: none">
+                    </div>
+                  </div>
+                  <div id="coreBiopsy" style="display: none">
+                    <div class="h2">
+                      Bone Marrow Core Biopsy (Decalcified)/Particle Clot
+                    </div>
+                    <div id="coreText" style="display: none">
+                    </div>
+                    <div id="particleClotText" style="display: none">
+                    </div>
+                  </div>
+                  <div id="specialStains" style="display: none">
+                    <div class="h2">
+                      Special Stains
+                    </div>
+                    Bone marrow aspirate
+                    <div id="specialStainsTable">
+                      <table class='padleft' style="width:425px">
+                        <tr>
+                          <td style="width:40%">Prussian blue</td>
+                          <td id="ssIronTable" style="width:60%"></td>
+                        </tr>
+                      </table>
+                    </div>
+                    <br>
+                    <div id="controlText" class="smallText">
+                      The positive control(s) showed appropriate staining.
+                    </div><br>
+                  </div>
+                </div>
+              </div>
+              <div id="gross" style="display: none">
+                <div class="h1">
+                  Specimen/Gross Description
+                </div>
+                <div id="grossCopyText">
+                  The specimen consists of the following:
+                  <div id="grossText">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="helpScreen" class="rightpanel neg side-pad" style="display: none">
+            <h3 style="margin-top: 0px">
+              About:
+            </h3>
+            This is a web based application intended as a proof of concept for the standardized reporting of bone marrow biopsies in a "smart" template format. This application was enirely created by myself, Michael Moravek, MD, and is currently under construction. The project is not intended for clinical use in it's current state.<br><br>
+            If you have any questions or feedback, feel free to contact me:<br>
+            <a href="mailto: MikeMoravek@gmail.com"><i class="fas fa-envelope-square" style="color: rgb(0,172,238); font-size: 12pt"></i> MikeMoravek@gmail.com</a><br>
+            <a href="https://twitter.com/moravekmd"><i class="fab fa-twitter-square" style="color: rgb(0,172,238); font-size: 12pt" target="_blank"></i> @MoravekMD</a>
+          </div>
+          <div id="settingsScreen" class="rightpanel neg side-pad" style="display: none">
+            <h3 style="margin-top: 0px">
+              Settings:
+            </h3>
+            <div class='spread'>
+              Performed By: <input type="input" value="" id='savePerformed'>
+            </div>
+            <div class='spread'>
+              Theme Color: <input type="color" id="themeColor" name="favcolor" value=#2b3c5a>
+            </div>
+            <div id='pbTypeSaveDiv' class='spread'>
+              Peripheral Blood Count Orientation:
+              <table class="center" style="width:100%">
+                <tr>
+                  <td><b>7. </b><input type="text" id="pbSave7" class="pbCellTypeSave save" list="pbCellTypeList" size="6"></td>
+                  <td><b>8. </b><input type="text" id="pbSave8" class="pbCellTypeSave save" list="pbCellTypeList" size="6"></td>
+                  <td><b>9. </b><input type="text" id="pbSave9" class="pbCellTypeSave save" list="pbCellTypeList" size="6"></td>
+                </tr>
+                <tr>
+                  <td><b>4. </b><input type="text" id="pbSave4" class="pbCellTypeSave save" list="pbCellTypeList" size="6"></td>
+                  <td><b>5. </b><input type="text" id="pbSave5" class="pbCellTypeSave save" list="pbCellTypeList" size="6"></td>
+                  <td><b>6. </b><input type="text" id="pbSave6" class="pbCellTypeSave save" list="pbCellTypeList" size="6"></td>
+                </tr>
+                <tr>
+                  <td><b>1. </b><input type="text" id="pbSave1" class="pbCellTypeSave save" list="pbCellTypeList" size="6"></td>
+                  <td><b>2. </b><input type="text" id="pbSave2" class="pbCellTypeSave save" list="pbCellTypeList" size="6"></td>
+                  <td><b>3. </b><input type="text" id="pbSave3" class="pbCellTypeSave save" list="pbCellTypeList" size="6"></td>
+                </tr>
+                <tr>
+                  <td class='noborder'></td>
+                  <td><b>0. </b><input type="text" id="pbSave0" class="pbCellTypeSave save" list="pbCellTypeList" size="6"></td>
+                  <td class='noborder'></td>
+                </tr>
+              </table>
+              <datalist id="pbCellTypeList">
+                <option value="Atypical"></option>
+                <option value="Baso"></option>
+                <option value="Blasts"></option>
+                <option value="Eos"></option>
+                <option value="Lymphs"></option>
+                <option value="Metamyelocytes"></option>
+                <option value="Monos"></option>
+                <option value="Myelocytes"></option>
+                <option value="Neuts"></option>
+                <option value="NRBCs"></option>
+                <option value="Other"></option>
+                <option value="Plasma"></option>
+                <option value="Promyelocytes"></option>
+              </datalist>
+            </div>
+            <div class="spread">
+              Aspirate Smear Count Orientation:
+              <table class="center" style="width:100%">
+                <tr>
+                  <td><b>7. </b><input type="text" id="aspSave7" class="aspCellTypeSave save" list="aspCellTypeList" size="6"></td>
+                  <td><b>8. </b><input type="text" id="aspSave8" class="aspCellTypeSave save" list="aspCellTypeList" size="6"></td>
+                  <td><b>9. </b><input type="text" id="aspSave9" class="aspCellTypeSave save" list="aspCellTypeList" size="6"></td>
+                </tr>
+                <tr>
+                  <td><b>4. </b><input type="text" id="aspSave4" class="aspCellTypeSave save" list="aspCellTypeList" size="6"></td>
+                  <td><b>5. </b><input type="text" id="aspSave5" class="aspCellTypeSave save" list="aspCellTypeList" size="6"></td>
+                  <td><b>6. </b><input type="text" id="aspSave6" class="aspCellTypeSave save" list="aspCellTypeList" size="6"></td>
+                </tr>
+                <tr>
+                  <td><b>1. </b><input type="text" id="aspSave1" class="aspCellTypeSave save" list="aspCellTypeList" size="6"></td>
+                  <td><b>2. </b><input type="text" id="aspSave2" class="aspCellTypeSave save" list="aspCellTypeList" size="6"></td>
+                  <td><b>3. </b><input type="text" id="aspSave3" class="aspCellTypeSave save" list="aspCellTypeList" size="6"></td>
+                </tr>
+                <tr>
+                  <td class='noborder'></td>
+                  <td><b>0. </b><input type="text" id="aspSave0" class="aspCellTypeSave save" list="aspCellTypeList" size="6"></td>
+                  <td class='noborder'></td>
+                </tr>
+              </table>
+              <datalist id="aspCellTypeList">
+                <option value="Atypical"></option>
+                <option value="Baso"></option>
+                <option value="Blasts"></option>
+                <option value="Eos"></option>
+                <option value="Lymphs"></option>
+                <option value="Metamyelocytes"></option>
+                <option value="Monos"></option>
+                <option value="Myelocytes"></option>
+                <option value="Neuts"></option>
+                <option value="NRBCs"></option>
+                <option value="Other"></option>
+                <option value="Plasma"></option>
+                <option value="Promyelocytes"></option>
+              </datalist>
+            </div><br>
+
+            <button type="button" class="btn btn-primary" id="saveAll">Save Settings</button>
+          </div>
+          <div id="saveScreen" class="rightpanel neg side-pad" style="display: none">
+            <h3 style="margin-top: 0px">
+              Save:
+            </h3>
+            <div class='spread'>
+              Save as: <input type="input" value="" id='saveName'>
+            </div>
+            <button type="button" class="btn btn-primary" id="saveTemplate">Save</button>
+            <button type="button" class="btn btn-primary" id="saveClearTemplate">Save and Clear</button>
+            <h3>
+              Load:
+            </h3>
+            <div>
+              <select id="loadTemplate" name="load" style="width: 200px !important;" size=10 multiple>
+
+              </select>
+            </div>
+
+            <div>
+              <button type="button" class="btn btn-primary" id="loadButton">Load</button>
+              <button type="button" class="btn btn-primary" id="deleteButton">Delete Selected</button>
+            </div>
+
+
+
+
+          </div>
+
+          <div id="educationScreen" class="rightpanel neg side-pad" style="display: none">
+            <h3 style="margin-top: 0px">
+              References:
+            </h3>
+            This will be where educational references will be.
+          </div>
+          <div id="coreDocumentationScreen" class="rightpanel neg side-pad" style="display: none">
+            <div class="header">
+              Bone Marrow Core Biopsy
+            </div>
+            <br>
+            <div>
+              <b>Adequacy: </b> Per the WHO, bone marrow biopsies should be taken at
+              a right angle from the cortical bone and
+              be ≥ 1.5 cm in length (to enable evaluation
+              of ≥ 10 partially preserved intertrabecular
+              areas. It should be well
+              fixed, thinly sectioned (at 3–4 pm), and
+              stained with H&E and/or a stain such as
+              Giemsa that allows for detailed morphological
+              evaluation.
+            </div>
+            <br>
+            <div>
+              <b>Cellularity: </b>
+
+            </div>
+            <br>
+            <div>
+              <b>Megakaryocytes: </b>
+              Normally, about 5 to 10 megakaryocytes are seen per microscopic field at low power magnification (10x objective). Clusters of megakaryocytes usually indicate megakaryocytic hyperplasia or increased megakaryocyte distribution. Less than 2 megakaryocytes per low power field means megakaryocytic hypoplasia or decreased megakaryocyte distribution.
+            </div>
+
+
+
+          </div>
+          <div id="flowDocumentationScreen" class="rightpanel neg side-pad" style="display: none">
+            <div class="header">
+              Flow Templates
+            </div>
+            Chronic:
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      $(document).ready(function() {
+        var performedName = localStorage.getItem("performedName");
+        var themeColor = localStorage.getItem("themeColor");
+        if (performedName != null && performedName != "null") {
+          $('#pbPerformed').attr('placeholder', performedName);
+          $('#savePerformed').val(performedName);
+        }
+        if (themeColor != null && themeColor != "null") {
+          changeTheme(themeColor);
+          $('#themeColor').val(themeColor)
+        }
+
+        var pbTypeList = JSON.parse(localStorage.getItem("pbTypeList"));
+        var pbCellTypes = ["Atypical", "Baso", "Blasts", "Eos", "Lymphs", "Metamyelocytes", "Monos", "Myelocytes", "Neuts", "NRBCs", "Plasma", "Promyelocytes"]
+        if (pbTypeList != null && pbTypeList != "null") {
+          pbTypeListChange('pb', pbTypeList, pbCellTypes);
+          pbAddRows('pb', pbTypeList, pbCellTypes);
+        } else {
+          pbTypeList = ['Blasts', 'NRBCs', 'Atypical', 'Other', 'Eos', 'Baso', 'Plasma', 'Neuts', 'Lymphs', 'Monos'];
+          pbTypeListChange('pb', pbTypeList, pbCellTypes);
+        }
+
+        var aspTypeList = JSON.parse(localStorage.getItem("aspTypeList"));
+        var aspCellTypes = ["Atypical", "Baso", "Blasts", "Eos", "Lymphs", "Metamyelocytes", "Monos", "Myelocytes", "Neuts", "NRBCs", "Plasma", "Promyelocytes"]
+        if (aspTypeList != null && aspTypeList != "null") {
+          pbTypeListChange('asp', aspTypeList, pbCellTypes);
+          pbAddRows('asp', aspTypeList, aspCellTypes);
+        } else {
+          aspTypeList = ['Blasts', 'NRBCs', 'Atypical', 'Other', 'Eos', 'Baso', 'Plasma', 'Neuts', 'Lymphs', 'Monos'];
+          pbTypeListChange('asp', aspTypeList, pbCellTypes);
+        }
+
+        var saveFiles = JSON.parse(localStorage.getItem("saveFiles"));
+        if (saveFiles != null && aspTypeList != "null") {
+          fillTemplateLoader(saveFiles);
+        } else {
+          saveFiles = [];
+        }
+
+        var countAudioBlast = 'https://diffpath.github.io/media/Count-Click-Blast.mp3';
+        var countAudioLow = 'https://diffpath.github.io/media/Count-Click-Low.mp3';
+        var countAudioMed = 'https://diffpath.github.io/media/Count-Click-Med.mp3';
+        var countAudioHigh = 'https://diffpath.github.io/media/Count-Click-High2.mp3';
+        var hundredAudio = 'https://diffpath.github.io/media/100-Soothing.mp3';
+        var finishedAudio = 'https://diffpath.github.io/media/Complete-Nice.mp3';
+        var header = '';
+        var subHeader = '';
+        var cbcReport = '';
+        var cbcArray = [];
+        var specCheck, latCheck = false;
+        var wbc, wbcLow, wbcHigh, hgb, hgbLow, hgbHigh, mcv, mcvLow, mcvHigh, mchc, mchcLow, mchcHigh, plt, pltLow, pltHigh, mpv, mpvLow, mpvHigh, neut, neutHigh, neutLow, lymph, lymphHigh, lymphLow, mono, monoHigh, monoLow, eos, eosHigh, eosLow, baso, basoHigh, basoLow, nrbc, blast;
+        var finalAnisoList = [];
+        var finalNeutList = [];
+        var finalMegList = [];
+        var finalAspList = [];
+        var selectedAnisoList = [];
+        var selectedNeutList = [];
+        var selectedMegList = [];
+        var selectedAspList = [];
+        var coreValues = [];
+        var aspDescriptorList = ['', 'hemodilute', 'paucicellular', 'hypocellular', 'virtually acellular', 'paucispicular', 'aspiculate'];
+        var coreDescriptorList = [];
+        var lastPanel = '';
+        var pbDuplicateAlert = 0;
+        var aspDuplicateAlert = 0;
+        var anisoList = ['', 'acanthocytes', 'basophilic stippling', 'burr cells', 'Howell-Jolly bodies', 'macrocytes', 'macroovalocytes', 'microcytes', 'ovalocytes', 'schistocytes', 'sickle cells', 'spherocytes', 'target cells', 'teardrop forms']
+
+        var neutList = ['', 'hypogranular forms', 'hypolobated forms', 'monolobated forms', 'a shift to immaturity', 'toxic changes'];
+        var megList = ['', 'widely separated nuclear lobes', 'small hypolobated forms', 'micromegakaryocytes'];
+        var myeloidList = ['', 'hypogranular forms', 'hypolobated forms', 'monolobated forms', 'a shift to immaturity'];
+        var erythroidList = ['', 'nuclear budding', 'irregular nuclear contours'];
+
+
+        window.keypressed = {};
+
+        $('.rightpanelbutton').click(function() {
+          showPanel(this.id.replace('Button', 'Screen'))
+        })
+
+        $('.navigationButton').click(function() {
+          $('#navigationPanel').toggle();
+        })
+
+        $('.pbCellTypeSave').change(function() {
+          pbDuplicateAlert = cellSave('pb', pbTypeList, pbCellTypes)
+
+        })
+
+        $('.aspCellTypeSave').change(function() {
+          aspDuplicateAlert = cellSave('asp', aspTypeList, aspCellTypes)
+        })
+
+        function cellSave(x, y, z) {
+          var duplicateAlert = 0;
+          $('.' + x + 'CellTypeSave').each(function() {
+            var counter = 0
+            if ($(this).val() != "") {
+              var cellType = $(this).val()
+              y[this.id.replace(x + 'Save', "")] = $(this).val()
+            } else {
+              var cellType = $(this).attr('placeholder');
+              y[this.id.replace(x + 'Save', "")] = $(this).attr('placeholder')
+            }
+            $('.' + x + 'CellTypeSave').each(function() {
+              if ($(this).val() != "") {
+                var cellType2 = $(this).val()
+              } else {
+                var cellType2 = $(this).attr('placeholder');
+              }
+              if (cellType2 == cellType) {
+                counter++;
+              }
+            })
+            if (counter > 1) {
+              $(this).attr('style', "background-color:red;")
+              duplicateAlert = 1;
+
+            } else {
+              $(this).attr('style', "background-color:white;")
+            }
+          })
+          $('.' + x + 'CellType').each(function() {
+            $(this).html('<b>' + this.id.replace(x + 'Label', '') + ". </b>" + y[this.id.replace(x + 'Label', '')])
+          })
+          pbAddRows(x, y, z);
+          pbCounter(x, y, duplicateAlert);
+          return duplicateAlert;
+        }
+
+        function pbAddRows(x, y, z) {
+          for (var i = 0; i < y.length; i++) {
+            if (z.indexOf(y[i]) == -1) {
+              var html = "<tr id='" + x + y[i] + "Row' style='display:none'><td>" + y[i] + "</td><td id='" + x + y[i] + "Table'></td><td>0</td></tr>";
+              $("#" + x + "PlasmaRow").after(html);
+              z.push(y[i]);
+            }
+          }
+        }
+
+        function pbTypeListChange(x, y, z) {
+          $('.' + x + 'CellTypeSave').each(function() {
+            var counter = 0
+            $(this).attr('placeholder', y[this.id.replace(x + 'Save', '')])
+            for (var i = 0; i < y.length; i++) {
+              if ($(this).attr('placeholder') == y[i]) {
+                counter++;
+              }
+            }
+            if (counter > 1) {
+              $(this).attr('style', "background-color:red;")
+            } else {
+              $(this).attr('style', "background-color:white;")
+            }
+          })
+
+          $('.' + x + 'CellType').each(function() {
+            $(this).html('<b>' + this.id.replace(x + 'Label', '') + ". </b>" + y[this.id.replace(x + 'Label', '')])
+          })
+          pbAddRows(x, y, z);
+        }
+
+        function showPanel(panelId) {
+          if (panelId == 'templateScreen') {
+            $('#copyPanel').show();
+
+          } else {
+            $('#copyPanel').hide();
+          }
+          $(".rightpanel").each(function() {
+            if (this.id == panelId) {
+
+              $("#" + this.id).show();
+              $("#" + panelId.replace('Screen', 'Button')).addClass("clickedIcon");
+              $("#" + panelId.replace('Screen', 'Button')).removeClass("icon");
+
+            } else {
+              $("#" + this.id).hide()
+              $("#" + this.id.replace('Screen', 'Button')).removeClass("clickedIcon");
+              $("#" + this.id.replace('Screen', 'Button')).addClass("icon");
+            }
+
+          })
+        }
+        
+        $('.descriptors').change(function(){
+        var selectedList = []
+        console.log(this.id.filter("Div"))
+        if (selectedNeutList.length = 0){
+        $('#neutNL').prop('checked')
+        } else {
+        $('#neutAB').prop('checked')
+        }
+        
+          $('.neut').each(function() {
+            if (selectedNeutList.indexOf($('#' + this.id).val()) == -1) {
+              selectedNeutList.push($('#' + this.id).val())
+            }
+          })
+
+          selectedNeutList = selectedNeutList.filter(Boolean)
+          finalNeutList = choices(selectedNeutList, neutList, "neut", 1);
+        })
+        
+        function fillDescriptors(descriptorArray,label){
+        
+        }
+
+        function togglePanel(panelId) {
+          if (!$('#' + panelId).is(":visible")) {
+            $(".rightpanel").each(function() {
+              if ($('#' + this.id).is(":visible")) {
+                lastPanel = this.id
+                if (lastPanel == "templateScreen") {
+                  $('#copyPanel').hide();
+                }
+              }
+              $("#" + this.id).hide();
+            })
+            $('#' + panelId).show();
+          } else {
+            if (lastPanel == "templateScreen") {
+              $('#copyPanel').show();
+            }
+            $('#' + panelId).hide();
+            $('#' + lastPanel).show();
+          }
+        }
+
+        $('#latAll').change(function() {
+          latCheck = true;
+          if (specCheck == true) {
+            grossDescription();
+          }
+        })
+
+        $('#specFive').change(function() {
+          if ($('#specFive').prop('checked')) {
+            $('#specCore').prop('checked', true);
+            $('#specTouch').prop('checked', true);
+            $('#specClot').prop('checked', true);
+            $('#specASmear').prop('checked', true);
+            $('#specPBSmear').prop('checked', true);
+            $('#specFlow').prop('checked', true);
+            $('#specGen').prop('checked', true);
+            $('#specFISH').prop('checked', true);
+            $('#specMolec').prop('checked', true);
+          }
+          specCheck = true;
+          if (latCheck == true) {
+            grossDescription();
+          }
+        })
+
+
+
+        $('.iconPanel').click(function() {
+          var iconId = this.id + "Panel";
+          $(".iconPanel").each(function() {
+            $("#" + this.id).addClass("icon");
+            $("#" + this.id).removeClass("clickedIcon");
+          })
+          $("#" + this.id).addClass("clickedIcon");
+          $("#" + this.id).removeClass("icon");
+
+          $(".template-body").each(function() {
+            if (this.id == iconId) {
+              $("#" + this.id).show();
+
+            } else {
+              $("#" + this.id).hide()
+            }
+          })
+        })
+
+        $('.copy').click(function() {
+          copyText($(this).attr('id') + "Text")
+        })
+
+        function copyText(element) {
+          var aux = document.createElement("div");
+          aux.setAttribute("contentEditable", true);
+          aux.innerHTML = document.getElementById(element).innerHTML;
+          aux.setAttribute("onfocus", "document.execCommand('selectAll',false,null)");
+          document.getElementById('final2').appendChild(aux);
+          aux.focus();
+          document.execCommand("copy");
+          document.getElementById('final2').removeChild(aux);
+        }
+
+        $('#specTypes').on('change keyup', function() {
+          specCheck = true;
+          if (latCheck == true) {
+            grossDescription()
+          }
+        })
+
+        $('#pbText').keyup(function() {
+          if ($('#pbText').val() != "") {
+            $('#bloodText').html($('#pbText').val() + '<br><br>');
+            $('#microscopic').show();
+          }
+        })
+
+        $('#pbDescriptors').change(function() {
+          $('#specPBSmear').prop('checked', true)
+          fillPB();
+        })
+
+        $('#rbcNL').change(function() {
+          $('#rbcAP').prop('checked', false);
+          $('#rbcPC').prop('checked', false);
+          $('#anisoDiv').hide();
+        })
+
+        $('#rbcPC').change(function() {
+          $('#rbcNL').prop('checked', false);
+        })
+
+        $('#rbcAP').change(function() {
+          $('#rbcNL').prop('checked', false);
+        })
+
+        $('#neutNL').change(function() {
+          $('#neutTC').prop('checked', false);
+          $('#neutLS').prop('checked', false);
+        })
+
+        $('#neutTC').change(function() {
+          $('#neutNL').prop('checked', false);
+        })
+
+        $('#neutLS').change(function() {
+          $('#neutNL').prop('checked', false);
+        })
+
+        $('#aspMegNL').change(function() {
+          $('#aspMegHF').prop('checked', false);
+          $('#aspMegSN').prop('checked', false);
+        })
+
+        $('#aspMegHF').change(function() {
+          $('#aspMegNL').prop('checked', false);
+        })
+
+        $('#aspMegSN').change(function() {
+          $('#aspMegNL').prop('checked', false);
+        })
+
+        function describeBlasts() {
+          var blastDescriptors = [];
+          var blastDescription = "";
+          if ($('#blastSmall').prop('checked')) {
+            blastDescription += ' The blasts are small'
+            if ($('#blastLarge').prop('checked')) {
+              blastDescription += ' to large in size'
+            } else if ($('#blastMedium').prop('checked')) {
+              blastDescription += ' to medium in size'
+            } else {
+              blastDescription += ' in size'
+            }
+          } else if ($('#blastMedium').prop('checked')) {
+            blastDescription += ' The blasts are medium';
+            if ($('#blastLarge').prop('checked')) {
+              blastDescription += ' to large in size'
+            } else {
+              blastDescription += ' in size'
+            }
+
+          } else if ($('#blastLarge').prop('checked')) {
+            blastDescription += ' The blasts are large in size'
+          }
+
+          if ($('#blastIrregular').prop('checked')) {
+            blastDescriptors.push('irregular nuclear contours')
+          }
+          if ($('#blastRound').prop('checked')) {
+            blastDescriptors.push('round nuclei')
+          }
+          if ($('#blastFine').prop('checked')) {
+            blastDescriptors.push('fine chromatin')
+          }
+          if ($('#blastFinelyReticular').prop('checked')) {
+            blastDescriptors.push('finely reticular chromatin')
+          }
+          if ($('#blastDelicateLacy').prop('checked')) {
+            blastDescriptors.push('delicate lacy chromatin')
+          }
+          if ($('#blastCondensed').prop('checked')) {
+            blastDescriptors.push('condensed chromatin')
+          }
+          if ($('#blastDispersed').prop('checked')) {
+            blastDescriptors.push('condensed chromatin')
+          }
+          if ($('#blastProminent').prop('checked')) {
+            blastDescriptors.push('prominent nucleoli')
+          }
+          if ($('#blastConspicuous').prop('checked')) {
+            blastDescriptors.push('conspicuous nucleoli')
+          }
+          if ($('#blastInconspicuous').prop('checked')) {
+            blastDescriptors.push('inconspicuous nucleoli')
+          }
+          if ($('#blastScant').prop('checked')) {
+            if ($('#blastPale').prop('checked')) {
+              blastDescriptors.push('scant pale cytoplasm')
+            } else if ($('#blastBasophilic').prop('checked')) {
+              blastDescriptors.push('scant basophilic cytoplasm')
+            } else if ($('#blastBlue').prop('checked')) {
+              blastDescriptors.push('scant blue cytoplasm')
+            } else if ($('#blastAmphophilic').prop('checked')) {
+              blastDescriptors.push('scant amphophilic cytoplasm')
+            } else {
+              blastDescriptors.push('scant cytoplasm')
+            }
+          }
+          if ($('#blastModerate').prop('checked')) {
+            if ($('#blastPale').prop('checked')) {
+              blastDescriptors.push('moderate pale cytoplasm')
+            } else if ($('#blastBasophilic').prop('checked')) {
+              blastDescriptors.push('moderate basophilic cytoplasm')
+            } else if ($('#blastBlue').prop('checked')) {
+              blastDescriptors.push('moderate blue cytoplasm')
+            } else if ($('#blastAmphophilic').prop('checked')) {
+              blastDescriptors.push('moderate amphophilic cytoplasm')
+            } else {
+              blastDescriptors.push('moderate cytoplasm')
+            }
+          }
+          if ($('#blastAbundant').prop('checked')) {
+            if ($('#blastPale').prop('checked')) {
+              blastDescriptors.push('abundant pale cytoplasm')
+            } else if ($('#blastBasophilic').prop('checked')) {
+              blastDescriptors.push('abundant basophilic cytoplasm')
+            } else if ($('#blastBlue').prop('checked')) {
+              blastDescriptors.push('abundant blue cytoplasm')
+            } else if ($('#blastAmphophilic').prop('checked')) {
+              blastDescriptors.push('abundant amphophilic cytoplasm')
+            } else {
+              blastDescriptors.push('abundant cytoplasm')
+            }
+          }
+          if (!$('#blastScant').prop('checked') && !$('#blastModerate').prop('checked') && !$('#blastAbundant').prop('checked')) {
+            if ($('#blastPale').prop('checked')) {
+              blastDescriptors.push('pale cytoplasm')
+            } else if ($('#blastBasophilic').prop('checked')) {
+              blastDescriptors.push('basophilic cytoplasm')
+            } else if ($('#blastBlue').prop('checked')) {
+              blastDescriptors.push('blue cytoplasm')
+            } else if ($('#blastAmphophilic').prop('checked')) {
+              blastDescriptors.push('amphophilic cytoplasm')
+            }
+          }
+          if ($('#blastSmall').prop('checked') || $('#blastMedium').prop('checked') || $('#blastLarge').prop('checked')) {
+            if (blastDescriptors.length != 0) {
+              blastDescription += " with " + listText(blastDescriptors) + "."
+            } else {
+              blastDescription += ".";
+            }
+          } else if (blastDescriptors.length != 0) {
+            blastDescription += ' The blasts have ' + listText(blastDescriptors) + "."
+          }
+          return blastDescription
+        }
+
+        function fillPB() {
+          var count = 0;
+          if ($('#specPBSmear').prop('checked')) {
+            var pbText = "The peripheral blood smears show "
+            if (mcv < mcvLow) {
+              pbText += 'microcytic '
+            } else if (mcv > mcvHigh) {
+              pbText += 'macrocytic '
+            } else {
+              pbText += 'normocytic '
+            }
+            if (hgb < hgbLow) {
+              pbText += 'anemia'
+            } else {
+              pbText += 'red blood cells'
+            }
+
+            if ($('#rbcNL').prop('checked')) {
+              pbText += ' with unremarkable red blood cell morphology'
+            }
+
+            if ($('#rbcPC').prop('checked')) {
+              pbText += ' with polychromasia';
+              if ($('#rbcAP').prop('checked')) {
+                pbText += ' and anisopoikilocytosis'
+                if (finalAnisoList[0] != undefined && finalAnisoList[0] != "") {
+                  pbText += ' including ' + listText(finalAnisoList)
+                }
+                pbText += '.'
+              } else {
+                pbText += '.'
+              }
+
+            } else if ($('#rbcAP').prop('checked')) {
+              pbText += ' with anisopoikilocytosis'
+              if (finalAnisoList[0] != undefined && finalAnisoList[0] != "") {
+                pbText += ' including ' + listText(finalAnisoList)
+              }
+              pbText += '.'
+            } else {
+              pbText += '.'
+            }
+
+            for (var i = 0; i < pbTypeList.length; i++) {
+              if (pbTypeList[i] == "NRBCs") {
+                if ($('#pb' + i).val() * wbc < 20 && $('#pb' + i).val() * wbc > 0) {
+                  pbText += ' Rare nucleated red blood cells are seen.'
+                } else if ($('#pb' + i).val() * wbc < 100 && $('#pb' + i).val() * wbc > 0) {
+                  pbText += ' Occasional nucleated red blood cells are seen.'
+                } else if ($('#pb' + i).val() * wbc > 0) {
+                  pbText += ' Frequent nucleated red blood cells are seen.'
+                } else if ($('#pb' + i).val() > 0) {
+                  pbText += ' Nucleated red blood cells are seen.'
+                }
+              }
+            }
+            for (var i = 0; i < pbTypeList.length; i++) {
+              if (pbTypeList[i] == "Blasts") {
+                if (parseFloat($('#pb' + i).val()) > 0) {
+                  $('#pbBlastDiv').show();
+                  if (parseFloat($('#pb' + i).val()) * wbc < 20 && parseFloat($('#pb' + i).val()) * wbc > 0) {
+                    pbText += ' Rare circulating blasts are identified.'
+                  } else if (parseFloat($('#pb' + i).val()) * wbc < 100 && parseFloat($('#pb' + i).val()) * wbc > 0) {
+                    pbText += ' Occasional circulating blasts are identified.'
+                  } else if (parseFloat($('#pb' + i).val()) * wbc > 0) {
+                    pbText += ' Frequent circulating blasts are identified.'
+                  } else if (parseFloat($('#pb' + i).val()) > 0) {
+                    pbText += ' Circulating blasts are identified.'
+                  }
+                  pbText += describeBlasts();
+                } else {
+                  $('#pbBlastDiv').hide();
+                }
+              }
+            }
+            for (var i = 0; i < pbTypeList.length; i++) {
+              if (pbTypeList[i] == "Neuts") {
+                var neutrophils = parseFloat($('#pb' + i).val()) / 100 * wbc;
+                if (neutrophils < 0.1 * neutLow) {
+                  pbText += ' Neutrophils are markedly decreased'
+                } else if (neutrophils < neutLow) {
+                  pbText += ' Neutrophils are decreased'
+                } else if (neutrophils > neutHigh) {
+                  pbText += ' Neutrophils are increased'
+                } else {
+                  pbText += ' Neutrophils are adequate'
+                }
+                if ($('#neutNL').prop('checked')) {
+                  pbText += ' and show unremarkable morphology.'
+                } else if (finalNeutList[0] != undefined && finalNeutList[0] != "") {
+                  pbText += ' with ' + listText(finalNeutList) + '.'
+                } else {
+                  pbText += '.'
+                }
+              }
+            }
+
+            for (var i = 0; i < pbTypeList.length; i++) {
+              if (pbTypeList[i] == "Monos") {
+                var monocytes = parseFloat($('#pb' + i).val()) / 100 * wbc;
+                if (monocytes > monoHigh) {
+                  pbText += ' There is absolute monocytosis.'
+                }
+              }
+            }
+            for (var i = 0; i < pbTypeList.length; i++) {
+              if (pbTypeList[i] == "Eos") {
+                var eosinophils = parseFloat($('#pb' + i).val()) / 100 * wbc;
+                if (eosinophils > eosHigh) {
+                  pbText += ' There is absolute eosinophilia.'
+                }
+              }
+            }
+            for (var i = 0; i < pbTypeList.length; i++) {
+              if (pbTypeList[i] == "Baso") {
+                var basophils = parseFloat($('#pb' + i).val()) / 100 * wbc;
+                if (basophils > basoHigh) {
+                  pbText += ' There is absolute basophilia.'
+                }
+              }
+            }
+            for (var i = 0; i < pbTypeList.length; i++) {
+              if (pbTypeList[i] == "Lymphs") {
+                var lymphocytes = parseFloat($('#pb' + i).val()) / 100 * wbc;
+                if (lymphocytes > lymphHigh) {
+                  pbText += ' There is absolute lymphocytosis.'
+                }
+              }
+            }
+
+            if (plt < pltLow) {
+              pbText += ' Platelets are decreased'
+              if ($('#pltNL').prop('checked')) {
+                pbText += ' with unremarkable morphology.'
+              } else if ($('#pltLP').prop('checked')) {
+                pbText += ' with occasional large platelets.'
+              } else {
+                pbText += '.'
+              }
+            } else if (plt > pltHigh) {
+              pbText += ' Platelets are increased'
+              if ($('#pltNL').prop('checked')) {
+                pbText += ' with unremarkable morphology.'
+              } else if ($('#pltLP').prop('checked')) {
+                pbText += ' with occasional large platelets.'
+              } else {
+                pbText += '.'
+              }
+            } else {
+              pbText += ' Platelets are adequate'
+              if ($('#pltNL').prop('checked')) {
+                pbText += ' with unremarkable morphology.'
+              } else if ($('#pltLP').prop('checked')) {
+                pbText += ' with occasional large platelets.'
+              } else {
+                pbText += '.'
+              }
+
+
+            }
+            $('#microscopic').show();
+          } else {
+            pbText = "A peripheral blood smear is not provided for review."
+          }
+          $('#pbText').val(pbText);
+
+          if (pbText != "" && ($('#pbCount').val() != "" || $('#pbCBC').val() || $('#bloodPanel :checkbox:checked').length > 0 || $('#bloodPanel :radio:checked').length > 0)) {
+            $('#peripheralBlood').show();
+            $('#bloodText').html($('#pbText').val() + '<br><br>');
+          } else {
+            $('#peripheralBlood').hide();
+          }
+
+
+        }
+
+        function listText(listToConvert) {
+          var listText = "";
+          if (listToConvert.length == 1) {
+            return listToConvert[0];
+          } else if (listToConvert.length == 2) {
+            return listToConvert[0] + " and " + listToConvert[1]
+          } else {
+            for (var i = 0; i < listToConvert.length; i++) {
+              if (i != listToConvert.length - 1) {
+                listText += listToConvert[i] + ", ";
+              } else {
+                listText += "and " + listToConvert[i];
+              }
+            }
+          }
+          return listText
+        }
+
+        $('#aspirateDiv').change(function() {
+          fillAsp();
+        })
+
+        $('#bonePanel').change(function() {
+
+          fillCore();
+        })
+
+
+
+        $('#aspText').keyup(function() {
+          if ($('#aspText').val() != "") {
+            $('#aspirateText').html($('#aspText').val() + '<br><br>');
+            $('#aspirateSmear').show();
+            $('#aspirateText').show();
+            $('#microscopic').show();
+          } else {
+            $('#aspirateSmear').hide();
+          }
+
+        })
+
+        function fillCore() {
+          var coreText = "";
+          if ($('#coreAdequate').prop('checked') && coreDescriptorList[0] == undefined) {
+            coreText += "The bone marrow core biopsy is adequate for interpretation."
+          } else if ($('#coreInadequate').prop('checked')) {
+            coreText += "The bone marrow core biopsy is inadequate for interpretation."
+          }
+
+
+
+
+          if (coreText != "") {
+            coreText += "<br><br>"
+            $('#coreText').html(coreText);
+            $('#coreText').show();
+            $('#coreBiopsy').show();
+            $('#microscopic').show();
+          } else {
+            $('#coreText').hide();
+            $('#coreBiopsy').hide();
+          }
+
+
+        }
+
+
+        function fillAsp() {
+          var aspText = "";
+          if ($('#aspAdequate').prop('checked') && finalAspList[0] == undefined) {
+            aspText += "The bone marrow aspirate smears are cellular and adequate for interpretation. "
+          } else if ($('#aspAdequate').prop('checked')) {
+            aspText += "The bone marrow aspirate smears are " + listText(finalAspList) + " but are adequate for interpretation. "
+          } else if ($('#aspInadequate').prop('checked') && finalAspList[0] == undefined) {
+            aspText += "The bone marrow aspirate smears are inadequate for interpretation thus precluding a meaningful marrow differential. "
+          } else if ($('#aspInadequate').prop('checked')) {
+            aspText += "The bone marrow aspirate smears are " + listText(finalAspList) + " thus precluding a meaningful marrow differential. "
+          }
+          if ($('#aspErythNL').prop('checked') && $('#aspMyeloidNL').prop('checked')) {
+            aspText += "Myeloid and erythroid precursors show progressive maturation with unremarkable morphology. "
+          } else if ($('#aspMyeloidNL').prop('checked')) {
+            aspText += "Myeloid precursors show progressive maturation with unremarkable morphology. "
+          } else if ($('#aspErythNL').prop('checked')) {
+            aspText += "Erythroid precursors show progressive maturation with unremarkable morphology. "
+          }
+          if ($('#aspMegAdeq').prop('checked')) {
+            aspText += "Megakaryocytes are adequate"
+
+          } else if ($('#aspMegDec').prop('checked')) {
+            aspText += "Megakaryocytes are decreased"
+
+          } else if ($('#aspMegInc').prop('checked')) {
+            aspText += "Megakaryocytes are increased"
+
+          }
+          if ($('#aspMegAdeq').prop('checked') || $('#aspMegDec').prop('checked') || $('#aspMegInc').prop('checked')) {
+            if ($('#aspMegNL').prop('checked')) {
+              aspText += " with unremarkable morphology" + ". "
+            } else if ($('#aspMegAB').prop('checked')) {
+              aspText += " with " + listText(finalMegList) + ". "
+            } else {
+              aspText += ". "
+            }
+          }
+
+          if ($('#aspBlastNI').prop('checked')) {
+            aspText += "Blasts are not significantly increased. "
+          } else if ($('#aspBlastInc').prop('checked')) {
+            aspText += "Blasts are significantly increased. "
+          }
+
+          $('#aspText').val(aspText);
+
+          if (aspText != "") {
+            $('#aspirateText').html($('#aspText').val() + '<br><br>');
+            $('#aspirateSmear').show();
+            $('#aspirateText').show();
+            $('#microscopic').show();
+          } else if ($('#tpText').val() == "") {
+            $('#aspirateSmear').hide();
+            $('#aspirateText').hide();
+          } else {
+            $('#aspirateText').hide();
+          }
+        }
+
+        function coreCreator(coreValues) {
+          if ($('#specCore').prop('checked')) {
+            var coreChecked = "checked='true'";
+          } else {
+            var coreChecked = "";
+          }
+          var coreDiv = "<div><label><input type='checkbox' class='save' value='' id='specCore'" + coreChecked + ">Core Biopsy</label></div>";
+
+          coreValues = coreValues.filter(Boolean)
+          for (var i = 0; i < coreValues.length; i++) {
+            coreDiv += "<div><input type='input' class='coreSize' value='" + coreValues[i] + "' id='coreSize" + i + "' maxlength='3' size='2'> cm &nbsp</div>"
+          }
+          coreDiv += "<div><input type='input' class='coreSize' value='' id='coreSize" + coreValues.length + "' maxlength='3' size='2'> cm &nbsp</div>"
+          var focusedElement = "#" + $(':focus').attr('id')
+          $('#coreDiv').html(coreDiv)
+          var num = $(focusedElement).val();
+          $(focusedElement).focus().val('').val(num);
+
+
+        }
+        $('#coreDiv').keyup(function() {
+          coreValues = [];
+          $(".coreSize").each(function() {
+            coreValues.push($(this).val())
+          });
+          coreCreator(coreValues)
+        })
+
+
+        function grossDescription() {
+
+          var laterality = "";
+          var grossText = "";
+          var headerText = "";
+          var headerSpecs = [];
+          var fishText = "";
+          if ($('#latR').prop('checked')) {
+            laterality = "right";
+          } else if ($('#latL').prop('checked')) {
+            laterality = "left";
+          } else if ($('#latB').prop('checked')) {
+            laterality = "bilateral";
+          }
+          if ($('#specPBSmear').prop('checked')) {
+            grossText += "<br>" + "Peripheral blood smear"
+            headerSpecs.push("peripheral blood smear")
+            if ($('#pbSlides').val() != "") {
+              grossText += ": " + $('#pbSlides').val() + " unstained slides"
+            }
+            if ($('#pbCount').val() != "") {
+              pbCounter('pb', pbTypeList, pbDuplicateAlert);
+
+            } else if ($('#pbCBC').val() != "") {
+              fillPB();
+            } else {
+              $('#pbText').val("");
+              $('#bloodText').html($('#pbText').val());
+            }
+
+          } else {
+            $('#pbText').val("A peripheral blood smear is not provided for review.");
+            $('#bloodText').html($('#pbText').val());
+            $('#bloodText').show();
+            $('#pbTable').hide();
+            $('#diff').hide();
+          }
+          if ($('#specASmear').prop('checked')) {
+            grossText += "<br>" + "Bone marrow aspirate, " + laterality + " posterior iliac crest"
+            headerSpecs.push("bone marrow aspirate")
+            if ($('#aspSize').val() != "") {
+              grossText += ": " + $('#aspSize').val() + " cc"
+            }
+            if ($('#aspCount').val() != "") {
+              pbCounter('asp', aspTypeList, aspDuplicateAlert);
+            }
+          }
+
+          if ($('#specClot').prop('checked')) {
+            grossText += "<br>" + "Particle clot (formalin fixed)"
+          }
+          var coreFinal = [];
+          $(".coreSize").each(function() {
+            if ($(this).val() != "") {
+              coreFinal.push($(this).val() + " cm")
+            }
+          })
+          if ($('#specCore').prop('checked')) {
+            grossText += "<br>" + "Bone marrow core biopsy, " + laterality + " posterior iliac crest"
+            headerSpecs.push(laterality + " posterior iliac crest bone marrow core biopsy")
+
+            if ($('#coreSize0').val() != "") {
+              grossText += ": " + listText(coreFinal)
+            }
+            grossText += " (B5 fixed)"
+          }
+          if ($('#specTouch').prop('checked')) {
+            grossText += "<br>" + "Touch preparation, " + laterality
+            if ($('#touchSlides').val() != "") {
+              grossText += ": " + $('#touchSlides').val() + " unstained slides"
+            }
+          }
+          if ($('#specFlow').prop('checked')) {
+            grossText += "<br>" + "Flow cytometry: Bone marrow aspirate submitted to Flow Cytometry Laboratory at Northwestern Memorial Hospital (NMH)."
+          }
+
+          if ($('#specFISH').prop('checked')) {
+            if ($('#fishList').val() != 0) {
+              fishText = ' for ' + $('#fishList').val()
+            }
+          }
+          if ($('#specGen').prop('checked') && $('#specFISH').prop('checked')) {
+            grossText += "<br>" + "Cytogenetics/FISH: Bone marrow aspirate submitted to Cytogenetic Laboratory at Northwestern Memorial Hospital for conventional cytogenetic studies and FISH analysis" + fishText
+          } else if ($('#specGen').prop('checked')) {
+            grossText += "<br>" + "Cytogenetics: Bone marrow aspirate submitted to Cytogenetic Laboratory at Northwestern Memorial Hospital for conventional cytogenetic studies"
+          } else if ($('#specFISH').prop('checked')) {
+            grossText += "<br>" + "FISH: Bone marrow aspirate submitted to Cytogenetic Laboratory at Northwestern Memorial Hospital for FISH analysis" + fishText
+          }
+
+          if ($('#specMolec').prop('checked')) {
+            grossText += "<br>" + "Molecular testing: Bone marrow aspirate submitted to the molecular laboratory at NMH"
+            if ($('#molecList').val() != 0) {
+              grossText += " for " + $('#molecList').val()
+            }
+          }
+          if ($('#specPCLI').prop('checked')) {
+            grossText += "<br>" + "Plasma cell labeling index: Bone marrow aspirate submitted to Mayo lab for plasma cell labeling index"
+          }
+
+          if ($('#specProtocol').prop('checked') && $('#protocolNumber').val() != "") {
+            grossText += "<br>" + "Protocol: IRB#" + $('#protocolNumber').val();
+          }
+          $("#grossText").html(grossText);
+          headerText = listText(headerSpecs)
+          if (headerText != "") {
+            headerText += ":";
+            $("#header").html(headerText.charAt(0).toUpperCase() + headerText.slice(1) + "<br>" + "<br>");
+
+            $('#final').show();
+          } else {
+            $('#final').hide();
+          }
+
+
+          if (grossText != "") {
+            $('#gross').show();
+          } else {
+            $('#gross').hide();
+          }
+
+        }
+
+        $('#specTypes').change(function() {
+          if ($('#specCore').prop('checked') && $('#specTouch').prop('checked') && $('#specClot').prop('checked') && $('#specASmear').prop('checked') && $('#specPBSmear').prop('checked') && $('#specFlow').prop('checked') && $('#specGen').prop('checked') && $('#specFISH').prop('checked') && $('#specMolec').prop('checked')) {
+            $('#specFive').prop('checked', true)
+          } else if ($('#specCore').prop('checked') && $('#specTouch').prop('checked') && $('#specClot').prop('checked') && $('#specASmear').prop('checked')) {
+            $('#specFour').prop('checked', true)
+          } else {
+            $('#specFive').prop('checked', false);
+            $('#specFour').prop('checked', false);
+          }
+        })
+
+        $('#chText').keyup(function() {
+          if ($('#chText').val() != "") {
+            $('#clinical').show();
+            $("#clinicalHistory").html($('#chText').val() + "<br><br>")
+          } else if ($('#pbCBC').val() == "") {
+            $('#clinical').hide();
+          }
+
+        })
+
+        $('#pbDCount').change(function() {
+          if ($('#pbDCount').val() == "") {
+            var desiredCount = $('#pbDCount').attr('placeholder');
+          } else {
+            var desiredCount = $('#pbDCount').val()
+          }
+          $('#pbTableCountHeader').html('Peripheral blood (' + desiredCount + ' cells)');
+          pbCounter('pb', pbTypeList, pbDuplicateAlert);
+        })
+
+        $('#pbCountTable').change(function() {
+          var totalVar = 0;
+          $('.pbCellType').each(function() {
+            var tempID = this.id.replace('Label', '')
+            var tempNumber = tempID.replace('pb', '')
+            if ($('#' + this.id).html().indexOf('NRBC') != -1) {
+              $('#' + this.id.replace('Label', '')).val(parseFloat($('#' + this.id.replace('Label', '')).val().replace(/%/g, '')))
+            } else {
+              $('#' + this.id.replace('Label', '')).val(parseFloat($('#' + this.id.replace('Label', '')).val().replace(/%/g, '')).toFixed(1) + "%")
+              totalVar += parseFloat($('#' + this.id.replace('Label', '')).val().replace(/%/g, ''))
+            }
+            $('#pb' + pbTypeList[tempNumber] + 'Table').html($("#" + tempID).val());
+          })
+          $('#pbTotalPercent').val(totalVar.toFixed(1) + "%");
+
+        })
+
+        $('#pbCount').keydown(function(e) {
+          countNoise(e);
+        })
+
+        function countNoise(e) {
+          if (window.keypressed[e.which]) {
+            e.preventDefault();
+          } else {
+            if (e.which == 55 || e.which == 56 || e.which == 57 || e.which == 103 || e.which == 104 || e.which == 105) {
+              window.keypressed[e.which] = true;
+              new Audio(countAudioHigh).play();
+            } else if (e.which == 52 || e.which == 53 || e.which == 54 || e.which == 100 || e.which == 101 || e.which == 102) {
+              window.keypressed[e.which] = true;
+              new Audio(countAudioMed).play();
+            } else if (e.which == 49 || e.which == 50 || e.which == 51 || e.which == 97 || e.which == 98 || e.which == 99) {
+              window.keypressed[e.which] = true;
+              new Audio(countAudioLow).play();
+            } else if (e.which == 48 || e.which == 96) {
+              window.keypressed[e.which] = true;
+              new Audio(countAudioBlast).play();
+            }
+          }
+        }
+
+        $('#pbCount').keyup(function(e) {
+          window.keypressed[e.which] = false;
+          pbCounter('pb', pbTypeList, pbDuplicateAlert);
+        })
+
+        $('#rbcAP').change(function() {
+          if ($('#rbcAP').prop('checked')) {
+
+            $('#anisoDiv').show()
+          } else {
+            $('#anisoDiv').hide()
+          }
+        })
+
+        $('#anisoDiv').change(function() {
+
+
+        })
+
+
+
+        $('#megDiv').change(function() {
+
+          if (finalMegList.length > 0) {
+            $('#aspMegNL').prop('checked', false);
+            $('#aspMegAB').prop('checked', true);
+          }
+        })
+
+
+        $('#neutDiv').change(function() {
+          selectedNeutList = []
+          $('.neut').each(function() {
+            if (selectedNeutList.indexOf($('#' + this.id).val()) == -1) {
+              selectedNeutList.push($('#' + this.id).val())
+            }
+          })
+
+          selectedNeutList = selectedNeutList.filter(Boolean)
+          finalNeutList = choices(selectedNeutList, neutList, "neut", 1);
+        })
+
+        $('#anisoDiv').change(function() {
+          selectedAnisoList = []
+          $('.aniso').each(function() {
+            if (selectedAnisoList.indexOf($('#' + this.id).val()) == -1) {
+              selectedAnisoList.push($('#' + this.id).val())
+            }
+          })
+          selectedAnisoList = selectedAnisoList.filter(Boolean)
+          finalAnisoList = choices(selectedAnisoList, anisoList, "aniso", 1);
+        })
+
+
+        $('#aspDescriptorDiv').change(function() {
+          selectedAspList = []
+          $('.aspDescriptor').each(function() {
+            if (selectedAspList.indexOf($('#' + this.id).val()) == -1) {
+              selectedAspList.push($('#' + this.id).val())
+            }
+          })
+
+          selectedAspList = selectedAspList.filter(Boolean)
+          finalAspList = choices(selectedAspList, aspDescriptorList, "aspDescriptor", 0);
+        })
+
+        $('#megDiv').change(function() {
+          selectedMegList = []
+          $('.meg').each(function() {
+            if (selectedMegList.indexOf($('#' + this.id).val()) == -1) {
+              selectedMegList.push($('#' + this.id).val())
+            }
+          })
+          if (selectedMegList.length != 0) {
+
+          }
+          selectedMegList = selectedMegList.filter(Boolean)
+          finalMegList = choices(selectedMegList, megList, "meg", 1);
+        })
+
+        choices(selectedAspList, aspDescriptorList, "aspDescriptor", 0);
+        choices(selectedAnisoList, anisoList, "aniso", 1);
+        choices(selectedNeutList, neutList, "neut", 1);
+        choices(selectedMegList, megList, "meg", 1);
+
+        function choices(w, inputList, inputLabel, z) {
+          var choiceList = [...inputList];
+          var choiceOptionList = w;
+          var finalChoiceList = [];
+          var count = 0;
+          var testVar = ""
+          for (var i = 0; i < choiceOptionList.length; i++) {
+            if (choiceOptionList[i] != '') {
+              testVar += '<div><select id="' + inputLabel + count + '" class="' + inputLabel + '" style="width: 200px !important;">'
+              for (var j = 0; j < choiceList.length; j++) {
+                testVar += '<option value="' + choiceList[j] + '"'
+                if (choiceList[j] == choiceOptionList[i]) {
+                  testVar += ' selected'
+                }
+                testVar += '>' + choiceList[j].charAt(0).toUpperCase() + choiceList[j].slice(1) + '</option>';
+
+              }
+              if (z != 0) {
+                choiceList.splice($.inArray(choiceOptionList[i], choiceList), 1);
+                testVar += '</select>&nbsp<label><input type="radio" class="save2" name="' + inputLabel + 'Quant' + count + '" id="' + inputLabel + 'Freq' + count + '"'
+                if ($('#' + inputLabel + 'Freq' + count).prop('checked')) {
+                  testVar += ' checked'
+                }
+                testVar += '> Frequent</label>';
+                testVar += '</select>&nbsp<label><input type="radio" class="save2" name="' + inputLabel + 'Quant' + count + '" id="' + inputLabel + 'Occas' + count + '"'
+                if ($('#' + inputLabel + 'Occas' + count).prop('checked')) {
+                  testVar += ' checked'
+                }
+                testVar += '> Occasional</label>';
+                testVar += '</select>&nbsp<label><input type="radio" class="save2" name="' + inputLabel + 'Quant' + count + '" id="' + inputLabel + 'Rare' + count + '"'
+                if ($('#' + inputLabel + 'Rare' + count).prop('checked')) {
+                  testVar += ' checked';
+                }
+                testVar += '> Rare</label></div>';
+
+                if ($('#' + inputLabel + 'Freq' + count).prop('checked')) {
+                  finalChoiceList.push('frequent ' + choiceOptionList[i]);
+
+                } else if ($('#' + inputLabel + 'Occas' + count).prop('checked')) {
+                  finalChoiceList.push('occasional ' + choiceOptionList[i]);
+                } else if ($('#' + inputLabel + 'Rare' + count).prop('checked')) {
+                  finalChoiceList.push('rare ' + choiceOptionList[i]);
+                } else {
+                  finalChoiceList.push(choiceOptionList[i]);
+                }
+              } else {
+                choiceList.splice($.inArray(choiceOptionList[i], choiceList), 1);
+                testVar += '</select>'
+                finalChoiceList.push(choiceOptionList[i]);
+              }
+
+            }
+            count++;
+          }
+
+
+          testVar += '<div><select id="' + inputLabel + count + '" class="' + inputLabel + '" style="width: 200px !important;">'
+          for (var i = 0; i < choiceList.length; i++) {
+            testVar += '<option value="' + choiceList[i] + '"'
+            testVar += '>' + choiceList[i].charAt(0).toUpperCase() + choiceList[i].slice(1) + '</option>';
+          }
+          testVar += '</select></div>';
+          count++;
+          $('#' + inputLabel + 'Div').html(testVar);
+          choiceOptionList = choiceOptionList.filter(Boolean);
+
+          return finalChoiceList
+
+        }
+
+
+
+        $('#pbPerformed').change(function() {
+          pbCounter('pb', pbTypeList, pbDuplicateAlert);
+        })
+
+
+        function pbCounter(x, y, z) {
+          if (z != 1) {
+            if (x == 'pb') {
+              var re = new RegExp("(?!" + y.indexOf('NRBCs') + ")\\d", "g")
+
+              var totalCells = ($('#pbCount').val().match(re) || []).length;
+              if (totalCells > 0) {
+                $('#specPBSmear').prop('checked', true);
+              }
+            } else if (x == 'asp') {
+              var totalCells = ($('#aspCount').val().match(/[0-9]/g) || []).length;
+            }
+
+            if ($('#' + x + 'DCount').val() == "") {
+              var desiredCount = $('#' + x + 'DCount').attr('placeholder');
+            } else {
+              var desiredCount = $('#' + x + 'DCount').val()
+            }
+            var totalVar = 0
+            if (totalCells == desiredCount) {
+              new Audio(finishedAudio).play()
+
+            } else if (totalCells != 0 && totalCells % 100 == 0) {
+              new Audio(hundredAudio).play()
+            }
+
+            if (totalCells != 0) {
+              var myeloid = 0;
+              for (var i = 0; i < y.length; i++) {
+                var re = new RegExp(i, 'g');
+                if (y[i] == "NRBCs" && x == 'pb') {
+                  $('#' + x + i).val((Math.round(($('#' + x + 'Count').val().match(re) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1));
+                  $('#' + x + y[i] + 'Table').html($('#' + x + i).val());
+                  var erythroid = ($('#' + x + 'Count').val().match(re) || []).length;
+                } else {
+                  if (y[i] == "NRBCs") {
+                    var erythroid = ($('#' + x + 'Count').val().match(re) || []).length;
+                  }
+                  var tempPercent = (Math.round(($('#' + x + 'Count').val().match(re) || []).length / totalCells * desiredCount) / (desiredCount / 100)).toFixed(1)
+                  $('#' + x + i).val(tempPercent + "%");
+                  $('#' + x + y[i] + 'Table').html(tempPercent + "%");
+                  totalVar += parseFloat($('#' + x + i).val().replace(/%/g, ''))
+                }
+                if (x == 'asp' && (y[i] == "Promyelocytes" || y[i] == "Myelocytes" || y[i] == "Metamyelocytes" || y[i] == "Neuts" || y[i] == "Monos" || y[i] == "Eos" || y[i] == "Baso")) {
+                  myeloid += ($('#' + x + 'Count').val().match(re) || []).length;
+                }
+                if ($('#' + x + i).val() != "" && $('#' + x + i).val() != "0.0%" && $('#' + x + i).val() != 0) {
+                  $('#' + x + y[i] + 'Row').show();
+                } else {
+                  $('#' + x + y[i] + 'Row').hide();
+                }
+              }
+              if (erythroid > 0) {
+                $('#meRatio').val((myeloid / erythroid).toFixed(1));
+              } else {
+                $('#meRatio').val("-")
+              }
+              $('#' + x + 'Table').show();
+              if ($('#pbPerformed').val() == "" && $('#pbPerformed').attr('placeholder') != undefined) {
+                $('#performedText').html('Performed by:   ' + $('#pbPerformed').attr('placeholder') + '<br><br>')
+              } else if ($('#pbPerformed').val() != "") {
+                $('#performedText').html('Performed by:   ' + $('#pbPerformed').val() + '<br><br>')
+              }
+            } else {
+              $('#' + x + 'Table').hide();
+            }
+
+
+
+            $('#' + x + 'TotalPercent').val(totalVar.toFixed(1) + "%");
+            if (x == 'pb') {
+              $('#' + x + 'TableCountHeader').html('Peripheral blood (' + desiredCount + ' cells)');
+
+            } else if (x == 'asp') {
+              $('#aspTableCountHeader').html('Aspirate Smear (' + desiredCount + ' cells)')
+              $('#aspMETable').html($('#meRatio').val());
+            }
+
+            if ($('#pbCount').val() == "" && $('#aspCount').val() == "") {
+              $('#diff').hide();
+              $('#performedText').hide();
+            } else {
+              $('#microscopic').show();
+              $('#diff').show();
+              $('#performedText').show();
+            }
+
+
+
+            $('#' + x + 'TableAlert').hide()
+            $('#' + x + 'CCount').val(totalCells);
+            fillPB();
+
+
+          } else {
+            $('#' + x + 'TableAlert').show()
+            $('#' + x + 'Table').hide()
+          }
+        }
+
+        $('#aspCount').keydown(function(e) {
+          countNoise(e);
+        })
+
+        $('#aspCount').keyup(function(e) {
+          window.keypressed[e.which] = false;
+          pbCounter('asp', aspTypeList, aspDuplicateAlert);
+        })
+
+        $('#aspDCount').change(function() {
+          if ($('#aspDCount').val() == "") {
+            var desiredCount = $('#aspDCount').attr('placeholder');
+          } else {
+            var desiredCount = $('#aspDCount').val()
+          }
+          $('#aspTableCountHeader').html('Aspirate Smear (' + desiredCount + ' cells)');
+          pbCounter('asp', aspTypeList, aspDuplicateAlert);
+        })
+
+        $('#aspCountTable').change(function() {
+          var totalVar = 0;
+          $('.aspCellType').each(function() {
+            $('#' + this.id.replace('Label', '')).val(parseFloat($('#' + this.id.replace('Label', '')).val().replace(/%/g, '')).toFixed(1) + "%")
+            totalVar += parseFloat($('#' + this.id.replace('Label', '')).val().replace(/%/g, ''))
+          })
+          if ($('#asp4').val() != "0.0%") {
+            $('#meRatio').val(((parseFloat($('#asp1').val().replace(/%/g, '')) + parseFloat($('#asp7').val().replace(/%/g, '')) + parseFloat($('#asp8').val().replace(/%/g, '')) + parseFloat($('#asp9').val().replace(/%/g, ''))) / parseFloat($('#asp4').val().replace(/%/g, ''))).toFixed(1) + ":1")
+          } else {
+            $('#meRatio').val('-')
+          }
+          $('#aspTotalPercent').val(totalVar.toFixed(1) + "%");
+          $('#aspNeutsTable').html($('#asp7').val());
+          $('#aspEosTable').html($('#asp8').val());
+          $('#aspMonosTable').html($('#asp9').val());
+          $('#aspNRBCsTable').html($('#asp4').val());
+          $('#aspLymphsTable').html($('#asp5').val());
+          $('#aspPlasmaTable').html($('#asp6').val());
+          $('#aspBasoTable').html($('#asp1').val());
+          $('#aspBlastsTable').html($('#asp0').val());
+          $('#aspMETable').html($('#meRatio').val())
+        })
+
+        $('#touchPrepDiv').change(function() {
+          fillTouch();
+        })
+
+        function fillTouch() {
+          if ($('#touchPrepSimilar').prop('checked')) {
+            var touchPrep = "The bone marrow touch preparations are cellular and show findings similar to the aspirate smears."
+            $('#tpText').val(touchPrep);
+            $('#aspirateSmear').show();
+            $('#touchPrepText').show();
+            $('#microscopic').show();
+            $('#touchPrepText').html($('#tpText').val() + '<br><br>');
+          }
+
+        }
+
+        $('#tpText').on('input', function() {
+          $('#touchPrepDifferent').prop('checked', true)
+          $('#touchPrepSimilar').prop('checked', false)
+          $('#touchPrepText').html($('#tpText').val() + '<br><br>')
+          $('#aspirateSmear').show();
+          $('#touchPrepText').show();
+          $('#microscopic').show();
+
+        })
+
+        $('#ironStainDiv').change(function() {
+          fillStains();
+
+        })
+
+        function fillStains() {
+          var ironText = "";
+          if ($('#ironStain').prop('checked')) {
+            if ($('#ironStainInc').prop('checked')) {
+              ironText += "There is increased storage iron.";
+            } else if ($('#ironStainAdeq').prop('checked')) {
+              ironText += "There is adequate storage iron.";
+            } else if ($('#ironStainDec').prop('checked')) {
+              ironText += "There is decreased storage iron.";
+            } else if ($('#ironNoSpicules').prop('checked')) {
+              ironText += "There are too few spicules for assessment of storage iron.";
+            }
+            if ($('#ringPresent').prop('checked')) {
+              ironText += " Ring sideroblasts are identified.";
+            } else if ($('#ringAbsent').prop('checked')) {
+              ironText += " No ring sideroblasts are identified.";
+            }
+            $('#ssIronTable').html(ironText);
+            $('#microscopic').show();
+            $('#specialStains').show();
+          } else {
+            $('#specialStains').hide();
+          }
+        }
+
+        function parseCBC() {
+          if ($('#pbCBC').val() != "") {
+            var cbcFinal = [];
+            var collectedDate = "";
+            var cbcText = ""
+            var cbcVariables = ["WBC", "RBC", "HGB", "HCT", "MCV", "RDW", "PLT", "AbsoluteNeutrophils", "AbsoluteLymphocytes", "AbsoluteBasophils", "AbsoluteMonocytes", "AbsoluteEosinophils"]
+            var cbcLines = $('#pbCBC').val().split("\n")
+            var counter = 0;
+            for (var i = 0; i < cbcLines.length; i++) {
+              cbcFinal.push(cbcLines[i].split("\t"))
+            }
+            for (var i = 0; i < cbcFinal.length; i++) {
+              if (cbcVariables.includes(cbcFinal[i][0].replace(/\s/g, ''))) {
+                cbcArray[counter] = [cbcFinal[i][0].replace(/\s/g, ''), "", "", "", ""];
+
+
+                for (var j = 0; j < cbcFinal[i].length; j++) {
+                  if (cbcFinal[i][j].indexOf("-") == -1 && /\d/.test(cbcFinal[i][j]) && cbcArray[counter][1] == "") {
+                    cbcArray[counter][1] = parseFloat(cbcFinal[i][j].replace(/[^\d.-]/g, ''));
+                  } else if (cbcFinal[i][j].indexOf("-") != -1 && cbcArray[counter][1] == "") {
+                    cbcArray[counter][2] = parseFloat(cbcFinal[i][j].split(" ")[0]);
+                    cbcArray[counter][3] = parseFloat(cbcFinal[i][j].split(" ")[2]);
+                    cbcArray[counter][4] = cbcFinal[i][j].split(" ")[3];
+                  }
+                }
+                counter++
+
+              }
+              if (cbcFinal[i].indexOf('Resulting Agency') != -1) {
+                cbcArray[counter] = cbcFinal[i]
+                counter++
+              }
+              if (cbcFinal[i][0].indexOf("Specimen Collected:") != -1) {
+                cbcArray[counter] = cbcFinal[i]
+                counter++
+              }
+            }
+          } else {
+          cbcArray = [];
+          }
+          fillCBC(cbcArray);
+          fillClinicalCBC(cbcArray);
+          fillPB();
+          if ($('#pbText').val() != ""){
+          $('#peripheralBlood').show();
+          } else {
+          $('#peripheralBlood').hide();
+          } 
+        }
+
+        function fillClinicalCBC(x) {
+          var collectedDate = "";
+          var cbc = [[[" K/uL"],["WBC", "WHITE BLOOD CELLS"]],[[" g/dL"],["HGB", "HEMOGLOBIN", "HEMOGLOBIN, BLOOD"]],[["%"],["HCT", "HEMATOCRIT, BLOOD"]],[[" fL"],["MCV"]],[["%"],["RDW", "RBC DIST WIDTH"]],[[" K/uL"],["PLT", "PLT CNT", "PLATELETS, BLOOD"]]];
+          var clinicalArray = [];
+          var laboratory = ""
+          var clinicalArrayText = ""
+          for (var i = 0; i < x.length; i++) {
+            for (var j = 0; j < cbc.length; j++) {
+              if (cbc[j][1].indexOf(x[i][0]) != -1) {
+                clinicalArray.push(cbc[j][1][0] + " " + x[i][1] + cbc[j][0])
+              }
+            }
+              if (x[i].indexOf('Resulting Agency') != -1) {
+                if (x[i].filter(Boolean)[1].indexOf('NMH Lab') != -1 || x[i].filter(Boolean)[1].indexOf('NMH') != -1) {
+                  laboratory = "Northwestern Memorial Hospital"
+                } else if (x[i].filter(Boolean)[1].indexOf('MISYS') != -1) {
+                  laboratory = "Lurie Children's Hospital of Chicago";
+                } else {
+                  laboratory = x[i].filter(Boolean)[1]
+                }
+              }
+              if (x[i][0].indexOf('Specimen Collected') != -1) {
+              collectedDate = x[i][0].split(" ")[2]
+            }
+          }
+          if (clinicalArray.length>0){
+          for (var i = 0; i<clinicalArray.length; i++){
+          if (i == clinicalArray.length-1){
+          clinicalArrayText += clinicalArray[i] + ".";
+          } else {
+          clinicalArrayText += clinicalArray[i] + "; "
+          }
+          }
+          }
+          if (collectedDate != "" && laboratory != "" && clinicalArrayText != ""){
+          $('#clinicalCBC').html("The following CBC is from " + collectedDate + " and was performed at Northwestern Memorial Hospital:<br><br>" + clinicalArrayText + "<br><br>")
+          $('#clinicalCBC').show();
+          $('#clinical').show();         
+        } else if ($('#chText').val()==""){
+        	$('#clinical').hide();
+        } else {
+        $('#clinicalCBC').hide();
+        }
+        }
+
+				$('#pbCBC').bind('input', function() {
+          parseCBC();
+        })
+
+        function fillCBC(x) {
+          if (x.length>0){
+          for (let i = 0; i < x.length; i++) {
+            if (x[i][0] == "WBC") {
+              wbc = x[i][1];
+              wbcLow = x[i][2];
+              wbcHigh = x[i][3];
+            } else if (x[i][0] == "HGB") {
+              hgb = x[i][1];
+              hgbLow = x[i][2];
+              hgbHigh = x[i][3];
+            } else if (x[i][0] == "MCV") {
+              mcv = x[i][1];
+              mcvLow = x[i][2];
+              mcvHigh = x[i][3];
+            } else if (x[i][0] == "PLT") {
+              plt = x[i][1];
+              pltLow = x[i][2];
+              pltHigh = x[i][3];
+            } else if (x[i][0] == "AbsoluteNeutrophils") {
+              neut = x[i][1];
+              neutLow = x[i][2];
+              neutHigh = x[i][3];
+            } else if (x[i][0] == "AbsoluteLymphocytes") {
+              lymph = x[i][1];
+              lymphLow = x[i][2];
+              lymphHigh = x[i][3];
+            } else if (x[i][0] == "AbsoluteMonocytes") {
+              mono = x[i][1];
+              monoLow = x[i][2];
+              monoHigh = x[i][3];
+            } else if (x[i][0] == "AbsoluteEosinophils") {
+              eos = x[i][1];
+              eosLow = x[i][2];
+              eosHigh = x[i][3];
+            } else if (x[i][0] == "AbsoluteBasophils") {
+              baso = x[i][1];
+              basoLow = x[i][2];
+              basoHigh = x[i][3];
+            }
+          }
+          } else {
+          var wbc, wbcLow, wbcHigh, hgb, hgbLow, hgbHigh, mcv, mcvLow, mcvHigh, mchc, mchcLow, mchcHigh, plt, pltLow, pltHigh, mpv, mpvLow, mpvHigh, neut, neutHigh, neutLow, lymph, lymphHigh, lymphLow, mono, monoHigh, monoLow, eos, eosHigh, eosLow, baso, basoHigh, basoLow, nrbc, blast
+          {
+          }
+          }
+        }
+
+        $('#saveAll').click(function() {
+          saveFiles = JSON.parse(localStorage.getItem("saveFiles"));
+          if ($('#savePerformed').val() != "") {
+            localStorage.setItem("performedName", $('#savePerformed').val());
+            $('#pbPerformed').val($('#savePerformed').val());
+          }
+          if ($('#themeColor').val() != "") {
+            localStorage.setItem("themeColor", $('#themeColor').val());
+          }
+          $('.pbCellTypeSave').each(function() {
+            if ($(this).val() == "") {
+              pbTypeList[this.id.replace('pbSave', "")] = $(this).attr('placeholder')
+            } else {
+              pbTypeList[this.id.replace('pbSave', "")] = $(this).val()
+            }
+          })
+          localStorage.setItem("pbTypeList", JSON.stringify(pbTypeList));
+          pbTypeListChange('pb', pbTypeList, pbCellTypes)
+          $('.aspCellTypeSave').each(function() {
+            if ($(this).val() == "") {
+              aspTypeList[this.id.replace('aspSave', "")] = $(this).attr('placeholder')
+            } else {
+              aspTypeList[this.id.replace('aspSave', "")] = $(this).val()
+            }
+          })
+          localStorage.setItem("aspTypeList", JSON.stringify(aspTypeList));
+          pbTypeListChange('asp', aspTypeList, pbCellTypes)
+        })
+
+
+        $('#saveTemplate').click(function() {
+          if ($('#saveName').val() == "") {
+            alert('Please enter a file name.')
+          } else if (saveFiles.indexOf($('#saveName').val()) != -1) {
+            if (confirm("Would you like to overwrite the template with the name " + $('#saveName').val() + "?")) {
+              saveFiles1()
+            }
+          } else {
+            saveFiles1()
+          }
+        })
+
+        $('#saveClearTemplate').click(function() {
+          if ($('#saveName').val() == "") {
+            alert('Please enter a file name.')
+          } else if (saveFiles.indexOf($('#saveName').val()) != -1) {
+            if (confirm("Would you like to overwrite the template with the name " + $('#saveName').val() + "?")) {
+              saveFiles1()
+            }
+          } else {
+            saveFiles1()
+          }
+          $('.save').each(function() {
+            if ($(this).prop('type') == 'checkbox' || $(this).prop('type') == 'radio') {
+              $(this).prop('checked', false)
+            } else {
+              $(this).val("")
+            }
+          })
+          $('.save2').each(function() {
+            if ($(this).prop('type') == 'checkbox' || $(this).prop('type') == 'radio') {
+              $(this).prop('checked', false)
+            } else {
+              $(this).val("")
+            }
+          })
+          cbcArray = [];
+          selectedAnisoList = [];
+          selectedAspList = [];
+          selectedNeutList = [];
+          selectedMegList = [];
+          choices(selectedNeutList, neutList, "neut", 1);
+          choices(selectedAspList, aspDescriptorList, "aspDescriptor", 0);
+          choices(selectedMegList, megList, "meg", 1);
+          choices(selectedAnisoList, anisoList, "aniso", 1);
+          grossDescription();
+          fillPB();
+          fillAsp();
+          fillTouch();
+          fillCore();
+          fillStains();
+          coreCreator([])
+          fillCBC(cbcArray)
+          fillClinicalCBC(cbcArray)
+          pbCounter('pb', pbTypeList, pbDuplicateAlert);
+          pbCounter('asp', aspTypeList, aspDuplicateAlert);
+          showPanel('templateScreen')
+        })
+
+        function saveFiles1() {
+          var saveAll = [
+            [],
+            [],
+            [],
+            [],
+            []
+          ]
+          $('.save').each(function() {
+            if ($(this).prop('type') == 'checkbox' || $(this).prop('type') == 'radio') {
+              saveAll[0].push([this.id, $(this).prop('checked')])
+            } else {
+              saveAll[0].push([this.id, $(this).val()])
+            }
+          })
+          saveAll[1] = [
+            [selectedAnisoList, anisoList, 'aniso', 1],
+            [selectedAspList, aspDescriptorList, 'aspDescriptor', 0],
+            [selectedNeutList, neutList, 'neut', 1],
+            [selectedMegList, megList, 'meg', 1]
+          ]
+
+          $('.save2').each(function() {
+            saveAll[2].push([this.id, $(this).prop('checked')])
+          });
+
+          saveAll[3] = coreValues
+          saveAll[4] = cbcArray
+          localStorage.setItem("saveName" + $('#saveName').val(), JSON.stringify(saveAll));
+          if (saveFiles.indexOf($('#saveName').val()) == -1) {
+            saveFiles.push($('#saveName').val())
+          }
+          localStorage.setItem("saveFiles", JSON.stringify(saveFiles));
+          fillTemplateLoader(saveFiles)
+        }
+
+        $('#deleteButton').click(function() {
+          if ($('#loadTemplate').val().length == 0) {
+            alert('Please select a template to delete.')
+
+          } else if ($('#loadTemplate').val().length == 1) {
+            if (confirm("Are you sure you want to delete this template? This cannot be undone.")) {
+              deleteTemps();
+            }
+          } else {
+            if (confirm("Are you sure you want to delete these templates? This cannot be undone.")) {
+              deleteTemps();
+            }
+          }
+        })
+
+        function deleteTemps() {
+          var deleteTemps = $('#loadTemplate').val()
+
+          console.log("1", saveFiles)
+          for (var i = 0; i < deleteTemps.length; i++) {
+            localStorage.removeItem(deleteTemps[i]);
+            saveFiles.splice(saveFiles.indexOf(deleteTemps[i]), 1)
+          }
+          localStorage.setItem("saveFiles", JSON.stringify(saveFiles));
+          fillTemplateLoader(saveFiles)
+        }
+
+
+        $('#loadButton').click(function() {
+          if ($('#loadTemplate').val() == null) {
+            alert('Please select a file to load.')
+          } else {
+            var loadArray = JSON.parse(localStorage.getItem("saveName" + $('#loadTemplate').val()));
+            for (var i = 0; i < loadArray[0].length; i++) {
+              if ($("#" + loadArray[0][i][0]).prop('type') == 'checkbox' || $("#" + loadArray[0][i][0]).prop('type') == 'radio') {
+                $("#" + loadArray[0][i][0]).prop('checked', loadArray[0][i][1])
+              } else {
+                $("#" + loadArray[0][i][0]).val(loadArray[0][i][1])
+              }
+            }
+          }
+          if ($('#pbCBC').val() != "") {
+            parseCBC();
+          }
+
+          for (var i = 0; i < loadArray[1].length; i++) {
+            if (loadArray[1][i][2] == 'aniso') {
+              selectedAnisoList = loadArray[1][i][0]
+              finalAnisoList = choices(loadArray[1][i][0], loadArray[1][i][1], loadArray[1][i][2], loadArray[1][i][3])
+            } else if (loadArray[1][i][2] == 'aspDescriptor') {
+              selectedAspList = loadArray[1][i][0]
+              finalAspList = choices(loadArray[1][i][0], loadArray[1][i][1], loadArray[1][i][2], loadArray[1][i][3])
+            } else if (loadArray[1][i][2] == 'neut') {
+              selectedNeutList = loadArray[1][i][0]
+              finalNeutList = choices(loadArray[1][i][0], loadArray[1][i][1], loadArray[1][i][2], loadArray[1][i][3])
+            } else if (loadArray[1][i][2] == 'meg') {
+              selectedMegList = loadArray[1][i][0]
+              finalMegList = choices(loadArray[1][i][0], loadArray[1][i][1], loadArray[1][i][2], loadArray[1][i][3])
+            }
+          }
+          for (var i = 0; i < loadArray[2].length; i++) {
+            $("#" + loadArray[2][i][0]).prop('checked', loadArray[2][i][1])
+          }
+          for (var i = 0; i < loadArray[1].length; i++) {
+            var x = loadArray[1][i][0] + "List"
+            if (loadArray[1][i][2] == 'aniso') {
+
+              finalAnisoList = choices(loadArray[1][i][0], loadArray[1][i][1], loadArray[1][i][2], loadArray[1][i][3])
+            } else if (loadArray[1][i][2] == 'aspDescriptor') {
+
+              finalAspList = choices(loadArray[1][i][0], loadArray[1][i][1], loadArray[1][i][2], loadArray[1][i][3])
+            } else if (loadArray[1][i][2] == 'neut') {
+
+              finalNeutList = choices(loadArray[1][i][0], loadArray[1][i][1], loadArray[1][i][2], loadArray[1][i][3])
+            } else if (loadArray[1][i][2] == 'meg') {
+
+              finalMegList = choices(loadArray[1][i][0], loadArray[1][i][1], loadArray[1][i][2], loadArray[1][i][3])
+            }
+          }
+
+          coreValues = loadArray[3]
+          coreCreator(coreValues)
+          cbcArray = loadArray[4]
+          fillClinicalCBC(cbcArray)
+
+          if ($('#rbcAP').prop('checked')) {
+
+            $('#anisoDiv').show()
+          } else {
+            $('#anisoDiv').hide()
+          }
+          grossDescription();
+
+          fillPB();
+          fillAsp();
+          fillTouch();
+          fillCore();
+          fillStains();
+          fillCBC(cbcArray);
+          console.log(wbc)
+          pbCounter('pb', pbTypeList, pbDuplicateAlert);
+          pbCounter('asp', aspTypeList, aspDuplicateAlert);
+
+          showPanel('templateScreen')
+
+        })
+
+        function fillTemplateLoader(x) {
+          $('#loadTemplate').empty();
+          for (var i = 0; i < x.length; i++) {
+            $('#loadTemplate').append($('<option>').val(x[i]).text(x[i]))
+          }
+        }
+
+        function changeTheme(newThemeColor) {
+          $(".bannertopitem").css("background-color", newThemeColor);
+          $(".panel-heading").css("background-color", newThemeColor);
+          $(".panel").css("border-color", newThemeColor);
+          $(".iconHead").css("background-color", newThemeColor);
+          $(".copyHead").css("background-color", newThemeColor);
+          $(".navigation").css("background-color", newThemeColor);
+        }
+
+        $('#themeColor').change(function() {
+          changeTheme($('#themeColor').val());
+        })
+
+        $('#fcText').keyup(function() {
+          var dotFlow = [
+            ["chronicneg", "Flow cytometric immunophenotyping performed on the bone marrow aspirate reveals a polytypic B-cell population and a T-cell population without evidence of immunophenotypic abnormality based on the markers assayed."],
+            ["ballneg", "Flow cytometric immunophenotyping performed on the bone marrow aspirate reveals no immunophenotypic evidence of an abnormal B-lymphoblast population."]
+          ]
+          for (var i = 0; i < dotFlow.length; i++) {
+            if ($('#fcText').val().indexOf("." + dotFlow[i][0] + " ") != -1) {
+              $('#fcText').val($('#fcText').val().replace("." + dotFlow[i][0] + " ", dotFlow[i][1]))
+            }
+          }
+        })
+
+        $('#flowHelp').click(function() {
+          togglePanel('flowDocumentationScreen')
+        })
+        $('#coreHelp').click(function() {
+          togglePanel('coreDocumentationScreen')
+        })
+      });
+
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  </body>
+
+</html>
