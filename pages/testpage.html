@@ -440,7 +440,7 @@
               </div>
               <div class="flex-div" style="flex-wrap: wrap">
                 <label><input type="checkbox" class='save' value="" id='specASmear'>Aspirate Smear</label>
-                <div id="aspDiv"><input type="input" class='save' value="" id='aspSize' name='age' maxlength="3" size="2"> cc
+                <div><input type="input" class='save' value="" id='aspSize' name='age' maxlength="3" size="2"> cc
                 </div>
               </div>
               <div>
@@ -582,7 +582,7 @@
                   <label for='rbcAP' style="word-wrap: break-word"><input type="checkbox" class='save' name="rbc" value="" id='rbcAP'> Anisopoikilocytosis</label>
                 </div>
               </div>
-              <div id="anisoDiv" style="display: none">
+              <div id="anisoDiv" class='descriptors' style="display: none">
               </div>
               <div class="flex-div spread" style="flex-wrap: wrap">
                 <div>
@@ -770,7 +770,7 @@
               <textarea class='save' rows="4" id="aspCount" style="width: 100%; max-width: 100%">
 </textarea>
             </div>
-            <div id="aspirateDiv">
+            <div id="aspDiv">
               <div class="flex-div spread" style="flex-wrap: wrap">
                 <div>
                   <b>Adequacy:</b> <label><input class='adequacy save' type="radio" name="adequacy" value="" id='aspAdequate'> Adequate</label>
@@ -778,16 +778,24 @@
                 <div>
                   <label><input class='adequacy save' type="radio" value="" name="adequacy" id='aspInadequate'> Inadequate</label>
                 </div>
-                <div id='aspDescriptorDiv'>
+                <div id='aspirateDiv' class='descriptors'>
                 </div>
               </div>
               <div class="flex-div spread" style="flex-wrap: wrap">
                 <div>
-                  <b>Erythroid Precursors: </b><label><input type="checkbox" class='save' value="" id='aspErythNL'> Unremarkable</label>
+                  <b>Erythroid Precursors: </b><label><input type="radio" class='save' name="erythroid" value="" id='erythroidNL'> Unremarkable </label>
+                  <label><input type="radio" class='save' name="erythroid" value="" id='erythroidAB'> Abnormal </label>
                 </div>
               </div>
+              <div id="erythroidDiv" class="descriptors">
+              </div>
               <div class="flex-div spread" style="flex-wrap: wrap">
-                <b>Myeloid Precursors: </b><label><input type="checkbox" class='save' value="" id='aspMyeloidNL'> Unremarkable</label>
+                <div>
+                  <b>Myeloid Precursors: </b><label><input type="radio" class='save' name="myeloid" value="" id='myeloidNL'> Unremarkable </label>
+                  <label><input type="radio" class='save' name="myeloid" value="" id='myeloidAB'> Abnormal </label>
+                </div>
+              </div>
+              <div id="myeloidDiv" class="descriptors">
               </div>
               <div class="flex-div spread" style="flex-wrap: wrap">
                 <div>
@@ -809,7 +817,7 @@
                 <div><label><input type="radio" class='save' value="" id='aspMegAB' name='megQuant'> Abnormal</label></div>
 
               </div>
-              <div id='megDiv' style='padding-bottom: 5px'>
+              <div id='megDiv' class='descriptors' style='padding-bottom: 5px'>
 
               </div>
               <div class="flex-div spread" style="flex-wrap: wrap">
@@ -1376,27 +1384,30 @@
         var cbcArray = [];
         var specCheck, latCheck = false;
         var wbc, wbcLow, wbcHigh, hgb, hgbLow, hgbHigh, mcv, mcvLow, mcvHigh, mchc, mchcLow, mchcHigh, plt, pltLow, pltHigh, mpv, mpvLow, mpvHigh, neut, neutHigh, neutLow, lymph, lymphHigh, lymphLow, mono, monoHigh, monoLow, eos, eosHigh, eosLow, baso, basoHigh, basoLow, nrbc, blast;
-        var finalAnisoList = [];
-        var finalNeutList = [];
-        var finalMegList = [];
-        var finalAspList = [];
-        var selectedAnisoList = [];
-        var selectedNeutList = [];
-        var selectedMegList = [];
-        var selectedAspList = [];
+        var descriptorArray = [
+          ['aniso', ['', 'acanthocytes', 'basophilic stippling', 'burr cells', 'Howell-Jolly bodies', 'macrocytes', 'macroovalocytes', 'microcytes', 'ovalocytes', 'schistocytes', 'sickle cells', 'spherocytes', 'target cells', 'teardrop forms'],
+            [], 1, []
+          ],
+          ['aspirate', ['', 'hemodilute', 'paucicellular', 'hypocellular', 'virtually acellular', 'paucispicular', 'aspiculate'],
+            [], 0, []
+          ],
+          ['erythroid', ['', 'nuclear budding', 'irregular nuclear contours', 'megaloblastic changes'],
+            [], 1, []
+          ],
+          ['meg', ['', 'widely separated nuclear lobes', 'hypolobated forms', 'small hypolobated forms', 'micromegakaryocytes'],
+            [], 1, []
+          ],
+          ['myeloid', ['', 'hypogranular forms', 'hypolobated forms', 'hyposegmented forms', 'monolobated forms', 'a shift to immaturity'],
+            [], 1, []
+          ],
+          ['neut', ['', 'hypogranular forms', 'hypolobated forms', 'hyposegmented forms', 'monolobated forms', 'a shift to immaturity', 'toxic changes'],
+            [], 1, []
+          ]
+        ];
         var coreValues = [];
-        var aspDescriptorList = ['', 'hemodilute', 'paucicellular', 'hypocellular', 'virtually acellular', 'paucispicular', 'aspiculate'];
-        var coreDescriptorList = [];
         var lastPanel = '';
         var pbDuplicateAlert = 0;
         var aspDuplicateAlert = 0;
-        var anisoList = ['', 'acanthocytes', 'basophilic stippling', 'burr cells', 'Howell-Jolly bodies', 'macrocytes', 'macroovalocytes', 'microcytes', 'ovalocytes', 'schistocytes', 'sickle cells', 'spherocytes', 'target cells', 'teardrop forms']
-
-        var neutList = ['', 'hypogranular forms', 'hypolobated forms', 'monolobated forms', 'a shift to immaturity', 'toxic changes'];
-        var megList = ['', 'widely separated nuclear lobes', 'small hypolobated forms', 'micromegakaryocytes'];
-        var myeloidList = ['', 'hypogranular forms', 'hypolobated forms', 'monolobated forms', 'a shift to immaturity'];
-        var erythroidList = ['', 'nuclear budding', 'irregular nuclear contours'];
-
 
         window.keypressed = {};
 
@@ -1508,28 +1519,33 @@
 
           })
         }
-        
-        $('.descriptors').change(function(){
-        var selectedList = []
-        console.log(this.id.filter("Div"))
-        if (selectedNeutList.length = 0){
-        $('#neutNL').prop('checked')
-        } else {
-        $('#neutAB').prop('checked')
-        }
-        
-          $('.neut').each(function() {
-            if (selectedNeutList.indexOf($('#' + this.id).val()) == -1) {
-              selectedNeutList.push($('#' + this.id).val())
+
+        $('.descriptors').change(function() {
+          fillDescriptors(descriptorArray, this.id.replace('Div', ''))
+        })
+
+        function fillDescriptors(descriptorArray, label) {
+          var selectedList = [];
+          $('.' + label).each(function() {
+            if (selectedList.indexOf($('#' + this.id).val()) == -1) {
+              selectedList.push($('#' + this.id).val())
             }
           })
+         
+          for (var i = 0; i < descriptorArray.length; i++) {
+            if (descriptorArray[i][0] == label) {
+              descriptorArray[i][2] = selectedList.filter(Boolean)
+              descriptorArray[i][4] = choices(descriptorArray[i][0], descriptorArray[i][1], descriptorArray[i][2], descriptorArray[i][3])
 
-          selectedNeutList = selectedNeutList.filter(Boolean)
-          finalNeutList = choices(selectedNeutList, neutList, "neut", 1);
-        })
-        
-        function fillDescriptors(descriptorArray,label){
-        
+            }
+            if (descriptorArray[i][2].length > 0) {
+              $('#' + label + 'AB').prop('checked',true)
+              
+            } else {
+              $('#' + label + 'NL').prop('checked',true)
+            }
+          }
+
         }
 
         function togglePanel(panelId) {
@@ -1790,6 +1806,13 @@
         }
 
         function fillPB() {
+          for (var i = 0; i < descriptorArray.length; i++) {
+            if (descriptorArray[i][0] == 'aniso') {
+              var aniso = descriptorArray[i][4]
+            } else if (descriptorArray[i][0] == 'neut') {
+              var neut = descriptorArray[i][4]
+            }
+          }
           var count = 0;
           if ($('#specPBSmear').prop('checked')) {
             var pbText = "The peripheral blood smears show "
@@ -1810,12 +1833,14 @@
               pbText += ' with unremarkable red blood cell morphology'
             }
 
+
+
             if ($('#rbcPC').prop('checked')) {
               pbText += ' with polychromasia';
               if ($('#rbcAP').prop('checked')) {
                 pbText += ' and anisopoikilocytosis'
-                if (finalAnisoList[0] != undefined && finalAnisoList[0] != "") {
-                  pbText += ' including ' + listText(finalAnisoList)
+                if (aniso.length > 0) {
+                  pbText += ' including ' + listText(aniso)
                 }
                 pbText += '.'
               } else {
@@ -1824,8 +1849,8 @@
 
             } else if ($('#rbcAP').prop('checked')) {
               pbText += ' with anisopoikilocytosis'
-              if (finalAnisoList[0] != undefined && finalAnisoList[0] != "") {
-                pbText += ' including ' + listText(finalAnisoList)
+              if (aniso.length > 0) {
+                pbText += ' including ' + listText(aniso)
               }
               pbText += '.'
             } else {
@@ -1864,6 +1889,7 @@
                 }
               }
             }
+
             for (var i = 0; i < pbTypeList.length; i++) {
               if (pbTypeList[i] == "Neuts") {
                 var neutrophils = parseFloat($('#pb' + i).val()) / 100 * wbc;
@@ -1878,8 +1904,8 @@
                 }
                 if ($('#neutNL').prop('checked')) {
                   pbText += ' and show unremarkable morphology.'
-                } else if (finalNeutList[0] != undefined && finalNeutList[0] != "") {
-                  pbText += ' with ' + listText(finalNeutList) + '.'
+                } else if (neut.length > 0) {
+                  pbText += ' with ' + listText(neut) + '.'
                 } else {
                   pbText += '.'
                 }
@@ -1983,7 +2009,7 @@
           return listText
         }
 
-        $('#aspirateDiv').change(function() {
+        $('#aspDiv').change(function() {
           fillAsp();
         })
 
@@ -2014,9 +2040,6 @@
             coreText += "The bone marrow core biopsy is inadequate for interpretation."
           }
 
-
-
-
           if (coreText != "") {
             coreText += "<br><br>"
             $('#coreText').html(coreText);
@@ -2033,15 +2056,27 @@
 
 
         function fillAsp() {
+          for (var i = 0; i < descriptorArray.length; i++) {
+            if (descriptorArray[i][0] == 'aspirate') {
+              var aspirate = descriptorArray[i][4]
+            } else if (descriptorArray[i][0] == 'erythroid') {
+              var erthroid = descriptorArray[i][4]
+            } else if (descriptorArray[i][0] == 'myeloid') {
+              var myeloid = descriptorArray[i][4]
+            } else if (descriptorArray[i][0] == 'meg') {
+              var meg = descriptorArray[i][4]
+            }
+          }
+
           var aspText = "";
-          if ($('#aspAdequate').prop('checked') && finalAspList[0] == undefined) {
+          if ($('#aspAdequate').prop('checked') && aspirate.length == 0) {
             aspText += "The bone marrow aspirate smears are cellular and adequate for interpretation. "
           } else if ($('#aspAdequate').prop('checked')) {
-            aspText += "The bone marrow aspirate smears are " + listText(finalAspList) + " but are adequate for interpretation. "
-          } else if ($('#aspInadequate').prop('checked') && finalAspList[0] == undefined) {
+            aspText += "The bone marrow aspirate smears are " + listText(aspirate) + " but are adequate for interpretation. "
+          } else if ($('#aspInadequate').prop('checked') && aspirate.length == 0) {
             aspText += "The bone marrow aspirate smears are inadequate for interpretation thus precluding a meaningful marrow differential. "
           } else if ($('#aspInadequate').prop('checked')) {
-            aspText += "The bone marrow aspirate smears are " + listText(finalAspList) + " thus precluding a meaningful marrow differential. "
+            aspText += "The bone marrow aspirate smears are " + listText(aspirate) + " thus precluding a meaningful marrow differential. "
           }
           if ($('#aspErythNL').prop('checked') && $('#aspMyeloidNL').prop('checked')) {
             aspText += "Myeloid and erythroid precursors show progressive maturation with unremarkable morphology. "
@@ -2063,8 +2098,8 @@
           if ($('#aspMegAdeq').prop('checked') || $('#aspMegDec').prop('checked') || $('#aspMegInc').prop('checked')) {
             if ($('#aspMegNL').prop('checked')) {
               aspText += " with unremarkable morphology" + ". "
-            } else if ($('#aspMegAB').prop('checked')) {
-              aspText += " with " + listText(finalMegList) + ". "
+            } else if ($('#aspMegAB').prop('checked') && meg.length > 0) {
+              aspText += " with " + listText(meg) + ". "
             } else {
               aspText += ". "
             }
@@ -2328,83 +2363,16 @@
           }
         })
 
-        $('#anisoDiv').change(function() {
+        for (var i = 0; i < descriptorArray.length; i++) {
+          choices(descriptorArray[i][0], descriptorArray[i][1], descriptorArray[i][2], descriptorArray[i][3])
+        }
 
-
-        })
-
-
-
-        $('#megDiv').change(function() {
-
-          if (finalMegList.length > 0) {
-            $('#aspMegNL').prop('checked', false);
-            $('#aspMegAB').prop('checked', true);
-          }
-        })
-
-
-        $('#neutDiv').change(function() {
-          selectedNeutList = []
-          $('.neut').each(function() {
-            if (selectedNeutList.indexOf($('#' + this.id).val()) == -1) {
-              selectedNeutList.push($('#' + this.id).val())
-            }
-          })
-
-          selectedNeutList = selectedNeutList.filter(Boolean)
-          finalNeutList = choices(selectedNeutList, neutList, "neut", 1);
-        })
-
-        $('#anisoDiv').change(function() {
-          selectedAnisoList = []
-          $('.aniso').each(function() {
-            if (selectedAnisoList.indexOf($('#' + this.id).val()) == -1) {
-              selectedAnisoList.push($('#' + this.id).val())
-            }
-          })
-          selectedAnisoList = selectedAnisoList.filter(Boolean)
-          finalAnisoList = choices(selectedAnisoList, anisoList, "aniso", 1);
-        })
-
-
-        $('#aspDescriptorDiv').change(function() {
-          selectedAspList = []
-          $('.aspDescriptor').each(function() {
-            if (selectedAspList.indexOf($('#' + this.id).val()) == -1) {
-              selectedAspList.push($('#' + this.id).val())
-            }
-          })
-
-          selectedAspList = selectedAspList.filter(Boolean)
-          finalAspList = choices(selectedAspList, aspDescriptorList, "aspDescriptor", 0);
-        })
-
-        $('#megDiv').change(function() {
-          selectedMegList = []
-          $('.meg').each(function() {
-            if (selectedMegList.indexOf($('#' + this.id).val()) == -1) {
-              selectedMegList.push($('#' + this.id).val())
-            }
-          })
-          if (selectedMegList.length != 0) {
-
-          }
-          selectedMegList = selectedMegList.filter(Boolean)
-          finalMegList = choices(selectedMegList, megList, "meg", 1);
-        })
-
-        choices(selectedAspList, aspDescriptorList, "aspDescriptor", 0);
-        choices(selectedAnisoList, anisoList, "aniso", 1);
-        choices(selectedNeutList, neutList, "neut", 1);
-        choices(selectedMegList, megList, "meg", 1);
-
-        function choices(w, inputList, inputLabel, z) {
+        function choices(inputLabel, inputList, w, z) {
           var choiceList = [...inputList];
           var choiceOptionList = w;
           var finalChoiceList = [];
           var count = 0;
-          var testVar = ""
+          var testVar = "";
           for (var i = 0; i < choiceOptionList.length; i++) {
             if (choiceOptionList[i] != '') {
               testVar += '<div><select id="' + inputLabel + count + '" class="' + inputLabel + '" style="width: 200px !important;">'
@@ -2712,21 +2680,46 @@
               }
             }
           } else {
-          cbcArray = [];
+            cbcArray = [];
           }
           fillCBC(cbcArray);
           fillClinicalCBC(cbcArray);
           fillPB();
-          if ($('#pbText').val() != ""){
-          $('#peripheralBlood').show();
+          if ($('#pbText').val() != "") {
+            $('#peripheralBlood').show();
           } else {
-          $('#peripheralBlood').hide();
-          } 
+            $('#peripheralBlood').hide();
+          }
         }
 
         function fillClinicalCBC(x) {
           var collectedDate = "";
-          var cbc = [[[" K/uL"],["WBC", "WHITE BLOOD CELLS"]],[[" g/dL"],["HGB", "HEMOGLOBIN", "HEMOGLOBIN, BLOOD"]],[["%"],["HCT", "HEMATOCRIT, BLOOD"]],[[" fL"],["MCV"]],[["%"],["RDW", "RBC DIST WIDTH"]],[[" K/uL"],["PLT", "PLT CNT", "PLATELETS, BLOOD"]]];
+          var cbc = [
+            [
+              [" K/uL"],
+              ["WBC", "WHITE BLOOD CELLS"]
+            ],
+            [
+              [" g/dL"],
+              ["HGB", "HEMOGLOBIN", "HEMOGLOBIN, BLOOD"]
+            ],
+            [
+              ["%"],
+              ["HCT", "HEMATOCRIT, BLOOD"]
+            ],
+            [
+              [" fL"],
+              ["MCV"]
+            ],
+            [
+              ["%"],
+              ["RDW", "RBC DIST WIDTH"]
+            ],
+            [
+              [" K/uL"],
+              ["PLT", "PLT CNT", "PLATELETS, BLOOD"]
+            ]
+          ];
           var clinicalArray = [];
           var laboratory = ""
           var clinicalArrayText = ""
@@ -2736,88 +2729,86 @@
                 clinicalArray.push(cbc[j][1][0] + " " + x[i][1] + cbc[j][0])
               }
             }
-              if (x[i].indexOf('Resulting Agency') != -1) {
-                if (x[i].filter(Boolean)[1].indexOf('NMH Lab') != -1 || x[i].filter(Boolean)[1].indexOf('NMH') != -1) {
-                  laboratory = "Northwestern Memorial Hospital"
-                } else if (x[i].filter(Boolean)[1].indexOf('MISYS') != -1) {
-                  laboratory = "Lurie Children's Hospital of Chicago";
-                } else {
-                  laboratory = x[i].filter(Boolean)[1]
-                }
+            if (x[i].indexOf('Resulting Agency') != -1) {
+              if (x[i].filter(Boolean)[1].indexOf('NMH Lab') != -1 || x[i].filter(Boolean)[1].indexOf('NMH') != -1) {
+                laboratory = "Northwestern Memorial Hospital"
+              } else if (x[i].filter(Boolean)[1].indexOf('MISYS') != -1) {
+                laboratory = "Lurie Children's Hospital of Chicago";
+              } else {
+                laboratory = x[i].filter(Boolean)[1]
               }
-              if (x[i][0].indexOf('Specimen Collected') != -1) {
+            }
+            if (x[i][0].indexOf('Specimen Collected') != -1) {
               collectedDate = x[i][0].split(" ")[2]
             }
           }
-          if (clinicalArray.length>0){
-          for (var i = 0; i<clinicalArray.length; i++){
-          if (i == clinicalArray.length-1){
-          clinicalArrayText += clinicalArray[i] + ".";
+          if (clinicalArray.length > 0) {
+            for (var i = 0; i < clinicalArray.length; i++) {
+              if (i == clinicalArray.length - 1) {
+                clinicalArrayText += clinicalArray[i] + ".";
+              } else {
+                clinicalArrayText += clinicalArray[i] + "; "
+              }
+            }
+          }
+          if (collectedDate != "" && laboratory != "" && clinicalArrayText != "") {
+            $('#clinicalCBC').html("The following CBC is from " + collectedDate + " and was performed at Northwestern Memorial Hospital:<br><br>" + clinicalArrayText + "<br><br>")
+            $('#clinicalCBC').show();
+            $('#clinical').show();
+          } else if ($('#chText').val() == "") {
+            $('#clinical').hide();
           } else {
-          clinicalArrayText += clinicalArray[i] + "; "
+            $('#clinicalCBC').hide();
           }
-          }
-          }
-          if (collectedDate != "" && laboratory != "" && clinicalArrayText != ""){
-          $('#clinicalCBC').html("The following CBC is from " + collectedDate + " and was performed at Northwestern Memorial Hospital:<br><br>" + clinicalArrayText + "<br><br>")
-          $('#clinicalCBC').show();
-          $('#clinical').show();         
-        } else if ($('#chText').val()==""){
-        	$('#clinical').hide();
-        } else {
-        $('#clinicalCBC').hide();
-        }
         }
 
-				$('#pbCBC').bind('input', function() {
+        $('#pbCBC').bind('input', function() {
           parseCBC();
         })
 
         function fillCBC(x) {
-          if (x.length>0){
-          for (let i = 0; i < x.length; i++) {
-            if (x[i][0] == "WBC") {
-              wbc = x[i][1];
-              wbcLow = x[i][2];
-              wbcHigh = x[i][3];
-            } else if (x[i][0] == "HGB") {
-              hgb = x[i][1];
-              hgbLow = x[i][2];
-              hgbHigh = x[i][3];
-            } else if (x[i][0] == "MCV") {
-              mcv = x[i][1];
-              mcvLow = x[i][2];
-              mcvHigh = x[i][3];
-            } else if (x[i][0] == "PLT") {
-              plt = x[i][1];
-              pltLow = x[i][2];
-              pltHigh = x[i][3];
-            } else if (x[i][0] == "AbsoluteNeutrophils") {
-              neut = x[i][1];
-              neutLow = x[i][2];
-              neutHigh = x[i][3];
-            } else if (x[i][0] == "AbsoluteLymphocytes") {
-              lymph = x[i][1];
-              lymphLow = x[i][2];
-              lymphHigh = x[i][3];
-            } else if (x[i][0] == "AbsoluteMonocytes") {
-              mono = x[i][1];
-              monoLow = x[i][2];
-              monoHigh = x[i][3];
-            } else if (x[i][0] == "AbsoluteEosinophils") {
-              eos = x[i][1];
-              eosLow = x[i][2];
-              eosHigh = x[i][3];
-            } else if (x[i][0] == "AbsoluteBasophils") {
-              baso = x[i][1];
-              basoLow = x[i][2];
-              basoHigh = x[i][3];
+          if (x.length > 0) {
+            for (let i = 0; i < x.length; i++) {
+              if (x[i][0] == "WBC") {
+                wbc = x[i][1];
+                wbcLow = x[i][2];
+                wbcHigh = x[i][3];
+              } else if (x[i][0] == "HGB") {
+                hgb = x[i][1];
+                hgbLow = x[i][2];
+                hgbHigh = x[i][3];
+              } else if (x[i][0] == "MCV") {
+                mcv = x[i][1];
+                mcvLow = x[i][2];
+                mcvHigh = x[i][3];
+              } else if (x[i][0] == "PLT") {
+                plt = x[i][1];
+                pltLow = x[i][2];
+                pltHigh = x[i][3];
+              } else if (x[i][0] == "AbsoluteNeutrophils") {
+                neut = x[i][1];
+                neutLow = x[i][2];
+                neutHigh = x[i][3];
+              } else if (x[i][0] == "AbsoluteLymphocytes") {
+                lymph = x[i][1];
+                lymphLow = x[i][2];
+                lymphHigh = x[i][3];
+              } else if (x[i][0] == "AbsoluteMonocytes") {
+                mono = x[i][1];
+                monoLow = x[i][2];
+                monoHigh = x[i][3];
+              } else if (x[i][0] == "AbsoluteEosinophils") {
+                eos = x[i][1];
+                eosLow = x[i][2];
+                eosHigh = x[i][3];
+              } else if (x[i][0] == "AbsoluteBasophils") {
+                baso = x[i][1];
+                basoLow = x[i][2];
+                basoHigh = x[i][3];
+              }
             }
-          }
           } else {
-          var wbc, wbcLow, wbcHigh, hgb, hgbLow, hgbHigh, mcv, mcvLow, mcvHigh, mchc, mchcLow, mchcHigh, plt, pltLow, pltHigh, mpv, mpvLow, mpvHigh, neut, neutHigh, neutLow, lymph, lymphHigh, lymphLow, mono, monoHigh, monoLow, eos, eosHigh, eosLow, baso, basoHigh, basoLow, nrbc, blast
-          {
-          }
+            var wbc, wbcLow, wbcHigh, hgb, hgbLow, hgbHigh, mcv, mcvLow, mcvHigh, mchc, mchcLow, mchcHigh, plt, pltLow, pltHigh, mpv, mpvLow, mpvHigh, neut, neutHigh, neutLow, lymph, lymphHigh, lymphLow, mono, monoHigh, monoLow, eos, eosHigh, eosLow, baso, basoHigh, basoLow, nrbc, blast
           }
         }
 
@@ -2888,14 +2879,12 @@
             }
           })
           cbcArray = [];
-          selectedAnisoList = [];
-          selectedAspList = [];
-          selectedNeutList = [];
-          selectedMegList = [];
-          choices(selectedNeutList, neutList, "neut", 1);
-          choices(selectedAspList, aspDescriptorList, "aspDescriptor", 0);
-          choices(selectedMegList, megList, "meg", 1);
-          choices(selectedAnisoList, anisoList, "aniso", 1);
+
+
+          for (var i = 0; i < descriptorArray.length; i++) {
+            descriptorArray[i][2] = [];
+            choices(descriptorArray[i][0], descriptorArray[i][1], descriptorArray[i][2], descriptorArray[i][3])
+          }
           grossDescription();
           fillPB();
           fillAsp();
@@ -2925,12 +2914,7 @@
               saveAll[0].push([this.id, $(this).val()])
             }
           })
-          saveAll[1] = [
-            [selectedAnisoList, anisoList, 'aniso', 1],
-            [selectedAspList, aspDescriptorList, 'aspDescriptor', 0],
-            [selectedNeutList, neutList, 'neut', 1],
-            [selectedMegList, megList, 'meg', 1]
-          ]
+          saveAll[1] = descriptorArray
 
           $('.save2').each(function() {
             saveAll[2].push([this.id, $(this).prop('checked')])
@@ -2963,8 +2947,6 @@
 
         function deleteTemps() {
           var deleteTemps = $('#loadTemplate').val()
-
-          console.log("1", saveFiles)
           for (var i = 0; i < deleteTemps.length; i++) {
             localStorage.removeItem(deleteTemps[i]);
             saveFiles.splice(saveFiles.indexOf(deleteTemps[i]), 1)
@@ -2991,39 +2973,14 @@
             parseCBC();
           }
 
-          for (var i = 0; i < loadArray[1].length; i++) {
-            if (loadArray[1][i][2] == 'aniso') {
-              selectedAnisoList = loadArray[1][i][0]
-              finalAnisoList = choices(loadArray[1][i][0], loadArray[1][i][1], loadArray[1][i][2], loadArray[1][i][3])
-            } else if (loadArray[1][i][2] == 'aspDescriptor') {
-              selectedAspList = loadArray[1][i][0]
-              finalAspList = choices(loadArray[1][i][0], loadArray[1][i][1], loadArray[1][i][2], loadArray[1][i][3])
-            } else if (loadArray[1][i][2] == 'neut') {
-              selectedNeutList = loadArray[1][i][0]
-              finalNeutList = choices(loadArray[1][i][0], loadArray[1][i][1], loadArray[1][i][2], loadArray[1][i][3])
-            } else if (loadArray[1][i][2] == 'meg') {
-              selectedMegList = loadArray[1][i][0]
-              finalMegList = choices(loadArray[1][i][0], loadArray[1][i][1], loadArray[1][i][2], loadArray[1][i][3])
-            }
+          descriptorArray = loadArray[1]
+          for (var i = 0; i < descriptorArray.length; i++) {
+            choices(descriptorArray[i][0], descriptorArray[i][1], descriptorArray[i][2], descriptorArray[i][3])
           }
+
+
           for (var i = 0; i < loadArray[2].length; i++) {
             $("#" + loadArray[2][i][0]).prop('checked', loadArray[2][i][1])
-          }
-          for (var i = 0; i < loadArray[1].length; i++) {
-            var x = loadArray[1][i][0] + "List"
-            if (loadArray[1][i][2] == 'aniso') {
-
-              finalAnisoList = choices(loadArray[1][i][0], loadArray[1][i][1], loadArray[1][i][2], loadArray[1][i][3])
-            } else if (loadArray[1][i][2] == 'aspDescriptor') {
-
-              finalAspList = choices(loadArray[1][i][0], loadArray[1][i][1], loadArray[1][i][2], loadArray[1][i][3])
-            } else if (loadArray[1][i][2] == 'neut') {
-
-              finalNeutList = choices(loadArray[1][i][0], loadArray[1][i][1], loadArray[1][i][2], loadArray[1][i][3])
-            } else if (loadArray[1][i][2] == 'meg') {
-
-              finalMegList = choices(loadArray[1][i][0], loadArray[1][i][1], loadArray[1][i][2], loadArray[1][i][3])
-            }
           }
 
           coreValues = loadArray[3]
@@ -3045,7 +3002,6 @@
           fillCore();
           fillStains();
           fillCBC(cbcArray);
-          console.log(wbc)
           pbCounter('pb', pbTypeList, pbDuplicateAlert);
           pbCounter('asp', aspTypeList, aspDuplicateAlert);
 
