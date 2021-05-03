@@ -3,6 +3,7 @@
 <html lang="en" dir="ltr">
 
   <head>
+  <title id="bmTitle">Marrow</title>
 
     <script src="https://kit.fontawesome.com/f6f9c2cc49.js" crossorigin="anonymous"></script>
     <style>
@@ -1317,7 +1318,7 @@
               Save:
             </h3>
             <div class='spread'>
-              Save as: <input type="input" value="" id='saveName'>
+              Save as: <input type="input" class="save" value="" id='saveName'>
             </div>
             <button type="button" class="btn btn-primary" id="saveTemplate">Save</button>
             <button type="button" class="btn btn-primary" id="saveClearTemplate">Save and Clear</button>
@@ -2996,6 +2997,17 @@
             saveFiles1()
           }
         })
+        
+        $('#saveName').keyup(function(){
+        fillTitle();
+        })
+        
+        function fillTitle(){
+        if ($('#saveName').val() !=""){
+                $('#bmTitle').html('Marrow - ' + $('#saveName').val());
+        }
+        }
+        
 
         $('#saveClearTemplate').click(function() {
           if ($('#saveName').val() == "") {
@@ -3028,6 +3040,7 @@
             descriptorArray[i][2] = [];
             choices(descriptorArray[i][0], descriptorArray[i][1], descriptorArray[i][2], descriptorArray[i][3])
           }
+          fillTitle();
           fillGross();
           fillPB();
           fillAsp();
@@ -3138,13 +3151,14 @@
           } else {
             $('#anisoDiv').hide()
           }
+          fillTitle();
           fillGross();
           fillPB();
           fillAsp();
           fillTouch();
           fillCore();
           fillClot();
-          fillStains();
+          fillStains();         
           fillCBC(cbcArray);
           $('#chText').val('')
           $('#pbCBC').val('')
