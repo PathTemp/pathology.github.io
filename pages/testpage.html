@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -73,6 +74,11 @@
       a:visited {
         text-decoration: none;
       }
+      
+      li {
+        padding-left: 30px; 
+        
+      }
 
       .noborder {
         border: none;
@@ -136,6 +142,13 @@
         display: -ms-flexbox;
         display: -webkit-flex;
         display: flex;
+        
+        
+      }
+      
+      .wrap {
+        flex-wrap: wrap;
+        align-content: stretch;
       }
 
       .flex-table-div {
@@ -406,7 +419,7 @@
           </div>
         </div>
       </div>
-      <div class="flex-div">
+      <div class="flex-div wrap">
         <div id='navigationPanel' class='navigation' style='display:none'>
 
           <div class="bannertopitem">
@@ -433,12 +446,12 @@
               <label><input type="radio" class='save' name="specNum" value="" id='specFive'>All Common Specimens</label>
             </div>
             <div class="checkbox" id='specTypes'>
-              <div class="flex-div" style="flex-wrap: wrap">
+              <div class="flex-div wrap">
                 <label><input type="checkbox" class='save' value="" id='specPBSmear'>Peripheral Blood Smear</label>
                 <div><input type="input" class='save' id="pbSlides" value="" name='age' maxlength="3" size="2"> unstained slides
                 </div>
               </div>
-              <div class="flex-div" style="flex-wrap: wrap">
+              <div class="flex-div wrap">
                 <label><input type="checkbox" class='save' value="" id='specASmear'>Aspirate Smear</label>
                 <div><input type="input" class='save' value="" id='aspSize' name='age' maxlength="3" size="2"> cc
                 </div>
@@ -446,14 +459,14 @@
               <div>
                 <label><input type="checkbox" class='save' value="" id='specClot'>Particle Clot</label>
               </div>
-              <div id="coreDiv" class="flex-div" style="flex-wrap: wrap">
+              <div id="coreDiv" class="flex-div wrap">
                 <div>
                   <label><input type="checkbox" class='save' value="" id='specCore'>Core Biopsy</label></div>
                 <div>
                   <input type="input" class="coreSize save" value="" id='coreSize0' maxlength="3" size="2"> cm &nbsp
                 </div>
               </div>
-              <div class="flex-div bottom" style="flex-wrap: wrap">
+              <div class="flex-div wrap bottom">
                 <label><input type="checkbox" class='save' value="" id='specTouch'>Touch Imprint</label>
                 <div><input type="input" class='save' id="touchSlides" value="" name='age' maxlength="3" size="2"> unstained slides
                 </div>
@@ -783,19 +796,19 @@
               </div>
               <div class="flex-div spread" style="flex-wrap: wrap">
                 <div>
-                  <b>Erythroid Precursors: </b><label><input type="radio" class='save' name="erythroid" value="" id='erythroidNL'> Unremarkable </label>
-                  <label><input type="radio" class='save' name="erythroid" value="" id='erythroidAB'> Abnormal </label>
+                  <b>Erythroid Precursors: </b><label><input type="radio" class='save' name="aspErythroid" value="" id='aspErythroidNL'> Unremarkable </label>
+                  <label><input type="radio" class='save' name="aspErythroid" value="" id='aspErythroidAB'> Abnormal </label>
                 </div>
               </div>
-              <div id="erythroidDiv" class="descriptors">
+              <div id="aspErythroidDiv" class="descriptors">
               </div>
               <div class="flex-div spread" style="flex-wrap: wrap">
                 <div>
-                  <b>Myeloid Precursors: </b><label><input type="radio" class='save' name="myeloid" value="" id='myeloidNL'> Unremarkable </label>
-                  <label><input type="radio" class='save' name="myeloid" value="" id='myeloidAB'> Abnormal </label>
+                  <b>Myeloid Precursors: </b><label><input type="radio" class='save' name="aspMyeloid" value="" id='aspMyeloidNL'> Unremarkable </label>
+                  <label><input type="radio" class='save' name="aspMyeloid" value="" id='aspMyeloidAB'> Abnormal </label>
                 </div>
               </div>
-              <div id="myeloidDiv" class="descriptors">
+              <div id="aspMyeloidDiv" class="descriptors">
               </div>
               <div class="flex-div spread" style="flex-wrap: wrap">
                 <div>
@@ -817,7 +830,7 @@
                 <div><label><input type="radio" class='save' value="" id='aspMegAB' name='megQuant'> Abnormal</label></div>
 
               </div>
-              <div id='megDiv' class='descriptors' style='padding-bottom: 5px'>
+              <div id='aspMegDiv' class='descriptors' style='padding-bottom: 5px'>
 
               </div>
               <div class="flex-div spread" style="flex-wrap: wrap">
@@ -845,7 +858,7 @@
               <div>
                 <label><input type="checkbox" class='save' id='ironStain'> Iron Stain</label>
               </div>
-              <div class="flex-div spread" style="flex-wrap: wrap">
+              <div class="flex-div spread">
                 <div>
                   <b>Storage Iron: </b>
                   <label><input type="radio" class='save' name='ironQuant' id='ironStainInc'> Increased</label>
@@ -860,7 +873,7 @@
                   <label><input type="radio" class='save' name='ironQuant' id='ironNoSpicules'> Not enough spicules</label>
                 </div>
               </div>
-              <div class="flex-div spread" style="flex-wrap: wrap">
+              <div class="flex-div spread">
                 <div>
                   <b>Ring Sideroblasts: </b>
                   <label><input type="radio" class='save' name='ring' id='ringAbsent'> Absent</label>
@@ -891,16 +904,25 @@
               <div>
                 <label><input class='adequacy save' type="radio" value="" name="coreAdequacy" id='coreInadequate'> Inadequate</label>
               </div>
-              <div id='coreDescriptorDiv'>
+              <div id="coreDescriptorDiv" class="descriptors">
               </div>
             </div>
             <div class="flex-div spread" style="flex-wrap: wrap">
               <div>
-                <b>Cellularity: </b><input class='save' type="input" value="" id='coreCellularity'>
+                <b>Cellularity: </b><input class='save' type="input" value="" id='coreCellularity' maxlength="2" size = "3">%
               </div>
             </div>
-            <div id='testDiv'>
-
+            <div id='particleClotDiv' class="flex-div spread" style="flex-wrap: wrap">
+              <div>
+                <b>Particle Clot: </b><label><input type="radio" class='save' name="touchPrep" value="" id='particleClotSimilar'> Similar to Core Biopsy</label>
+              </div>
+              <div>
+                <label><input type="radio" class='save' name="touchPrep" value="" id='particleClotDifferent'> Free Text</label>
+              </div>
+            </div>
+            <div>
+              <b>Particle Clot Text:</b><textarea class='save' rows="4" id="pcText" style="width: 100%">
+</textarea>
             </div>
           </div>
           <div class="template-body flex-div" id="flowPanel" style="display: none; flex-wrap: wrap; align-items: stretch">
@@ -925,6 +947,9 @@
                 </div>
                 <div id="finalCopyText">
                   <div class="header" id="header">
+                  </div>
+                  <div id="flowText">
+                  
                   </div>
                 </div>
               </div>
@@ -1064,6 +1089,11 @@
                         <td id="aspBasoTable"></td>
                         <td>0 - 1%</td>
                       </tr>
+                      <tr id="aspMastRow" style="display: none">
+                        <td>Mast Cells</td>
+                        <td id="aspMastTable"></td>
+                        <td>0</td>
+                      </tr>
                       <tr>
                         <td>Monocytes</td>
                         <td id="aspMonosTable"></td>
@@ -1170,13 +1200,13 @@
               Settings:
             </h3>
             <div class='spread'>
-              Performed By: <input type="input" value="" id='savePerformed'>
+              <b>Performed By: </b><input type="input" value="" id='savePerformed'>
             </div>
             <div class='spread'>
-              Theme Color: <input type="color" id="themeColor" name="favcolor" value=#2b3c5a>
+              <b>Theme Color: </b><input type="color" id="themeColor" name="favcolor" value=#2b3c5a>
             </div>
             <div id='pbTypeSaveDiv' class='spread'>
-              Peripheral Blood Count Orientation:
+              <b>Peripheral Blood Count Orientation:</b>
               <table class="center" style="width:100%">
                 <tr>
                   <td><b>7. </b><input type="text" id="pbSave7" class="pbCellTypeSave save" list="pbCellTypeList" size="6"></td>
@@ -1216,7 +1246,7 @@
               </datalist>
             </div>
             <div class="spread">
-              Aspirate Smear Count Orientation:
+            <b>Aspirate Smear Count Orientation:</b>
               <table class="center" style="width:100%">
                 <tr>
                   <td><b>7. </b><input type="text" id="aspSave7" class="aspCellTypeSave save" list="aspCellTypeList" size="6"></td>
@@ -1245,6 +1275,7 @@
                 <option value="Blasts"></option>
                 <option value="Eos"></option>
                 <option value="Lymphs"></option>
+                <option value="Mast"></option>
                 <option value="Metamyelocytes"></option>
                 <option value="Monos"></option>
                 <option value="Myelocytes"></option>
@@ -1255,6 +1286,29 @@
                 <option value="Promyelocytes"></option>
               </datalist>
             </div><br>
+            <div>
+            <b>Myeloid Predominance ME Ratio Cutoffs: </b> <div class="flex-div"><div>
+            Marked Predominance: <input size='3' id='myeloidMarked'>     
+            </div>
+            <div>
+            Predominance: <input size='3' id='myeloidPredom'>     
+            </div>
+            
+            </div>
+            
+            </div>
+            <br>
+            <div>
+            <b>Erythroid Predominance ME Ratio Cutoffs: </b> <div class="flex-div"><div>
+            Marked Predominance: <input size='3' id='erythroidMarked'>     
+            </div>
+            <div>
+            Predominance: <input size='3' id='erythroidPredom'>     
+            </div>
+            
+            </div>
+            
+            </div>
 
             <button type="button" class="btn btn-primary" id="saveAll">Save Settings</button>
           </div>
@@ -1275,15 +1329,10 @@
 
               </select>
             </div>
-
             <div>
               <button type="button" class="btn btn-primary" id="loadButton">Load</button>
               <button type="button" class="btn btn-primary" id="deleteButton">Delete Selected</button>
             </div>
-
-
-
-
           </div>
 
           <div id="educationScreen" class="rightpanel neg side-pad" style="display: none">
@@ -1346,7 +1395,7 @@
         }
 
         var pbTypeList = JSON.parse(localStorage.getItem("pbTypeList"));
-        var pbCellTypes = ["Atypical", "Baso", "Blasts", "Eos", "Lymphs", "Metamyelocytes", "Monos", "Myelocytes", "Neuts", "NRBCs", "Plasma", "Promyelocytes"]
+        var pbCellTypes = ["Atypical", "Baso", "Blasts", "Eos", "Lymphs", "Metamyelocytes", "Monos", "Myelocytes", "Neuts", "NRBCs", "Plasma", "Promyelocytes", "Mast"]
         if (pbTypeList != null && pbTypeList != "null") {
           pbTypeListChange('pb', pbTypeList, pbCellTypes);
           pbAddRows('pb', pbTypeList, pbCellTypes);
@@ -1356,7 +1405,7 @@
         }
 
         var aspTypeList = JSON.parse(localStorage.getItem("aspTypeList"));
-        var aspCellTypes = ["Atypical", "Baso", "Blasts", "Eos", "Lymphs", "Metamyelocytes", "Monos", "Myelocytes", "Neuts", "NRBCs", "Plasma", "Promyelocytes"]
+        var aspCellTypes = ["Atypical", "Baso", "Blasts", "Eos", "Lymphs", "Metamyelocytes", "Monos", "Myelocytes", "Neuts", "NRBCs", "Plasma", "Promyelocytes", "Mast"]
         if (aspTypeList != null && aspTypeList != "null") {
           pbTypeListChange('asp', aspTypeList, pbCellTypes);
           pbAddRows('asp', aspTypeList, aspCellTypes);
@@ -1391,18 +1440,18 @@
           ['aspirate', ['', 'hemodilute', 'paucicellular', 'hypocellular', 'virtually acellular', 'paucispicular', 'aspiculate'],
             [], 0, []
           ],
-          ['erythroid', ['', 'nuclear budding', 'irregular nuclear contours', 'megaloblastic changes'],
+          ['aspErythroid', ['', 'nuclear budding', 'irregular nuclear contours', 'megaloblastic changes'],
             [], 1, []
           ],
-          ['meg', ['', 'widely separated nuclear lobes', 'hypolobated forms', 'small hypolobated forms', 'micromegakaryocytes'],
+          ['aspMeg', ['', 'widely separated nuclear lobes', 'hypolobated forms', 'small hypolobated forms', 'micromegakaryocytes'],
             [], 1, []
           ],
-          ['myeloid', ['', 'hypogranular forms', 'hypolobated forms', 'hyposegmented forms', 'monolobated forms', 'a shift to immaturity'],
+          ['aspMyeloid', ['', 'hypogranular forms', 'hypolobated forms', 'hyposegmented forms', 'monolobated forms', 'a shift to immaturity'],
             [], 1, []
           ],
           ['neut', ['', 'hypogranular forms', 'hypolobated forms', 'hyposegmented forms', 'monolobated forms', 'a shift to immaturity', 'toxic changes'],
             [], 1, []
-          ]
+          ],['coreDescriptor',['', 'aspiration artifact', 'crush artifact', 'predominantly subcortical','subcortical'],[],0,[]]
         ];
         var coreValues = [];
         var lastPanel = '';
@@ -1535,17 +1584,15 @@
           for (var i = 0; i < descriptorArray.length; i++) {
             if (descriptorArray[i][0] == label) {
               descriptorArray[i][2] = selectedList.filter(Boolean)
-              descriptorArray[i][4] = choices(descriptorArray[i][0], descriptorArray[i][1], descriptorArray[i][2], descriptorArray[i][3])
-
-            }
-            if (descriptorArray[i][2].length > 0) {
+              descriptorArray[i][4] = choices(descriptorArray[i][0], descriptorArray[i][1], descriptorArray[i][2], descriptorArray[i][3]);
+              if (descriptorArray[i][2].length > 0) {
               $('#' + label + 'AB').prop('checked',true)
               
             } else {
               $('#' + label + 'NL').prop('checked',true)
             }
+            }
           }
-
         }
 
         function togglePanel(panelId) {
@@ -1572,7 +1619,7 @@
         $('#latAll').change(function() {
           latCheck = true;
           if (specCheck == true) {
-            grossDescription();
+            fillGross();
           }
         })
 
@@ -1590,7 +1637,7 @@
           }
           specCheck = true;
           if (latCheck == true) {
-            grossDescription();
+            fillGross();
           }
         })
 
@@ -1633,7 +1680,7 @@
         $('#specTypes').on('change keyup', function() {
           specCheck = true;
           if (latCheck == true) {
-            grossDescription()
+            fillGross()
           }
         })
 
@@ -1987,6 +2034,7 @@
           } else {
             $('#peripheralBlood').hide();
           }
+          checkMicroscopic();
 
 
         }
@@ -2013,10 +2061,21 @@
           fillAsp();
         })
 
-        $('#bonePanel').change(function() {
+        $('#bonePanel').on('change input', function() {
 
           fillCore();
         })
+        
+         $('#clinAge').bind('input', function() {
+                 if ($('#clinAge').val() != ""){
+        $('#chText').val("The patient is a " + $('#clinAge').val() + "-year-old")
+        }
+          fillClinical();
+          fillCore();
+        })
+        
+        
+        
 
 
 
@@ -2034,24 +2093,59 @@
 
         function fillCore() {
           var coreText = "";
-          if ($('#coreAdequate').prop('checked') && coreDescriptorList[0] == undefined) {
-            coreText += "The bone marrow core biopsy is adequate for interpretation."
-          } else if ($('#coreInadequate').prop('checked')) {
-            coreText += "The bone marrow core biopsy is inadequate for interpretation."
+          for(var i=0; i<descriptorArray.length; i++){
+          if (descriptorArray[i][0]== 'coreDescriptor'){
+          var coreArray = descriptorArray[i]
           }
-
-          if (coreText != "") {
+          }
+          if ($('#coreAdequate').prop('checked') && coreArray[2].length == 0) {
+          coreText += "The bone marrow core biopsy is adequate for interpretation. ";
+          } else if ($('#coreAdequate').prop('checked')){
+          coreText += "The bone marrow core biopsy shows " + listText(coreArray[2]) + " but is adequate for interpretation. ";
+          } else if ($('#coreInadequate').prop('checked') && coreArray[2].length == 0) {
+            coreText += "The bone marrow core biopsy is inadequate for interpretation.";
+          } else if  ($('#coreInadequate').prop('checked')) {
+          coreText += "The bone marrow core biopsy shows " + listText(coreArray[2]) + " and is inadequate for interpretation. ";
+          }
+   
+          if ($('#coreCellularity').val() != ""){
+          var cellularity = parseFloat($('#coreCellularity').val().replace(/\D/g,''))
+          if ($('#clinAge').val()!=""){
+          if (cellularity > (140 - parseFloat($('#clinAge').val()))){
+          
+          coreText += "The marrow is markedly hypercellular for age (~" + $('#coreCellularity').val() + "% cellular). ";
+          } else if (cellularity > (110 - parseFloat($('#clinAge').val()))){
+          coreText += "The marrow is hypercellular for age (~" + $('#coreCellularity').val() + "% cellular). ";
+          } else if (cellularity < (60 - parseFloat($('#clinAge').val()))){
+          coreText += "The marrow is markedly hypocellular for age (~" + $('#coreCellularity').val() + "% cellular). ";
+          } else if (cellularity > (90 - parseFloat($('#clinAge').val()))){
+          coreText += "The marrow is hypocellular for age (~" + $('#coreCellularity').val() + "% cellular). ";
+          } else {
+          coreText += "The marrow is normocellular for age (~" + $('#coreCellularity').val() + "% cellular). ";
+          }
+          }
+          }
+          
+          
+                    if (coreText != "") {
             coreText += "<br><br>"
             $('#coreText').html(coreText);
             $('#coreText').show();
             $('#coreBiopsy').show();
             $('#microscopic').show();
-          } else {
+          } else if ($('#pcText').val() == ""){
             $('#coreText').hide();
             $('#coreBiopsy').hide();
+          } else {
+          	$('#coreText').hide();
           }
-
-
+          checkMicroscopic();
+        }
+        
+        function checkMicroscopic(){
+        if($('#microscopic *:not(:has(*)):visible').text()==""){
+        $('#microscopic').hide();
+        }
         }
 
 
@@ -2059,11 +2153,11 @@
           for (var i = 0; i < descriptorArray.length; i++) {
             if (descriptorArray[i][0] == 'aspirate') {
               var aspirate = descriptorArray[i][4]
-            } else if (descriptorArray[i][0] == 'erythroid') {
-              var erthroid = descriptorArray[i][4]
-            } else if (descriptorArray[i][0] == 'myeloid') {
+            } else if (descriptorArray[i][0] == 'aspErythroid') {
+              var erythroid = descriptorArray[i][4]
+            } else if (descriptorArray[i][0] == 'aspMyeloid') {
               var myeloid = descriptorArray[i][4]
-            } else if (descriptorArray[i][0] == 'meg') {
+            } else if (descriptorArray[i][0] == 'aspMeg') {
               var meg = descriptorArray[i][4]
             }
           }
@@ -2078,13 +2172,33 @@
           } else if ($('#aspInadequate').prop('checked')) {
             aspText += "The bone marrow aspirate smears are " + listText(aspirate) + " thus precluding a meaningful marrow differential. "
           }
-          if ($('#aspErythNL').prop('checked') && $('#aspMyeloidNL').prop('checked')) {
+          if ($('#meRatio').val()!=""){
+          if (parseFloat($('#meRatio').val()) >= 5){
+          
+          aspText += "There is a myeloid predominance. "
+          } else if (parseFloat($('#meRatio').val()) <= 0.8)
+          {
+          aspText += "There is an erythroid predominance. "
+          }
+          }
+          if ($('#aspMyeloidAB').prop('checked')&& myeloid.length>0){
+          aspText += "Myeloid precursors show " + listText(myeloid) + ". "
+          } else if ($('#aspMyeloidAB').prop('checked')){
+          aspText += "Myeloid precursors are abnormal. "
+          }
+          if ($('#aspErythroidAB').prop('checked') && erythroid.length>0){
+          aspText += "Erythroid precursors show " + listText(erythroid) + ". "
+          } else if ($('#aspErythroidAB').prop('checked')){
+          aspText += "Erythroid precursors are abnormal. "
+          }
+          if ($('#aspErythroidNL').prop('checked') && $('#aspMyeloidNL').prop('checked')) {
             aspText += "Myeloid and erythroid precursors show progressive maturation with unremarkable morphology. "
           } else if ($('#aspMyeloidNL').prop('checked')) {
             aspText += "Myeloid precursors show progressive maturation with unremarkable morphology. "
-          } else if ($('#aspErythNL').prop('checked')) {
+          } else if ($('#aspErythroidNL').prop('checked')) {
             aspText += "Erythroid precursors show progressive maturation with unremarkable morphology. "
           }
+          
           if ($('#aspMegAdeq').prop('checked')) {
             aspText += "Megakaryocytes are adequate"
 
@@ -2124,6 +2238,7 @@
           } else {
             $('#aspirateText').hide();
           }
+          checkMicroscopic();
         }
 
         function coreCreator(coreValues) {
@@ -2155,7 +2270,7 @@
         })
 
 
-        function grossDescription() {
+        function fillGross() {
 
           var laterality = "";
           var grossText = "";
@@ -2289,14 +2404,18 @@
         })
 
         $('#chText').keyup(function() {
-          if ($('#chText').val() != "") {
+         fillClinical(); 
+
+        })
+        
+        function fillClinical(){
+        if ($('#chText').val() != "") {
             $('#clinical').show();
             $("#clinicalHistory").html($('#chText').val() + "<br><br>")
           } else if ($('#pbCBC').val() == "") {
             $('#clinical').hide();
           }
-
-        })
+}
 
         $('#pbDCount').change(function() {
           if ($('#pbDCount').val() == "") {
@@ -2516,10 +2635,12 @@
             $('#' + x + 'TotalPercent').val(totalVar.toFixed(1) + "%");
             if (x == 'pb') {
               $('#' + x + 'TableCountHeader').html('Peripheral blood (' + desiredCount + ' cells)');
+              fillPB();
 
             } else if (x == 'asp') {
               $('#aspTableCountHeader').html('Aspirate Smear (' + desiredCount + ' cells)')
               $('#aspMETable').html($('#meRatio').val());
+              fillAsp();
             }
 
             if ($('#pbCount').val() == "" && $('#aspCount').val() == "") {
@@ -2535,8 +2656,7 @@
 
             $('#' + x + 'TableAlert').hide()
             $('#' + x + 'CCount').val(totalCells);
-            fillPB();
-
+            
 
           } else {
             $('#' + x + 'TableAlert').show()
@@ -2589,6 +2709,10 @@
         $('#touchPrepDiv').change(function() {
           fillTouch();
         })
+        
+        $('#particleClotDiv').change(function(){
+          fillClot();
+        })
 
         function fillTouch() {
           if ($('#touchPrepSimilar').prop('checked')) {
@@ -2599,7 +2723,18 @@
             $('#microscopic').show();
             $('#touchPrepText').html($('#tpText').val() + '<br><br>');
           }
-
+        }
+        
+        function fillClot() {
+          if ($('#particleClotSimilar').prop('checked')) {
+          
+            var particleClot = "The bone marrow particle clot shows multiple marrow particles with findings similar to the core biopsy."
+            $('#pcText').val(particleClot);
+          $('#particleClotText').html($('#pcText').val() + '<br><br>')
+          $('#coreBiopsy').show();
+          $('#particleClotText').show();
+          $('#microscopic').show();
+          }
         }
 
         $('#tpText').on('input', function() {
@@ -2609,7 +2744,15 @@
           $('#aspirateSmear').show();
           $('#touchPrepText').show();
           $('#microscopic').show();
-
+        })
+        
+         $('#pcText').on('input', function() {
+          $('#particleClotDifferent').prop('checked', true)
+          $('#particleClotSimilar').prop('checked', false)
+          $('#particleClotText').html($('#pcText').val() + '<br><br>')
+          $('#coreBiopsy').show();
+          $('#particleClotText').show();
+          $('#microscopic').show();
         })
 
         $('#ironStainDiv').change(function() {
@@ -2885,12 +3028,15 @@
             descriptorArray[i][2] = [];
             choices(descriptorArray[i][0], descriptorArray[i][1], descriptorArray[i][2], descriptorArray[i][3])
           }
-          grossDescription();
+          fillGross();
           fillPB();
           fillAsp();
           fillTouch();
           fillCore();
+          fillClot();
           fillStains();
+          $('#chText').val('')
+          $('#pbCBC').val('')
           coreCreator([])
           fillCBC(cbcArray)
           fillClinicalCBC(cbcArray)
@@ -2987,26 +3133,24 @@
           coreCreator(coreValues)
           cbcArray = loadArray[4]
           fillClinicalCBC(cbcArray)
-
           if ($('#rbcAP').prop('checked')) {
-
             $('#anisoDiv').show()
           } else {
             $('#anisoDiv').hide()
           }
-          grossDescription();
-
+          fillGross();
           fillPB();
           fillAsp();
           fillTouch();
           fillCore();
+          fillClot();
           fillStains();
           fillCBC(cbcArray);
+          $('#chText').val('')
+          $('#pbCBC').val('')
           pbCounter('pb', pbTypeList, pbDuplicateAlert);
           pbCounter('asp', aspTypeList, aspDuplicateAlert);
-
           showPanel('templateScreen')
-
         })
 
         function fillTemplateLoader(x) {
@@ -3034,11 +3178,21 @@
             ["chronicneg", "Flow cytometric immunophenotyping performed on the bone marrow aspirate reveals a polytypic B-cell population and a T-cell population without evidence of immunophenotypic abnormality based on the markers assayed."],
             ["ballneg", "Flow cytometric immunophenotyping performed on the bone marrow aspirate reveals no immunophenotypic evidence of an abnormal B-lymphoblast population."]
           ]
-          for (var i = 0; i < dotFlow.length; i++) {
+        for (var i = 0; i < dotFlow.length; i++) {
             if ($('#fcText').val().indexOf("." + dotFlow[i][0] + " ") != -1) {
               $('#fcText').val($('#fcText').val().replace("." + dotFlow[i][0] + " ", dotFlow[i][1]))
             }
           }
+          if ($('#fcText').val() != ""){
+        $('#flowText').html("<li style='list-style-position: outside !important;'>" + $('#fcText').val() + "</li>")
+        $('#flowText').show();
+        $('#final').show();
+        } else if ($('#header').text() == ""){
+        $('#final').hide();
+        $('#flowText').hide();
+        } else {
+        $('#flowText').hide();
+        }
         })
 
         $('#flowHelp').click(function() {
