@@ -1854,6 +1854,52 @@
         }
 
         function fillPB() {
+        var x = cbcArray
+        if (x.length > 0) {
+        		
+        	  for (let i = 0; i < x.length; i++) {
+              if (x[i][0] == "WBC") {
+                wbc = x[i][1];
+                wbcLow = x[i][2];
+                wbcHigh = x[i][3];
+              } else if (x[i][0] == "HGB") {
+                hgb = x[i][1];
+                hgbLow = x[i][2];
+                hgbHigh = x[i][3];
+              } else if (x[i][0] == "MCV") {
+                mcv = x[i][1];
+                mcvLow = x[i][2];
+                mcvHigh = x[i][3];
+              } else if (x[i][0] == "PLT") {
+                plt = x[i][1];
+                pltLow = x[i][2];
+                pltHigh = x[i][3];
+              } else if (x[i][0] == "AbsoluteNeutrophils") {
+                neut = x[i][1];
+                neutLow = x[i][2];
+                neutHigh = x[i][3];
+              } else if (x[i][0] == "AbsoluteLymphocytes") {
+                lymph = x[i][1];
+                lymphLow = x[i][2];
+                lymphHigh = x[i][3];
+              } else if (x[i][0] == "AbsoluteMonocytes") {
+                mono = x[i][1];
+                monoLow = x[i][2];
+                monoHigh = x[i][3];
+              } else if (x[i][0] == "AbsoluteEosinophils") {
+                eos = x[i][1];
+                eosLow = x[i][2];
+                eosHigh = x[i][3];
+              } else if (x[i][0] == "AbsoluteBasophils") {
+                baso = x[i][1];
+                basoLow = x[i][2];
+                basoHigh = x[i][3];
+              }
+            }
+          } else {
+          console.log('hi')
+            var wbc, wbcLow, wbcHigh, hgb, hgbLow, hgbHigh, mcv, mcvLow, mcvHigh, mchc, mchcLow, mchcHigh, plt, pltLow, pltHigh, mpv, mpvLow, mpvHigh, neut, neutHigh, neutLow, lymph, lymphHigh, lymphLow, mono, monoHigh, monoLow, eos, eosHigh, eosLow, baso, basoHigh, basoLow, nrbc, blast
+          }
           for (var i = 0; i < descriptorArray.length; i++) {
             if (descriptorArray[i][0] == 'aniso') {
               var aniso = descriptorArray[i][4]
@@ -1904,6 +1950,8 @@
             } else {
               pbText += '.'
             }
+            
+            console.log(cbcArray)
 
             for (var i = 0; i < pbTypeList.length; i++) {
               if (pbTypeList[i] == "NRBCs") {
@@ -1940,7 +1988,7 @@
 
             for (var i = 0; i < pbTypeList.length; i++) {
               if (pbTypeList[i] == "Neuts") {
-                var neutrophils = parseFloat($('#pb' + i).val()) / 100 * wbc;
+                var neutrophils = parseFloat($('#pb' + i).val()) / (100 * wbc);
                 if (neutrophils < 0.1 * neutLow) {
                   pbText += ' Neutrophils are markedly decreased'
                 } else if (neutrophils < neutLow) {
@@ -2826,6 +2874,7 @@
           } else {
             cbcArray = [];
           }
+          console.log(cbcArray)
           fillCBC(cbcArray);
           fillClinicalCBC(cbcArray);
           fillPB();
@@ -2952,8 +3001,10 @@
               }
             }
           } else {
+          console.log('hi')
             var wbc, wbcLow, wbcHigh, hgb, hgbLow, hgbHigh, mcv, mcvLow, mcvHigh, mchc, mchcLow, mchcHigh, plt, pltLow, pltHigh, mpv, mpvLow, mpvHigh, neut, neutHigh, neutLow, lymph, lymphHigh, lymphLow, mono, monoHigh, monoLow, eos, eosHigh, eosLow, baso, basoHigh, basoLow, nrbc, blast
           }
+          console.log(neutLow)
         }
 
         $('#saveAll').click(function() {
@@ -3003,11 +3054,7 @@
         })
         
         function fillTitle(){
-        if ($('#saveName').val() !=""){
-                $('#bmTitle').html('Marrow - ' + $('#saveName').val());
-        } else {
-        $('#bmTitle').html('Marrow');
-        }
+        $('#bmTitle').html('Marrow - ' + $('#saveName').val());
         }
         
 
