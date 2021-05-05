@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -1988,7 +1989,7 @@
 
             for (var i = 0; i < pbTypeList.length; i++) {
               if (pbTypeList[i] == "Neuts") {
-                var neutrophils = parseFloat($('#pb' + i).val()) / (100 * wbc);
+                var neutrophils = parseFloat($('#pb' + i).val()) / 100 * wbc;
                 if (neutrophils < 0.1 * neutLow) {
                   pbText += ' Neutrophils are markedly decreased'
                 } else if (neutrophils < neutLow) {
