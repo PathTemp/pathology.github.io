@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -34,9 +33,9 @@
         padding: 0px 0px;
         line-height: 80%;
       }
-      
-      
-table {
+
+
+      table {
         border-collapse: collapse;
         font-family: Arial;
         table-layout: fixed;
@@ -118,6 +117,15 @@ table {
         box-sizing: border-box;
         flex-basis: 50%;
         background-color: rgb(43, 60, 90);
+      }
+
+      button {
+        background-color: rgb(43, 60, 90);
+        color: white;
+        font-size: 20pt;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
       }
 
       .flex-div {
@@ -327,16 +335,86 @@ table {
       .otherInput {
         flex: 2;
       }
-      
+
       .navigation {
-position: absolute;
+        position: absolute;
         background-color: rgb(43, 60, 90);
         z-index: 20;
         top: 0px;
-  left: 0;
-  width: 200px;
-  height: 100%;
-  border: solid;
+        left: 0;
+        width: 200px;
+        height: 100%;
+        border: solid;
+      }
+
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 30px;
+        height: 22px;
+      }
+
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 4px;
+        bottom: 2px;
+        background-color: white;
+        -webkit-transition: .3s;
+        transition: .3s;
+      }
+
+      input:checked+.slider {
+        background-color: rgb(43, 60, 90);
+      }
+
+      input:focus+.slider {
+        box-shadow: 0 0 1px #2196F3;
+      }
+
+      input:checked+.slider:before {
+        -webkit-transform: translateX(19px);
+        -ms-transform: translateX(19px);
+        transform: translateX(19px);
+      }
+
+      /* Rounded sliders */
+      .slider.round {
+        border-radius: 20px;
+      }
+
+      .slider.round:before {
+        border-radius: 50%;
+      }
+
+      #settingTable {
+        width: 100%;
+        border: none;
+      }
+
+      #settingTable td {
+        vertical-align: middle;
+        border: none;
       }
 
       }
@@ -373,17 +451,17 @@ position: absolute;
             <i class="iconPanel icon fas fa-bars pad" id='comment'></i>
           </div>
           <div class='bannerbottomitem copyHead' id='copyPanel'>
-          <span class="copy copyText" id="specimenCopy">Copy Specimen Text</span><span class="copy copyText" id="finalCopy">Copy Final Text</span></div>
+            <span class="copy copyText" id="specimenCopy">Copy Specimen Text</span><span class="copy copyText" id="finalCopy">Copy Final Text</span></div>
         </div>
       </div>
       <div class="flex-div">
         <div id='navigationPanel' class='navigation' style='display:none'>
-        
+
           <div class="bannertopitem">
             <i class="fas fa-bars pad navigationButton"></i>
             <br>
-            
-<a href="https://diffpath.github.io/pages/bonemarrow.html" style="color: white; font-size: 12pt">&nbsp Bone Marrow</a>
+
+            <a href="https://diffpath.github.io/pages/bonemarrow.html" style="color: white; font-size: 12pt">&nbsp Bone Marrow</a>
           </div>
         </div>
         <div class="panelleft">
@@ -512,12 +590,12 @@ position: absolute;
                   <label for="hgbAdequate"><b>RBC1:</b> Hemoglobin is adequate.</label>
                 </div>
                 <div id="normoAnemiaDiv" class="flex-div" style="flex-wrap: wrap">
-                <div>
-                <input type="checkbox" id="normoAnemia" class="rbcQuant">
-                  <label for="normoAnemia"><b>RBC2:</b> Normocytic anemia.</label><br>
-                </div>
                   <div>
-                  <input type="checkbox" id="hypochromicNormo">
+                    <input type="checkbox" id="normoAnemia" class="rbcQuant">
+                    <label for="normoAnemia"><b>RBC2:</b> Normocytic anemia.</label><br>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="hypochromicNormo">
                     <label for="hypochromicNormo">Hypochromic</label>
                   </div>
                 </div>
@@ -703,10 +781,10 @@ position: absolute;
                     <label for="thrombocytopeniaOL"> Occasional large platelets.</label>
                   </div>
                 </div>
-                                   <div>
-                    <input type="checkbox" id="pltClumping">
-                    <label for="pltClumping"><b>PLT4:</b> Platelet clumping is present (see comment).</label>
-                  </div>
+                <div>
+                  <input type="checkbox" id="pltClumping">
+                  <label for="pltClumping"><b>PLT4:</b> Platelet clumping is present (see comment).</label>
+                </div>
                 <div id="pltOtherDiv" class="other">
                   <input type="checkbox" id="pltOther">
                   <label for="pltOther">&nbsp<b>Other:</b></label>
@@ -852,11 +930,11 @@ position: absolute;
               </div>
               <br><br>
               <div id="commentOtherDiv" class="other">
-                  <input type="checkbox" id="commentOther" class="pbComment">
-                  <label for="commentOther">&nbsp<b>Other:</b></label>
-                  <input type="text" class="otherInput" id="commentOtherInput">
-                </div>
-                <div id="HEMC1Div" class="pbComment">
+                <input type="checkbox" id="commentOther" class="pbComment">
+                <label for="commentOther">&nbsp<b>Other:</b></label>
+                <input type="text" class="otherInput" id="commentOtherInput">
+              </div>
+              <div id="HEMC1Div" class="pbComment">
                 <input type="checkbox" id="HEMC1" class="pbComment">
                 <label for="HEMC1"><b>HEMC1:</b></label>Dr. <input type="text" class="otherInput" id="HEMCDR1" size=12> discussed the case with <input type="text" id="HEMCDR2" size=12> at <input type="text" id="HEMCTime" size=5> on <input type="text" id="HEMCDate" size=5>.
               </div>
@@ -878,19 +956,19 @@ position: absolute;
                   </div>
 
                 </div>
-                                <div id="specimenCopyText">
-                <div id="testFinal"></div>
-                <div id="reasonFinalDiv" style="display: none">
-                  <div id="reason" class="h1">
-                    Reason for Consult
+                <div id="specimenCopyText">
+                  <div id="testFinal"></div>
+                  <div id="reasonFinalDiv" style="display: none">
+                    <div id="reason" class="h1">
+                      Reason for Consult
+                    </div>
+                    <div id="reasonFinal"></div>
                   </div>
-                  <div id="reasonFinal"></div>
-                </div>
-                <div id="labFinalDiv" style="display: none">
-                  <div id="labCriteria" class="h1">
-                    Laboratory Criteria for Pathologist Review
-                  </div>
-                  <div id="labFinal"></div>
+                  <div id="labFinalDiv" style="display: none">
+                    <div id="labCriteria" class="h1">
+                      Laboratory Criteria for Pathologist Review
+                    </div>
+                    <div id="labFinal"></div>
                   </div>
                 </div>
                 <div id="finalDiagnosis" class="h1" style="display: none">
@@ -899,6 +977,101 @@ position: absolute;
                 <div id="finalCopyText" contenteditable="true"></div>
               </div>
             </div>
+          </div>
+          <div id="settingsScreen" class="rightpanel neg side-pad" style="display: none">
+            <h3 style="margin-top: 0px">
+              Settings:
+            </h3>
+            <table id="settingTable">
+              <col style="width:60%">
+              <col style="width:40%">
+              <tr>
+                <td>Always include hemoglobin count</td>
+                <td><label class="switch">
+                    <input class="saveData" type="checkbox" id="setting1">
+                    <span class="slider round"></span>
+                  </label></td>
+              </tr>
+              <tr>
+                <td>Only include hemoglobin count when abnormal</td>
+                <td><label class="switch">
+                    <input class="saveData" type="checkbox" id="setting2">
+                    <span class="slider round"></span>
+                  </label></td>
+              </tr>
+              <tr>
+                <td>Always include neutrophil count</td>
+                <td><label class="switch">
+                    <input class="saveData" type="checkbox" id="setting3">
+                    <span class="slider round"></span>
+                  </label></td>
+              </tr>
+              <tr>
+                <td>Only include neutrophil count when abnormal</td>
+                <td><label class="switch">
+                    <input class="saveData" type="checkbox" id="setting4">
+                    <span class="slider round"></span>
+                  </label></td>
+              </tr>
+                            <tr>
+                <td>Include monocyte count when abnormal</td>
+                <td><label class="switch">
+                    <input class="saveData" type="checkbox" id="setting5">
+                    <span class="slider round"></span>
+                  </label></td>
+              </tr>
+              <tr>
+                <td>Always include lymphocyte count when abnormal</td>
+                <td><label class="switch">
+                    <input class="saveData" type="checkbox" id="setting6">
+                    <span class="slider round"></span>
+                  </label></td>
+              </tr>
+              <tr>
+                <td>Only include lymphocyte count when elevated</td>
+                <td><label class="switch">
+                    <input class="saveData" type="checkbox" id="setting7" checked>
+                    <span class="slider round"></span>
+                  </label></td>
+              </tr>
+              <tr>
+                <td>Always include platelet count</td>
+                <td><label class="switch">
+                    <input class="saveData" type="checkbox" id="setting8">
+                    <span class="slider round"></span>
+                  </label></td>
+              </tr>
+               <tr>
+                <td>Only include platelet count when abnormal</td>
+                <td><label class="switch">
+                    <input class="saveData" type="checkbox" id="setting9">
+                    <span class="slider round"></span>
+                  </label></td>
+              </tr>
+              <tr>
+                <td>Show blasts when found in differential</td>
+                <td><label class="switch">
+                    <input class="saveData" type="checkbox" id="setting10" checked>
+                    <span class="slider round"></span>
+                  </label></td>
+              </tr>
+              <tr>
+                <td>Show shift to immaturity when immature granulocytes found in differential</td>
+                <td><label class="switch">
+                    <input class="saveData" type="checkbox" id="setting11" checked>
+                    <span class="slider round"></span>
+                  </label></td>
+              </tr>
+              <tr>
+                <td>Comment on next line</td>
+                <td><label class="switch">
+                    <input class="saveData" type="checkbox" id="setting12">
+                    <span class="slider round"></span>
+                  </label></td>
+              </tr>
+            </table>
+            <br>
+            <button type="button" id="saveButton">Save</button>
           </div>
         </div>
       </div>
@@ -917,7 +1090,7 @@ position: absolute;
         var header = '';
         var subHeader = '';
         var cbcReport = '';
-        var wbc, wbcLow, wbcHigh, hgb, hgbLow, hgbHigh, mcv, mcvLow, mcvHigh, mchc, mchcLow, mchcHigh, plt, pltLow, pltHigh, mpv, mpvLow, mpvHigh, neut, neutHigh, neutLow, lymph, lymphHigh, lymphLow, mono, monoHigh, monoLow, nrbc, blast
+        var wbc, wbcLow, wbcHigh, hgb, hgbLow, hgbHigh, mcv, mcvLow, mcvHigh, mchc, mchcLow, mchcHigh, plt, pltLow, pltHigh, mpv, mpvLow, mpvHigh, neut, neutHigh, neutLow, lymph, lymphHigh, lymphLow, mono, monoHigh, monoLow, eos, eosLow, eosHigh, baso, basoHigh, basoLow, nrbc, blast, promyelocytes, myelocytes, metamyelocytes, imgran
         var anisoVar = '';
         var anisoIDList = [];
         var anisoOptionList = [];
@@ -925,6 +1098,13 @@ position: absolute;
         var lastPanel = ''
         var cbcArray = [];
         window.keypressed = {};
+
+        var settingArray = JSON.parse(localStorage.getItem("pbTemplateSaveFile"));
+        if (settingArray != null && settingArray != "null") {
+          for (var i = 0; i < settingArray.length; i++) {
+            $('#' + settingArray[i][0]).prop('checked', settingArray[i][1])
+          }
+        }
 
         $('.rightpanelbutton').click(function() {
           showPanel(this.id.replace('Button', 'Screen'))
@@ -976,9 +1156,9 @@ position: absolute;
             $('#' + lastPanel).show();
           }
         }
-        
-        $('.navigationButton').click(function(){
-        $('#navigationPanel').toggle();
+
+        $('.navigationButton').click(function() {
+          $('#navigationPanel').toggle();
         })
 
         $('.rightpanelbutton').click(function() {
@@ -1168,22 +1348,22 @@ position: absolute;
         $('.commentsShow').change(function() {
           fillFinal();
         })
-        
+
         $('.pbComment').change(function() {
-        	fillFinal();
+          fillFinal();
         })
-        
+
         $('#commentOtherInput').keyup(function() {
-        	          if ($('#commentOtherInput').val() == "") {
+          if ($('#commentOtherInput').val() == "") {
             $('#commentOther').prop('checked', false)
           } else {
             $('#commentOther').prop('checked', true)
           }
           fillFinal()
         })
-        
-         $('#HEMC1Div').keyup(function() {
-        if ($('#HEMCDR1').val() == "" && $('#HEMCDR2').val() == "" && $('#HEMCDRTime').val() == "") {
+
+        $('#HEMC1Div').keyup(function() {
+          if ($('#HEMCDR1').val() == "" && $('#HEMCDR2').val() == "" && $('#HEMCDRTime').val() == "") {
             $('#HEMC1').prop('checked', false)
           } else {
             $('#HEMC1').prop('checked', true)
@@ -1272,52 +1452,54 @@ position: absolute;
           anisoOptionList = anisoOptionList.filter(Boolean);
         }
 
-        $('#pbCBC').on('input', function() {
+        function parseCBC() {
           var cbcTable = "<table id='pbtable'><tr><th></th><th>Result</th><th>Reference Range</th></tr>"
-          var cbcFinal = [];
-          var cbc = [
-            [" K/uL", "WBC", "WHITE BLOOD CELLS"],
-            [" g/dL", "HGB", "HEMOGLOBIN", "HEMOGLOBIN, BLOOD"],
-            ["%", "HCT", "HEMATOCRIT, BLOOD"],
-            [" fL", "MCV"],
-            ["%", "RDW", "RBC DIST WIDTH"],
-            [" K/uL", "PLT", "PLT CNT", "PLATELETS, BLOOD"]
-          ];
-          var cbcVariables = ["WBC", "RBC", "HGB", "HCT", "MCV", "MCH", "MCHC", "RDW", "PLT", "MPV", "Blasts", "Neutrophils", "Lymphocytes", "Monocytes", "Eosinophils", "Basophils", "AbsoluteBlasts","AbsoluteNeutrophils", "AbsoluteLymphocytes", "AbsoluteMonocytes", "AbsoluteEosinophils", "AbsoluteBasophils", "NucleatedRedBloodCells,Automated"]
-          var cbcLines = $('#pbCBC').val().split("\n")
-          var pbText = ""
-          var counter = 0;
-          for (var i = 0; i < cbcLines.length; i++) {
-            cbcFinal.push(cbcLines[i].split("\t"))
-          }
-          for (var i = 0; i < cbcFinal.length; i++) {
-            if (cbcVariables.includes(cbcFinal[i][0].replace(/\s/g, ''))) {
-              cbcArray[counter] = [cbcFinal[i][0].replace(/\s/g, ''), "", "", "", ""];
-              for (var j = 0; j < cbcFinal[i].length; j++) {
-                if (cbcFinal[i][j].indexOf("-") == -1 && /\d/.test(cbcFinal[i][j]) && cbcArray[counter][1] == "") {
-                  cbcArray[counter][1] = parseFloat(cbcFinal[i][j].replace(/[^\d.-]/g, ''));
-                } else if (cbcFinal[i][j].indexOf("-") != -1 && cbcArray[counter][1] == "") {
-                  cbcArray[counter][2] = parseFloat(cbcFinal[i][j].split(" ")[0]);
-                  cbcArray[counter][3] = parseFloat(cbcFinal[i][j].split(" ")[2]);
-                  cbcArray[counter][4] = cbcFinal[i][j].split(" ")[3];
-                }
-              }
-              counter++
+          if ($('#pbCBC').val() != "") {
+            var cbcFinal = [];
+            var collectedDate = "";
+            var cbcText = ""
+            var cbcVariables = ["WBC", "RBC", "HGB", "HCT", "MCV", "MCH", "MCHC", "RDW", "PLT","MPV","Neutrophils","Lymphocytes","Monocytes","Eosinophils","Basophils","Blasts","AbsoluteBlasts","AbsoluteNeutrophilPromyelocytes","AbsoluteNeutrophilMetamyelocytes","AbsoluteNeutrophilMyelocytes","AbsoluteNeutrophils", "AbsoluteLymphocytes", "AbsoluteBasophils", "AbsoluteMonocytes", "AbsoluteEosinophils","NucleatedRedBloodCells,Automated","AImGranAbsolute"];
+            var cbcTableList = ["WBC","RBC","HGB","HCT","MCV","MCH","MCHC","RDW","PLT","MPV","Absolute Neutrophils","Absolute Lymphocytes"]
+            var cbcLines = $('#pbCBC').val().split("\n")
+            var counter = 0;
+            for (var i = 0; i < cbcLines.length; i++) {
+              cbcFinal.push(cbcLines[i].split("\t"))
             }
+            for (var i = 0; i < cbcFinal.length; i++) {
+              if (cbcVariables.includes(cbcFinal[i][0].replace(/\s/g, ''))) {
+                cbcArray[counter] = [cbcFinal[i][0].replace(/\s/g, ''), "", "", "", ""];
+                for (var j = 0; j < cbcFinal[i].length; j++) {
+                  if (cbcFinal[i][j].indexOf("-") == -1 && /\d/.test(cbcFinal[i][j]) && cbcArray[counter][1] == "") {
+                    cbcArray[counter][1] = parseFloat(cbcFinal[i][j].replace(/[^\d.-]/g, ''));
+                  } else if (cbcFinal[i][j].indexOf("-") != -1 && cbcArray[counter][1] == "") {
+                    cbcArray[counter][2] = parseFloat(cbcFinal[i][j].split(" ")[0]);
+                    cbcArray[counter][3] = parseFloat(cbcFinal[i][j].split(" ")[2]);
+                    cbcArray[counter][4] = cbcFinal[i][j].split(" ")[3];
+                  }
+                }
+                counter++
+
+              }
+            }
+          } else {
+            cbcArray = [];
           }
           for (let i = 0; i < cbcArray.length; i++) {
-            if (cbcArray[i][2] != "" && (cbcArray[i][1] < cbcArray[i][2] || cbcArray[i][1] > cbcArray[i][3])) {
+            if (cbcArray[i][1] != "" && cbcArray[i][2] !== "" && (cbcArray[i][1] < cbcArray[i][2] || cbcArray[i][1] > cbcArray[i][3])) {
               cbcTable += "<tr style='background-color:#FF7A7A'><td>"
             } else {
               cbcTable += "<tr><td>"
             }
-
             cbcTable += cbcArray[i][0] + "</td><td>" + cbcArray[i][1] + "</td><td>" + cbcArray[i][2] + " - " + cbcArray[i][3] + " " + cbcArray[i][4] + "</td></tr>"
           }
           cbcTable += "</table><br>"
           $("#pbTableDiv").html(cbcTable);
           $("#pbTableDiv").show();
           fillCBC();
+        }
+
+        $('#pbCBC').bind('input', function() {
+          parseCBC();
         })
 
         function fillCBC() {
@@ -1359,9 +1541,27 @@ position: absolute;
               mono = cbcArray[i][1];
               monoLow = cbcArray[i][2];
               monoHigh = cbcArray[i][3];
+            } else if (cbcArray[i][0] == "AbsoluteEosinophils") {
+              eos = cbcArray[i][1];
+              eosLow = cbcArray[i][2];
+              eosHigh = cbcArray[i][3];
+            } else if (cbcArray[i][0] == "AbsoluteBasophils") {
+              baso = cbcArray[i][1];
+              basoLow = cbcArray[i][2];
+              basoHigh = cbcArray[i][3];
             } else if (cbcArray[i][0] == "NucleatedRedBloodCells,Automated") {
               nrbc = cbcArray[i][1];
-            }
+            } else if (cbcArray[i][0] == "Blasts"){
+            	blast = cbcArray[i][1];
+            } else if (cbcArray[i][0] == "AbsoluteNeutrophilMetamyelocytes"){
+            	metamyelocytes = cbcArray[i][1];
+            } else if (cbcArray[i][0] == "AbsoluteNeutrophilMyelocytes"){
+            	myelocytes = cbcArray[i][1];
+            } else if (cbcArray[i][0] == "AbsoluteNeutrophilPromyelocytes"){
+            	promyelocytes = cbcArray[i][1];
+            } else if (cbcArray[i][0] == "AImGranAbsolute"){
+            	imgran = cbcArray[i][1];
+            } 
           }
 
           if (hgb < hgbLow) {
@@ -1376,7 +1576,7 @@ position: absolute;
               } else {
                 $('#microAnemia').prop('checked', true);
                 $('#hypochromicNormo').prop('checked', false);
-            $('#hypochromicMicro').prop('checked', false);
+                $('#hypochromicMicro').prop('checked', false);
                 $('#macroAnemia').prop('checked', false);
                 $('#normoAnemia').prop('checked', false);
                 $('#hgbAdequate').prop('checked', false);
@@ -1384,14 +1584,14 @@ position: absolute;
             } else if (mcv > mcvHigh) {
               $('#microAnemia').prop('checked', false);
               $('#hypochromicNormo').prop('checked', false);
-            $('#hypochromicMicro').prop('checked', false);
+              $('#hypochromicMicro').prop('checked', false);
               $('#macroAnemia').prop('checked', true);
               $('#normoAnemia').prop('checked', false);
               $('#hgbAdequate').prop('checked', false);
             } else if (mcv != undefined) {
 
               $('#microAnemia').prop('checked', false);
-            	$('#hypochromicMicro').prop('checked', false);
+              $('#hypochromicMicro').prop('checked', false);
               $('#macroAnemia').prop('checked', false);
               $('#normoAnemia').prop('checked', true);
               $('#hgbAdequate').prop('checked', false);
@@ -1424,11 +1624,24 @@ position: absolute;
             $('#neutrophilia').prop('checked', false);
             $('#adequateNeut').prop('checked', true);
           }
+          
+          if ($('#setting11').prop('checked')){
+          if (promyelocytes > 0 || myelocytes > 0 || metamyelocytes > 0 || imgran > 0){
+          $('#neutShift').prop('checked',true);
+          $('#neutDescription').prop('checked',true);
+          }
+          }          
 
           if (mono > monoHigh) {
             $('#monocytosis').prop('checked', true);
           } else if (mono != undefined) {
             $('#monocytosisDiv').hide();
+          }
+          
+          if (blast > 0 && $('#setting10').prop('checked')){
+          	$('#blast').prop('checked', true);
+            $('#blastCount').val(43);
+            console.log( $('#blastCount').val())
           }
 
           if (lymph < lymphLow * 0.2) {
@@ -1446,7 +1659,6 @@ position: absolute;
               $('#lymphocytosisNeoplasticDiv').hide();
             }
           }
-
 
           if (plt < pltLow) {
             $('#thrombocytopenia').prop('checked', true);
@@ -1568,7 +1780,7 @@ position: absolute;
         }
 
         function fillFinal() {
-					var rareShist,shist,spher,biteblist = ""
+          var rareShist, shist, spher, biteblist = ""
           var finalText = "";
           if ($('#reasonInput').val() != "") {
             $('#reasonFinal').html($('#reasonInput').val() + '<br><br>');
@@ -1596,7 +1808,7 @@ position: absolute;
             if (finalAnisoList[i].indexOf('spherocytes') != -1) {
               $('#RBCC8Div').show();
               spher = true;
-            } else if (spher != true){
+            } else if (spher != true) {
               $('#RBCC8Div').hide();
             }
           }
@@ -1605,7 +1817,7 @@ position: absolute;
             if (finalAnisoList[i].indexOf('bite') != -1 || finalAnisoList[i].indexOf('blister') != -1) {
               $('#RBCC9Div').show();
               biteblist = true;
-            } else if (biteblist != true){
+            } else if (biteblist != true) {
               $('#RBCC9Div').hide();
             }
           }
@@ -1621,10 +1833,14 @@ position: absolute;
               $('#RBCC5Div').show();
               $('#RBCC10Div').hide();
               if ($('#hypochromicMicro').prop('checked')) {
-                finalText += "Microcytic hypochromic anemia."
+                finalText += "Microcytic hypochromic anemia"
               } else {
-                finalText += "Microcytic anemia."
+                finalText += "Microcytic anemia"
               }
+              if ($('#setting1').prop('checked') || $('#setting2').prop('checked')) {
+                finalText += " (" + hgb.toFixed(1) + " g/dL)"
+              }
+              finalText += "."
               if (!$('#rbcShow').prop('checked')) {
                 $('#hgbAdequateDiv').hide();
                 $('#macroAnemiaDiv').hide();
@@ -1637,7 +1853,12 @@ position: absolute;
               $('#RBCC4Div').show();
               $('#RBCC5Div').hide();
               $('#RBCC10Div').show();
-              finalText += "Macrocytic anemia."
+              finalText += "Macrocytic anemia"
+              if ($('#setting1').prop('checked') || $('#setting2').prop('checked')) {
+                finalText += " (" + hgb.toFixed(1) + " g/dL)"
+              }
+              finalText += "."
+
               if (!$('#rbcShow').prop('checked')) {
                 $('#hgbAdequateDiv').hide();
                 $('#microAnemiaDiv').hide();
@@ -1651,17 +1872,25 @@ position: absolute;
               $('#RBCC5Div').show();
               $('#RBCC10Div').hide();
               if ($('#hypochromicNormo').prop('checked')) {
-                finalText += "Normocytic hypochromic anemia."
+                finalText += "Normocytic hypochromic anemia"
               } else {
-                finalText += "Normocytic anemia."
+                finalText += "Normocytic anemia"
               }
+              if ($('#setting1').prop('checked') || $('#setting2').prop('checked')) {
+                finalText += " (" + hgb.toFixed(1) + " g/dL)"
+              }
+              finalText += "."
               if (!$('#rbcShow').prop('checked')) {
                 $('#hgbAdequateDiv').hide();
                 $('#microAnemiaDiv').hide();
                 $('#macroAnemiaDiv').hide();
               }
             } else if ($('#hgbAdequate').prop('checked')) {
-              finalText += "Hemoglobin is adequate."
+              finalText += "Hemoglobin is adequate"
+              if ($('#setting1').prop('checked')) {
+                finalText += " (" + hgb.toFixed(1) + " g/dL)"
+              }
+              finalText += "."
               if (!$('#rbcShow').prop('checked')) {
                 $('#microAnemiaDiv').hide();
                 $('#macroAnemiaDiv').hide();
@@ -1733,14 +1962,15 @@ position: absolute;
           }
 
           if ($('#blast').prop('checked') && finalText != "") {
-          	finalText += '<br><br>'}
+            finalText += '<br><br>'
+          }
 
-					if ($('#blast').prop('checked')){          
+          if ($('#blast').prop('checked')) {
             $('#WBCC3Div').show();
             $('#WBCC4Div').show();
             $('#WBCC5Div').show();
             $('#WBCC6Div').show();
-            blast = $('#blastCount').val();
+            
             if ((isNaN($('#blastCount').val()) || $('#blastCount').val() == "") && (blast == undefined || blast == "")) {
               blast = "";
               var blastString = "";
@@ -1753,9 +1983,9 @@ position: absolute;
             $('#blastLabel').html("<b>WBC6:</b> Blasts are present (<input type='text' id='blastCount' size='1' value='" + blast + "'>%)(see comment).")
             finalText += "Blasts are present " + blastString + "(see comment).";
           }
-          
+
           if ($('#neutDiv :checkbox:checked').length > 0 && finalText != "") {
-          finalText += "<br><br>"
+            finalText += "<br><br>"
           }
 
           if ($('#neutDiv :checkbox:checked').length > 0) {
@@ -1765,7 +1995,11 @@ position: absolute;
               if ($('#neutropenia').prop('checked')) {
                 $('#WBCC1Div').hide();
                 $('#WBCC2Div').show();
-                finalText += "Absolute neutropenia."
+                finalText += "Absolute neutropenia"
+                if ($('#setting3').prop('checked') || $('#setting4').prop('checked')) {
+                  finalText += " (" + neut.toFixed(1) + " K/uL)"
+                }
+                finalText += "."
                 if (!$('#neutShow').prop('checked')) {
                   $('#neutrophiliaDiv').hide();
                   $('#adequateNeutDiv').hide();
@@ -1776,7 +2010,11 @@ position: absolute;
                 $('#WBCC3Div').show();
                 $('#WBCC4Div').show();
                 $('#WBCC5Div').show();
-                finalText += "Absolute neutrophilia."
+                finalText += "Absolute neutrophilia"
+                if ($('#setting3').prop('checked') || $('#setting4').prop('checked')) {
+                  finalText += " (" + neut.toFixed(1) + " K/uL)"
+                }
+                finalText += "."
                 if (!$('#neutShow').prop('checked')) {
                   $('#neutropeniaDiv').hide();
                   $('#adequateNeutDiv').hide();
@@ -1784,7 +2022,11 @@ position: absolute;
               } else if ($('#adequateNeut').prop('checked')) {
                 $('#WBCC1Div').hide();
                 $('#WBCC2Div').hide();
-                finalText += "Neutrophils are adequate."
+                finalText += "Neutrophils are adequate"
+                if ($('#setting3').prop('checked')) {
+                  finalText += " (" + neut.toFixed(1) + " K/uL)"
+                }
+                finalText += "."
                 if (!$('#neutShow').prop('checked')) {
                   $('#neutropeniaDiv').hide();
                   $('#neutrophiliaDiv').hide();
@@ -1809,8 +2051,8 @@ position: absolute;
                   $('#WBCC4Div').show();
                   neutDescriptorList.push("hypolobated nuclei")
                 }
-                
-                                if ($('#neutHypogranular').prop('checked')) {
+
+                if ($('#neutHypogranular').prop('checked')) {
                   $('#WBCC4Div').show();
                   neutDescriptorList.push("hypogranular forms")
                 }
@@ -1821,7 +2063,6 @@ position: absolute;
                   $('#WBCC4Div').show();
                   $('#WBCC5Div').show();
                 }
-
                 finalText += " Neutrophils show " + listText(neutDescriptorList) + "."
               }
             }
@@ -1840,9 +2081,9 @@ position: absolute;
             $('#WBCC6Div').hide();
           }
 
-					 if ((lymph > lymphHigh || $('#lymphDiv :checkbox:checked').length > 0) && finalText != "") {
-           finalText += "<br><br>"
-           }
+          if ((lymph > lymphHigh || $('#lymphDiv :checkbox:checked').length > 0) && finalText != "") {
+            finalText += "<br><br>"
+          }
 
           if (lymph > lymphHigh || $('#lymphDiv :checkbox:checked').length > 0) {
             if ($('#lymphQuantDiv :checkbox:checked').length > 1) {
@@ -1860,7 +2101,11 @@ position: absolute;
               }
 
               if ($('#lymphopenia').prop('checked')) {
-                finalText += "Absolute lymphopenia."
+                finalText += "Absolute lymphopenia"      
+                if ($('#setting6').prop('checked')) {
+                  finalText += " (" + lymph.toFixed(1) + " K/uL)"
+                }
+                finalText += "."
                 if (!$('#lymphShow').prop('checked')) {
                   $('#lymphocytosisSLDiv').hide();
                   $('#lymphocytosisReactDiv').hide();
@@ -1922,7 +2167,6 @@ position: absolute;
                 $('#lymphocytosisReactDiv').show();
                 $('#lymphocytosisNeoplasticDiv').show();
               }
-
               if ($('#lymphOther').prop('checked')) {
                 finalText += " " + $('#lymphOtherInput').val();
               }
@@ -1940,21 +2184,24 @@ position: absolute;
               $('#lymphocytosisNeoplasticDiv').show();
             }
             if (lymph == "" || lymph == undefined || lymph < lymphHigh) {
-            $('#WBCC7Div').hide();
-            $('#WBCC8Div').hide();
-            $('#WBCC9Div').hide();
-            $('#WBCC10Div').hide();
-            $('#WBCC11Div').hide();
-            $('#WBCC12Div').hide();
+              $('#WBCC7Div').hide();
+              $('#WBCC8Div').hide();
+              $('#WBCC9Div').hide();
+              $('#WBCC10Div').hide();
+              $('#WBCC11Div').hide();
+              $('#WBCC12Div').hide();
             }
           }
 
           if ($('#monocytosis').prop('checked') && finalText != "") {
-            finalText += "<br><br> Absolute monocytosis with mature-appearing morphology."
+               	if ($('#setting5').prop('checked')) {
+                  finalText += "<br><br> Absolute monocytosis (" + mono.toFixed(1) + " K/uL) with mature-appearing morphology."
+                } else {
+                finalText += "<br><br> Absolute monocytosis with mature-appearing morphology."
+                }
+                finalText += "."     
           }
-          
           var plateletText = ""
-
           if ($('input.pltQuant:checkbox:checked').length > 1) {
             plateletText += "***Incompatible Platelet Characteristics***"
           } else if ($('#thrombocytopenia').prop('checked')) {
@@ -1963,6 +2210,9 @@ position: absolute;
             $('#PLTC3Div').hide();
             $('#PLTC6Div').hide();
             plateletText += "Thrombocytopenia"
+            if ($('#setting8').prop('checked') || $('#setting9').prop('checked')) {
+                  plateletText += " (" + plt + " K/uL)"
+                } 
             if (!$('#pltShow').prop('checked')) {
               $('#thrombocytosisDiv').hide();
               $('#adequatePltDiv').hide();
@@ -1980,6 +2230,9 @@ position: absolute;
             $('#PLTC3Div').show();
             $('#PLTC6Div').show();
             plateletText += "Thrombocytosis";
+            if ($('#setting8').prop('checked') || $('#setting9').prop('checked')) {
+                  plateletText += " (" + plt + " K/uL)"
+                } 
             if (!$('#pltShow').prop('checked')) {
               $('#thrombocytopeniaDiv').hide();
               $('#adequatePltDiv').hide();
@@ -1997,6 +2250,9 @@ position: absolute;
             $('#PLTC3Div').hide();
             $('#PLTC6Div').hide();
             plateletText += "Platelets are adequate";
+            if ($('#setting8').prop('checked')) {
+                  plateletText += " (" + plt + " K/uL)"
+                }       
             if (!$('#pltShow').prop('checked')) {
               $('#thrombocytopeniaDiv').hide();
               $('#thrombocytosisDiv').hide();
@@ -2012,7 +2268,7 @@ position: absolute;
 
 
           } else {
-                      $('#PLTC1Div').hide();
+            $('#PLTC1Div').hide();
             $('#PLTC2Div').hide();
             $('#PLTC3Div').hide();
             $('#PLTC4Div').hide();
@@ -2022,135 +2278,140 @@ position: absolute;
             $('#thrombocytosisDiv').show();
             $('#adequatePltDiv').show();
           }
-          
+
           if ($('#pltClumping').prop('checked')) {
-          	plateletText += " Platelet clumping is present (see comment)."
+            plateletText += " Platelet clumping is present (see comment)."
             $('#PLTC4Div').show();
             $('#PLTC5Div').show();
-          } else if (!$('#pltShow').prop('checked')){
-          	$('#PLTC4Div').hide();
+          } else if (!$('#pltShow').prop('checked')) {
+            $('#PLTC4Div').hide();
             $('#PLTC5Div').hide();
           }
 
           if ($('#pltOther').prop('checked')) {
             plateletText += " " + $('#pltOtherInput').val();
           }
-          
-          if (finalText != "" && plateletText != ""){
-          	finalText += "<br><br>"
-          }
-          
-          finalText += plateletText;
-          
-          var commentText = "";
-            if ($('#RBCC1').prop('checked')) {
-              commentText += " The etiology of the patient's anemia is not clear on review of the peripheral blood smear.";
-            }
-            if ($('#RBCC2').prop('checked')) {
-              commentText += " There is no morphologic evidence of hemolysis. Clinical correlation is suggested.";
-            }
-            if ($('#RBCC3').prop('checked')) {
-              commentText += " The red cell indices, morphology, and iron studies are consistent with iron deficiency anemia.";
-            }
-            if ($('#RBCC4').prop('checked')) {
-              commentText += " The red cell indices, morphology, and iron studies are consistent with anemia of chronic disease.";
-            }
-            if ($('#RBCC5').prop('checked')) {
-              commentText += " The red cell indices, morphology, and iron studies are suggestive of iron deficiency anemia and/or anemia of chronic disease. Clinical correlation is recommended.";
-            }
-            if ($('#RBCC6').prop('checked')) {
-              commentText += " Although rare schistocytes are seen, the findings are not definite for acute microangiopathic hemolysis. Clinical correlation is suggested.";
-            }
-            if ($('#RBCC7').prop('checked')) {
-              commentText += " The presence of schistocytes raises the possibility of a microangiopathic hemolysis. Clinical correlation suggested.";
-            }
-            if ($('#RBCC8').prop('checked')) {
-              commentText += " The presence of spherocytes raises the possibility of immune hemolysis. Clinical correlation suggested.";
-            }
-            if ($('#RBCC9').prop('checked')) {
-              commentText += " The presence of bite/blister cells raises the possibility of a Heinz body hemolytic anemia. If clinically indicated, submitting a fresh blood sample for Heinz body test is suggested.";
-            }
-            if ($('#RBCC10').prop('checked')) {
-              commentText += " Correlation with vitamin B12 and folate levels recommended to evaluate the macrocytic anemia.";
-            }
-            if ($('#RBCC11').prop('checked')) {
-              commentText += " Red blood cell agglutination resolves by preheating, consistent with a cold agglutinin.";
-            }
-            if ($('#WBCC1').prop('checked')) {
-              commentText += " The etiology of the neutrophilia is unclear. Suggest follow up to rule out persistence.";
-            }
-            if ($('#WBCC2').prop('checked')) {
-              commentText += " The etiology of the neutropenia is unclear.";
-            }
-            if ($('#WBCC3').prop('checked')) {
-              commentText += " The findings are consistent with recent history of colony stimulating factor therapy.";
-            }
-            if ($('#WBCC4').prop('checked')) {
-              commentText += " The findings are worrisome for a myeloid neoplasm.";
-            }
-            if ($('#WBCC5').prop('checked')) {
-              commentText += " If clinically indicated, molecular analysis suggested, including BCR-ABL1, JAK-2, CALR.";
-            }
-            if ($('#WBCC6').prop('checked')) {
-              commentText += " The findings are consistent with acute leukemia. Correlation with flow cytometry is suggested.";
-            }
-            if ($('#WBCC7').prop('checked')) {
-              commentText += " The etiology of the lymphocytosis is unclear but is favored to be reactive.";
-            }
-            if ($('#WBCC8').prop('checked')) {
-              commentText += " The etiology of the lymphocytosis is unclear. Suggest repeat CBC and differential to rule out persistance.";
-            }
-            if ($('#WBCC9').prop('checked')) {
-              commentText += " The findings raise the possibility of a lymphoproliferative disorder. If clinically indicated, flow cytometric analysis may be considered for further evaluation.";
-            }
-            if ($('#WBCC10').prop('checked')) {
-              commentText += " The findings raise the possibility of an acute viral infection. Correlation with clinical and serologic findings is recommended.";
-            }
-            if ($('#WBCC11').prop('checked')) {
-              commentText += " The morphologic findings, together with the positive heterophile antibody test, are consistent with infectious mononucleosis. Clinical correlation is suggested.";
-            }
-            if ($('#WBCC12').prop('checked')) {
-              commentText += " The findings are consistent with the patient's history of chronic lymphocytic leukemia.";
-            }
-            if ($('#PLTC1').prop('checked')) {
-              commentText += " The etiology of the thrombocytopenia is not clear on review of the peripheral blood smear. There is no morphologic evidence of acute microangiopathic hemolysis. Clinical correlation is suggested.";
-            }
-            if ($('#PLTC2').prop('checked')) {
-              commentText += " The etiology of the thrombocytosis is not clear. Suggest follow up with CBC to rule out persistence.";
-            }
-            if ($('#PLTC3').prop('checked')) {
-              commentText += " The etiology of the thrombocytosis is not clear.";
-            }
-            if ($('#PLTC4').prop('checked')) {
-              commentText += " Platelet clumping is present; therefore, the automated platelet count may be an underestimate. If clinically indicated, redraw in a citrated (blue top) tube is suggested.";
-            }
-            if ($('#PLTC5').prop('checked')) {
-              commentText += " Platelet clumping is present, preventing an accurate reporting of platelet count by automated instrument. If clinically indicated, redraw in a citrated (blue top) tube is suggested.";
-            }
-            if ($('#PLTC6').prop('checked')) {
-              commentText += " If clinically indicated, molecular analysis suggested, including BCR-ABL1, JAK-2, CALR.";
-            }
-            
-            if ($('#commentOther').prop('checked')) {
-            	commentText += " " + $('#commentOtherInput').val();
-            }
-            
-            if ($('#HEMC1').prop('checked')) {
-            	if (($('#HEMCDR1').val() !="" || $('#HEMCDR2').val() != "" || $('#HEMCTime').val() != "") && $('#HEMCDate').val() == ""){
-              $('#HEMCDate').val(new Date().getMonth() + 1 + '/' + new Date().getDate() + '/' + new Date().getFullYear())
-              }
-              if (($('#HEMCDR1').val() !="" && $('#HEMCDR2').val() != "" && $('#HEMCTime').val() != "") && $('#HEMCDate').val() != ""){
-              commentText += " Dr. " + $('#HEMCDR1').val() + " discussed the case with " + $('#HEMCDR2').val() + " at " + $('#HEMCTime').val() + " on " + $('#HEMCDate').val();
-              
-              }
-            }
-            if (commentText != "" && finalText != ""){
-            finalText += "<br><br>" + "Comment: " + commentText}
-            else if (commentText != ""){
-            finalText += "Comment: " + commentText
-            }
-          showComments();
 
+          if (finalText != "" && plateletText != "") {
+            finalText += "<br><br>"
+          }
+
+          finalText += plateletText;
+
+          var commentText = "";
+          if ($('#RBCC1').prop('checked')) {
+            commentText += " The etiology of the patient's anemia is not clear on review of the peripheral blood smear.";
+          }
+          if ($('#RBCC2').prop('checked')) {
+            commentText += " There is no morphologic evidence of hemolysis. Clinical correlation is suggested.";
+          }
+          if ($('#RBCC3').prop('checked')) {
+            commentText += " The red cell indices, morphology, and iron studies are consistent with iron deficiency anemia.";
+          }
+          if ($('#RBCC4').prop('checked')) {
+            commentText += " The red cell indices, morphology, and iron studies are consistent with anemia of chronic disease.";
+          }
+          if ($('#RBCC5').prop('checked')) {
+            commentText += " The red cell indices, morphology, and iron studies are suggestive of iron deficiency anemia and/or anemia of chronic disease. Clinical correlation is recommended.";
+          }
+          if ($('#RBCC6').prop('checked')) {
+            commentText += " Although rare schistocytes are seen, the findings are not definite for acute microangiopathic hemolysis. Clinical correlation is suggested.";
+          }
+          if ($('#RBCC7').prop('checked')) {
+            commentText += " The presence of schistocytes raises the possibility of a microangiopathic hemolysis. Clinical correlation suggested.";
+          }
+          if ($('#RBCC8').prop('checked')) {
+            commentText += " The presence of spherocytes raises the possibility of immune hemolysis. Clinical correlation suggested.";
+          }
+          if ($('#RBCC9').prop('checked')) {
+            commentText += " The presence of bite/blister cells raises the possibility of a Heinz body hemolytic anemia. If clinically indicated, submitting a fresh blood sample for Heinz body test is suggested.";
+          }
+          if ($('#RBCC10').prop('checked')) {
+            commentText += " Correlation with vitamin B12 and folate levels recommended to evaluate the macrocytic anemia.";
+          }
+          if ($('#RBCC11').prop('checked')) {
+            commentText += " Red blood cell agglutination resolves by preheating, consistent with a cold agglutinin.";
+          }
+          if ($('#WBCC1').prop('checked')) {
+            commentText += " The etiology of the neutrophilia is unclear. Suggest follow up to rule out persistence.";
+          }
+          if ($('#WBCC2').prop('checked')) {
+            commentText += " The etiology of the neutropenia is unclear.";
+          }
+          if ($('#WBCC3').prop('checked')) {
+            commentText += " The findings are consistent with recent history of colony stimulating factor therapy.";
+          }
+          if ($('#WBCC4').prop('checked')) {
+            commentText += " The findings are worrisome for a myeloid neoplasm.";
+          }
+          if ($('#WBCC5').prop('checked')) {
+            commentText += " If clinically indicated, molecular analysis suggested, including BCR-ABL1, JAK-2, CALR.";
+          }
+          if ($('#WBCC6').prop('checked')) {
+            commentText += " The findings are consistent with acute leukemia. Correlation with flow cytometry is suggested.";
+          }
+          if ($('#WBCC7').prop('checked')) {
+            commentText += " The etiology of the lymphocytosis is unclear but is favored to be reactive.";
+          }
+          if ($('#WBCC8').prop('checked')) {
+            commentText += " The etiology of the lymphocytosis is unclear. Suggest repeat CBC and differential to rule out persistance.";
+          }
+          if ($('#WBCC9').prop('checked')) {
+            commentText += " The findings raise the possibility of a lymphoproliferative disorder. If clinically indicated, flow cytometric analysis may be considered for further evaluation.";
+          }
+          if ($('#WBCC10').prop('checked')) {
+            commentText += " The findings raise the possibility of an acute viral infection. Correlation with clinical and serologic findings is recommended.";
+          }
+          if ($('#WBCC11').prop('checked')) {
+            commentText += " The morphologic findings, together with the positive heterophile antibody test, are consistent with infectious mononucleosis. Clinical correlation is suggested.";
+          }
+          if ($('#WBCC12').prop('checked')) {
+            commentText += " The findings are consistent with the patient's history of chronic lymphocytic leukemia.";
+          }
+          if ($('#PLTC1').prop('checked')) {
+            commentText += " The etiology of the thrombocytopenia is not clear on review of the peripheral blood smear. There is no morphologic evidence of acute microangiopathic hemolysis. Clinical correlation is suggested.";
+          }
+          if ($('#PLTC2').prop('checked')) {
+            commentText += " The etiology of the thrombocytosis is not clear. Suggest follow up with CBC to rule out persistence.";
+          }
+          if ($('#PLTC3').prop('checked')) {
+            commentText += " The etiology of the thrombocytosis is not clear.";
+          }
+          if ($('#PLTC4').prop('checked')) {
+            commentText += " Platelet clumping is present; therefore, the automated platelet count may be an underestimate. If clinically indicated, redraw in a citrated (blue top) tube is suggested.";
+          }
+          if ($('#PLTC5').prop('checked')) {
+            commentText += " Platelet clumping is present, preventing an accurate reporting of platelet count by automated instrument. If clinically indicated, redraw in a citrated (blue top) tube is suggested.";
+          }
+          if ($('#PLTC6').prop('checked')) {
+            commentText += " If clinically indicated, molecular analysis suggested, including BCR-ABL1, JAK-2, CALR.";
+          }
+          if ($('#commentOther').prop('checked')) {
+            commentText += " " + $('#commentOtherInput').val();
+          }
+          if ($('#HEMC1').prop('checked')) {
+            if (($('#HEMCDR1').val() != "" || $('#HEMCDR2').val() != "" || $('#HEMCTime').val() != "") && $('#HEMCDate').val() == "") {
+              $('#HEMCDate').val(new Date().getMonth() + 1 + '/' + new Date().getDate() + '/' + new Date().getFullYear())
+            }
+            if (($('#HEMCDR1').val() != "" && $('#HEMCDR2').val() != "" && $('#HEMCTime').val() != "") && $('#HEMCDate').val() != "") {
+              commentText += " Dr. " + $('#HEMCDR1').val() + " discussed the case with " + $('#HEMCDR2').val() + " at " + $('#HEMCTime').val() + " on " + $('#HEMCDate').val();
+
+            }
+          }
+          if (commentText != "" && finalText != "") {
+            if ($('#setting12').prop('checked')) {
+              finalText += "<br><br>" + "Comment: " + "<br>" + commentText
+            } else {
+              finalText += "<br><br>" + "Comment: " + commentText
+            }
+          } else if (commentText != "") {
+            if ($('#setting12').prop('checked')) {
+              finalText += "Comment: " + "<br>" + commentText
+            } else {
+              finalText += "Comment: " + commentText
+            }
+          }
+          showComments();
           if (finalText.length > 0) {
             $('#finalDiagnosis').show();
           } else {
@@ -2158,6 +2419,10 @@ position: absolute;
           }
           $('#finalCopyText').html(finalText)
         }
+        
+        $('.saveData').change(function(){
+        fillFinal();
+        })
 
         function showComments() {
           if ($('#rbcCommentsShow').prop('checked')) {
@@ -2225,6 +2490,14 @@ position: absolute;
 
         $('#themeColor').change(function() {
           changeTheme($('#themeColor').val());
+        })
+
+        $("#saveButton").click(function() {
+          var saveFile = [];
+          $(".saveData").each(function() {
+            saveFile.push([this.id, $(this).prop('checked')])
+          })
+          localStorage.setItem("pbTemplateSaveFile", JSON.stringify(saveFile));
         })
 
       });
