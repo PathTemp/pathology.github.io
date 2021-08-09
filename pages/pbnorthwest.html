@@ -446,12 +446,11 @@
         </div>
         <div class="bannerbottom">
           <div class='bannerbottomitem iconHead'>
-            <i class="iconPanel clickedIcon fas fa-male pad" id='patient'></i>
             <i class="iconPanel icon fas fa-tint pad" id='description'></i>
             <i class="iconPanel icon fas fa-bars pad" id='comment'></i>
           </div>
           <div class='bannerbottomitem copyHead' id='copyPanel'>
-            <span class="copy copyText" id="specimenCopy">Copy Specimen Text</span><span class="copy copyText" id="finalCopy">Copy Final Text</span></div>
+            <span class="copy copyText" id="finalCopy">Copy Text</span></div>
         </div>
       </div>
       <div class="flex-div">
@@ -465,113 +464,7 @@
           </div>
         </div>
         <div class="panelleft">
-          <div class="template-body" id="patientPanel">
-
-            <div>
-              <input type="checkbox" id="reasonLab">
-              <label for="reasonLab"> Laboratory Criteria</label>
-            </div><br>
-            <div id="clinicianRequestDiv">
-              <div id="requestedDiv" class="other">
-                <label for="requestedInput"><b>Requested By:</b></label>
-                <input type="text" class="otherInput" id="requestedInput">
-              </div>
-              <br>
-
-              <div id="reasonDiv" class="other">
-                <label><b>Reason for Consult:</b></label>
-
-                <input type="text" class="otherInput" id="reasonInput">
-
-              </div>
-            </div>
-            <div id="labCriteriaDiv" style="display: none;">
-              <b>Laboratory criteria for Pathologist review:</b>
-              <table width="100%">
-                <tr>
-                  <td width="50%"><input type="checkbox" id="lc1" class="lcClass">
-                    <label for="lc1">WBC &ge; 50.0 K/uL</label>
-                  </td>
-                  <td><input type="checkbox" id="lc2" class="lcClass">
-                    <label for="lc2">Absolute basophilia (&ge; 0.3 K/uL)</label>
-                  </td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox" id="lc3" class="lcClass">
-                    <label for="lc3">PLT count &ge; 1,000 K/uL</label>
-                  </td>
-                  <td> <input type="checkbox" id="lc4" class="lcClass">
-                    <label for="lc4">Absolute monocytosis (&ge; 5.0 K/uL) </label>
-                  </td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox" id="lc5" class="lcClass">
-                    <label for="lc5">MCV &ge; 120 fL </label>
-                  </td>
-                  <td> <input type="checkbox" id="lc6" class="lcClass">
-                    <label for="lc6">Absolute lymphocytosis (&ge; 5.0 K/uL)</label>
-                  </td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox" id="lc7" class="lcClass">
-                    <label for="lc7">&ge; 5 giant platelets present per 100 WBCs</label>
-                  </td>
-                  <td> <input type="checkbox" id="lc8" class="lcClass">
-                    <label for="lc8">Suspect blasts present</label>
-                  </td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox" id="lc9" class="lcClass">
-                    <label for="lc9">Micromegakaryocytes present</label>
-                  </td>
-                  <td> <input type="checkbox" id="lc10" class="lcClass">
-                    <label for="lc10">Suspect abnormal lymphocytes present</label>
-                  </td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox" id="lc11" class="lcClass">
-                    <label for="lc11">Abnormal platelets present</label>
-                  </td>
-                  <td> <input type="checkbox" id="lc12" class="lcClass">
-                    <label for="lc12">Suspect dysplastic neutrophils present</label>
-                  </td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox" id="lc13" class="lcClass">
-                    <label for="lc13">Potential hemolytic anemia</label>
-                  </td>
-                  <td> <input type="checkbox" id="lc14" class="lcClass">
-                    <label for="lc14">Potential congenital anomaly</label>
-                  </td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox" id="lc15" class="lcClass">
-                    <label for="lc15">1st time patient seen at NMH with sickle cell anemia</label>
-                  </td>
-                  <td> <input type="checkbox" id="lc16" class="lcClass">
-                    <label for="lc16">Potential hematologic malignancy</label>
-                  </td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox" id="lc17" class="lcClass">
-                    <label for="lc17">Potential non-hematopoietic cells present</label>
-                  </td>
-                  <td> <input type="checkbox" id="lc18" class="lcClass">
-                    <label for="lc18">Potential cryoglobulins present</label>
-                  </td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox" id="lc19" class="lcClass">
-                    <label for="lc19">Potential microorganisms or Yeast/Fungi present</label>
-                  </td>
-                  <td></td>
-                </tr>
-              </table>
-
-            </div>
-
-          </div>
-          <div class="template-body" id="descriptionPanel" style="display: none">
+          <div class="template-body" id="descriptionPanel">
             <div>
               <div>
                 <b>Paste CBC Here:</b>
@@ -950,27 +843,7 @@
                 </div>
 
 
-                <div id="testFinalDiv" style="display: none">
-                  <div id="testPerformed" class="h1">
-                    Test Performed
-                  </div>
 
-                </div>
-                <div id="specimenCopyText">
-                  <div id="testFinal"></div>
-                  <div id="reasonFinalDiv" style="display: none">
-                    <div id="reason" class="h1">
-                      Reason for Consult
-                    </div>
-                    <div id="reasonFinal"></div>
-                  </div>
-                  <div id="labFinalDiv" style="display: none">
-                    <div id="labCriteria" class="h1">
-                      Laboratory Criteria for Pathologist Review
-                    </div>
-                    <div id="labFinal"></div>
-                  </div>
-                </div>
                 <div id="finalDiagnosis" class="h1" style="display: none">
                   Final Diagnosis
                 </div>
