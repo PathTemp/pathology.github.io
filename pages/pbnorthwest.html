@@ -527,7 +527,7 @@
                   </div>
                   <div>
                     <input type="checkbox" id="mildAniso">
-                    <label for="aniso"> Mild anisopoikilocytosis</label><br>
+                    <label for="mildAniso"> Mild anisopoikilocytosis</label><br>
                   </div>
                 </div>
                 <div id="anisoContainerDiv" class="flex-div" style="flex-wrap: wrap">
@@ -1213,10 +1213,31 @@
         $('#aniso').change(function() {
           if ($('#aniso').prop('checked')) {
             $('#rbcUnremarkable').prop('checked', false)
+            $('#mildAniso').prop('checked', false)
             $('#rbcDescription').prop('checked', true)
             createAniso()
           } else {
             $('#anisoDiv').hide()
+            $('#including').prop('checked', false)
+            if (!$('#poly').prop('checked')){
+            $('#rbcDescription').prop('checked', false)
+            }         
+          }
+        })
+        
+        $('#mildAniso').change(function() {
+          if ($('#mildAniso').prop('checked')) {
+            $('#rbcUnremarkable').prop('checked', false)
+            $('#aniso').prop('checked', false)
+            $('#rbcDescription').prop('checked', true)
+            createAniso()
+          } else {
+            $('#anisoDiv').hide()
+            $('#including').prop('checked', false)
+            if (!$('#poly').prop('checked')){
+            $('#rbcDescription').prop('checked', false)
+            } 
+            
           }
         })
 
@@ -1224,13 +1245,19 @@
           if ($('#poly').prop('checked')) {
             $('#rbcUnremarkable').prop('checked', false)
             $('#rbcDescription').prop('checked', true)
+          } else {
+            if (!$('#aniso').prop('checked') && !$('#mildAniso').prop('checked')){
+            $('#rbcDescription').prop('checked', false)
+            } 
           }
         })
 
         $('#rbcUnremarkable').change(function() {
           $('#aniso').prop('checked', false);
+          $('#mildAniso').prop('checked', false);
           $('#poly').prop('checked', false);
           $('#rbcDescription').prop('checked', true)
+          $('#including').prop('checked', false)
           $('#anisoDiv').hide()
         })
 
@@ -1837,28 +1864,38 @@
             if ($('#rbcDescription').prop('checked')) {
               if ($('#rbcUnremarkable').prop('checked')) {
                 finalText += " Red blood cells show unremarkable morphology."
-                if (!$('#rbcShow').prop('checked')) {
-                  $('#anisoContainerDiv').hide();
-                }
-              } else if ($('#poly').prop('checked') && !$('#aniso').prop('checked')) {
+
+              } else if ($('#poly').prop('checked') && !$('#aniso').prop('checked') && !$('#mildAniso').prop('checked')) {
                 finalText += ' Red blood cells show polychromasia.';
-              } else if ($('#poly').prop('checked') && $('#aniso').prop('checked')) {
-                finalText += ' Red blood cells show polychromasia and anisopoikilocytosis'
-                $('#anisoContainerDiv').show();
-                if (anisoOptionList[0] != undefined && anisoOptionList[0] != "") {
-                  finalText += ' including ' + listTextAniso(finalAnisoList)
-                  finalText += '.'
-                } else {
-                  finalText += '.'
-                }
-              } else if ($('#aniso').prop('checked')) {
-                finalText += ' Red blood cells show anisopoikilocytosis';
-                $('#anisoContainerDiv').show();
+              } else if ($('#poly').prop('checked') && ($('#aniso').prop('checked') || $('#mildAniso').prop('checked'))) {
+                finalText += ' Red blood cells show polychromasia and ';
                 if (anisoOptionList[0] != undefined && anisoOptionList[0] != "" && $('#including').prop('checked')) {
-                  finalText += ' including ' + listTextAniso(finalAnisoList)
-                  finalText += '.'
+                if ($('#aniso').prop('checked')){
+                finalText += 'anisopoikilocytosis including ' + listTextAniso(finalAnisoList) + '.'
                 } else {
-                  finalText += '.'
+                finalText += 'mild anisopoikilocytosis including ' + listTextAniso(finalAnisoList) + '.'
+                }                
+                } else {
+                	if ($('#aniso').prop('checked')){
+                  finalText += 'non-specific anisopoikilocytosis.'
+                  } else {
+                  finalText += 'mild non-specific anisopoikilocytosis.'
+                  }                  
+                }
+              } else if ($('#aniso').prop('checked') || $('#mildAniso').prop('checked')) {
+                finalText += ' Red blood cells show '
+                if (anisoOptionList[0] != undefined && anisoOptionList[0] != "" && $('#including').prop('checked')) {
+                 if ($('#aniso').prop('checked')){
+                finalText += 'anisopoikilocytosis including ' + listTextAniso(finalAnisoList) + '.'
+                } else {
+                finalText += 'mild anisopoikilocytosis including ' + listTextAniso(finalAnisoList) + '.'
+                } 
+                } else {
+                  if ($('#aniso').prop('checked')){
+                  finalText += 'non-specific anisopoikilocytosis.'
+                  } else {
+                  finalText += 'mild non-specific anisopoikilocytosis.'
+                  }
                 }
               }
             }
