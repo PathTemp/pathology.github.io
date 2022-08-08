@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -166,7 +165,7 @@
       .rightpanelbutton {
         cursor: pointer;
       }
-      
+
       .navigationButton {
         cursor: pointer;
       }
@@ -541,7 +540,7 @@
                   <label for="nrbc"><b>RBC7:</b> Nucleated red blood cells identified.</label><br>
                 </div>
                 <div id="nrbcQuantDiv" class="flex-div" style="flex-wrap: wrap">
-                 <div>
+                  <div>
                     <input type="radio" name="nrbc" id="nrbcFrequent">
                     <label for="nrbcFrequent"> Frequent</label>
                   </div>
@@ -549,11 +548,11 @@
                     <input type="radio" name="nrbc" id="nrbcOccasional">
                     <label for="nrbcOccasional"> Occasional</label>
                   </div>
-                                    <div>
+                  <div>
                     <input type="radio" name="nrbc" id="nrbcRare">
                     <label for="nrbcRare"> Rare</label>
                   </div>
-                  </div>
+                </div>
                 <div id="agglutinationDiv">
                   <input type="checkbox" id="agglutination">
                   <label for="agglutination"><b>RBC8:</b> Red blood cells show agglutination. See comment.</label>
@@ -765,11 +764,11 @@
                 <input type="checkbox" id="RBCC11" class="pbComment">
                 <label for="RBCC11"><b>RBCC11:</b> Correlation with vitamin B12 and folate levels recommended to evaluate the macrocytic anemia.</label>
               </div>
-               <div id="RBCC12Div" style="display: none">
+              <div id="RBCC12Div" style="display: none">
                 <input type="checkbox" id="RBCC12" class="pbComment">
                 <label for="RBCC12"><b>RBCC12:</b> The red cell indices and morphology are suggestive of a thalassemia. If clinically indicated, hemoglobin electrophoresis is recommended for further evaluation.</label>
               </div>
-                             <div id="RBCC13Div" style="display: none">
+              <div id="RBCC13Div" style="display: none">
                 <input type="checkbox" id="RBCC13" class="pbComment">
                 <label for="RBCC13"><b>RBCC13:</b> The red cell indices and morphology are consistent with the patient's history of thalassemia.</label>
               </div>
@@ -848,11 +847,11 @@
                 <input type="checkbox" id="PLTC1" class="pbComment">
                 <label for="PLTC1"><b>PLTC1:</b> The etiology of the patient's thrombocytopenia is not clear on review of the peripheral blood smear. There is no morphologic evidence of acute microangiopathic hemolysis. Clinical correlation is suggested.</label>
               </div>
-               <div id="PLTC2Div" style="display: none">
+              <div id="PLTC2Div" style="display: none">
                 <input type="checkbox" id="PLTC2" class="pbComment">
                 <label for="PLTC2"><b>PLTC2:</b> The etiology of the patient's anemia and thrombocytopenia is not clear on review of the peripheral blood smear. There is no morphologic evidence of acute microangiopathic hemolysis. Clinical correlation is suggested.</label>
               </div>
-               <div id="PLTC3Div" style="display: none">
+              <div id="PLTC3Div" style="display: none">
                 <input type="checkbox" id="PLTC3" class="pbComment">
                 <label for="PLTC3"><b>PLTC3:</b> The etiology of the patient's pancytopenia is not clear on review of the peripheral blood smear. There is no morphologic evidence of acute microangiopathic hemolysis. Clinical correlation is suggested.</label>
               </div>
@@ -941,7 +940,7 @@
                     <span class="slider round"></span>
                   </label></td>
               </tr>
-                            <tr>
+              <tr>
                 <td>Include monocyte count when abnormal</td>
                 <td><label class="switch">
                     <input class="saveData" type="checkbox" id="setting5">
@@ -983,7 +982,7 @@
                     <span class="slider round"></span>
                   </label></td>
               </tr>
-               <tr>
+              <tr>
                 <td>Only include platelet count when elevated</td>
                 <td><label class="switch">
                     <input class="saveData" type="checkbox" id="setting9">
@@ -1219,12 +1218,12 @@
           } else {
             $('#anisoDiv').hide()
             $('#including').prop('checked', false)
-            if (!$('#poly').prop('checked')){
-            $('#rbcDescription').prop('checked', false)
-            }         
+            if (!$('#poly').prop('checked')) {
+              $('#rbcDescription').prop('checked', false)
+            }
           }
         })
-        
+
         $('#mildAniso').change(function() {
           if ($('#mildAniso').prop('checked')) {
             $('#rbcUnremarkable').prop('checked', false)
@@ -1234,10 +1233,10 @@
           } else {
             $('#anisoDiv').hide()
             $('#including').prop('checked', false)
-            if (!$('#poly').prop('checked')){
-            $('#rbcDescription').prop('checked', false)
-            } 
-            
+            if (!$('#poly').prop('checked')) {
+              $('#rbcDescription').prop('checked', false)
+            }
+
           }
         })
 
@@ -1246,9 +1245,9 @@
             $('#rbcUnremarkable').prop('checked', false)
             $('#rbcDescription').prop('checked', true)
           } else {
-            if (!$('#aniso').prop('checked') && !$('#mildAniso').prop('checked')){
-            $('#rbcDescription').prop('checked', false)
-            } 
+            if (!$('#aniso').prop('checked') && !$('#mildAniso').prop('checked')) {
+              $('#rbcDescription').prop('checked', false)
+            }
           }
         })
 
@@ -1358,7 +1357,7 @@
           }
           return listText
         }
-        
+
         function listTextAniso(listToConvert) {
           var listText = "";
           if (listToConvert.length == 1) {
@@ -1366,34 +1365,34 @@
           } else if (listToConvert.length == 2) {
             return listToConvert[0] + " and " + listToConvert[1]
           } else {
-          	var countArray = [];
+            var countArray = [];
             var counter = 0;
             for (var i = 0; i < listToConvert.length; i++) {
-            	if (listToConvert[i].indexOf("frequent") != -1){
-              counter = 0;
+              if (listToConvert[i].indexOf("frequent") != -1) {
+                counter = 0;
               } else if (listToConvert[i].indexOf("occasional") != -1) {
-              counter = 1;
+                counter = 1;
               } else if (listToConvert[i].indexOf("rare") != -1) {
-              counter = 2;
+                counter = 2;
               }
               countArray.push(counter)
-              }
-             counter = 0;
-              for (var i = 0; i < listToConvert.length; i++) {
-              if (i == countArray.lastIndexOf(countArray[i])){
-              	listText += listToConvert[i];
-                if (i != listToConvert.length-1){
-                listText += " with ";
+            }
+            counter = 0;
+            for (var i = 0; i < listToConvert.length; i++) {
+              if (i == countArray.lastIndexOf(countArray[i])) {
+                listText += listToConvert[i];
+                if (i != listToConvert.length - 1) {
+                  listText += " with ";
                 }
-              } else if (counter == 0 && i == countArray.lastIndexOf(countArray[i]) - 1){
-              	listText += listToConvert[i] + " and "
+              } else if (counter == 0 && i == countArray.lastIndexOf(countArray[i]) - 1) {
+                listText += listToConvert[i] + " and "
                 counter = 0;
-              } else if (counter > 0 && i == countArray.lastIndexOf(countArray[i]) - 1){
-              	listText += listToConvert[i] + ", and "
+              } else if (counter > 0 && i == countArray.lastIndexOf(countArray[i]) - 1) {
+                listText += listToConvert[i] + ", and "
                 counter = 0;
-              } else if (i != countArray.lastIndexOf(countArray[i]) - 1){
-              listText += listToConvert[i] + ", "
-              counter++
+              } else if (i != countArray.lastIndexOf(countArray[i]) - 1) {
+                listText += listToConvert[i] + ", "
+                counter++
               }
             }
           }
@@ -1463,73 +1462,71 @@
         }
 
         function parseCBC() {
-        	cbcArray = [];
+          cbcArray = [];
           var cbcTable = "<table id='pbtable'><tr><th>Component</th><th>Result</th><th>Reference Range</th></tr>"
           if ($('#pbCBC').val() != "") {
             var cbcFinal = [];
             var collectedDate = "";
             var cbcText = ""
-            var cbcVariables = ["WBC", "RBC", "HGB", "HCT", "MCV", "MCH", "MCHC", "RDW", "PLT", "MPV", "Absolute Blasts","Absolute Neutrophil Promyelocytes","Absolute Neutrophil Metamyelocytes","Absolute Neutrophil Myelocytes","Absolute Neutrophils", "Absolute Lymphocytes", "Absolute Basophils", "Absolute Monocytes", "Absolute Eosinophils","Nucleated Red Blood Cells, Automated","NRBC", "Absolute NRBC", "Absolute Immature Granulocytes", "Neutrophils","Lymphocytes","Monocytes","Eosinophils","Basophils", "Immature Granulocytes", "Blasts"];
-            var cbcTableList = ["WBC","RBC","HGB","HCT","MCV","MCH","MCHC","RDW","PLT","MPV","Absolute Neutrophils","Absolute Lymphocytes"]
+            var cbcVariables = ["WBC", "RBC", "HGB", "HCT", "MCV", "MCH", "MCHC", "RDW", "PLT", "MPV", "Absolute Blasts", "Absolute Neutrophil Promyelocytes", "Absolute Neutrophil Metamyelocytes", "Absolute Neutrophil Myelocytes", "Absolute Neutrophils", "Absolute Lymphocytes", "Absolute Basophils", "Absolute Monocytes", "Absolute Eosinophils", "Nucleated Red Blood Cells, Automated", "NRBC", "Absolute NRBC", "Absolute Immature Granulocytes", "Neutrophils", "Lymphocytes", "Monocytes", "Eosinophils", "Basophils", "Immature Granulocytes", "Blasts"];
+            var cbcTableList = ["WBC", "RBC", "HGB", "HCT", "MCV", "MCH", "MCHC", "RDW", "PLT", "MPV", "Absolute Neutrophils", "Absolute Lymphocytes"]
             var cbcLines = $('#pbCBC').val().split("\n")
             var counter = 0;
             var componentIndex, valueIndex, rangeIndex, unitsIndex;
             var cbcTest = [];
-            
+
             for (var i = 0; i < cbcLines.length; i++) {
               cbcFinal.push(cbcLines[i].split("\t"));
             }
             for (var i = 0; i < cbcFinal.length; i++) {
-            	if (cbcFinal[i][0].includes("Manual Differential")){
-              	break;
+              if (cbcFinal[i][0].includes("Manual Differential")) {
+                break;
               }
-            	if (cbcFinal[i].includes("Component")){
-              	componentIndex = cbcFinal[i].indexOf("Component");
-                if (cbcFinal[i].indexOf("Value") != -1){
-                valueIndex = cbcFinal[i].indexOf("Value");
-                rangeIndex = cbcFinal[i].indexOf("Ref. Range");
-                unitsIndex = cbcFinal[i].indexOf("Units");
+              if (cbcFinal[i].includes("Component")) {
+                componentIndex = cbcFinal[i].indexOf("Component");
+                if (cbcFinal[i].indexOf("Value") != -1) {
+                  valueIndex = cbcFinal[i].indexOf("Value");
+                  rangeIndex = cbcFinal[i].indexOf("Ref. Range");
+                  unitsIndex = cbcFinal[i].indexOf("Units");
                 } else {
-                valueIndex = 2;
-                rangeIndex = 1;
-                }                
+                  valueIndex = 2;
+                  rangeIndex = 1;
+                }
               }
             }
             for (var i = 0; i < cbcFinal.length; i++) {
-            	if (cbcFinal[i][componentIndex] != undefined){
+              if (cbcFinal[i][componentIndex] != undefined) {
 
-              
-            	if (cbcVariables.includes(cbcFinal[i][componentIndex].trim())){
-              if (cbcFinal[i][rangeIndex].indexOf("-") != -1){
-              cbcArray.push([cbcFinal[i][componentIndex].trim(),parseFloat(cbcFinal[i][valueIndex].replace(/[^\d.-]/g, '')),parseFloat(cbcFinal[i][rangeIndex].split("-")[0].replace(/[^\d.-]/g, '')).toFixed(1),parseFloat(cbcFinal[i][rangeIndex].split("-")[1].replace(/[^\d.-]/g, '')).toFixed(1),cbcFinal[i][unitsIndex]])
-              } else {
-              cbcArray.push([cbcFinal[i][componentIndex],cbcFinal[i][valueIndex],"-"])
+
+                if (cbcVariables.includes(cbcFinal[i][componentIndex].trim())) {
+                  if (cbcFinal[i][rangeIndex].indexOf("-") != -1) {
+                    cbcArray.push([cbcFinal[i][componentIndex].trim(), parseFloat(cbcFinal[i][valueIndex].replace(/[^\d.-]/g, '')), parseFloat(cbcFinal[i][rangeIndex].split("-")[0].replace(/[^\d.-]/g, '')).toFixed(1), parseFloat(cbcFinal[i][rangeIndex].split("-")[1].replace(/[^\d.-]/g, '')).toFixed(1), cbcFinal[i][unitsIndex]])
+                  } else {
+                    cbcArray.push([cbcFinal[i][componentIndex], cbcFinal[i][valueIndex], "-"])
+                  }
+                }
               }
             }
-            }
-            }
-            }
-            else {
+          } else {
             cbcArray = [];
           }
           fillCBC();
           for (let i = 0; i < cbcArray.length; i++) {
             if (cbcArray[i][1] != "" && cbcArray[i][2] !== "" && cbcArray[i][1] > cbcArray[i][3]) {
               cbcTable += "<tr style='background-color:#FF7A7A'><td>"
-            } else if (cbcArray[i][1] != "" && cbcArray[i][2] !== "" && cbcArray[i][1] < cbcArray[i][2]){
-            cbcTable += "<tr style='background-color:#3DCEF5'><td>"
-            }
-            else {
+            } else if (cbcArray[i][1] != "" && cbcArray[i][2] !== "" && cbcArray[i][1] < cbcArray[i][2]) {
+              cbcTable += "<tr style='background-color:#3DCEF5'><td>"
+            } else {
               cbcTable += "<tr><td>"
             }
-            if (cbcArray[i][0]== "Absolute Immature Granulocytes"){
-            cbcTable += cbcArray[i][0] + "</td><td>" + cbcArray[i][1] + "</td><td>" + (0.02*neut).toFixed(2) + "</td></tr>";
-            } else if (cbcArray[i][2]=="-") {
-            cbcTable += cbcArray[i][0] + "</td><td>" + cbcArray[i][1] + "</td><td>" + ">= 0.0" + "</td></tr>"
+            if (cbcArray[i][0] == "Absolute Immature Granulocytes") {
+              cbcTable += cbcArray[i][0] + "</td><td>" + cbcArray[i][1] + "</td><td>" + (0.02 * neut).toFixed(2) + "</td></tr>";
+            } else if (cbcArray[i][2] == "-") {
+              cbcTable += cbcArray[i][0] + "</td><td>" + cbcArray[i][1] + "</td><td>" + ">= 0.0" + "</td></tr>"
             } else {
-             cbcTable += cbcArray[i][0] + "</td><td>" + cbcArray[i][1] + "</td><td>" + cbcArray[i][2] + " - " + cbcArray[i][3] + " " + cbcArray[i][4] + "</td></tr>"
+              cbcTable += cbcArray[i][0] + "</td><td>" + cbcArray[i][1] + "</td><td>" + cbcArray[i][2] + " - " + cbcArray[i][3] + " " + cbcArray[i][4] + "</td></tr>"
             }
-            
+
           }
           cbcTable += "</table><br>"
 
@@ -1592,9 +1589,9 @@
             } else if (cbcArray[i][0] == "Absolute NRBC") {
               nrbcAbs = cbcArray[i][1];
             } else if (cbcArray[i][0] == "Immature Granulocytes") {
-            	immature = cbcArray[i][1];
-            } else if (cbcArray[i][0] == "Blasts"){
-            	blast = cbcArray[i][1];
+              immature = cbcArray[i][1];
+            } else if (cbcArray[i][0] == "Blasts") {
+              blast = cbcArray[i][1];
             }
           }
 
@@ -1645,17 +1642,17 @@
             $('#nrbc').prop('checked', true);
             $('#nrbcQUantDiv').show();
           }
-          
+
           if (nrbcAbs > 2) {
-          	$('#nrbcFrequent').prop('checked', true)
+            $('#nrbcFrequent').prop('checked', true)
             $('#nrbcOccasional').prop('checked', false)
             $('#nrbcRare').prop('checked', false)
-          } else if (nrbcAbs > 0.1){
-         		$('#nrbcFrequent').prop('checked', false)
+          } else if (nrbcAbs > 0.1) {
+            $('#nrbcFrequent').prop('checked', false)
             $('#nrbcOccasional').prop('checked', true)
             $('#nrbcRare').prop('checked', false)
-          } else if (nrbcAbs <= 0.1){
-         		$('#nrbcFrequent').prop('checked', false)
+          } else if (nrbcAbs <= 0.1 && nrbcAbs > 0) {
+            $('#nrbcFrequent').prop('checked', false)
             $('#nrbcOccasional').prop('checked', false)
             $('#nrbcRare').prop('checked', true)
           }
@@ -1673,12 +1670,12 @@
             $('#neutrophilia').prop('checked', false);
             $('#adequateNeut').prop('checked', true);
           }
-          
-          if (immature > 1){
-          if ($('#setting11').prop('checked')){
-          $('#neutShift').prop('checked',true);
-          $('#neutDescription').prop('checked',true);
-          }
+
+          if (immature > 1) {
+            if ($('#setting11').prop('checked')) {
+              $('#neutShift').prop('checked', true);
+              $('#neutDescription').prop('checked', true);
+            }
           }
 
           if (mono > monoHigh) {
@@ -1686,21 +1683,21 @@
           } else if (mono != undefined) {
             $('#monocytosisDiv').hide();
           }
-          
-					if (eos > eosHigh) {
+
+          if (eos > eosHigh) {
             $('#eosinophilia').prop('checked', true);
           } else if (eos != undefined) {
             $('#eosinophiliaDiv').hide();
           }
-          
+
           if (baso > basoHigh) {
             $('#basophilia').prop('checked', true);
           } else if (baso != undefined) {
             $('#basophiliaDiv').hide();
           }
-                  
-          if (blast > 0){
-          	$('#blast').prop('checked', true);
+
+          if (blast > 0) {
+            $('#blast').prop('checked', true);
           }
 
           if (lymph < lymphLow * 0.2) {
@@ -1870,46 +1867,46 @@
               } else if ($('#poly').prop('checked') && ($('#aniso').prop('checked') || $('#mildAniso').prop('checked'))) {
                 finalText += ' Red blood cells show polychromasia and ';
                 if (anisoOptionList[0] != undefined && anisoOptionList[0] != "" && $('#including').prop('checked')) {
-                if ($('#aniso').prop('checked')){
-                finalText += 'anisopoikilocytosis including ' + listTextAniso(finalAnisoList) + '.'
-                } else {
-                finalText += 'mild anisopoikilocytosis including ' + listTextAniso(finalAnisoList) + '.'
-                }                
-                } else {
-                	if ($('#aniso').prop('checked')){
-                  finalText += 'non-specific anisopoikilocytosis.'
+                  if ($('#aniso').prop('checked')) {
+                    finalText += 'anisopoikilocytosis including ' + listTextAniso(finalAnisoList) + '.'
                   } else {
-                  finalText += 'mild non-specific anisopoikilocytosis.'
-                  }                  
+                    finalText += 'mild anisopoikilocytosis including ' + listTextAniso(finalAnisoList) + '.'
+                  }
+                } else {
+                  if ($('#aniso').prop('checked')) {
+                    finalText += 'non-specific anisopoikilocytosis.'
+                  } else {
+                    finalText += 'mild non-specific anisopoikilocytosis.'
+                  }
                 }
               } else if ($('#aniso').prop('checked') || $('#mildAniso').prop('checked')) {
                 finalText += ' Red blood cells show '
                 if (anisoOptionList[0] != undefined && anisoOptionList[0] != "" && $('#including').prop('checked')) {
-                 if ($('#aniso').prop('checked')){
-                finalText += 'anisopoikilocytosis including ' + listTextAniso(finalAnisoList) + '.'
-                } else {
-                finalText += 'mild anisopoikilocytosis including ' + listTextAniso(finalAnisoList) + '.'
-                } 
-                } else {
-                  if ($('#aniso').prop('checked')){
-                  finalText += 'non-specific anisopoikilocytosis.'
+                  if ($('#aniso').prop('checked')) {
+                    finalText += 'anisopoikilocytosis including ' + listTextAniso(finalAnisoList) + '.'
                   } else {
-                  finalText += 'mild non-specific anisopoikilocytosis.'
+                    finalText += 'mild anisopoikilocytosis including ' + listTextAniso(finalAnisoList) + '.'
+                  }
+                } else {
+                  if ($('#aniso').prop('checked')) {
+                    finalText += 'non-specific anisopoikilocytosis.'
+                  } else {
+                    finalText += 'mild non-specific anisopoikilocytosis.'
                   }
                 }
               }
             }
 
             if ($('#nrbc').prop('checked')) {
-            	$('#nrbcQuantDiv').show();
-              if ($('#nrbcFrequent').prop('checked')){
-              finalText += " Frequent nucleated red blood cells identified."
-              } else if ($('#nrbcOccasional').prop('checked')){
-              finalText += " Occasional nucleated red blood cells identified."
-              } else if ($('#nrbcRare').prop('checked')){
-              finalText += " Rare nucleated red blood cells identified."
+              $('#nrbcQuantDiv').show();
+              if ($('#nrbcFrequent').prop('checked')) {
+                finalText += " Frequent nucleated red blood cells identified."
+              } else if ($('#nrbcOccasional').prop('checked')) {
+                finalText += " Occasional nucleated red blood cells identified."
+              } else if ($('#nrbcRare').prop('checked')) {
+                finalText += " Rare nucleated red blood cells identified."
               } else {
-              finalText += " Nucleated red blood cells identified.";
+                finalText += " Nucleated red blood cells identified.";
               }
             }
             if ($('#agglutination').prop('checked')) {
@@ -2005,12 +2002,12 @@
                 $('#WBCC1Div').hide();
                 $('#WBCC2Div').hide();
                 $('#WBCC3Div').hide();
-                finalText += "Neutrophils are adequate";         
+                finalText += "Neutrophils are adequate";
                 if ($('#setting3').prop('checked')) {
                   finalText += " (" + neut.toFixed(1) + " K/uL)"
                 }
                 if ($('#neutUnremarkable').prop('checked')) {
-                	finalText += " and show unremarkable morphology"
+                  finalText += " and show unremarkable morphology"
                 }
                 finalText += ".";
                 if (!$('#neutShow').prop('checked')) {
@@ -2026,8 +2023,8 @@
 
             if ($('#neutDescription').prop('checked')) {
               if ($('#neutUnremarkable').prop('checked')) {
-              	if (!$('#adequateNeut').prop('checked')){
-                 finalText += " Neutrophils show unremarkable morphology."
+                if (!$('#adequateNeut').prop('checked')) {
+                  finalText += " Neutrophils show unremarkable morphology."
                 }
               } else if ($('#neutDescriptionDiv :checkbox:checked').length > 1) {
                 var neutDescriptorList = []
@@ -2090,7 +2087,7 @@
               }
 
               if ($('#lymphopenia').prop('checked')) {
-                finalText += "Absolute lymphopenia"      
+                finalText += "Absolute lymphopenia"
                 if ($('#setting6').prop('checked')) {
                   finalText += " (" + lymph.toFixed(1) + " K/uL)"
                 }
@@ -2183,29 +2180,29 @@
           }
 
           if ($('#monocytosis').prop('checked') && finalText != "") {
-               	if ($('#setting5').prop('checked')) {
-                  finalText += "<br><br> Absolute monocytosis (" + mono.toFixed(1) + " K/uL) with mature-appearing morphology."
-                } else {
-                finalText += "<br><br> Absolute monocytosis with mature-appearing morphology."
-                }   
+            if ($('#setting5').prop('checked')) {
+              finalText += "<br><br> Absolute monocytosis (" + mono.toFixed(1) + " K/uL) with mature-appearing morphology."
+            } else {
+              finalText += "<br><br> Absolute monocytosis with mature-appearing morphology."
+            }
           }
-          
+
           if ($('#eosinophilia').prop('checked') && finalText != "") {
-               	if ($('#setting13').prop('checked')) {
-                  finalText += "<br><br> Absolute eosinophilia (" + eos.toFixed(1) + " K/uL)."
-                } else {
-                finalText += "<br><br> Absolute eosinophilia."
-                } 
+            if ($('#setting13').prop('checked')) {
+              finalText += "<br><br> Absolute eosinophilia (" + eos.toFixed(1) + " K/uL)."
+            } else {
+              finalText += "<br><br> Absolute eosinophilia."
+            }
           }
-          
-           if ($('#basophilia').prop('checked') && finalText != "") {
-               	if ($('#setting14').prop('checked')) {
-                  finalText += "<br><br> Absolute basophilia (" + baso.toFixed(1) + " K/uL)."
-                } else {
-                finalText += "<br><br> Absolute basophilia."
-                }    
+
+          if ($('#basophilia').prop('checked') && finalText != "") {
+            if ($('#setting14').prop('checked')) {
+              finalText += "<br><br> Absolute basophilia (" + baso.toFixed(1) + " K/uL)."
+            } else {
+              finalText += "<br><br> Absolute basophilia."
+            }
           }
-          
+
           var plateletText = ""
           if ($('input.pltQuant:checkbox:checked').length > 1) {
             plateletText += "***Incompatible Platelet Characteristics***"
@@ -2216,16 +2213,16 @@
             $('#PLTC4Div').hide();
             $('#PLTC5Div').hide();
             $('#PLTC7Div').hide();
-           if (plt > 0.9 * pltLow){
-            plateletText += "Mild thrombocytopenia"
-            } else if (plt < 0.2 * pltLow){
-            plateletText += "Marked thrombocytopenia"
+            if (plt > 0.9 * pltLow) {
+              plateletText += "Mild thrombocytopenia"
+            } else if (plt < 0.2 * pltLow) {
+              plateletText += "Marked thrombocytopenia"
             } else {
-            plateletText += "Thrombocytopenia";
+              plateletText += "Thrombocytopenia";
             }
             if ($('#setting8').prop('checked') || $('#setting9').prop('checked') && plt != undefined) {
-                  plateletText += " (" + plt + " K/uL)"
-                } 
+              plateletText += " (" + plt + " K/uL)"
+            }
             if (!$('#pltShow').prop('checked')) {
               $('#thrombocytosisDiv').hide();
               $('#adequatePltDiv').hide();
@@ -2244,16 +2241,16 @@
             $('#PLTC4Div').show();
             $('#PLTC5Div').show();
             $('#PLTC8Div').show();
-            if (plt > 2 * pltHigh){
-            plateletText += "Marked thrombocytosis"
-            } else if (plt < 1.1 * pltHigh){
-            plateletText += "Mild thrombocytosis"
+            if (plt > 2 * pltHigh) {
+              plateletText += "Marked thrombocytosis"
+            } else if (plt < 1.1 * pltHigh) {
+              plateletText += "Mild thrombocytosis"
             } else {
-            plateletText += "Thrombocytosis";
+              plateletText += "Thrombocytosis";
             }
             if (($('#setting8').prop('checked') || $('#setting9').prop('checked')) && plt != undefined) {
-                  plateletText += " (" + plt + " K/uL)"
-                } 
+              plateletText += " (" + plt + " K/uL)"
+            }
             if (!$('#pltShow').prop('checked')) {
               $('#thrombocytopeniaDiv').hide();
               $('#adequatePltDiv').hide();
@@ -2274,8 +2271,8 @@
             $('#PLTC8Div').hide();
             plateletText += "Platelets are adequate";
             if ($('#setting8').prop('checked')) {
-                  plateletText += " (" + plt + " K/uL)"
-                }       
+              plateletText += " (" + plt + " K/uL)"
+            }
             if (!$('#pltShow').prop('checked')) {
               $('#thrombocytopeniaDiv').hide();
               $('#thrombocytosisDiv').hide();
