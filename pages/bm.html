@@ -2387,7 +2387,7 @@
             }
           }
           if ($('#specFlow').prop('checked')) {
-            grossText += "<br>" + "Flow cytometry: Bone marrow aspirate submitted to Flow Cytometry Laboratory at Northwestern Memorial Hospital (NMH)."
+            grossText += "<br>" + "Flow cytometry: Bone marrow aspirate submitted to Flow Cytometry Laboratory."
           }
 
           if ($('#specFISH').prop('checked')) {
@@ -2396,11 +2396,11 @@
             }
           }
           if ($('#specGen').prop('checked') && $('#specFISH').prop('checked')) {
-            grossText += "<br>" + "Cytogenetics/FISH: Bone marrow aspirate submitted to Cytogenetic Laboratory at Northwestern Memorial Hospital for conventional cytogenetic studies and FISH analysis" + fishText
+            grossText += "<br>" + "Cytogenetics/FISH: Bone marrow aspirate submitted to Cytogenetic Laboratory for conventional cytogenetic studies and FISH analysis" + fishText
           } else if ($('#specGen').prop('checked')) {
-            grossText += "<br>" + "Cytogenetics: Bone marrow aspirate submitted to Cytogenetic Laboratory at Northwestern Memorial Hospital for conventional cytogenetic studies"
+            grossText += "<br>" + "Cytogenetics: Bone marrow aspirate submitted to Cytogenetic Laboratory for conventional cytogenetic studies"
           } else if ($('#specFISH').prop('checked')) {
-            grossText += "<br>" + "FISH: Bone marrow aspirate submitted to Cytogenetic Laboratory at Northwestern Memorial Hospital for FISH analysis" + fishText
+            grossText += "<br>" + "FISH: Bone marrow aspirate submitted to Cytogenetic Laboratory for FISH analysis" + fishText
           }
 
           if ($('#specMolec').prop('checked')) {
@@ -2918,13 +2918,7 @@
               }
             }
             if (x[i].indexOf('Resulting Agency') != -1) {
-              if (x[i].filter(Boolean)[1].indexOf('NMH Lab') != -1 || x[i].filter(Boolean)[1].indexOf('NMH') != -1) {
-                laboratory = "Northwestern Memorial Hospital"
-              } else if (x[i].filter(Boolean)[1].indexOf('MISYS') != -1) {
-                laboratory = "Lurie Children's Hospital of Chicago";
-              } else {
                 laboratory = x[i].filter(Boolean)[1]
-              }
             }
             if (x[i][0].indexOf('Specimen Collected') != -1) {
               collectedDate = x[i][0].split(" ")[2]
@@ -2940,7 +2934,7 @@
             }
           }
           if (collectedDate != "" && laboratory != "" && clinicalArrayText != "") {
-            $('#clinicalCBC').html("The following CBC is from " + collectedDate + " and was performed at Northwestern Memorial Hospital:<br><br>" + clinicalArrayText + "<br><br>")
+            $('#clinicalCBC').html("The following CBC is from " + collectedDate + "<br><br>" + clinicalArrayText + "<br><br>")
             $('#clinicalCBC').show();
             $('#clinical').show();
           } else if ($('#chText').val() == "") {
